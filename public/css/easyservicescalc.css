@@ -1,0 +1,286 @@
+table{
+    margin: 0;
+}
+
+h1.title{
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.main-title{
+    border-top: 3px solid black;
+    padding-top: 20px;
+}
+
+h2.subtitle{
+    font-size: 1.1em;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+h3.sub-subtitle{
+    font-size: 1em!important;
+    margin-bottom: 5px;
+}
+
+
+.personal-left, .personal-right {
+    float: left;
+    width: 50%;
+
+    margin-bottom: 40px;
+}
+
+.property-left, .property-right {
+    float: left;
+    width: 50%;
+    margin-bottom: 40px;
+}
+
+.admin-text-left, .date-text-right {
+    float: left;
+    width: 50%;
+    margin-bottom: 40px;
+}
+
+table{
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 13px;
+}
+
+
+
+
+/*-----II. Náklady na jednotku ---- */
+
+/*--------Row-1---------------*/
+
+.services-row-1 {
+    width: 100%;
+    border-top: 3px solid black;
+    border-bottom: 0.5px solid black;
+    text-align: right;
+}
+.services-row-1 .col-1 {
+    width: 60%;
+    text-align: left;
+}
+
+.services-row-1 .col-2 {
+    width: 20%;
+}
+
+.services-row-1 .col-3 {
+    width: 20%;
+}
+
+.services-row-1 td{
+    padding: 10px 0 10px 0;
+
+}
+
+/*--------Services-Rows---------------*/
+
+.services-rows {
+    width: 100%;
+    text-align: right;
+}
+.services-rows .col-1 {
+    width: 60%;
+    text-align: left;
+}
+
+.services-rows .col-2 {
+    width: 20%;
+}
+
+.services-rows .col-3 {
+    width: 20%;
+}
+
+.services-rows td {
+    padding: 3px 0 3px 0;
+
+}
+
+/*--------Services-Rows-Total---------------*/
+
+.services-row-total {
+    width: 100%;
+    text-align: right;
+    border-top: 0.5px solid black;
+    border-bottom: 0.5px solid black;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.services-row-total td {
+    padding: 5px 0 5px 0;;
+}
+
+.services-row-total .col-1 {
+    width: 60%;
+    text-align: left;
+}
+
+.services-row-total .col-2 {
+    width: 20%;
+}
+
+.services-row-total .col-3 {
+    width: 20%;
+}
+
+
+
+
+
+/*-------II. Finalni vyuctovani ----------------------*/
+/*----------calc-row-1 ---------------*/
+
+.calc-row-1 {
+    width: 100%;
+    text-align: right;
+    border-top: 3px solid black;
+    border-bottom: 0.5px solid black;
+
+}
+
+.calc-row-1 .col-1 {
+    width: 60%;
+    text-align: left;
+}
+
+.calc-row-1 .col-2 {
+    width: 20%;
+}
+
+.calc-row-1 .col-3 {
+    width: 20%;
+}
+
+.calc-row-1 td{
+    padding: 10px 0 10px 0;
+
+}
+
+
+
+/*----------calc-row-2 ---------------*/
+
+.calc-row-2 {
+    width: 100%;
+    text-align: right;
+    font-weight: bold;
+
+}
+
+.calc-row-2 .col-1 {
+    width: 60%;
+    text-align: left;
+}
+
+.calc-row-2 .col-2 {
+    width: 20%;
+}
+
+.calc-row-2 .col-3 {
+    width: 20%;
+}
+
+.calc-row-2 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*----------calc-row-3 ---------------*/
+
+.calc-row-3 {
+    width: 100%;
+    text-align: right;
+
+
+}
+
+.calc-row-3 .col-1 {
+    width: 60%;
+    text-align: left;
+}
+
+.calc-row-3 .col-2 {
+    width: 20%;
+}
+
+.calc-row-3 .col-3 {
+    width: 20%;
+}
+
+.calc-row-3 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*----------calc-row-4 ---------------*/
+
+.calc-row-4 {
+    width: 100%;
+    text-align: right;
+
+
+}
+
+.calc-row-4 .col-1 {
+    width: 60%;
+    text-align: left;
+}
+
+.calc-row-4 .col-2 {
+    width: 20%;
+}
+
+.calc-row-4 .col-3 {
+    width: 20%;
+}
+
+.calc-row-4 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*----------calc-row-5 ---------------*/
+
+.calc-row-5 {
+    width: 100%;
+    text-align: right;
+    border-bottom: 0.5px solid black;
+    border-top:  0.5px solid black;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+}
+
+.calc-row-5 .col-1 {
+    width: 60%;
+    text-align: left;
+
+}
+
+.calc-row-5 .col-2 {
+    width: 20%;
+}
+
+.calc-row-5 .col-3 {
+    width: 20%;
+}
+
+.calc-row-5 td{
+    padding: 10px 0 10px 0;
+
+}
+
+.date {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}

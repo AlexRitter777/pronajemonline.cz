@@ -1,0 +1,1133 @@
+
+
+table{
+    border-collapse: collapse;
+}
+
+.user-content {
+    display: flex;
+    max-width: 1152px;
+    /*min-height: 100%;*/
+    margin: 0 auto 0;
+    background-color: #ffffff;
+
+}
+
+.left-side-bar {
+    width: 18%;
+    border-right: solid 1px #C9EED2;
+    box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+
+}
+
+.left-side-bar ul{
+    list-style: none;
+    margin-top: 50px;
+    padding-left: 10%;
+    text-align: left;
+
+}
+.left-side-bar ul>li{
+
+    margin-bottom: 20px;
+
+}
+
+.left-side-bar a{
+
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #23558C;
+}
+
+.left-side-bar a:visited {
+    color: #23558C;
+}
+
+.center-content {
+    width: 82%;
+
+}
+.central-bar a {
+    color: #23558C;
+}
+
+
+.central-bar a:visited {
+    color: #23558C;
+}
+
+.account-index-table {
+    margin: 0 auto 30px;
+    text-align: left;
+    width: 85%;
+
+}
+
+.errors_field_table{
+    width: 60%;
+    margin: -30px auto 20px;
+}
+
+
+.user-header h3 {
+    font-size: 2em;
+}
+
+
+.account-index-table tr{
+    border-bottom: 0.5px solid grey;
+
+
+}
+
+.account-index-table td {
+    padding: 7px 3px 7px 3px;
+}
+
+.account-index-table th {
+    padding-bottom: 5px;
+    padding-left: 3px;
+}
+
+.account-index-table .row-1 {
+    border-bottom: 2px solid #23558C;
+    color: #23558C;
+    text-transform: uppercase;
+
+    
+}
+
+.calculation-select-type{
+    margin-bottom: 15px;
+}
+
+.calculation-select-type label{
+    color: #23558C;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-right: 5px;
+}
+
+.calculation-select-type .select2-container .select2-selection--single{
+    height: 25px!important;
+
+}
+
+.calculation-select-type .select2-container .select2-selection--single .select2-selection__rendered{
+    line-height: 23px;
+    color: #23558C;
+    font-weight: bold;
+}
+
+.calculation-select-type .select2-container{
+    width: 250px!important;
+    margin-right: 5px;
+}
+
+.sbm_calc_type {
+    color: #23558C;
+    font-family: 'Open Sans', sans-serif;
+    border: 2px solid #23558C;
+    border-radius: 3px;
+    font-weight: 700;
+    width: 70px;
+    height: 25px;
+    background-color: #ffffff;
+    padding: 0;
+}
+
+.sbm_calc_type:hover{
+    background-color:#f5f5f5;
+    cursor: pointer;
+}
+
+.title-order {
+    display: flex;
+}
+
+.icons-order{
+    display: flex;
+    flex-direction: column-reverse;
+    margin-left: 2px
+}
+
+.icons-order a {
+    height: 8px;
+    line-height: 5px;
+}
+
+.icons-order svg{
+    fill: #23558C;
+}
+
+.title-filter span{
+    margin-right: 4px;
+}
+
+.title-filter polygon{
+    fill: #23558C!important;
+}
+
+
+
+.calculation-titles .col-1 {
+    width: 10%;
+}
+
+.calculation-titles .col-2 {
+    width: 25%;
+}
+
+.calculation-titles .col-3 {
+    width: 15%;
+}
+
+.calculation-titles .col-4 {
+    width: 20%;
+}
+
+.calculation-titles .col-5 {
+    width: 13%;
+}
+
+.calculation-titles .col-6 {
+    width: 12%;
+    text-align: left;
+}
+
+.calculation-titles .col-7 {
+    width: 5%;
+    text-align: right;
+}
+
+.filter-list-item {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.filter-list-item input {
+    padding: 0;
+    margin: 0 10px 0 0 ;
+    height: unset;
+    box-shadow: unset;
+}
+
+.filter-list-item label {
+    font-size: 0.9em;
+}
+
+#filter_calc_form .submit_button_modal{
+    width: unset;
+}
+
+#filter_calc_form button{
+    width: unset;
+}
+
+
+.landlord-titles .col-1 {
+    width: 30%;
+}
+
+.landlord-titles .col-2 {
+    width: 30%;
+}
+
+.landlord-titles .col-3 {
+    width: 50%;
+}
+
+.landlord-titles .col-4 {
+    width: 10%;
+    text-align: right;
+}
+
+.tenant-titles .col-1 {
+    width: 30%;
+}
+
+.tenant-titles .col-2 {
+    width: 30%;
+}
+
+.tenant-titles .col-3 {
+    width: 50%;
+}
+
+.tenant-titles .col-4 {
+    width: 10%;
+    text-align: right;
+}
+
+.admin-titles .col-1 {
+    width: 30%;
+}
+
+.admin-titles .col-2 {
+    width: 30%;
+}
+
+.admin-titles .col-3 {
+    width: 50%;
+}
+
+.admin-titles .col-4 {
+    width: 10%;
+    text-align: right;
+}
+
+.elsupplier-titles .col-1 {
+    width: 40%;
+}
+
+.elsupplier-titles .col-2 {
+    width: 40%;
+}
+
+.elsupplier-titles .col-3 {
+    width: 10%;
+    text-align: right;
+}
+
+.account-index-table .row-click:hover
+{
+    cursor: pointer;
+    background-color: #f5f5f5;
+    transition: background .1s linear;
+}
+
+.empty-data {
+    color: #23558C;
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+
+.modal_del_confirmation,
+.modal_del_confirmation_ajax {
+
+    position: absolute;
+    display: none;
+    border: 1px solid #f5f5f5;
+    color: #23558C;
+    background-color: #f5f5f5;
+    padding: 8px 10px;
+    width: 140px;
+    text-align: center;
+    font-size: 12px !important;
+    font-weight: 600;
+    line-height: 135%;
+    border-radius: 4px;
+    box-shadow: 0 0 8px 0 rgb(0 0 0 / 40%);
+    white-space: normal !important;
+}
+
+.small_modal_wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal_confirm_btn:hover, .modal_cancel_btn:hover,
+.modal_confirm_btn_ajax:hover, .modal_cancel_btn_ajax:hover{
+
+    cursor: pointer;
+    text-decoration: underline;
+
+}
+.item_delete_button:hover,
+.item_delete_button_ajax:hover{
+    text-decoration: underline;
+}
+/*---------------Properties---------------------*/
+
+.property-titles {
+    width: 95%;
+}
+
+.property-titles .col-1 {
+    width: 30%;
+}
+
+.property-titles .col-2 {
+    width: 15%;
+}
+
+
+/*-------------j-box additional styles-----------------*/
+.jBox-Confirm-footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.jBox-Confirm-button {
+    width: 35%!important;
+    height: 33px!important;
+    line-height: 30px!important;
+    border-radius: 3px!important;
+    font-weight: 600;
+}
+
+.jBox-Confirm-button-submit{
+
+    background: #c00!important;
+
+
+}
+
+.jBox-Confirm-button-submit:hover {
+    background: #23558C!important;
+}
+
+.jBox-Confirm-button-cancel{
+
+    color: #23558C!important;
+    border: 2px solid #23558C!important;
+    background: #fff!important;
+
+}
+
+.jBox-Confirm-button-cancel:hover {
+
+    background: #f5f5f5!important;
+    border: 2px solid #c00!important;
+    color: #c00!important;
+}
+
+.jBox-title {
+    background: #f5f5f5!important;
+    border-bottom: 1px solid #f5f5f5!important;
+}
+
+.jBox-title > div {
+    font-weight: 600;
+    color: #23558C;
+    text-transform: uppercase;
+}
+
+.jBox-content {
+    font-family: sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    color: #23558C;
+    line-height: 20px;
+    padding: 30px 35px!important;
+}
+
+/*--------------------Profil nájemníka------------------*/
+.tenants {
+    margin: 0 auto;
+    width: 60%;
+    font-size: 1.2em;
+    color: #23558C;
+    margin-bottom: 40px;
+}
+
+.tenants td {
+    padding: 5px 0 3px 0;
+}
+
+.tenants .col-1 {
+    text-align: left;
+    width: 25%;
+
+}
+
+.tenants .col-2 {
+    text-align: left;
+    font-weight: 700;
+    padding-left: 5%;
+}
+
+
+.tenants .property-list {
+    vertical-align: top;
+}
+
+.tenants .property-list .col-2 {
+    line-height: 23px;
+}
+
+.tenant-profile-buttons {
+    margin: 0 auto;
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.tenant-add-buttons, .property-add-buttons {
+    margin: 0 auto 40px;
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tenant-add-buttons a, .tenant-add-buttons input,
+.property-add-buttons a, .property-add-buttons input  {
+    text-decoration: none;
+    border: 2px solid #23558C;
+    border-radius: 3px;
+    padding: 3px 18px;
+    font-weight: 700;
+    margin: 0;
+    color: #23558C;
+    height: auto;
+    width: 80px;
+}
+
+.tenant-add-buttons input:hover,
+.property-add-buttons input:hover{
+    cursor: pointer;
+}
+.new-item-btn-container
+{
+    margin-bottom: 8%;
+}
+
+.tenant-profile-buttons a, .new-item-btn
+{
+    text-decoration: none;
+
+    border: 2px solid #23558C;
+    border-radius: 3px;
+    padding: 3px 5px;
+    font-weight: 700;
+    width: 110px;
+}
+
+.tenant-profile-buttons button{
+    color: #23558C;
+    font-family: 'Open Sans', sans-serif;
+    border: 2px solid #23558C;
+    border-radius: 3px;
+    padding: 3px 5px;
+    font-weight: 700;
+    width: 110px;
+    background-color: #ffffff;
+}
+
+
+.tenant-profile-buttons a:hover, .new-item-btn:hover, .tenant-add-buttons input:hover, .tenant-add-buttons a:hover {
+    background-color:#f5f5f5;
+
+}
+.tenant-profile-buttons button:hover{
+    background-color:#f5f5f5;
+    cursor: pointer;
+}
+
+
+.submit_button_profile_pushed {
+    color: #C2D0E0!important;
+    border-color: #C2D0E0!important;
+}
+
+.input-profile {
+    padding: 6px 5px;
+    border: 1px solid #c2c2c2;
+    border-radius: 2px;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 6%);
+    transition: border 0.2s ease;
+    background: #fff;
+    height: 32px;
+    margin-bottom: 10px;
+    margin-right: 6px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.tenants input {
+    width: 100%;
+}
+
+/*----------------------------Select-2 items list(Add property) ---------------------------*/
+
+.tenant .select2-container,
+.landlord .select2-container,
+.admin .select2-container,
+.elsupplier .select2-container {
+    width: 100%!important;
+    margin-bottom: 10px;
+}
+
+[aria-controls="select2-input-tenant-list-results"],
+[aria-controls="select2-input-landlord-list-results"],
+[aria-controls="select2-input-admin-list-results"],
+[aria-controls="select2-input-elsupplier-list-results"]
+{
+    width: 80%!important;
+}
+
+
+.person_added_btn,
+.admin_added_btn,
+.btn_open_modal {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #ffffff;
+    margin-left: 1.5%;
+    border: 2px solid #23558C;
+    border-radius: 3px;
+    padding: 2px 7px;
+    font-weight: 700;
+    color: #23558C;
+    height: auto;
+    width: 50px;
+}
+
+.person_added_btn:hover{
+    cursor: pointer;
+    background-color:#f5f5f5;
+}
+
+/*---------------------------Modal window new person-------------------*/
+.user-header {
+    text-align: center;
+    margin-top: -5px;
+    margin-bottom: -10px;
+
+
+}
+
+.user-header h3 {
+    font-size: 1.3em;
+    text-transform: uppercase;
+}
+
+.user-header-modal{
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.tenants-modal {
+    margin: 0 auto;
+    width: 95%;
+    font-size: 1em;
+    color: #23558C;
+
+}
+
+.input-profile-modal {
+    width: 100%;
+}
+
+.submit_button_modal{
+    width: 80px;
+    min-width: 60px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.submit_button_refresh_modal,
+.submit_button_refresh_modal_old{
+    background-color: #ffffff;
+    width: 80px;
+    min-width: 60px;
+    height: 30px;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.modal_buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.modal_errors_field .errors {
+    font-weight: normal;
+    padding: 5px 0 5px 30px;
+
+}
+.modal_errors_field #er {
+    margin-bottom: 1px;
+
+}
+
+.loader_modal {
+    width: 50px;
+    height: 50px;
+    border-width: 5px;
+}
+
+.loader-wrapper_profile {
+
+    top: 45%;
+    left: 7%;
+}
+
+.opacity-for-loader{
+    height: 100%;
+}
+
+/*----------User account -----------------*/
+.account-items-container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 10px auto 40px;;
+
+}
+.account-item-container {
+    height: 100px;
+    width: 17%;
+    border: solid 1px #C9EED2;
+    box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account-item-title {
+    color: #23558C;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.account-item-count {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.3em;
+}
+
+.account-item-count:hover{
+    text-decoration: underline;
+}
+
+.dashboard-table {
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.dashboard-calc-title {
+    font-size: 1.3em!important;
+    text-transform: uppercase;
+}
+
+.dashboard-calc-subtitle{
+    font-size: 1.2em;
+    color: #23558C;
+    margin-bottom: 15px;
+    text-decoration: underline;
+}
+
+.more-calc-btn a {
+    text-decoration: none;
+    color: #23558C;
+    font-weight: 600;
+}
+
+.more-calc-btn a:hover {
+    text-decoration: underline;
+}
+.dashboard-table-container{
+    margin-bottom: 20px;
+}
+
+
+    /*------ Save calculation modal window ------------*/
+
+.save-calculation .col-1 {
+    width: 30%;
+}
+.save-calculation textarea {
+    height: 4rem;
+}
+
+
+
+/*------ Login modal window (form Calculation) ------------*/
+
+.login-calculation .col-1 {
+    width: 30%;
+}
+
+.stay-in-account-modal {
+    margin-left: 5px;
+    font-size: 0.9em;
+}
+
+.login-calculation .row-3 {
+    height: 40px;
+}
+
+.login-calculation .forgot-password {
+    text-decoration: none;
+}
+
+.login-calculation .forgot-password:hover {
+    text-decoration: underline;
+}
+
+.login-modal .submit_button,
+.login-modal .submit_button_refresh {
+    margin-top: 5px;
+}
+
+
+
+/*----------------- Pagination---------------------*/
+
+.pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+
+}
+.pagination li {
+    padding: 0 5px 0 5px;
+    font-weight: 700;
+}
+
+.pagination a {
+    text-decoration: none;
+}
+
+.pagination .active {
+    text-decoration: underline;
+}
+
+.text-center {
+    margin-bottom: 20px;
+}
+
+/*----Side Bar-----*/
+
+.burger-sidebar {
+    display: none;
+}
+
+.cross-close {
+    display: none;
+}
+
+
+/*--------------------Account settings--------------------------------*/
+
+.change_password {
+    margin: 0;
+    font-weight: normal;
+    background-color: #23558C;
+    border: 2px solid #23558C;
+
+}
+
+
+.user-settings-table .row-2{
+    height: 50px;
+}
+
+.user-settings-table .row-2{
+    vertical-align: top;
+}
+
+.user-settings-table {
+    margin-bottom: 60px;
+}
+
+.save-settings-btn {
+    width: 60%;
+    justify-content: right;
+}
+
+
+/*--------------------Change password modal--------------------------------*/
+
+.change-password-table .col-1 {
+    width: 30%;
+}
+
+
+/*-------------------------------Responsive design-------------------------------*/
+
+
+/*------------------------------1050 px------------------------------------*/
+
+@media only screen and (max-width: 1050px){
+
+    /*------------- My Account - index page -------------*/
+
+    .account-item-title {
+        font-size: 1.1em;
+    }
+    .account-item-count {
+        font-size: 1.2em;
+
+    }
+
+}
+
+/*------------------------------840 px------------------------------------*/
+
+@media only screen and (max-width: 840px) {
+
+    /*------------- My Account - index page -------------*/
+
+    .account-items-container {
+        flex-direction: column;
+    }
+
+    .account-item-container {
+        width: unset;
+        height: 50px;
+        margin-bottom: 5px;
+    }
+
+    .account-item {
+        display: flex;
+    }
+
+    .account-item-title {
+        font-size: 1.3em;
+        margin-right: 10px;
+    }
+
+    .account-item-count {
+        font-size: 1.3em;
+
+    }
+
+    /*------------- My Account - Calculations -------------*/
+
+    .user-calculations-table{
+        width: 95%;
+    }
+
+    /*------------- My Account - New landlord, New Tenant -------------*/
+
+    .tenant-add-buttons {
+        width: 50%;
+    }
+
+    /*------------- My Account - New property -------------*/
+
+    .property-add-buttons {
+        width: 50%;
+    }
+
+    /*------------- My Account - Landlord profile, Tenant profile -------------*/
+    .tenant-profile-buttons button,
+    .tenant-profile-buttons a {
+        width: 80px;
+    }
+
+    /*------------- My Account - Properties -------------*/
+
+    .user-properties-table .col-5,
+    .user-properties-table .col-6,
+    .user-properties-table .col-7 {
+        display: none;
+    }
+
+    /*------------- My Account - Property profile -------------*/
+
+    .property-profile-table {
+        width: 90%;
+    }
+
+
+}
+
+/*------------------------------600 px------------------------------------*/
+
+    @media only screen and (max-width: 600px) {
+
+        /*------------- My Account - index page -------------*/
+
+        .user-content {
+            position: relative;
+            justify-content: center;
+
+        }
+
+        .center-content {
+            width: 95%;
+        }
+
+        .dashboard-table .col-1{
+            display: none;
+        }
+
+
+        /*------------- My Account - Calculations -------------*/
+
+        .user-calculations-table .col-1{
+            display: none;
+        }
+        .user-calculations-table .col-4{
+            width: 15%;
+        }
+
+        .icons-order {
+            flex-direction: unset;
+            align-items: center;
+        }
+
+        .icons-order a:first-child{
+            margin-right: 2px;
+        }
+
+        /*------------- My Account - Landlords, Tenants, Admins, Elsuppliers -------------*/
+
+        .user-landlords-table,
+        .user-tenants-table,
+        .user-admins-table,
+        .user-elsuppliers-table{
+            width: 95%;
+        }
+
+        /*------------- My Account - All New items, edit All items -------------*/
+
+        .tenants {
+            width: 90%;
+        }
+
+        .errors_field_table {
+            width: 90%;
+        }
+
+        /*------------- Moving sidebar -------------*/
+
+        .left-side-bar {
+            width: 35%;
+            position: absolute;
+            height: 100%;
+            transition: transform 0.5s ease-out;
+            background-color: #ffffff;
+            left: -50%;
+            z-index: 1;
+        }
+
+        .user-items-title {
+            position: absolute;
+            width: 90%;
+            left: -50%;
+            margin-left: 12%;
+        }
+
+        .user-items-title li {
+            margin-bottom: 30px!important;
+        }
+
+
+        .show-sidebar {
+            transform: translate(142%, 0);
+        }
+
+        .show-ul {
+            transform: translate(48%, 0);
+        }
+
+        .burger-sidebar {
+            position: absolute;
+            top: 110px;
+            right: 2%;
+            display: block;
+            background: none;
+            border: 0;
+            cursor: pointer;
+            margin-right: 1%;
+            padding: 9px 2px;
+
+        }
+
+        .hide-burger-sidebar {
+            display: none;
+        }
+
+        .cross-close {
+            display: unset;
+        }
+
+        .cross-close svg {
+            fill: #23558C;
+            float: right;
+            margin-top: 8%;
+            margin-right: 8%;
+            display: block;
+            cursor: pointer;
+        }
+
+    }
+/*------------------------------550 px------------------------------------*/
+
+
+@media only screen and (max-width: 550px) {
+
+    /*------------- My Account - Calculations -------------*/
+
+    .user-calculations-table .col-5 {
+        display: none;
+    }
+
+    /*------------- My Account - Property profile -------------*/
+
+    .property-profile-table {
+        font-size: 0.9em;
+    }
+
+}
+
+/*------------------------------450 px------------------------------------*/
+
+
+@media only screen and (max-width: 450px){
+
+    /*------------- My Account - index page -------------*/
+
+    .dashboard-table .col-5{
+        display: none;
+    }
+
+    /*------------- My Account - Landlords, Tenants -------------*/
+    .user-landlords-table .col-3,
+    .user-tenants-table .col-3
+    {
+        display: none;
+    }
+    .user-landlords-table .col-4,
+    .user-tenants-table .col-4
+    {
+        width: 0%;
+    }
+
+    /*------------- My Account - New landlord -------------*/
+
+    .tenant-add-buttons {
+        width: 70%;
+    }
+
+    /*------------- My Account - New property -------------*/
+    .property-add-buttons {
+        width: 70%;
+    }
+
+    /*------------- My Account - Landlord profile -------------*/
+
+    .tenant-profile-buttons {
+        width: 80%;
+    }
+
+    /*------------- Moving sidebar -------------*/
+
+    .left-side-bar{
+        width: 50%;
+        left: -71%;
+    }
+}
+
+/*------------------------------400 px------------------------------------*/
+
+
+@media only screen and (max-width: 400px){
+
+    /*------------- My Account - index page -------------*/
+
+    .dashboard-table .col-6{
+        display: none;
+    }
+}

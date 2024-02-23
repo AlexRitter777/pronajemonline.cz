@@ -1,0 +1,131 @@
+
+h1.title{
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.main-title{
+    border-top: 3px solid black;
+    padding-top: 20px;
+}
+
+h2.subtitle{
+    font-size: 1.1em;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+h3.sub-subtitle{
+    font-size: 1em!important;
+    margin-bottom: 5px;
+}
+
+
+.personal-left, .personal-right {
+    float: left;
+    width: 50%;
+
+    margin-bottom: 40px;
+}
+
+.property-left, .property-right {
+    float: left;
+    width: 50%;
+    margin-bottom: 40px;
+}
+
+.reason-text {
+    float: left;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+table{
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 13px;
+}
+
+
+/*--------Souhrné vyúčtování----------*/
+
+/*---------deposit-calc-1-------*/
+
+.deposit-calc-1 {
+    width: 100%;
+    border-top: 3px solid black;
+    border-bottom: 0.5px solid black;
+
+}
+
+.deposit-calc-1 .col-1 {
+    width: 70%;
+}
+
+.deposit-calc-1 .col-2 {
+    width: 30%;
+    text-align: right;
+}
+
+.deposit-calc-1 td {
+    padding: 10px 0 10px 0;
+}
+
+
+/*---------deposit-calc-rows-------*/
+
+.deposit-calc-rows {
+    width: 100%;
+
+}
+
+.deposit-calc-rows .col-1 {
+    width: 70%;
+}
+
+.deposit-calc-rows .col-2 {
+    width: 30%;
+    text-align: right;
+}
+
+.deposit-calc-rows td {
+    padding: 3px 0 3px 0;
+}
+
+.damage_desc{
+    font-size: 0.8em;
+}
+
+
+/*---------deposit-calc-last-row-------*/
+
+.deposit-calc-last-row {
+    width: 100%;
+    border-top: 0.5px solid black;
+    border-bottom: 0.5px solid black;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.deposit-calc-last-row .col-1 {
+    width: 70%;
+
+}
+
+.deposit-calc-last-row .col-2 {
+    width: 30%;
+    text-align: right;
+
+}
+
+.deposit-calc-last-row td {
+    padding: 5px 0 5px 0;
+}
+
+/*---------final date-------*/
+.date {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+

@@ -1,0 +1,1581 @@
+table{
+    margin: 0;
+}
+
+h1.title{
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.main-title{
+    border-top: 3px solid black;
+    padding-top: 20px;
+}
+
+h2.subtitle{
+    font-size: 1.1em;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+h3.sub-subtitle{
+    font-size: 1em!important;
+    margin-bottom: 5px;
+}
+
+
+.personal-left, .personal-right {
+    float: left;
+    width: 50%;
+
+    margin-bottom: 40px;
+}
+
+.property-left, .property-right {
+    float: left;
+    width: 50%;
+    margin-bottom: 40px;
+}
+
+.admin-text {
+    float: left;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+table{
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 13px;
+}
+
+
+/*--------Dates----------*/
+.dates {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+
+.dates .col-1 {
+    width: 33%;
+    font-weight: 600;
+    text-align: left;
+}
+.dates .col-2 {
+    width: 17%;
+}
+
+.dates .col-3 {
+    width: 15%;
+}
+
+.dates .col-4 {
+    width: 15%;
+}
+
+.dates .col-5 {
+    width: 20%;
+}
+
+
+/*-----I. Odečty měřících přístrojů ---- */
+
+/*-Row-1-*/
+
+.meters-row-1 {
+    width: 100%;
+    border-top: 3px solid black;
+    border-bottom: 0.5px solid black;
+    text-align: right;
+}
+
+.meters-row-1 .col-1 {
+    width: 20%;
+    text-align: left;
+}
+
+.meters-row-1 .col-2 {
+    width: 15%;
+}
+
+.meters-row-1 .col-3 {
+    width: 13%;
+}
+
+.meters-row-1 .col-4 {
+    width: 13%;
+}
+
+.meters-row-1 .col-5 {
+    width: 13%;
+}
+
+.meters-row-1 .col-6 {
+    width: 13%;
+}
+.meters-row-1 .col-7 {
+    width: 13%;
+}
+
+.meters-row-1 td {
+    padding: 5px 0 5px 0;
+}
+
+
+
+/*-Rows-*/
+
+.meters-rows {
+    width: 100%;
+    text-align: right;
+}
+
+.meters-rows td {
+    padding: 3px 0 3px 0 ;
+}
+
+.meters-rows .col-1 {
+    width: 20%;
+    text-align: left;
+}
+
+.meters-rows .col-2 {
+    width: 15%;
+}
+
+.meters-rows .col-3 {
+    width: 13%;
+}
+
+.meters-rows .col-4 {
+    width: 13%;
+}
+
+.meters-rows .col-5 {
+    width: 13%;
+}
+
+.meters-rows .col-6 {
+    width: 13%;
+}
+
+.meters-rows .col-7 {
+    width: 13%;
+}
+
+
+
+
+
+/*-----origins-row-1----------*/
+
+.meters-row-origins-1 {
+    width: 100%;
+    border-top: 0.5px solid black;
+
+}
+.meters-row-origins-1 td {
+    padding: 5px 0 3px 0;
+}
+
+
+.meters-row-origins-1 .col-1 {
+    width: 32%;
+
+
+}
+
+.meters-row-origins-1 .col-2 {
+    width: 68%;
+}
+
+/*-----origins-row-2----------*/
+
+.meters-row-origins-2 {
+    width: 100%;
+    border-bottom: 0.5px solid black;
+}
+
+.meters-row-origins-2 td {
+    padding: 3px 0 5px 0;
+}
+
+.meters-row-origins-2 .col-1 {
+    width: 32%;
+
+
+}
+
+.meters-row-origins-2 .col-2 {
+    width: 68%;
+}
+
+/*------total-row-1--------*/
+
+.meters-total-row-1 {
+    width: 100%;
+}
+
+.meters-total-row-1 td {
+    padding: 5px 0 5px 0;
+    font-weight: bold;
+}
+
+/*------total-row-2--------*/
+
+
+.meters-total-row-2 {
+    width: 100%;
+}
+
+.meters-total-row-2 td{
+    padding: 0 0 2px 0;
+}
+
+.meters-total-row-2 .col-1 {
+    width: 30%;
+}
+
+.meters-total-row-2 .col-2 {
+    width: 70%;
+    text-align: right;
+}
+
+
+/*------total-row-3--------*/
+
+
+.meters-total-row-3 {
+    width: 100%;
+}
+
+.meters-total-row-3 td{
+    padding: 2px 0 2px 0;
+}
+
+.meters-total-row-3 .col-1 {
+    width: 30%;
+}
+
+.meters-total-row-3 .col-2 {
+    width: 70%;
+    text-align: right;
+}
+
+/*------total-row-4--------*/
+
+
+.meters-total-row-4 {
+    width: 100%;
+    border-bottom: 0.5px solid black;
+    margin-bottom: 30px;
+}
+.meters-total-row-4 td{
+    padding: 2px 0 5px 0;
+
+}
+.meters-total-row-4 .col-1 {
+    width: 30%;
+}
+
+.meters-total-row-4 .col-2 {
+    width: 70%;
+    text-align: right;
+}
+
+/*-----II. Paušální náklady ---- */
+
+/*--------Row-1---------------*/
+
+.services-row-1 {
+    width: 100%;
+    border-top: 3px solid black;
+    border-bottom: 0.5px solid black;
+    text-align: right;
+}
+.services-row-1 .col-1 {
+    width: 35%;
+    text-align: left;
+}
+
+.services-row-1 .col-2 {
+    width: 20%;
+}
+
+.services-row-1 .col-3 {
+    width: 23%;
+}
+
+.services-row-1 .col-4 {
+    width: 22%;
+}
+
+.services-row-1 td{
+    padding: 10px 0 10px 0;
+
+}
+
+/*--------Row-2---------------*/
+
+.services-row-2 {
+    width: 100%;
+    text-align: right;
+}
+.services-row-2 .col-1 {
+    width: 35%;
+    text-align: left;
+}
+
+.services-row-2 .col-2 {
+    width: 20%;
+}
+
+.services-row-2 .col-3 {
+    width: 23%;
+}
+
+.services-row-2 .col-4 {
+    width: 22%;
+}
+
+.services-row-2 td{
+    padding: 3px 0 3px 0;
+
+}
+
+
+
+/*--------Services-Rows---------------*/
+
+.services-rows {
+    width: 100%;
+    text-align: right;
+}
+.services-rows .col-1 {
+    width: 35%;
+    text-align: left;
+}
+
+.services-rows .col-2 {
+    width: 20%;
+}
+
+.services-rows .col-3 {
+    width: 23%;
+}
+
+.services-rows .col-4 {
+    width: 22%;
+}
+
+.services-rows td {
+    padding: 3px 0 3px 0;
+
+}
+
+/*--------Services-Rows-Total---------------*/
+
+.services-row-total {
+    width: 100%;
+    text-align: right;
+    border-top: 0.5px solid black;
+    border-bottom: 0.5px solid black;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.services-row-total td {
+    padding: 5px 0 5px 0;;
+}
+
+.services-row-total .col-1 {
+    width: 35%;
+    text-align: left;
+}
+
+.services-row-total .col-2 {
+    width: 20%;
+}
+
+.services-row-total .col-3 {
+    width: 23%;
+}
+
+.services-row-total .col-4{
+    width: 22%;
+}
+
+.info {
+    margin: 0 0 20px 20px;
+}
+
+.note {
+    margin-top: -20px;
+    margin-bottom: 30px;
+    font-size: 0.9em;
+}
+
+/*-----III. Náklady TUV ---- */
+
+/*---hot_water-const-costs-row---1-*/
+
+.hot_water-const-costs-row-1 {
+    width: 100%;
+    border-top: 3px solid black;
+    border-bottom: 0.5px solid black;
+    text-align: right;
+}
+
+.hot_water-const-costs-row-1  .col-1 {
+    width: 30%;
+    text-align: left;
+}
+
+.hot_water-const-costs-row-1  .col-2 {
+    width: 25%;
+}
+
+.hot_water-const-costs-row-1  .col-3 {
+    width: 23%;
+
+}
+
+.hot_water-const-costs-row-1  .col-4 {
+    width: 22%;
+}
+
+.hot_water-const-costs-row-1  td{
+    padding: 10px 0 10px 0;
+
+}
+
+/*---hot_water-const-costs-row---2-*/
+.hot_water-const-costs-row-2 {
+     width: 100%;
+     text-align: right;
+ }
+
+.hot_water-const-costs-row-2 .col-1 {
+    width: 30%;
+    text-align: left;
+}
+
+.hot_water-const-costs-row-2 .col-2 {
+    width: 25%;
+}
+
+.hot_water-const-costs-row-2 .col-3 {
+    width: 23%;
+}
+
+.hot_water-const-costs-row-2 .col-4 {
+    width: 22%;
+}
+
+.hot_water-const-costs-row-2 td{
+    padding: 5px 0 3px 0;
+
+}
+
+/*---hot_water-const-costs-row---3-*/
+.hot_water-const-costs-row-3 {
+    width: 100%;
+    text-align: right;
+    border-bottom: 0.5px solid black;
+    margin-bottom: 30px;
+}
+
+.hot_water-const-costs-row-3 .col-1 {
+    width: 30%;
+    text-align: left;
+}
+
+.hot_water-const-costs-row-3 .col-2 {
+    width: 25%;
+}
+
+.hot_water-const-costs-row-3 .col-3 {
+    width: 23%;
+}
+
+.hot_water-const-costs-row-3 .col-4 {
+    width: 22%;
+}
+
+.hot_water-const-costs-row-3 td{
+    padding: 3px 0 5px 0;
+
+}
+
+
+/*------hot_water-var-costs-row-1-------*/
+
+
+.hot_water-var-costs-row-1 {
+    width: 100%;
+    border-top: 3px solid black;
+    border-bottom: 0.5px solid black;
+    text-align: right;
+
+}
+
+.hot_water-var-costs-row-1 .col-1 {
+    width: 30%;
+    text-align: left;
+}
+
+.hot_water-var-costs-row-1 .col-2 {
+    width: 25%;
+}
+
+.hot_water-var-costs-row-1 .col-3 {
+    width: 23%;
+}
+.hot_water-var-costs-row-1 .col-4 {
+    width: 22%;
+}
+
+.hot_water-var-costs-row-1 td{
+    padding: 10px 0 10px 0;
+
+}
+
+/*------hot_water-var-costs-row-2-------*/
+
+.hot_water-var-costs-row-2 {
+    width: 100%;
+    text-align: right;
+}
+
+.hot_water-var-costs-row-2 .col-1 {
+    width: 30%;
+    text-align: left;
+}
+
+.hot_water-var-costs-row-2 .col-2 {
+    width: 25%;
+}
+
+.hot_water-var-costs-row-2 .col-3 {
+    width: 23%;
+}
+.hot_water-var-costs-row-2 .col-4 {
+    width: 22%;
+}
+
+.hot_water-var-costs-row-2 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*------hot_water-var-costs-row-3-------*/
+
+.hot_water-var-costs-row-3 {
+    width: 100%;
+    text-align: right;
+    border-bottom: 0.5px solid black;
+    margin-bottom: 30px;
+}
+
+.hot_water-var-costs-row-3 .col-1 {
+    width: 30%;
+    text-align: left;
+}
+
+.hot_water-var-costs-row-3 .col-2 {
+    width: 25%;
+}
+
+.hot_water-var-costs-row-3 .col-3 {
+    width: 23%;
+}
+.hot_water-var-costs-row-3 .col-4 {
+    width: 22%;
+}
+
+.hot_water-var-costs-row-3 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*------hot_water-total-costs-row-1-------*/
+
+
+.hot_water-total-costs-row-1 {
+    width: 100%;
+    border-top: 3px solid black;
+    border-bottom: 0.5px solid black;
+    text-align: right;
+
+}
+
+.hot_water-total-costs-row-1 .col-1 {
+    width: 55%;
+    text-align: left;
+}
+
+.hot_water-total-costs-row-1 .col-2 {
+    width: 23%;
+}
+
+.hot_water-total-costs-row-1 .col-3 {
+    width: 22%;
+}
+
+
+.hot_water-total-costs-row-1 td{
+    padding: 10px 0 10px 0;
+
+}
+
+/*------hot_water-total-costs-row-2-------*/
+
+.hot_water-total-costs-row-2 {
+    width: 100%;
+    text-align: right;
+}
+
+.hot_water-total-costs-row-2 .col-1 {
+    width: 55%;
+    text-align: left;
+}
+
+.hot_water-total-costs-row-2 .col-2 {
+    width: 23%;
+}
+
+.hot_water-total-costs-row-2 .col-3 {
+    width: 22%;
+}
+
+.hot_water-total-costs-row-2 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*------hot_water-total-costs-row-3-------*/
+
+.hot_water-total-costs-row-3 {
+    width: 100%;
+    text-align: right;
+}
+
+.hot_water-total-costs-row-3 .col-1 {
+    width: 55%;
+    text-align: left;
+}
+
+.hot_water-total-costs-row-3 .col-2 {
+    width: 23%;
+}
+
+.hot_water-total-costs-row-3 .col-3 {
+    width: 22%;
+}
+
+
+.hot_water-total-costs-row-3 td{
+    padding: 3px 0 3px 0;
+
+}
+
+
+/*------hot_water-total-costs-row-4-------*/
+
+.hot_water-total-costs-row-4 {
+    width: 100%;
+    text-align: right;
+    border-bottom: 0.5px solid black;
+}
+
+.hot_water-total-costs-row-4 .col-1 {
+    width: 55%;
+    text-align: left;
+}
+
+.hot_water-total-costs-row-4 .col-2 {
+    width: 23%;
+}
+
+.hot_water-total-costs-row-4 .col-3 {
+    width: 22%;
+}
+
+
+.hot_water-total-costs-row-4 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*------hot_water-total-costs-row-5-------*/
+
+.hot_water-total-costs-row-5 {
+    width: 100%;
+    text-align: right;
+    border-bottom: 0.5px solid black;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.hot_water-total-costs-row-5 .col-1 {
+    width: 55%;
+    text-align: left;
+}
+
+.hot_water-total-costs-row-5 .col-2 {
+    width: 23%;
+}
+
+.hot_water-total-costs-row-5 .col-3 {
+    width: 22%;
+}
+
+
+.hot_water-total-costs-row-5 td{
+    padding: 10px 0 10px 0;
+
+}
+
+/*------------IV. Náklady na SUV----------------------*/
+
+/*------cold_water-total-costs-row-1-------*/
+
+
+.cold_water-total-costs-row-1 {
+    width: 100%;
+    border-top: 3px solid black;
+    border-bottom: 0.5px solid black;
+    text-align: right;
+
+}
+
+.cold_water-total-costs-row-1 .col-1 {
+    width: 25%;
+    text-align: left;
+}
+
+.cold_water-total-costs-row-1 .col-2 {
+    width: 19%;
+}
+
+.cold_water-total-costs-row-1 .col-3 {
+    width: 17%;
+}
+.cold_water-total-costs-row-1 .col-4 {
+    width: 24%;
+}
+.cold_water-total-costs-row-1 .col-5 {
+    width: 15%;
+}
+
+
+.cold_water-total-costs-row-1 td{
+    padding: 10px 0 10px 0;
+
+}
+
+/*------cold_water-total-costs-row-2-------*/
+
+.cold_water-total-costs-row-2 {
+    width: 100%;
+    text-align: right;
+}
+
+.cold_water-total-costs-row-2 .col-1 {
+    width: 25%;
+    text-align: left;
+}
+
+.cold_water-total-costs-row-2 .col-2 {
+    width: 19%;
+}
+
+.cold_water-total-costs-row-2 .col-3 {
+    width: 17%;
+}
+.cold_water-total-costs-row-2 .col-4 {
+    width: 24%;
+}
+.cold_water-total-costs-row-2 .col-5 {
+    width: 15%;
+}
+
+.cold_water-total-costs-row-2 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*------cold_water-total-costs-row-3-------*/
+
+.cold_water-total-costs-row-3 {
+    width: 100%;
+    text-align: right;
+}
+
+.cold_water-total-costs-row-3 .col-1 {
+    width: 25%;
+    text-align: left;
+}
+
+.cold_water-total-costs-row-3 .col-2 {
+    width: 19%;
+}
+
+.cold_water-total-costs-row-3 .col-3 {
+    width: 17%;
+}
+.cold_water-total-costs-row-3 .col-4 {
+    width: 24%;
+}
+.cold_water-total-costs-row-3 .col-5 {
+    width: 15%;
+}
+
+.cold_water-total-costs-row-3 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*------cold_water-total-costs-row-4-------*/
+
+.cold_water-total-costs-row-4 {
+    width: 100%;
+    text-align: right;
+    border-bottom: 0.5px solid black;
+
+}
+
+.cold_water-total-costs-row-4 .col-1 {
+    width: 25%;
+    text-align: left;
+}
+
+.cold_water-total-costs-row-4 .col-2 {
+    width: 19%;
+}
+
+.cold_water-total-costs-row-4 .col-3 {
+    width: 17%;
+}
+.cold_water-total-costs-row-4 .col-4 {
+    width: 24%;
+}
+.cold_water-total-costs-row-4 .col-5 {
+    width: 15%;
+}
+
+.cold_water-total-costs-row-4 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*------cold_water-total-costs-row-5-------*/
+
+.cold_water-total-costs-row-5 {
+    width: 100%;
+    text-align: right;
+    border-bottom: 0.5px solid black;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.cold_water-total-costs-row-5 .col-1 {
+    width: 25%;
+    text-align: left;
+}
+
+.cold_water-total-costs-row-5 .col-2 {
+    width: 19%;
+}
+
+.cold_water-total-costs-row-5 .col-3 {
+    width: 17%;
+}
+.cold_water-total-costs-row-5 .col-4 {
+    width: 24%;
+}
+.cold_water-total-costs-row-5 .col-5 {
+    width: 15%;
+}
+
+.cold_water-total-costs-row-5 td{
+    padding: 10px 0 10px 0;
+
+}
+
+/*-----V. Náklady na ÚT -------- */
+
+/*---heating-const-costs-row---1-*/
+
+.heating-const-costs-row-1 {
+    width: 100%;
+    border-top: 3px solid black;
+    border-bottom: 0.5px solid black;
+    text-align: right;
+}
+
+.heating-const-costs-row-1  .col-1 {
+    width: 30%;
+    text-align: left;
+}
+
+.heating-const-costs-row-1  .col-2 {
+    width: 25%;
+}
+
+.heating-const-costs-row-1  .col-3 {
+    width: 23%;
+    vertical-align: top;
+}
+
+.heating-const-costs-row-1  .col-4 {
+    width: 22%;
+}
+
+.heating-const-costs-row-1  td{
+    padding: 10px 0 10px 0;
+
+}
+
+/*---heating-const-costs-row---2-*/
+.heating-const-costs-row-2 {
+    width: 100%;
+    text-align: right;
+}
+
+.heating-const-costs-row-2 .col-1 {
+    width: 30%;
+    text-align: left;
+}
+
+.heating-const-costs-row-2 .col-2 {
+    width: 25%;
+}
+
+.heating-const-costs-row-2 .col-3 {
+    width: 23%;
+}
+
+.heating-const-costs-row-2 .col-4 {
+    width: 22%;
+}
+
+.heating-const-costs-row-2 td{
+    padding: 5px 0 3px 0;
+
+}
+
+/*---heating-const-costs-row---3-*/
+.heating-const-costs-row-3 {
+    width: 100%;
+    text-align: right;
+    border-bottom: 0.5px solid black;
+    margin-bottom: 30px;
+}
+
+.heating-const-costs-row-3 .col-1 {
+    width: 30%;
+    text-align: left;
+}
+
+.heating-const-costs-row-3 .col-2 {
+    width: 25%;
+}
+
+.heating-const-costs-row-3 .col-3 {
+    width: 23%;
+}
+
+.heating-const-costs-row-3 .col-4 {
+    width: 22%;
+}
+
+.heating-const-costs-row-3 td{
+    padding: 3px 0 5px 0;
+
+}
+
+/*------heating-var-costs-row-1-------*/
+
+
+.heating-var-costs-row-1 {
+    width: 100%;
+    border-top: 3px solid black;
+    border-bottom: 0.5px solid black;
+    text-align: right;
+
+}
+
+.heating-var-costs-row-1 .col-1 {
+    width: 30%;
+    text-align: left;
+}
+
+.heating-var-costs-row-1 .col-2 {
+    width: 25%;
+}
+
+.heating-var-costs-row-1 .col-3 {
+    width: 23%;
+}
+.heating-var-costs-row-1 .col-4 {
+    width: 22%;
+}
+
+.heating-var-costs-row-1 td{
+    padding: 10px 0 10px 0;
+
+}
+
+/*------heating-var-costs-row-2-------*/
+
+.heating-var-costs-row-2 {
+    width: 100%;
+    text-align: right;
+}
+
+.heating-var-costs-row-2 .col-1 {
+    width: 30%;
+    text-align: left;
+}
+
+.heating-var-costs-row-2 .col-2 {
+    width: 25%;
+}
+
+.heating-var-costs-row-2 .col-3 {
+    width: 23%;
+}
+.heating-var-costs-row-2 .col-4 {
+    width: 22%;
+}
+
+.heating-var-costs-row-2 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*------heating-var-costs-row-3-------*/
+
+.heating-var-costs-row-3 {
+    width: 100%;
+    text-align: right;
+    border-bottom: 0.5px solid black;
+    margin-bottom: 30px;
+}
+
+.heating-var-costs-row-3 .col-1 {
+    width: 30%;
+    text-align: left;
+}
+
+.heating-var-costs-row-3 .col-2 {
+    width: 25%;
+}
+
+.heating-var-costs-row-3 .col-3 {
+    width: 23%;
+}
+.heating-var-costs-row-3 .col-4 {
+    width: 22%;
+}
+
+.heating-var-costs-row-3 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*------heating-total-costs-row-1-------*/
+
+
+.heating-total-costs-row-1 {
+    width: 100%;
+    border-top: 3px solid black;
+    border-bottom: 0.5px solid black;
+    text-align: right;
+
+}
+
+.heating-total-costs-row-1 .col-1 {
+    width: 55%;
+    text-align: left;
+}
+
+.heating-total-costs-row-1 .col-2 {
+    width: 23%;
+}
+
+.heating-total-costs-row-1 .col-3 {
+    width: 22%;
+}
+
+
+.heating-total-costs-row-1 td{
+    padding: 10px 0 10px 0;
+
+}
+
+/*------heating-total-costs-row-2-------*/
+
+.heating-total-costs-row-2 {
+    width: 100%;
+    text-align: right;
+}
+
+.heating-total-costs-row-2 .col-1 {
+    width: 55%;
+    text-align: left;
+}
+
+.heating-total-costs-row-2 .col-2 {
+    width: 23%;
+}
+
+.heating-total-costs-row-2 .col-3 {
+    width: 22%;
+}
+
+.heating-total-costs-row-2 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*------heating-total-costs-row-3-------*/
+
+.heating-total-costs-row-3 {
+    width: 100%;
+    text-align: right;
+}
+
+.heating-total-costs-row-3 .col-1 {
+    width: 55%;
+    text-align: left;
+}
+
+.heating-total-costs-row-3 .col-2 {
+    width: 23%;
+}
+
+.heating-total-costs-row-3 .col-3 {
+    width: 22%;
+}
+
+
+.heating-total-costs-row-3 td{
+    padding: 3px 0 3px 0;
+
+}
+
+
+/*------heating-total-costs-row-4-------*/
+
+.heating-total-costs-row-4 {
+    width: 100%;
+    text-align: right;
+    border-bottom: 0.5px solid black;
+}
+
+.heating-total-costs-row-4 .col-1 {
+    width: 55%;
+    text-align: left;
+}
+
+.heating-total-costs-row-4 .col-2 {
+    width: 23%;
+}
+
+.heating-total-costs-row-4 .col-3 {
+    width: 22%;
+}
+
+
+.heating-total-costs-row-4 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*------heating-total-costs-row-5-------*/
+
+.heating-total-costs-row-5 {
+    width: 100%;
+    text-align: right;
+    border-bottom: 0.5px solid black;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.heating-total-costs-row-5 .col-1 {
+    width: 55%;
+    text-align: left;
+}
+
+.heating-total-costs-row-5 .col-2 {
+    width: 23%;
+}
+
+.heating-total-costs-row-5 .col-3 {
+    width: 22%;
+}
+
+
+.heating-total-costs-row-5 td{
+    padding: 10px 0 10px 0;
+
+}
+
+/*--------VI. Finalni vyuctovani ----------------------*/
+/*----------calc-row-1 ---------------*/
+
+.calc-row-1 {
+    width: 100%;
+    text-align: right;
+    border-top: 3px solid black;
+    border-bottom: 0.5px solid black;
+
+}
+
+.calc-row-1 .col-1 {
+    width: 28%;
+    text-align: left;
+}
+
+.calc-row-1 .col-2 {
+    width: 21%;
+}
+
+.calc-row-1 .col-3 {
+    width: 14%;
+}
+
+.calc-row-1 .col-4 {
+    width: 22%;
+}
+
+.calc-row-1 .col-5 {
+    width: 15%;
+}
+
+.calc-row-1 td{
+    padding: 10px 0 10px 0;
+
+}
+
+/*----------calc-row-2 ---------------*/
+
+.calc-row-2 {
+    width: 100%;
+    text-align: right;
+
+}
+
+.calc-row-2 .col-1 {
+    width: 28%;
+    text-align: left;
+}
+
+.calc-row-2 .col-2 {
+    width: 21%;
+}
+
+.calc-row-2 .col-3 {
+    width: 14%;
+}
+
+.calc-row-2 .col-4 {
+    width: 22%;
+}
+
+.calc-row-2 .col-5 {
+    width: 15%;
+}
+
+.calc-row-2 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*----------calc-row-3 ---------------*/
+
+.calc-row-3 {
+    width: 100%;
+    text-align: right;
+
+}
+
+.calc-row-3 .col-1 {
+    width: 28%;
+    text-align: left;
+}
+
+.calc-row-3 .col-2 {
+    width: 21%;
+}
+
+.calc-row-3 .col-3 {
+    width: 14%;
+}
+
+.calc-row-3 .col-4 {
+    width: 22%;
+}
+
+.calc-row-3 .col-5 {
+    width: 15%;
+}
+
+.calc-row-3 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*----------calc-row-4 ---------------*/
+
+.calc-row-4 {
+    width: 100%;
+    text-align: right;
+
+}
+
+.calc-row-4 .col-1 {
+    width: 28%;
+    text-align: left;
+}
+
+.calc-row-4 .col-2 {
+    width: 21%;
+}
+
+.calc-row-4 .col-3 {
+    width: 14%;
+}
+
+.calc-row-4 .col-4 {
+    width: 22%;
+}
+
+.calc-row-4 .col-5 {
+    width: 15%;
+}
+
+.calc-row-4 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*----------calc-row-5 ---------------*/
+
+.calc-row-5 {
+    width: 100%;
+    text-align: right;
+
+}
+
+.calc-row-5 .col-1 {
+    width: 28%;
+    text-align: left;
+}
+
+.calc-row-5 .col-2 {
+    width: 21%;
+}
+
+.calc-row-5 .col-3 {
+    width: 14%;
+}
+
+.calc-row-5 .col-4 {
+    width: 22%;
+}
+
+.calc-row-5 .col-5 {
+    width: 15%;
+}
+
+.calc-row-5 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*----------calc-row-6 ---------------*/
+
+.calc-row-6 {
+    width: 100%;
+    text-align: right;
+
+
+}
+
+.calc-row-6 .col-1 {
+    width: 28%;
+    text-align: left;
+}
+
+.calc-row-6 .col-2 {
+    width: 21%;
+}
+
+.calc-row-6 .col-3 {
+    width: 14%;
+}
+
+.calc-row-6 .col-4 {
+    width: 22%;
+}
+
+.calc-row-6 .col-5 {
+    width: 15%;
+}
+
+.calc-row-6 td{
+    padding: 3px 0 3px 0;
+
+}
+
+
+/*----------calc-row-7 ---------------*/
+
+.calc-row-7 {
+    width: 100%;
+    text-align: right;
+    border-top: 0.5px solid black;
+    font-weight: bold;
+
+}
+
+.calc-row-7 .col-1 {
+    width: 28%;
+    text-align: left;
+}
+
+.calc-row-7 .col-2 {
+    width: 21%;
+}
+
+.calc-row-7 .col-3 {
+    width: 14%;
+}
+
+.calc-row-7 .col-4 {
+    width: 22%;
+}
+
+.calc-row-7 .col-5 {
+    width: 15%;
+}
+
+.calc-row-7 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*----------calc-row-8 ---------------*/
+
+.calc-row-8 {
+    width: 100%;
+    text-align: right;
+
+}
+
+.calc-row-8 .col-1 {
+    width: 28%;
+    text-align: left;
+}
+
+.calc-row-8 .col-2 {
+    width: 21%;
+}
+
+.calc-row-8 .col-3 {
+    width: 14%;
+}
+
+.calc-row-8 .col-4 {
+    width: 22%;
+}
+
+.calc-row-8 .col-5 {
+    width: 15%;
+}
+
+.calc-row-8 td{
+    padding: 3px 0 3px 0;
+
+}
+
+
+
+/*----------calc-row-9 ---------------*/
+
+.calc-row-9 {
+    width: 100%;
+    text-align: right;
+    font-size: 0.9em;
+
+}
+
+.calc-row-9 .col-1 {
+    width: 60%;
+    text-align: left;
+}
+
+.calc-row-9 .col-2 {
+    width: 20%;
+}
+
+.calc-row-9 .col-3 {
+    width: 20%;
+}
+
+.calc-row-9 td{
+    padding: 3px 0 3px 0;
+
+}
+
+/*----------calc-row-10 ---------------*/
+
+.calc-row-10 {
+    width: 100%;
+    text-align: right;
+    border-bottom: 0.5px solid black;
+    border-top:  0.5px solid black;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+}
+
+.calc-row-10 .col-1 {
+    width: 28%;
+    text-align: left;
+}
+
+.calc-row-10 .col-2 {
+    width: 21%;
+}
+
+.calc-row-10 .col-3 {
+    width: 14%;
+}
+
+.calc-row-10 .col-4 {
+    width: 22%;
+}
+
+.calc-row-10 .col-5 {
+    width: 15%;
+}
+
+.calc-row-10 td{
+    padding: 10px 0 10px 0;
+
+}
+
+/*--------------Date--------------*/
+
+.date {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+

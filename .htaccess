@@ -1,0 +1,6 @@
+AddDefaultCharset utf-8
+#включаем движок перенаправления
+#все запросы посылаем в publiс, кгде лежит еще 1 .htaccess
+RewriteEngine On
+RewriteRule (.*) public/$1
+

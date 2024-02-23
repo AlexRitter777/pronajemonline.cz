@@ -1,0 +1,26 @@
+# Rewrite rule to redirect all requests to index.php
+# This rule applies to all requests to non-existent files and directories.
+# Any request to the server that does not correspond to an actual file or directory
+# will be redirected to index.php with the original path of the request appended
+# to the query string.
+#
+# Example:
+# For a request to http://example.com/user/calculations?calc_type=servicescalc,
+# due to this rule, it will be transformed into:
+# http://example.com/index.php?user/calculations&calc_type=servicescalc
+# Here, "user/calculations" becomes part of the query string rather than the path,
+# allowing the PHP script to parse both the path and query parameters.
+#
+# The initial '?' character in the URL, which separates the path and query parameters,
+# is replaced with '&', so they can all be interpreted as parameters
+# when passed to index.php.
+#
+# Flags:
+# [L] - Last: Stop the rewriting process immediately and don't apply any more rules.
+#       Especially useful if the current rule was matched.
+# [QSA] - Query String Append: If there's a query string passed with the request,
+#        it is appended to the new URL. This ensures that existing query parameters
+#        are preserved in addition to the new ones added by the rewrite rule.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) index.php?$1 [L,QSA]

@@ -1,0 +1,2408 @@
+html {
+   height: 100%;
+}
+
+body {
+
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: #323232;
+    -webkit-font-smoothing: antialiased;
+    background-color:#f5f5f5;
+    height: 100%;
+
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 { 
+    margin: 0; 
+
+}
+
+p {
+   margin: 0 0 10px;
+}
+
+.content{
+ min-height: 91%;
+
+}
+
+
+.container{
+  width: 100%;
+  max-width: 820px;
+  min-height: 1100px;
+  margin: 94px auto 15px;
+  background: #fff;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px 0 rgb(0 0 0 / 16%);
+  padding: 0 55px;
+}
+
+.main{
+  padding-top: 80px;
+  text-align: center;
+
+}
+
+.main h3 {
+
+  padding-top: 20px;
+  padding-bottom: 30px;
+  font-size: 2.5em;
+  text-transform: uppercase;
+  color: #23558C;
+}
+
+.main h4 {
+
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  color: #23558C;
+}
+
+
+.title{
+  font-size: 1.5em;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.subtitle{
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  padding-top: 20px;
+}
+
+.h3-subtitle{
+  margin-bottom: 15px;
+}
+
+.label_text{
+  display: inline-block;
+  font-weight: 600;
+  color: #323232;
+  margin-bottom: 4px;
+
+}
+
+#label_text {
+  font-size: 1.08em;
+  margin-bottom: 8px;
+}
+
+.label_text_with_help {
+  width: 51%;
+  margin-right: 1%;
+}
+
+input, select, textarea {
+  padding: 6px 5px;
+  border: 1px solid #c2c2c2;
+  border-radius: 2px;
+  box-sizing: border-box;
+  box-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 6%);
+  transition: border 0.2s ease;
+  background: #fff;
+  height: 32px;
+  margin-bottom: 10px;
+  margin-right: 6px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;  
+  font-weight: 300;
+}
+
+/*--------------slect-2 style---------------------*/
+
+.select2-container .select2-selection--single{
+  border: 1px solid #c2c2c2!important;
+  height: 32px!important;
+  border-radius: 2px!important;
+  box-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 6%);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12.5px!important;  
+  font-weight: 300;
+}
+
+.calc-form .select2-container {
+  width: 96% !important;
+}
+
+
+/*------------------------------------------------*/
+
+.added-content{
+  height: 40px !important;
+  width: 100px !important;
+   
+}
+
+.right-field{
+  margin-left: 8px;
+  margin-bottom: 0px!important;
+}
+
+.last-field{
+  margin-bottom: 0px!important;
+}
+
+
+.field-1{
+  width: 96%;
+}
+
+.help {
+  display: block;
+  height: 15px;
+  width: 15px;
+  float: right;
+  margin-top: 8px;
+}
+
+.add_field select, .add_field input,
+.add_meters_added_field select, .add_meters_added_field input,
+.coefficient_added_field input {
+  margin-right: 9px;
+}
+
+.add_input_fields, .add_meters{
+  margin-bottom: 10px;
+}
+
+.first-field {
+  margin-bottom: 4px;
+}
+
+
+.icon_minus {
+    display: block;
+    height: 18px;
+    width: 18px;
+    fill: #23558c;
+    transition: fill .1s linear;
+    float: left;
+    margin-right: 5px;
+    
+}
+
+.icon_plus{
+    display: block;
+    height: 16px;
+    width: 16px;
+    fill: #23558c;
+    transition: fill .1s linear;
+    float: left;
+    margin-right: 5px;
+}
+
+.text-help{
+  display: flex;
+  
+}
+
+.icon_help{
+  display: block;
+  height: 14px;
+  width: 14px;
+  min-width: 14px;
+  min-height: 14px;
+  fill: #23558C;
+  transition: fill .1s linear;
+  margin-right: 5px;
+}
+
+.help-right-text{
+  margin-top: 2px;
+  margin-left: 5px;
+}
+
+.help-right-label {
+  margin-top: 13px;
+  margin-left: -50px;
+}
+
+
+.icon_title{
+  font-size: 0.9em;
+}
+
+.add_field, .coefficient_added_field {
+  display: flex;
+  align-items: center;
+  width: 115%;
+    
+}
+
+.add_meters_added_field {
+  display: flex;
+  align-items: center;
+  width: 114%;
+}
+
+.origins {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 96%;
+  margin-bottom: 10px;
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 96%;
+}
+
+.date .label_text {
+  width: 67%;
+}
+
+.field-start-date,
+.field-finish-date,
+.field-start-rent,
+.field-finish-rent
+{
+  width: 33%;
+  margin: 0;
+}
+
+.remove_field, .remove_meters, .remove_coefficients{
+  
+  display: flex;
+  align-items: center;
+  height: 32px;
+  background-color: #fff;
+  transition: background .1s linear;
+  color:#23558c;
+  margin-bottom: 10px;
+}
+
+.remove_field{
+  padding-top: 10px;
+}
+
+.add_input_fields_button, .add_meters_button, .add_coefficient_button {
+  display: inline-block; 
+  background-color: #fff;
+  transition: background .1s linear;
+  color:#23558c;
+}
+
+.add_meters_button{
+  margin-bottom: 20px;
+}
+
+.add_input_fields select {
+  width: 55%;
+  
+}
+
+.add_input_fields input {
+  width: 27%;
+  
+}
+
+.add_meters_added_field select, .add_meters_added_field input {
+ width: 27%;
+}
+
+.origins .select2 {
+  min-width: 100px;
+}
+
+.coefficient_label_text {
+  margin-top: 12px;
+}
+
+.chekbox_coefficient{
+  display: inline-block;
+  margin: 10px 10px 10px 0;
+  vertical-align: text-bottom;
+  
+}
+.chekbox_coefficient input {
+  display: inline-block;
+  vertical-align: text-bottom;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box;
+  box-shadow: none;
+  transition: none;
+  background: #fff;
+  height: 16px;
+  margin: 0;  
+  color: -internal-light-dark(black, white);
+
+}
+
+.chekbox_coefficient label{
+  margin-bottom: 0;
+  margin-right: 3px;
+}
+
+.zakladni_slozka, .spotrebni_slozka, .zalohy,
+.korekce {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.zakladni_slozka_title{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+
+.spotrebni_slozka_title{
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.field-slozky {
+  margin: 0 23px 0 0;
+  width: 31%;
+  min-width: 130px;
+}
+
+.zalohy_label {
+  width: 50%;
+  line-height: 20px;
+}
+
+.form{
+  padding-bottom: 20px;
+  margin: 0 80px;
+}
+
+.submit_button {
+  min-width: 100px;
+  margin-top: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 4px;
+  background-color: #c00;
+  border: 2px solid #c00;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 8%);
+  transition: all .2s ease;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.submit_button:hover{
+  background-color: #23558C;
+  border: 2px solid #23558C;
+}
+
+.submit_button_refresh {
+  min-width: 100px;
+  margin-top: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #23558C;
+  border-radius: 4px;
+  border: 2px solid #23558C;;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 8%);
+  transition: all .2s ease;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.submit_button_refresh:hover{
+  background-color: #f5f5f5;
+  border: 2px solid #c00;
+  color: #c00;
+}
+
+.submit_button_div {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-around;
+  
+}
+
+.error_field_form {
+  border-color: #c00!important;
+  border-width: 1.5px!important;
+}
+
+.error_field_form_select2 {
+  border: 1.5px solid #c00!important;
+  height: 32px!important;
+  border-radius: 2px!important;
+  box-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 6%);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12.5px!important;
+  font-weight: 300;
+}   
+
+.errors_field{
+  margin: 15px 23px 15px 0;
+  
+}
+
+.errors {
+  color: #D8000C;
+  background-color: #FFD2D2;
+  padding: 15px 0 15px 30px;
+  font-weight: 600;
+}
+
+
+#er {
+  margin-bottom: 3px;
+}
+
+.real-hint {
+  position: absolute;
+  display: none;
+  border: 1px solid #EEF0F4;
+  color: #ffffff;
+  background-color: #757575;
+  padding: 8px 10px;
+  width: 167px;
+  text-align: left;
+  font-size: 12px !important;
+  font-weight: 600;
+  line-height: 135%;
+  border-radius: 4px;
+  box-shadow: 0 0 8px 0 rgb(0 0 0 / 40%);
+  white-space: normal !important;
+}
+
+
+
+/*-----------------Electro-form (additional to services-form)---------------------------*/
+
+.field-start-electro {
+  margin: 0;
+  width: 33%;
+}
+
+.field-finish-electro {
+  margin: 0;
+  width: 33%;
+}
+
+.meters-electro{
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 97%;
+
+}
+
+.meter-electro-field{
+  width: 33%;
+}
+
+.cena_electro, .zalohy_electro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.field-ceny-electro {
+  margin: 0 23px 0 0;
+  width: 31%;
+}
+
+.zalohy_electro_label {
+  width: 50%;
+  line-height: 20px;
+}
+
+.cena_electro .icon_help {
+  float: right;
+  margin-left: 5px;
+}
+
+
+/*----------------------------Deposit-form (add. to electro-form) ----------------------------*/
+
+.field-start-deposit {
+  margin: 0 -60px 0 0;
+  width: 33%;
+}
+
+.field-finish-deposit {
+  margin: 0 -58px 0 0;
+  width: 33%;
+}
+
+.zalohy_deposit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.zalohy_deposit_label {
+  width: 50%;
+  line-height: 20px;
+}
+
+.field-ceny-deposit {
+  margin: 0 23px 0 0;
+  width: 31%;
+}
+
+.origins .label_text{
+  margin-right: 10px;
+}
+
+.dates_append, .description_append {
+  display: flex;
+  align-items: center;
+  width: 115%;
+  margin: 5px 0 5px 0;
+  justify-content: flex-end;
+  position: relative;
+  right: 17.6%;
+}
+
+.description_append {
+  right: 17.9%;
+}
+
+.dates_append label{
+  margin-right: 11px;
+  margin-left: 110px;
+
+}
+
+
+.description_append label{
+  margin-right: 25px;
+  margin-left: 29px;
+
+}
+
+.deposit_append .field-deposit{
+  margin-right: 8px;
+}
+
+
+.deposit_append .border {
+  border-bottom: 1px solid #c2c2c2;
+  box-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 6%);
+  margin: 15px 0 15px 0;
+  width: 96%;
+}
+
+.add_input_fields_deposit_items .description_field {
+  width: 55.2%;
+  margin-left: -14px;
+}
+
+.add_input_fields_deposit_items input {
+  width: 27%;
+
+}
+
+.add_input_fields_deposit_items select {
+  width: 55%;
+
+}
+
+.add_input_fields_deposit_items {
+  margin-bottom: 10px;
+}
+
+.add_input_fields_deposit_items_button {
+  display: inline-block;
+  background-color: #fff;
+  transition: background .1s linear;
+  color:#23558c;
+}
+
+.add_deposit_added_field {
+  margin-right: 9px;
+  display: flex;
+  align-items: center;
+  width: 115.3%;
+  justify-content: flex-start;.
+}
+
+.add_input_fields_deposit_items .first-field-deposit {
+  position: relative;
+  right: 18%;
+
+}
+
+.first-field-deposit {
+  padding-bottom: 5px;
+  justify-content: flex-end!important;
+  width: 115.1%!important;
+}
+
+.cena_universal .icon_help {
+  float: right;
+  margin-left: 5px;
+}
+
+
+/*----------------------------Universal-form (add. to deposit-form) ----------------------------*/
+.calc-type-div {
+  display: flex;
+  justify-content: space-between;
+  width: 96%;
+}
+
+.calc-type-div .select2-container {
+  width: 50% !important;
+}
+
+
+.meters-universal {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 97%;
+
+}
+
+
+.meter-universal-field{
+  width: 33%;
+}
+
+
+.cena_universal, .zalohy_universal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.field-ceny-universal {
+  margin: 0 23px 0 0;
+  width: 31%;
+}
+
+.zalohy_universal_label {
+  width: 50%;
+  line-height: 20px;
+}
+
+
+/*--------------------------------Kontakt-------------------------------------*/
+
+.contact-header::after {
+  content: "";
+  height: 150px;
+  opacity: .3;
+  background-image: url('/public/img/calculations.jpg');
+  background-position: center;
+  background-size: cover;
+  display: block;
+  top: 80px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  max-width: 850px;
+  margin: 0 auto 0;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+}
+
+
+
+.contact-title{
+
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 50px;
+  padding-top: 20px;
+  font-size: 2.5em;
+  color: #23558C;
+}
+
+.submit-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.contact-form {
+  background-color: inherit;
+  box-shadow: none;
+  min-height: unset;
+  max-width: 850px;
+  margin-top: 80px;
+  padding-top: 30px;
+  border: solid 1px #C9EED2;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+}
+
+.contact-area label{
+  color: #23558C;
+}
+
+.text-message {
+  height: 120px;
+}
+
+
+.opacity {
+  z-index: 1000;
+  opacity: 0.3;
+}
+
+
+.submit_button_pushed {
+  min-width: 100px;
+  margin-top: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 4px;
+  background-color: #c2c2c2;
+  border: 2px solid #c2c2c2;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 8%);
+  transition: all .2s ease;
+  opacity: 1;
+  cursor: auto;
+}
+
+
+/*----------------Spinning loader--------------------*/
+
+
+.loader-wrapper {
+  position: absolute;
+  top: 29%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.loader {
+  border: 10px solid #c2c2c2;
+  border-radius: 50%;
+  border-top: 10px solid #3498db;
+  width: 90px;
+  height: 90px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  z-index: 2000;
+
+
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+/*---------------------------------Message------------------------------------*/
+
+.message {
+  margin-top: 175px;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #23558C;
+}
+
+
+
+/*------------------Index-------------------*/
+.index-container {
+  max-width: 1300px;
+  margin: 0 auto 0;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+
+.header-top {
+  max-width: 1300px;
+  height: 400px;
+  margin: 80px auto 20px;
+  border: solid 1px #C9EED2;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+  position: relative;
+}
+
+.header-top-image::after {
+  content: "";
+  background-image: url(/public/img/header-app.jpg);
+  z-index: -1;
+  opacity: 0.25;
+  height: 400px;
+  position: absolute;
+  border: solid 1px #C9EED2;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+  background-position: center;
+  background-size: cover;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+
+.top-title-wrapper {
+  padding-top: 10%;
+  padding-left: 3%;
+}
+
+.header-top-title {
+  max-width: 80%;
+  display: block;
+  color:#23558C;
+}
+
+.header-top-title-text {
+  font-size: 2em;
+  line-height: 50px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.top-title-wrapper a {
+  display: block;
+  color: #ffffff;
+  font-size: 1.2em;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 5px;
+}
+
+.header-top-button {
+  border-radius: 4px;
+  background-color: #23558C;
+  border-color: #23558C;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 8%);
+  transition: all .2s ease;
+  opacity: .9;
+  cursor: pointer;
+  min-width: 140px;
+}
+
+.header-top-title + .header-top-button {
+  margin-right: 20px;
+}
+
+.header-top-button:hover{
+  opacity: 0.7;
+}
+
+.main-phrases {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-block-1, .text-block-2 {
+  display: flex;
+  justify-content: space-between;
+  width: 49%;
+}
+
+.text-block {
+  width: 48%;
+  height: 250px;
+  position: relative;
+  border: solid 1px #C9EED2;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+}
+
+.text-block ul {
+  padding: 15px;
+  margin-top: 0;
+
+}
+
+.text-block li {
+  margin-top: 10px;
+  font-size: 1.3em;
+  color: #23558C;
+  font-weight: 700;
+  list-style: none;
+  line-height: 20px;
+}
+
+.text-block li:first-child {
+  margin-bottom: 10px;
+  margin-top: 0;
+  text-transform: uppercase ;
+  width: 110%;
+
+}
+
+.picture-block {
+  background-color: #E6EEE8;
+  width: 48%;
+  height: 250px;
+  opacity: .8;
+  border: solid 1px #C9EED2;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+}
+
+.left-block {
+  background-image: url('/public/img/keys-70.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.right-block {
+  background-image: url('/public/img/couple70.jpg');
+  background-position: center;
+  background-size: cover;
+
+}
+
+.try-app {
+  margin: 0 auto 20px;
+  height: 50px;
+  border: solid 1px #C9EED2;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+}
+
+.try-app a {
+  font-size: 1.5em;
+  color: #23558C;
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+  line-height: 48px;
+  display: block;
+}
+
+.try-app a:hover{
+  opacity: 0.6;
+}
+
+.features {
+  display: flex;
+  justify-content: space-between;
+}
+
+.feature {
+  width: 32%;
+  height: 320px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: solid 1px #C9EED2;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+}
+
+
+.feature span {
+  font-size: 2em;
+  color: #23558C;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+
+}
+
+
+.first-feature::after {
+  content: "";
+  height: 320px;
+  opacity: .3;
+  background-image: url('/public/img/interface.jpg');
+  background-position: center;
+  background-size: cover;
+  display: block;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  border-radius: 8px;
+
+
+}
+
+.first-feature:hover::after{
+  opacity: .5;
+  transition: linear .2s;
+
+}
+
+.second-feature::after {
+  content: "";
+  height: 320px;
+  opacity: .3;
+  background-image: url('/public/img/outputs.jpg');
+  background-position: center;
+  background-size: cover;
+  display: block;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  border-radius: 8px;
+}
+
+.second-feature:hover::after{
+  opacity: .5;
+  transition: linear .2s;
+}
+
+.third-feature::after {
+  content: "";
+  height: 320px;
+  opacity: .3;
+  background-image: url('/public/img/about.jpg');
+  background-position: center;
+  background-size: cover;
+  display: block;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  border-radius: 8px;
+}
+
+.third-feature:hover::after{
+  opacity: .5;
+  transition: linear .2s;
+}
+
+
+
+.final-thesis {
+  padding-top: 15px;
+  margin-bottom: 20px;
+
+}
+
+
+.list-of-thesis{
+  min-height: 310px;
+  display: flex;
+  border: solid 1px #C9EED2;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+  flex-direction:column;
+  padding-top: 15px;
+  padding-bottom:   15px;
+}
+
+.list-of-thesis-row-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.list-of-thesis-row-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-of-thesis ul>li {
+  font-size: 1.3em;
+  color: #23558C;
+  font-weight: 700;
+  line-height: 30px;
+  padding-left: 10px;
+  margin-bottom: 3px;
+}
+
+.list-of-thesis ul>li::marker{
+  content: "✔";
+  color: #23558C;
+}
+
+.list-of-thesis ul {
+  max-width: 70%;
+}
+
+.calculator {
+  fill: #23558C;
+  padding-top: 10px;
+  padding-left: 4%;
+  height: 200px;
+  width: 200px;
+  margin-right: 7%;
+}
+
+.final-button {
+  margin: 0 10px 0 10px;
+}
+
+.final-button a {
+  display: block;
+  color: #ffffff;
+  font-size: 1.2em;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 5px;
+}
+
+
+/*------------------------------Aplikace--------------------------------*/
+
+.app-container {
+  max-width: 850px;
+  margin: 0 auto 0;
+
+}
+
+
+
+.calculation-header::after {
+  content: "";
+  height: 150px;
+  opacity: .3;
+  background-image: url('/public/img/calculations.jpg');
+  background-position: center;
+  background-size: cover;
+  display: block;
+  top: 80px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  max-width: 850px;
+  margin: 0 auto 0;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+}
+
+.calculation-header {
+  padding-bottom: 85px;
+}
+
+.app-grid-container {
+  display: grid;
+  grid-template-columns: 33.333% 33.333% 33.333%;
+
+
+}
+
+.app-block {
+
+  height: 250px;
+  position: relative;
+  overflow: hidden;
+  border: solid 1px #C9EED2;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+
+}
+
+.app-block:hover {
+  background-color: #ffffff;
+  transition: linear 0.1s;
+}
+
+
+.app-block a{
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: #23558C;
+  text-transform: uppercase;
+  font-size: 1.3em;
+  font-weight: 700;
+  padding-top: 10px;
+
+}
+
+.app-block-title {
+  margin-bottom: 0;
+}
+
+.app-block-desc{
+  text-transform: none;
+  font-size: 0.9em;
+  font-weight: 500;
+  padding: 5%;
+}
+
+.item-1, .item-4 {
+  margin-right: 5%;
+}
+
+.item-2, .item-5 {
+  margin: 0 5% 0;
+}
+
+.item-3, .item-6 {
+  margin-left: 5%;
+}
+
+.item-1, .item-2, .item-3,
+.item-4, .item-5, .item-6 {
+  margin-bottom: 30px;
+}
+
+
+
+
+
+
+
+
+/*------------------------------About--------------------------------*/
+
+.about-container {
+  max-width: 850px;
+  margin: 0 auto 0;
+
+
+
+}
+
+.about-header::after {
+  content: "";
+  height: 150px;
+  opacity: .3;
+  background-image: url('/public/img/calculations.jpg');
+  background-position: center;
+  background-size: cover;
+  display: block;
+  top: 80px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  max-width: 850px;
+  margin: 0 auto 0;
+  border: solid 1px #C9EED2;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+}
+
+.about-header {
+  padding-bottom: 80px;
+}
+
+
+.about-text {
+  padding: 3% 5% 5% 5%;
+  text-align: left;
+  margin-bottom: 20px;
+  min-height: 600px;
+  border: solid 1px #C9EED2;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+}
+
+.about-text p,
+.about-text ul{
+  color: #23558C;
+  font-size: 1.2em;
+  line-height: 25px;
+  text-indent: 30px;
+  font-weight: 700;
+
+}
+
+.about-text ul {
+  text-indent: unset;
+}
+
+.about-text span {
+  text-decoration: underline;
+}
+
+
+.about-buttons .header-top-button {
+  padding: 5px;
+  margin: 0 20px 0 20px;
+}
+
+.about-buttons a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.about-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+
+
+
+/*--------------------------------Login and Register-------------------------------------------*/
+
+.login-form {
+  background-color: inherit;
+  min-height: unset;
+  max-width: 600px;
+  margin-top: 10px;
+  padding-top: 30px;
+  border: solid 1px #C9EED2;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+}
+
+.login-area {
+  margin: 0 10% 0 10%;
+  padding-bottom: 10px;
+}
+
+.login-area label{
+  color: #23558C;
+}
+
+.forgot-password-container {
+  margin-bottom: 5px;
+}
+
+.forgot-password-container a,
+.register-account a {
+  color: #23558C;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.forgot-password-container a:hover,
+.register-account a:hover
+{
+
+  text-decoration: underline;
+}
+
+.login-checkbox-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3px;
+  margin-bottom: 15px;
+}
+
+.stay-in-account-checkbox{
+
+  padding: 0;
+  margin: 0;
+  height: unset;
+  top: 5px;
+}
+
+.stay-in-account{
+  color:  #23558C;
+  font-weight: 600;
+}
+
+.login-checkbox-wrapper {
+  padding-top: 3px;
+  padding-right: 5px;
+
+}
+
+.register-message {
+
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto 20px;
+  padding: 2%;
+  max-width: 1000px;
+  border: solid 1px #C9EED2;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+}
+
+.info_message{
+  font-weight: 600;
+  font-size: 1.2em;
+  color: #23558C;
+  margin-bottom: 17px;
+  line-height: 22px;
+}
+
+.login-link{
+  transition: all .2s ease;
+  color: #23558C;
+}
+
+.login-link:hover{
+  text-decoration: none;
+}
+
+.resend {
+
+  text-decoration: none;
+  font-size: 1.1em;
+
+}
+
+.resend:hover {
+  text-decoration: underline;
+}
+
+.user_errors_field{
+  margin: 2px 12px 2px 0;
+
+  text-align: left;
+}
+
+.user_errors {
+  color: #D8000C;
+  background-color: #FFD2D2;
+  padding: 15px 0 15px 60px;
+  font-weight: 600;
+  text-align: left;
+}
+
+
+.error {
+  color: #D8000C;
+  font-weight: 600;
+}
+
+.error-user {
+  margin-bottom: 5px;
+}
+
+.disabled {
+
+  pointer-events: none;
+  opacity: 0.3;
+
+}
+
+.forgot_label_text{
+
+  margin-bottom: 10px;
+
+}
+
+
+
+/*-------------------------------Responsive design-------------------------------*/
+
+
+/*------------------------------1050 px------------------------------------*/
+
+@media only screen and (max-width: 1050px){
+  .text-block li{
+    font-size: 1em ;
+    line-height: 21px;
+  }
+  .header-top-title {
+    max-width: 95%;
+  }
+
+
+}
+
+
+
+/*------------------------------840 px------------------------------------*/
+
+@media only screen and (max-width: 840px) {
+  .form {
+    margin: 0 40px;
+  }
+
+
+  /*-----Index--------*/
+
+  .main-phrases{
+    flex-direction: column;
+  }
+
+  .text-block-1, .text-block-2 {
+    width: unset;
+  }
+
+  .text-block-1 {
+    margin-bottom: 20px;
+  }
+
+  .header-top-title-text {
+  font-size: 1.7em
+  }
+
+  .header-top {
+    height: 300px;
+
+  }
+
+  .header-top-image::after{
+    background-image: url('/public/img/header-app - 800px.jpg');
+    height: 300px;
+
+  }
+
+  .top-title-wrapper {
+    bottom: 230px;
+  }
+
+  .header-top-title-text {
+    margin-bottom: 20px;
+  }
+  .main-phrases {
+    bottom: 115px;
+  }
+
+  .text-block, .picture-block {
+    width: 48.5%;
+  }
+
+  .text-block li{
+    font-size: 1.2em ;
+    line-height: 25px;
+  }
+
+
+  .list-of-thesis ul>li {
+    font-size: 1.2em;
+  }
+
+  .calculator {
+    height: 150px;
+    width: 150px;
+  }
+
+
+  /*----------Aplikace---------*/
+
+  .item-1, .item-4 {
+    margin-left: 3%;
+  }
+
+  .item-3, .item-6 {
+    margin-right: 3%;
+  }
+
+  .app-block-desc {
+    padding-top: 1%;
+  }
+
+
+}
+
+
+
+
+
+/*------------------------------------------------------------------------*/
+
+/*------------------------------700 px------------------------------------*/
+
+@media only screen and (max-width: 700px) {
+
+/*-----------------Deposit-form------------------*/
+
+  .add_deposit_added_field {
+    width: 114.6%;
+  }
+
+  .description_append {
+    flex-direction: column;
+
+    align-items: flex-start;
+    position: unset;
+  }
+
+  .description_append .label_text {
+    margin: 0 0 5px 0;
+  }
+
+  .add_input_fields_deposit_items .description_field {
+    margin: 0;
+    width: 83.3%;
+  }
+
+
+  .loader {
+    border: 8px solid #c2c2c2;
+    border-top: 8px solid #3498db;
+    width: 70px;
+    height: 70px;
+
+  }
+
+/*-----Index--------*/
+
+  .header-top-title-text {
+    font-size: 1.5em;
+  }
+
+  .calculator {
+    display: none;
+  }
+
+  .list-of-thesis-row-1 ul{
+    max-width: 96%;
+  }
+
+/*--------------------------Aplications-------------------------*/
+
+  .app-block-desc{
+    padding-top: 0;
+    font-size: 0.85em;
+  }
+
+
+}
+
+/*------------------------------------------------------------------------*/
+
+/*------------------------------600 px------------------------------------*/
+@media only screen and (max-width: 600px){
+
+  .subtitle, .h3-subtitle {
+    font-size: 1em;
+  }
+
+  .label_text {
+
+    font-size: 0.95em;
+
+  }
+  #label_text {
+    font-size: 0.98em;
+  }
+
+
+  .date {
+    display: block;
+  }
+
+  .form {
+    margin: 0;
+  }
+
+  .date .label_text {
+    width: 100%;
+    margin-bottom: 7px;
+  }
+
+  .field-start-date,
+  .field-finish-date,
+  .field-start-rent,
+  .field-finish-rent
+  {
+    width: 60%;
+  }
+
+  .icon_title {
+    display: none;
+  }
+
+  .add_meters_added_field {
+    width: 111%;
+  }
+
+  .spotrebni_slozka .label_text {
+    width: 50%;
+  }
+
+  .help-right-label {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+
+
+
+  /*-------------Electro-form-600px----------------*/
+
+
+  .field-start-electro, .field-finish-electro {
+    width: 59.5%;
+  }
+
+  .meters-electro {
+    display: block;
+  }
+
+  .meter-electro-field {
+    width: 59%;
+  }
+  .origins .select2 {
+    width: 59.5% !important;
+  }
+
+
+  .origins {
+    display: block;
+  }
+
+  .origins .label_text {
+    width: 100%;
+    margin-bottom: 7px;
+  }
+
+
+ .cena_electro{
+   display: block;
+ }
+
+ .cena_electro .label_text {
+   width: 100%;
+   margin-bottom: 7px;
+ }
+
+ .cena_electro input {
+   width: 57%;
+ }
+
+  .zalohy_electro {
+    display: block;
+  }
+
+  .zalohy_electro .label_text {
+    width: 150%;
+    margin-bottom: 7px;
+  }
+
+  .zalohy_electro input {
+    width: 57%;
+  }
+
+  .cena_electro .icon_help {
+    margin-right: 45%;
+  }
+
+/*-----------------Deposit-form-600-----------------*/
+
+  .field-start-deposit,
+  .field-finish-deposit
+  {
+    width: 59.5%;
+  }
+
+  .add_deposit_added_field {
+    flex-direction: column;
+    align-items: flex-start;
+
+  }
+
+  .add_input_fields_deposit_items .first-field-deposit {
+    position: unset;
+  }
+
+
+  .add_deposit_added_field .select2{
+    margin-bottom: 10px;
+    width: 49.5% !important;
+  }
+
+  .add_deposit_added_field input {
+    width: 49.5%;
+  }
+
+  .add_deposit_added_field .right-field {
+    margin-left: 0;
+  }
+
+  .dates_append {
+
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 17.5%;
+  }
+
+  .add_input_fields_deposit_items input {
+    width: 49.6%;
+  }
+
+  .dates_append label {
+    margin-left: 0;
+  }
+
+  .zalohy_deposit {
+    display: block;
+
+  }
+
+  .zalohy_deposit_label {
+    width: 100%;
+  }
+  .field-ceny-deposit {
+    width: 56.8%;
+  }
+
+  /*---------------Universal-600--------------*/
+
+  .calc-type-div {
+    display: block;
+  }
+
+  .calc-type-div .label_text {
+    width: 100%;
+    margin-bottom: 7px;
+  }
+
+  .calc-type-div .select2-container {
+    width: 100% !important;
+  }
+
+  .meters-universal {
+    display: block;
+  }
+
+  .meter-universal-field {
+    width: 59%;
+  }
+
+  .cena_universal {
+    display: block;
+  }
+
+  .cena_universal .label_text {
+    width: 100%;
+    margin-bottom: 7px;
+  }
+
+  .cena_universal input {
+    width: 57%;
+  }
+
+  .cena_universal .icon_help {
+    margin-right: 45%;
+
+  }
+
+  .zalohy_universal {
+    display: block;
+  }
+
+  .zalohy_universal .label_text {
+    width: 150%;
+    margin-bottom: 7px;
+  }
+
+  .zalohy_universal input {
+    width: 57%;
+  }
+
+
+
+  /*-----------------Errors 600px-----------------*/
+
+  .errors {
+    font-size: 0.9em;
+
+  }
+
+  /*------------------------Applications 600px---------------*/
+
+
+  .app-grid-container {
+    grid-template-columns: 50% 50%;
+  }
+
+
+
+  .app-grid-container [class*="item-"] {
+    margin: 0 3% 15px 3%;
+  }
+
+  .app-block-desc{
+    padding-top: 5%;
+  }
+
+
+/*----------------------Index 600px-----------------------*/
+
+  .header-top-title-text  {
+    font-size: 1.2em;
+    line-height: 35px;
+  }
+
+  .top-title-wrapper a {
+    font-size: 1.1em;
+  }
+
+  .text-block-1, .text-block-2 {
+    flex-direction: column;
+
+  }
+
+  .text-block {
+    width: 100%;
+    margin-bottom: 15px;
+    height: 210px;
+  }
+
+  .picture-block {
+    height: 210px;
+    width: 100%;
+  }
+
+  .features {
+    flex-direction: column;
+  }
+
+  .feature {
+    height: 200px;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  .first-feature::after,
+  .second-feature::after,
+  .third-feature::after
+  {
+    height: 200px;
+  }
+
+  .final-thesis {
+    padding-top: 0;
+    margin-bottom: 15px;
+  }
+
+  .list-of-thesis ul>li {
+    font-size: 1.1em;
+  }
+  .final-button a {
+    font-size: 1.1em;
+  }
+
+  .text-block li:first-child{
+      width: 100%;
+  }
+
+}
+
+
+
+
+
+
+/*-------------------------------------------------------------------------*/
+
+/*-------------------------------500 px--------------------------------------*/
+
+@media only screen and (max-width: 500px) {
+
+  .zakladni_slozka, .spotrebni_slozka, .zalohy {
+    width: 104%;
+  }
+
+  .spotrebni_slozka .label_text {
+    width: 45%;
+  }
+
+  /*----------------Errors----------------*/
+  .errors_field {
+    margin: 0;
+  }
+
+  /*------------------Applications--------------------*/
+  .app-grid-container {
+    grid-template-columns: 100%;
+  }
+
+
+
+  .app-grid-container [class*="item-"] {
+    margin: 0 5% 30px 5%;
+  }
+
+  .app-block {
+    height: 103px;
+    overflow: scroll;
+
+  }
+
+  .app-block a {
+    padding-top: 5px;
+  }
+
+  .app-block p {
+    padding: 0 2% 0 2%;
+    margin: 0;
+
+  }
+
+  .app-block-desc {
+    font-size: 0.8em;
+  }
+
+  .try-app a {
+    font-size: 1.3em;
+  }
+
+/*------------------------------About--------------------------------*/
+
+  .about-text p {
+      font-size: 1.1em;
+  }
+
+  .register-message {
+    max-width: 100%;
+  }
+
+  .info_message{
+    font-size: 1.1em;
+  }
+
+  .resend {
+    font-size: 1.1em;
+  }
+
+}
+
+/*-------------------------------458 px------------------------------------*/
+/*----------Index-----------*/
+@media only screen and (max-width: 458px) {
+  .main-phrases {
+    bottom: 155px;
+  }
+/*-----------Applications-------------*/
+  .app-block-title{
+    margin-bottom: 1%!important;
+  }
+
+  .calc-hidden {
+    display: none;
+  }
+
+
+}
+
+
+
+/*-------------------------------400 px------------------------------------*/
+
+@media only screen and (max-width: 400px){
+
+
+  .field-start-date,
+  .field-finish-date,
+  .field-start-rent,
+  .field-finish-rent {
+    width: 100%;
+  }
+
+  .chekbox_coefficient {
+    margin: 15px 15px 15px 0;
+  }
+
+  .icon_plus {
+    margin-top: 5px;
+  }
+
+  .icon_minus {
+    margin-left: 5px;
+  }
+
+  .spotrebni_slozka, .zakladni_slozka, .zalohy {
+    width: 104%;
+   }
+
+  .add_field .select2 {
+    width: 50% !important;
+  }
+
+  .add_field input {
+    width: 31%;
+  }
+
+  .add_meters {
+    margin-bottom: 0;
+  }
+
+  .add_meters_added_field {
+    display: block;
+  }
+
+  .add_meters_added_field .select2 {
+    width: 86%!important;
+    margin-bottom: 10px;
+  }
+
+  .add_meters_added_field #initialValue1 {
+
+    margin-right: 6px;!important;
+  }
+
+
+  .add_meters_added_field [id*="initialValue"]{
+    width: 42%!important;
+    margin-left: 0;
+    margin-right: 9px;
+  }
+
+  .add_meters_added_field [id*="endValue"] {
+    width: 41%!important;
+  }
+
+  .add_meters_added_field [id*="meterNumber"] {
+    width: 86%!important;
+    margin-top: 10px;
+    margin-bottom: 25px!important;
+  }
+
+
+  .remove_meters{
+    display: block;
+    float: right;
+    position: relative;
+    top: -24px;
+    left: -4px;
+  }
+
+  /*.origins - used also in Year select2 in easy-calc */
+  .origins {
+    display: block;
+  }
+
+  .origins .label_text {
+    width: 100%;
+    margin-bottom: 7px;
+  }
+
+  .origins .select2 {
+    width: 100% !important;
+  }
+
+  .coefficient_label_text {
+    margin-top: 20px;
+  }
+
+  .zakladni_slozka {
+    display: block;
+  }
+
+  .zakladni_slozka .label_text {
+    margin-bottom: 7px;
+    width: 100%;
+  }
+
+  .zakladni_slozka input {
+    width: 91%;
+  }
+
+  .spotrebni_slozka, .zalohy {
+    display: block;
+  }
+
+  .spotrebni_slozka .label_text,
+  .zalohy_label  {
+    width: 100%;
+    margin-bottom: 7px;
+  }
+
+  .help-right-label {
+    float: right;
+    position: relative;
+    top: -35px;
+    right: -10%;
+  }
+
+  .spotrebni_slozka input, .zalohy input {
+    width: 91%;
+
+  }
+
+  /*------------------Electro-form-400px--------------------------*/
+
+  .field-start-electro, .field-finish-electro {
+    width: 100%;
+  }
+
+  .meter-electro-field {
+    width: 99%;
+  }
+
+
+  .cena_electro input {
+    width: 96%;
+  }
+
+  .zalohy_electro .label_text {
+    width: 200%;
+   }
+
+  .zalohy_electro input {
+    width: 96%;
+  }
+
+  .cena_electro .icon_help {
+    margin-right: 5%;
+  }
+/*----------------------Deposit-form-400px-----------------*/
+
+  .field-start-deposit,
+  .field-finish-deposit
+  {
+    width: 100%;
+  }
+
+  .add_deposit_added_field .select2{
+    width: 83.5% !important;
+  }
+
+  .add_input_fields_deposit_items input {
+    width: 83.5%;
+  }
+
+  .field-ceny-deposit {
+
+  width: 95.8%;
+  }
+
+ /*---------------------Universal -400px ----------------*/
+
+  .meter-universal-field {
+    width: 99%;
+  }
+
+  .cena_universal input {
+    width: 96%;
+  }
+
+  .cena_universal .icon_help {
+    margin-right: 5%;
+  }
+
+  .zalohy_universal .label_text {
+    width: 200%;
+  }
+
+  .zalohy_universal input {
+    width: 96%;
+  }
+
+  /*------------------Errors-------------------*/
+
+  .errors_field {
+    width: 96%;
+  }
+
+  .errors {
+    font-size: 0.8em;
+  }
+
+  #er {
+    margin-bottom: 6px;
+  }
+
+  /*------------------Contact-------------------*/
+
+  .loader {
+    border: 6px solid #c2c2c2;
+    border-top: 6px solid #3498db;
+    width: 50px;
+    height: 50px;
+
+  }
+
+  /*---------------------Index----------------------*/
+  .try-app a {
+    font-size: 1em;
+  }
+
+  .list-of-thesis-row-1 ul {
+    padding-left: 30px;
+  }
+
+  .list-of-thesis ul>li {
+    line-height: 25px;
+  }
+
+  .features span {
+    font-size: 1.7em;
+  }
+
+}
+
+/*-------------------------------317 px------------------------------------*/
+
+@media only screen and (max-width: 317px){
+  .main-phrases {
+    bottom: 200px;
+  }
+
+
+  .try-app a {
+    line-height: 25px;
+  }
+
+  .text-block li {
+    font-size: 1.1em;
+  }
+
+  .header-top-title-text{
+    line-height: 30px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
