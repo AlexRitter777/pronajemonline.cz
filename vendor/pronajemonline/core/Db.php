@@ -23,6 +23,7 @@ class Db {
      * @throws \Exception If unable to establish a database connection.
      */
     protected function __construct(){
+        
         $db = require_once CONF . '/config_db.php';
         R::setup($db['dsn'], $db['user'], $db['pass']);
         if( !R::testConnection()){

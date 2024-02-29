@@ -1,2 +1,5 @@
 config_smtp.php
 tmp/
+vendor/*
+!vendor/pronajemonline/
+.idea/

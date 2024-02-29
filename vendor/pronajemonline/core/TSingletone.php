@@ -35,7 +35,7 @@ trait TSingletone {
     /**
      * Prevent from being unserialized.
      */
-    private function __wakeup() {
+    /*private function __wakeup() {
         // Do nothing...
-    }
+    }*/
 }
