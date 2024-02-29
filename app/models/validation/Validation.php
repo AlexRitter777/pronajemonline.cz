@@ -1,16 +1,43 @@
 <?php
 
-namespace app\models;
+namespace app\models\validation;
+
+use app\models\AppModel;
+use app\models\User;
 use DateTime;
 
+/**
+ * Class Validation - Handles data validation for various forms in the application.
+ * This class is considered deprecated and was taken from an older version of the application.
+ * It is planned to be replaced by an external library or a new set of validation classes
+ * to improve maintainability and scalability of the validation logic.
+ *
+ * @deprecated This class will be replaced in a future version of the application due to its
+ * limited flexibility and the need for a more structured approach to validation.
+ *
+ * For compatibility with the ValidationWrapper class, as well as for testing and
+ * security reasons, data must always be loaded using the load() method.
+ */
 class Validation extends AppModel {
 
-
+    /**
+     * @var array Stores validation errors
+     */
     public $errors = [];
+
+    /**
+     * @var array Stores boolean flags for validation errors
+     */
     public $errorsBool = [];
+
+    /**
+     * @var array Stores data submitted for validation
+     */
     public $data = [];
 
-    //Czech description for attributes names
+    /**
+     * @var array Czech descriptions for attribute names used for generating error messages
+     */
     protected $desc = Array(
 
         //Landlord
@@ -37,6 +64,7 @@ class Validation extends AppModel {
         'adminAccphone' => 'Telefonní číslo účetní', //S //AMF
         'adminAccemail' => 'Email účetní', //S //AMF
 
+        //Calculation data
         'universalCalcType' => 'Druh vyúčtování', //U
         'supplierName' =>'Název dodavatele elektřiny', //E
         'universalSupplierName' => 'Název firmy – dodavatele média', //U
@@ -89,20 +117,27 @@ class Validation extends AppModel {
         'advancedPayments' => 'Součet záloh, zaplacených nájemníkem', //S, E, U
         'advancedPaymentsDesc' => 'Uhrazené zálohy – komentář', //S, E, U
         'deposit' => 'Výše kauci', //D
+
+        //Contact form
         'contactName' => 'Jméno', //K
         'contactEmail' => 'E-mail', //K
         'contactMessage' => 'Zpráva', //K
+
+        //User registration/login
         'userName' => 'Jméno uživatele', //Signup
         'userEmail' => 'E-mailová adresa',//Signup, Login
         'userPassword' => 'Heslo',//Signup, Login, Change Password form
         'userPasswordRepeat' => 'Po druhé zadané heslo',//Signup, Login, Change Password form
+
+        //Property form
         'propertyAddinfo' => 'Další informace', //Prop
         'propertyRentpayment' => 'Nájemné', // Prop
         'propertyServicespayment' => 'Záloha na služby', //Prop
         'propertyElectropayment' => 'Záloha za elektřinu', //Prop
-        'oldPassword' => 'Stávající heslo', //Change Password form
-        'newPassword' => 'Nové heslo', //Change Password form
 
+        //Change password form
+        'userPasswordOld' => 'Stávající heslo', //Change Password form
+        'userPasswordNew' => 'Nové heslo', //Change Password form
 
         //New person validation
         'personName' => 'Jméno',
@@ -115,27 +150,18 @@ class Validation extends AppModel {
 
     );
 
-    //Allowed symbols regex
+    /**
+     * @var string Regular expression pattern for allowed characters validation
+     */
     protected $regex = '~^[a-zěščřžýáíéúůťň0-9)(+.,-/@ ?]{1,}$~ui';
 
-    /**
-     * @param $data
-     *
-     * Load data for validation from user
-     * All attributes are compared with an allowed attributes list saved in AppModel
-     *
-     */
-    public function load($data) {
-        foreach ($this->attributes as $name => $value) {
-            if(isset($data[$name])){
-                $this->attributes[$name] = $data[$name];
-            }
-        }
-    }
+
+    // Validation methods for different forms like validateServices, validateElectro, etc.
+    // Each method performs specific validations based on the form requirements.
 
 
     /**
-     * Validate data from services form - Vyúčtování služeb
+     * Validates data from services form - Vyúčtování služeb
      */
     public function validateServices (){
 
@@ -304,7 +330,7 @@ class Validation extends AppModel {
     }
 
     /**
-     * Validate data from electro form - Vyúčtování spotřeby elektřiny
+     * Validates data from electro form - Vyúčtování spotřeby elektřiny
      */
     public function validateElectro(){
 
@@ -386,7 +412,7 @@ class Validation extends AppModel {
 
 
     /**
-     * Validate data from deposit form - Vyúčtování kauce
+     * Validates data from deposit form - Vyúčtování kauce
      */
     public function validateDeposit() {
 
@@ -449,7 +475,7 @@ class Validation extends AppModel {
     }
 
     /**
-     * Validate data from total form - Souhrnné vyúčtování
+     * Validates data from total form - Souhrnné vyúčtování
      */
     public function validateTotal() {
 
@@ -506,7 +532,7 @@ class Validation extends AppModel {
     }
 
     /**
-     * Validate data from universal form - Univerzální vyúčtování
+     * Validates data from universal form - Univerzální vyúčtování
      */
     public function validateUniversal(){
 
@@ -589,7 +615,7 @@ class Validation extends AppModel {
     }
 
     /**
-     * Validate data from easyservices form - Zjednodušené vyúčtování služeb
+     * Validates data from easyservices form - Zjednodušené vyúčtování služeb
      */
     public function validateEasyServices (){
 
@@ -653,14 +679,9 @@ class Validation extends AppModel {
 
 
     /**
-     * Validate data from contact form
+     * Validates data from contact form
      */
-    public function validateContact($name, $email, $message) {
-
-        $this->attributes['contactName'] = $name;
-        $this->attributes['contactEmail'] = $email;
-        $this->attributes['contactMessage'] = $message;
-
+    public function validateContact() {
 
         $this->validateValue('contactName');
         $this->validateLength('contactName',30);
@@ -690,14 +711,10 @@ class Validation extends AppModel {
 
 
     /**
-     * Validate data from user register form
+     * Validates data from user register form
      */
-    public function validateRegister($name, $email, $password, $passwordRepeat){
+    public function validateRegister(){
 
-        $this->attributes['userName'] = $name;
-        $this->attributes['userEmail'] = $email;
-        $this->attributes['userPassword'] = $password;
-        $this->attributes['userPasswordRepeat'] = $passwordRepeat;
 
         $this->iSUserExistsByEmail('userEmail', 'isUserExists');
 
@@ -728,12 +745,9 @@ class Validation extends AppModel {
 
 
     /**
-     * Validate data from user login form
+     * Validates data from user login form
      */
-    public function validateAuthorization($email, $password){
-
-        $this->attributes['userEmail'] = $email;
-        $this->attributes['userPassword'] = $password;
+    public function validateAuthorization(){
 
         $this->validateValue('userEmail');
         $this->validateEmail('userEmail');
@@ -751,11 +765,10 @@ class Validation extends AppModel {
     }
 
     /**
-     * Validate data from send reset link form
+     * Validates data from send reset link form
      */
-    public function validateSendresetlink($email){
+    public function validateSendresetlink(){
 
-        $this->attributes['userEmail'] = $email;
         $this->validateValue('userEmail');
         $this->validateEmail('userEmail');
 
@@ -772,12 +785,9 @@ class Validation extends AppModel {
 
 
     /**
-     * Validate data from change password form
+     * Validates data from change password form
      */
-    public function validateChangepassword($password, $passwordRepeat){
-
-        $this->attributes['userPassword'] = $password;
-        $this->attributes['userPasswordRepeat'] = $passwordRepeat;
+    public function validateChangepassword(){
 
         $this->validateValue('userPassword');
         $this->validateLength('userPassword', 50);
@@ -797,18 +807,12 @@ class Validation extends AppModel {
 
 
     /**
-     *
-     * Validate if new password and old password are not same.
-     *
-     * @param string $newPassword
-     * @param string $oldPassword
+     * Validates, if new password and old password are not same.
      */
-    public function validateNewAndOldPassword(string $oldPassword, string $newPassword) : void {
+    public function validateNewAndOldPassword() {
 
-        $this->attributes['oldPassword'] = $oldPassword;
-        $this->attributes['newPassword'] = $newPassword;
 
-        $this->isStringsSame('oldPassword', 'newPassword', 'oldAndNewPasswords');
+        $this->isStringsSame('userPasswordOld', 'userPasswordNew', 'oldAndNewPasswords');
 
         if ($this->errors) {
             $this->data['errors'] = $this->errors;
@@ -821,13 +825,10 @@ class Validation extends AppModel {
     }
 
 
-    public function validateModalNewPerson($name, $address, $email, $phone, $account){
-
-        $this->attributes['personName'] = $name;
-        $this->attributes['personAddress'] = $address;
-        $this->attributes['personEmail'] = $email;
-        $this->attributes['personPhone'] = $phone;
-        $this->attributes['personAccount'] = $account;
+    /**
+     * Validates data from any of new person form (tenant, landlord).
+     */
+    public function validateModalNewPerson(){
 
         $this->validateValue('personName');
         $this->validateLength('personName', 50);
@@ -853,6 +854,9 @@ class Validation extends AppModel {
 
     }
 
+    /**
+     * Validates data from any of new person form (tenant, landlord).
+     */
     public function validateModalNewAdmin(){
 
         $this->validateValue('adminName');
@@ -893,15 +897,10 @@ class Validation extends AppModel {
 
     }
 
-
-    public function validateProperty($address, $type, $addInfo, $rentPayment, $servicesPayment, $electroPayment){
-
-        $this->attributes['propertyAddress'] = $address;
-        $this->attributes['propertyType'] = $type;
-        $this->attributes['propertyAddinfo'] = $addInfo;
-        $this->attributes['propertyRentpayment'] = $rentPayment;
-        $this->attributes['propertyServicespayment'] = $servicesPayment;
-        $this->attributes['propertyElectropayment'] = $electroPayment;
+    /**
+     * Validates data from new property form.
+     */
+    public function validateProperty(){
 
         $this->validateValue('propertyAddress');
         $this->validateLength('propertyAddress', 150);
@@ -930,26 +929,52 @@ class Validation extends AppModel {
     }
 
 
-    public function validateValue($name){
+    // Validation methods
+
+
+    /**
+     * Validates that the attribute value is not empty.
+     *
+     * @param string $name The attribute name to validate.
+     */
+    public function validateValue(string $name){
         if (empty(trim($this->attributes[$name]))) {
             $this->errors[$name] = '"' . $this->desc[$name] . '" ' . 'je povinný údaj!';
         }
     }
 
-    public function validateValueNull($name){
+    /**
+     * Validates that the attribute value is not null. Numeric 0 is considered valid.
+     *
+     * @param string $name The attribute name to validate.
+     */
+    public function validateValueNull(string $name){
         if (empty($this->attributes[$name]) && !is_numeric($this->attributes[$name])) {
             $this->errors[$name] = '"' . $this->desc[$name] . '" ' . 'je povinný údaj!';
         }
     }
 
-    public function validateLength($name,$length) {
+
+    /**
+     * Validates the length of the attribute value does not exceed a maximum length.
+     *
+     * @param string $name The attribute name to validate.
+     * @param int $length The maximum allowed length.
+     */
+    public function validateLength(string $name, int $length) {
         if (strlen($this->attributes[$name]) > $length) {
             $this->errors[$name] = 'Maximální počet symbolů pro "' . $this->desc[$name] . ' " ' . 'je ' . $length . '!';
         }
 
     }
 
-    public function validateMinLength($name,$length) {
+    /**
+     * Validates the length of the attribute value meets a minimum length requirement.
+     *
+     * @param string $name The attribute name to validate.
+     * @param int $length The minimum required length.
+     */
+    public function validateMinLength(string $name, int $length) {
         if(!empty($this->attributes[$name])) {
             if (strlen($this->attributes[$name]) < $length) {
                 $this->errors[$name] = 'Minimální počet symbolů pro "' . $this->desc[$name] . ' " ' . 'je ' . $length . '!';
@@ -958,21 +983,35 @@ class Validation extends AppModel {
     }
 
 
-    public function validateChars($name){
+    /**
+     * Validates that the attribute value contains only allowed characters based on a regex pattern.
+     *
+     * @param string $name The attribute name to validate.
+     */
+    public function validateChars(string $name){
         if (!preg_match("$this->regex", $this->attributes[$name]) && ($this->attributes[$name])){
             $this->errors[$name] = "{$this->desc[$name]} obsahuje nepovolené znaky!";
         }
     }
 
-
-    public function validateZero($name) {
+    /**
+     * Validates that the attribute value is not negative.
+     *
+     * @param string $name The attribute name to validate.
+     */
+    public function validateZero(string $name) {
         if ($this->attributes[$name] < 0) {
             $this->errors[$name] = "\"{$this->desc[$name]}\" nemůže mít zápornou hodnotu!";
         }
 
     }
 
-    public function validateAccNumber($name){
+    /**
+     * Validates that the attribute value is in a correct account number format for the Czech Republic.
+     *
+     * @param string $name The attribute name to validate.
+     */
+    public function validateAccNumber(string $name){
         if (!empty($this->attributes[$name])) {
             if (!preg_match('~^(([0-9]{0,6})-)?([0-9]{1,10})/[0-9]{4}$~', $this->attributes[$name] )){
                 $this->errors[$name] = "{$this->desc[$name]} musí byt ve formátu xxxxxx - xxxxxxxxxx/xxxx. Předčíslí není povinné.'";
@@ -984,7 +1023,15 @@ class Validation extends AppModel {
         }
     }
 
-    public function comparingTwoDates($startDateName, $finishDateName, $errorName) {
+    /**
+     * Compares two dates to ensure the start date is before the end date.
+     *
+     * @param string $startDateName The start date attribute name.
+     * @param string $finishDateName The end date attribute name.
+     * @param string $errorName The error message identifier.
+     * @throws \Exception
+     */
+    public function comparingTwoDates(string $startDateName, string $finishDateName, string $errorName) {
         if (!empty($this->attributes[$startDateName]) && !empty($this->attributes[$finishDateName])) {
                 $startDateObject = new DateTime($this->attributes[$startDateName]);
                 $finishDateObject = new DateTime($this->attributes[$finishDateName]);
@@ -995,7 +1042,16 @@ class Validation extends AppModel {
 
     }
 
-    public function validateYearsInterval($startDateName, $finishDateName, $interval, $errorName) {
+    /**
+     * Validates the interval between two dates does not exceed a specified number of years.
+     *
+     * @param string $startDateName The start date attribute name.
+     * @param string $finishDateName The end date attribute name.
+     * @param int $interval The maximum interval in years.
+     * @param string $errorName The error message identifier.
+     * @throws \Exception
+     */
+    public function validateYearsInterval(string $startDateName, string $finishDateName, int $interval, string $errorName) {
         if (!empty($this->attributes[$startDateName]) && !empty($this->attributes[$finishDateName])) {
             $startDateObject = new DateTime($this->attributes[$startDateName]);
             $finishDateObject = new DateTime($this->attributes[$finishDateName]);
@@ -1008,8 +1064,14 @@ class Validation extends AppModel {
 
     }
 
-
-    public function validateAddedRowsValue($names){
+    /**
+     * Validates that each value in an array of attribute values is not empty, and sets a boolean flag for each value indicating its validation status.
+     * This method is particularly useful for forms with dynamically added fields, where the number of fields is variable.
+     * It sets an error message if any value in the array is empty and updates a boolean flag array to reflect the validation status of each entry.
+     *
+     * @param string $names The attribute name that contains an array of values to be validated.
+     */
+    public function validateAddedRowsValue(string $names){
 
         foreach($this->attributes[$names] as $name){
             if (empty($name)) {
@@ -1029,6 +1091,16 @@ class Validation extends AppModel {
 
     }
 
+    /**
+     * Validates that each value in an array of attribute values is not empty, allowing numeric values to be considered valid.
+     * It also sets a boolean flag for each value to indicate its validation status. This method is useful for validating
+     * arrays of inputs where numeric values are acceptable and empty strings or null values are not.
+     * It sets an error message if any non-numeric value in the array is empty and updates a boolean flag array to reflect
+     * the validation status of each entry, taking into account that numeric values (including those that are numerically zero)
+     * are considered valid.
+     *
+     * @param string $names The attribute name that contains an array of values to be validated.
+     */
     public function validateAddedRowsValueNull($names){
 
         foreach($this->attributes[$names] as $name){
@@ -1049,6 +1121,14 @@ class Validation extends AppModel {
 
     }
 
+
+    /**
+     * Validates each value in an array of attribute values against a regex pattern to ensure they contain only allowed characters.
+     * It sets a boolean flag for each value to indicate its validation status. This method is particularly useful for fields
+     * where the input must match specific formatting rules (e.g., alphanumeric characters, specific symbols).
+     *
+     * @param string $names The attribute name that contains an array of values to be validated against a regex pattern.
+     */
     public function validateAddedRowsChar($names){
 
         foreach($this->attributes[$names] as $name){
@@ -1069,7 +1149,18 @@ class Validation extends AppModel {
 
     }
 
-    public function validateAddedRowsLength($names, $length){
+
+
+
+    /**
+     * Validates the length of each value in an array of attribute values to ensure they do not exceed a specified maximum length.
+     * It sets a boolean flag for each value to indicate whether it meets the length requirement. This method is useful for validating
+     * user inputs that must conform to length constraints, such as text fields with a maximum character limit.
+     *
+     * @param string $names The attribute name that contains an array of values to be validated for length.
+     * @param int $length The maximum allowed length for each value in the array.
+     */
+    public function validateAddedRowsLength(string $names, int $length){
 
         foreach ($this->attributes[$names] as $name){
             if (strlen($name) > $length) {
@@ -1094,8 +1185,14 @@ class Validation extends AppModel {
     }
 
 
-
-    public function validateAddedRowsZero($names){
+    /**
+     * Validates that each value in an array of attribute values is not negative. It sets a boolean flag for each value to indicate
+     * whether it is non-negative. This method ensures that values, such as quantities or amounts, do not fall below zero, which could
+     * represent an invalid state in many contexts.
+     *
+     * @param string $names The attribute name that contains an array of values to be validated for non-negativity.
+     */
+    public function validateAddedRowsZero(string $names){
 
         foreach ($this->attributes[$names] as $name){
             if ($name < 0 && $name) {
@@ -1115,10 +1212,15 @@ class Validation extends AppModel {
 
         }
 
-
-
     }
 
+    /**
+     *
+     * Validates specific heating coefficients from services calc form
+     *
+     * @param $names
+     * @param $length
+     */
     public function validateCoefficient($names, $length){
 
         if ($this->attributes[$names]){
@@ -1132,8 +1234,23 @@ class Validation extends AppModel {
 
     }
 
-
-    public function validateAddedRowsValueInside($names, $styles){
+    /**
+     * Validates an array of attribute values, considering only those without corresponding indicators in a secondary array.
+     * This method is tailored for dynamically added form fields, where the exact number of fields may vary and some fields may be conditionally hidden from the user.
+     * It focuses on validating visible fields while disregarding those marked as hidden (e.g., with a style of display: none).
+     *
+     * The method iterates through the primary attribute values array and checks for the presence of each value.
+     * However, validation for a particular value is skipped if its corresponding entry in the secondary array (identified by the same key)
+     * indicates that the field is hidden. This approach ensures that only relevant and visible fields are subjected to validation,
+     * accommodating forms that dynamically adjust based on user interactions.
+     *
+     * Error flags and boolean validation status indicators are updated accordingly, allowing for precise identification of fields that fail validation.
+     * This method supports complex form structures by enabling validation of visible fields and gracefully handling hidden ones, ensuring a user-friendly validation process for dynamic forms.
+     *
+     * @param string $names The attribute name containing an array of values to be validated.
+     * @param string $styles The attribute name containing an array of indicators (e.g., style attributes) corresponding to the primary values, used to determine whether a value should be validated.
+     */
+    public function validateAddedRowsValueInside(string $styles, string $names){
 
 
         for ($i=0; $i<count($this->attributes[$names]); $i++) {
@@ -1154,7 +1271,13 @@ class Validation extends AppModel {
 
     }
 
-    public function validateEmail($name)
+    /**
+     *
+     * Validate if e-mail address is valid.
+     *
+     * @param string $name The key of email address attribute.
+     */
+    public function validateEmail(string $name)
     {
         if (!empty($this->attributes[$name])) {
             if (!filter_var($this->attributes[$name], FILTER_VALIDATE_EMAIL))
@@ -1162,7 +1285,19 @@ class Validation extends AppModel {
         }
     }
 
-    public function validatePhoneNumber($name){
+
+    /**
+     *
+     * Validate if telephone number address has valid format
+     * Allowed formats:
+     * +xxx xxx xxx xxx
+     * xxx xxx xxx
+     * +xxxxxxxxxxxx
+     * xxxxxxxxx
+     *
+     * @param string $name The key of phone number value.
+     */
+    public function validatePhoneNumber(string $name){
         if (!empty($this->attributes[$name])) {
             if (!preg_match('~^\+?[0-9]{0,3}[ ]?[0-9]{3}[ ]?[0-9]{3}[ ]?[0-9]{3}$~', $this->attributes[$name] )){
                 $this->errors[$name] = "{$this->desc[$name]} musí byt ve správním formátu!'";
@@ -1171,8 +1306,14 @@ class Validation extends AppModel {
         }
     }
 
-
-    public function comparingTwoValues($firstValue, $secondValue, $errorName) {
+    /**
+     * Compares two attribute values to ensure the first is less than the second.
+     *
+     * @param string $firstValue The key of the first attribute to compare.
+     * @param string $secondValue The key of the second attribute to compare.
+     * @param string $errorName The key used to store the error message if validation fails.
+     */
+    public function comparingTwoValues(string $firstValue, string $secondValue, string $errorName) {
          if(!empty($this->attributes[$firstValue]) && !empty($this->attributes[$secondValue])){
              if ($this->attributes[$firstValue] > $this->attributes[$secondValue]) {
                  $this->errors[$errorName] = "\"{$this->desc[$firstValue]}\" musí byt menší než \"{$this->desc[$secondValue]}\"!";
@@ -1181,8 +1322,19 @@ class Validation extends AppModel {
 
     }
 
-
-    public function comparingTwoAddedRowsValues($firstValues, $secondValues, $errorName){
+    /**
+     * Compares corresponding values in two arrays of attributes, ensuring each value in the first array is less
+     * than its counterpart in the second array. This method is crucial for validating sequences or order across multiple
+     * dynamically added fields, where the exact number of entries is not predetermined.
+     * If any value in the first array exceeds its corresponding value in the second array, an error is recorded.
+     * Additionally, it updates a boolean flag array to indicate the validation status of each pair of values,
+     * facilitating detailed feedback for forms with variable-length data.
+     *
+     * @param string $firstValues The key of the first attribute array to compare.
+     * @param string $secondValues The key of the second attribute array to compare.
+     * @param string $errorName The key used to store the error message if validation fails for any pair of compared values.
+     */
+    public function comparingTwoAddedRowsValues(string $firstValues, string $secondValues, string $errorName){
 
         if (!empty($this->attributes[$firstValues]) && !empty($this->attributes[$secondValues])) {
 
@@ -1205,15 +1357,21 @@ class Validation extends AppModel {
                 }
             }
 
-
-
-
         }
-
 
     }
 
-    public function validateTwoPasswords($firstPassword, $secondPassword, $errorName){
+    /**
+     * Validates that two password fields match. This method is essential for forms requiring users to confirm their
+     * password by entering it twice. It compares the values of two password attributes to ensure they are identical.
+     * If the values do not match, an error message is recorded, indicating the fields must be the same to proceed.
+     * This method provides a straightforward way to prevent user errors during password setup or change processes.
+     *
+     * @param string $firstPassword The key of the first password attribute to compare.
+     * @param string $secondPassword The key of the second password attribute to compare.
+     * @param string $errorName The key used to store the error message if the passwords do not match.
+     */
+    public function validateTwoPasswords(string $firstPassword, string $secondPassword, string $errorName){
 
         if(!empty($this->attributes[$firstPassword]) && !empty($this->attributes[$secondPassword])){
 
@@ -1229,12 +1387,14 @@ class Validation extends AppModel {
     }
 
     /**
+     * Checks if two strings are the same, typically used for comparing old and new passwords to ensure that a new password
+     * is indeed different from the old one. This method is crucial for password update processes, where reusing the old password
+     * is discouraged for security reasons. If the strings are identical,
+     * an error message is generated to inform the user that the new password must differ from the current one.
      *
-     * Checks if two strings are same (uses for comparing old and new passwords)
-     *
-     * @param string $firstString
-     * @param string $secondString
-     * @param string $errorName
+     * @param string $firstString The key of the first string attribute to compare, typically representing the old password.
+     * @param string $secondString The key of the second string attribute to compare, typically representing the new password.
+     * @param string $errorName The key used to store the error message if the strings are identical.
      */
     public function isStringsSame(string $firstString, string $secondString, string $errorName) : void {
 
@@ -1244,17 +1404,21 @@ class Validation extends AppModel {
 
                 $this->errors[$errorName] = "\"{$this->desc[$firstString]}\" a \"{$this->desc[$secondString]}\" nesmí byt stejné!";
 
-
             }
 
         }
 
-
     }
 
 
-
-    public function iSUserExistsByEmail($email, $errorName){
+    /**
+     * Checks if a user with the given email exists and is active. If the user exists and is active, an error is recorded.
+     * This method requires an instance of the User class to query the database for user existence and activity status based on the email.
+     *
+     * @param string $email The attribute key for the user's email to check.
+     * @param string $errorName The key used to store the error message if the user exists and is active.
+     */
+    public function iSUserExistsByEmail(string $email, string $errorName){
 
         if(!empty($this->attributes[$email])) {
 
@@ -1270,7 +1434,15 @@ class Validation extends AppModel {
 
     }
 
-    public function iSUserNotExistsByEmail($email, $errorName){
+    /**
+     * Checks if a user with the given email does not exist or is not active. If the user does not exist or is not active, an error is recorded.
+     * This method is useful for scenarios where the existence of a non-active or non-existent user is considered an error condition.
+     * This method requires an instance of the User class to query the database.
+     *
+     * @param string $email The attribute key for the user's email to check.
+     * @param string $errorName The key used to store the error message if the user does not exist or is not active.
+     */
+    public function iSUserNotExistsByEmail(string $email, string $errorName){
 
         if(!empty($this->attributes[$email])) {
 
@@ -1286,10 +1458,16 @@ class Validation extends AppModel {
 
     }
 
+    /**
+     * Validates the user's password for the given email. If the password does not match the user's stored password, an error is recorded.
+     * This method is essential for login validation, ensuring that the user attempting to log in provides the correct password.
+     *
+     * @param string $email The attribute key for the user's email.
+     * @param string $password The attribute key for the password to validate.
+     * @param string $errorName The key used to store the error message if the password is incorrect.
+     */
 
-
-
-    public function checkUserPassword($email, $password, $errorName){
+    public function checkUserPassword(string $email, string $password, string $errorName){
 
 
         if(!empty($this->attributes[$email]) && !empty($this->attributes[$password])) {

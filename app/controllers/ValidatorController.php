@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\models\ReCaptcha;
-use app\models\Validation;
+use app\models\validation\Validation;
 
 class ValidatorController extends AppController {
 
@@ -90,7 +90,8 @@ class ValidatorController extends AppController {
     public function contactvalidationAction(){
         $data = $_POST;
         $validate = new Validation();
-        $validate->validateContact($data['contactName'], $data['contactEmail'], $data['contactMessage']);
+        $validate->load($data);
+        $validate->validateContact();
         echo json_encode($validate->data);
 
         die();
@@ -99,7 +100,8 @@ class ValidatorController extends AppController {
     public function registervalidationAction(){
         $data = $_POST;
         $validate = new Validation();
-        $validate->validateRegister($data['userName'], $data['userEmail'], $data['userPassword'], $data['userPasswordRepeat']);
+        $validate->load($data);
+        $validate->validateRegister();
         echo json_encode($validate->data);
 
         die();
@@ -110,7 +112,8 @@ class ValidatorController extends AppController {
     public function authorizationvalidationAction(){
         $data = $_POST;
         $validate = new Validation();
-        $validate->validateAuthorization($data['userEmail'], $data['userPassword']);
+        $validate->load($data);
+        $validate->validateAuthorization();
         echo json_encode($validate->data);
 
         die();
@@ -120,7 +123,8 @@ class ValidatorController extends AppController {
     public function sendresetlinkvalidationAction(){
         $data = $_POST;
         $validate = new Validation();
-        $validate->validateSendresetlink($data['userEmail']);
+        $validate->load($data);
+        $validate->validateSendresetlink();
         echo json_encode($validate->data);
 
         die();
@@ -130,7 +134,8 @@ class ValidatorController extends AppController {
     public function changepasswordvalidationAction(){
         $data = $_POST;
         $validate = new Validation();
-        $validate->validateChangepassword($data['userPassword'], $data['userPasswordRepeat']);
+        $validate->load($data);
+        $validate->validateChangepassword();
         echo json_encode($validate->data);
 
         die();
@@ -152,7 +157,8 @@ class ValidatorController extends AppController {
 
                 $data = $_POST;
                 $validate = new Validation();
-                $validate->validateNewAndOldPassword($data['userPasswordOld'], $data['userPasswordNew']);
+                $validate->load($data);
+                $validate->validateNewAndOldPassword();
                 echo json_encode($validate->data);
 
             }
@@ -165,9 +171,16 @@ class ValidatorController extends AppController {
 
     public function modalnewtenantvalidationAction(){
         $data = $_POST;
-        $validate = new Validation();
 
-        $validate->validateModalNewPerson($data['tenant_name'], $data['tenant_address'], $data['tenant_email'], $data['tenant_phone_number'], $data['tenant_account']);
+        $data['landlord_name'] = $data['personName'];
+        $data['landlord_address'] = $data['personAddress'];
+        $data['landlord_email'] = $data['personEmail'];
+        $data['landlord_phone_number'] = $data['personPhone'];
+        $data['tenant_account'] = $data['personAccount'];
+
+        $validate = new Validation();
+        $validate->load($data);
+        $validate->validateModalNewPerson();
 
         echo json_encode($validate->data);
 
@@ -178,9 +191,16 @@ class ValidatorController extends AppController {
 
     public function modalnewlandlordvalidationAction(){
         $data = $_POST;
-        $validate = new Validation();
 
-        $validate->validateModalNewPerson($data['landlord_name'], $data['landlord_address'], $data['landlord_email'], $data['landlord_phone_number'], $data['landlord_account']);
+        $data['landlord_name'] = $data['personName'];
+        $data['landlord_address'] = $data['personAddress'];
+        $data['landlord_email'] = $data['personEmail'];
+        $data['landlord_phone_number'] = $data['personPhone'];
+        $data['landlord_account'] = $data['personAccount'];
+
+        $validate = new Validation();
+        $validate->load($data);
+        $validate->validateModalNewPerson();
 
         echo json_encode($validate->data);
 
@@ -201,18 +221,9 @@ class ValidatorController extends AppController {
     public function propertyvalidationAction(){
         $data = $_POST;
         $validate = new Validation();
-
-        $validate->validateProperty(
-                    $data['propertyAddress'],
-                    $data['propertyType'],
-                    $data['propertyAddinfo'],
-                    $data['propertyRentpayment'],
-                    $data['propertyServicespayment'],
-                    $data['propertyElectropayment']
-        );
-
+        $validate->load($data);
+        $validate->validateProperty();
         echo json_encode($validate->data);
-
         die();
 
     }
