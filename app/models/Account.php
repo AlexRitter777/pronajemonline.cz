@@ -356,7 +356,7 @@ class Account extends AppModel {
     public function createCalculationsBatch(array $calculations, int $userID)  {
         $result =[];
         foreach ($calculations as $calcName => $tableName) {
-            $calculation = R::findAll($tableName, "user_id=? ORDER BY updated_at DESC LIMIT 0, 5", [$userID]);
+            $calculation = R::findAll($tableName, "user_id=? ORDER BY created_at DESC LIMIT 0, 5", [$userID]);
 
             if (!$calculation){
                 $result[$calcName] = null;

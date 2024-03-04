@@ -38,7 +38,7 @@
                 <div class="center-content main "><?= $content; ?></div>
             </section>
 
-        <?= $footer ?>
+        <?= $footer; ?>
     </div>
     <div style="display: none" class="loader-wrapper loader-wrapper_profile">
         <div class="loader"></div>

@@ -1,6 +1,6 @@
 body {
-  margin: 0; /*у body есть отступы по умолчанию*/
-  font-family: 'Open Sans', sans-serif; /*san-serif - запасной*/
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
   font-size: 13px;
   color: #000;
   -webkit-font-smoothing: antialiased;
@@ -11,18 +11,18 @@ body {
 }
 
 *,
-*:before, /* не берет во внимание before и after - пишем отдельно*/
+*:before,
 *:after {
-  box-sizing: border-box; /*размер блока = размер + padding + граница*/
+  box-sizing: border-box;
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  /*убираем отступы сверху и снизу для всех заголовков*/
+
 }
 
 p {
-  margin: 0 0 10px; /*отступ только снизу*/
+  margin: 0 0 10px;
 }
 
 /*-------Container (only for webview)-----*/
@@ -99,6 +99,26 @@ p {
   line-height: normal;
 }
 
+@media only screen and (max-width: 800px){
+
+  .calculation-name{
+    position: unset;
+    text-align: center;
+    height: 25px;
+    line-height: 18px;
+  }
+
+  .button-bar-calc-name {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 60px;
+
+  }
+
+}
+
+
+
 @media only screen and (max-width: 750px){
   .footer{
     display: none;
@@ -110,6 +130,11 @@ p {
 }
 
 @media only screen and (max-width: 600px){
+
+  .container {
+    margin: 115px auto 15px!important;
+  }
+
 
   .button-bar-inner{
     max-width: 70%;

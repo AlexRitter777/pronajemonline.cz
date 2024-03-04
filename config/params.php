@@ -42,7 +42,7 @@ return [
     'includes' => [
         'account' => ['header','footer','left_side_bar'],
         'account_form' => ['header','footer','left_side_bar'],
-        'account_from_new' => ['header','footer','left_side_bar'],
+        'account_form_new' => ['header','footer','left_side_bar'],
         'default' => [],
         'pdf' => [],
         'pronajem' => ['header', 'footer'],

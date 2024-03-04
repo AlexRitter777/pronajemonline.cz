@@ -30,7 +30,7 @@ class CalculationsController extends AppController {
         $calcType = 'servicescalc';
 
         //set default order by
-        $order = 'ORDER BY updated_at DESC';
+        $order = 'ORDER BY created_at DESC';
 
         //Get order by from GET
         if(isset($_GET['ordered'])){
@@ -80,7 +80,7 @@ class CalculationsController extends AppController {
         $start = $pagination->getStart();
 
 
-        //get calculation, including order, pagination and filtr
+        //get calculation, including order, pagination and filter
         $calculations = R::findAll($calcType, "user_id=? $condition $order LIMIT $start, $perpage", $params);
 
         $calcURL = substr($calcType, 0, -4);
@@ -136,16 +136,16 @@ class CalculationsController extends AppController {
                    }
                    $data['calculation_name'] = $_POST['calculation_name']; //entered by user
                    $data['calculation_description'] = $_POST['calculation_description']; //entered by user
-                   //$data['calctype'] = $_SESSION['costsResult'][$calcId]['calcType'];
                    $data['user_id'] = $userID;
                    $data['created_at'] = date('Y-m-d H:i:s');
-                   //$calcType = $_SESSION[$calcType . 'Result'][$calcId]['calcType'];
+                   $data['updated_at'] = date('Y-m-d H:i:s');
+
                    //save in DB and return record Id
                    $response = AppModel::dbSave($data, "${calcType}calc");
 
                }
 
-               echo json_encode($response); //process invalid response!!!
+               echo json_encode($response); //process invalid response!!
                die;
            }
 

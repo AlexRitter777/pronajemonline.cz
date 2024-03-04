@@ -30,9 +30,6 @@
         </form>
     </div>
 
-
-
-
     <?php if($calculations): ?>
         <table class="calculation-titles account-index-table user-calculations-table" border="0">
             <tr class="row-1">
@@ -113,7 +110,11 @@
                     <td class="col-1"><?= $calculation->calculation_name;?></td>
                     <td class="col-2"><?= $calculation->property_address;?></td>
                     <td class="col-3"><?= $calculation->tenant_name;?></td>
+                    <?php if($calcType === 'depositcalc'): ?>
+                    <td class="col-4"><?= date("d.m.Y", strtotime($calculation->contract_start_date)) . ' - ' . date("d.m.Y", strtotime($calculation->contract_finish_date));?></td>
+                    <?php else: ?>
                     <td class="col-4"><?= date("d.m.Y", strtotime($calculation->rent_start_date)) . ' - ' . date("d.m.Y", strtotime($calculation->rent_finish_date));?></td>
+                    <?php endif;?>
                     <td class="col-5"><?= date("d.m.Y", strtotime($calculation->created_at));?></td>
                     <td class="col-6"><?= date("d.m.Y", strtotime($calculation->updated_at));?></td>
                     <td class="col-7"><span class="item_delete_button_ajax" data-type="<?= $calcURL; ?>" data-id="<?=$calculation->id;?>" data-del="#del-conf">Smazat</span></td>
