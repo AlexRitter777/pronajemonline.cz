@@ -163,7 +163,7 @@ class AppController extends Controller {
 
         if(!empty($_SESSION["{$calcType}Result"][$_GET['id']]) && !empty($calcType)) {
 
-            $view = "applications/{$calcType}calc";
+            $view = "Applications/{$calcType}calc";
             $styles = file_get_contents("css/{$calcType}calc.css");
             $styles.= file_get_contents("css/calc.css");
             $result = $_SESSION["{$calcType}Result"][$_GET['id']];

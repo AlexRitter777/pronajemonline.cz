@@ -80,7 +80,7 @@ class View
         $this->route = $route;
         $this->controller = $route['controller'];
         $this->view = $view;
-        $this->prefix = $route['prefix'];
+        $this->prefix =  $this->checkPrefix($route['prefix']);
         $this->meta = $meta;
         if($layout === false) {
             $this->layout = false;
@@ -166,8 +166,30 @@ class View
         return $output;
     }
 
+    /**
+     * Checks and formats the prefix for the view file path.
+     *
+     * This method is responsible for ensuring that the prefix used in the view file path
+     * is correctly formatted. If the prefix contains backslashes (as used in namespaces),
+     * they are replaced with forward slashes to conform to the path structure. This is
+     * essential for the correct inclusion of view files, especially when working with
+     * modules or subdirectories. If no prefix is provided, or if it does not contain
+     * backslashes, the method simply returns an empty string or the unchanged prefix, respectively.
+     *
+     * @param string $prefix The original prefix as derived from the routing information,
+     *                       which may include backslashes from namespace notation.
+     * @return string The formatted prefix with backslashes replaced by forward slashes,
+     *                or an empty string if no prefix is provided.
+     */
+    public function checkPrefix($prefix){
 
+        if(!$prefix) return '';
 
+        if(preg_match('#\\\#', $prefix)){
+            return preg_replace('#\\\#', '/', $prefix);
+        }
+
+    }
 
 
 }

@@ -139,12 +139,13 @@ class Validation extends AppModel {
         'userPasswordOld' => 'Stávající heslo', //Change Password form
         'userPasswordNew' => 'Nové heslo', //Change Password form
 
-        //New person validation
-        'personName' => 'Jméno',
-        'personAddress' => 'Adresa',
-        'personPhone' => 'Telefonní číslo',
-        'personEmail' => 'E-mailová adresa',
-        'personAccount' => 'Číslo účtu'
+        //New landlord validation
+        'landlord_name' => 'Jméno',
+        'landlord_address' => 'Adresa',
+        'landlord_phone_number' => 'Telefonní číslo',
+        'landlord_email' => 'E-mailová adresa',
+        'landlord_account' => 'Číslo účtu'
+
 
 
 
@@ -853,6 +854,38 @@ class Validation extends AppModel {
         }
 
     }
+
+    /**
+     * Validates data from any of new landlord form.
+     */
+    public function validateModalNewLandlord(){
+
+        $this->validateValue('landlord_name');
+        $this->validateLength('landlord_name', 50);
+        $this->validateChars('landlord_name');
+
+        $this->validateValue('landlord_address');
+        $this->validateLength('landlord_address', 150);
+        $this->validateChars('landlord_address');
+
+        $this->validateLength('landlord_email', 70);
+        $this->validateEmail('landlord_email');
+
+        $this->validatePhoneNumber('landlord_phone_number');
+
+        $this->validateAccNumber('landlord_account');
+
+        if ($this->errors) {
+
+            $this->data['errors'] = $this->errors;
+            $this->data['success'] = false;
+        } else {
+            $this->data['success'] = true;
+        }
+
+    }
+
+
 
     /**
      * Validates data from any of new person form (tenant, landlord).

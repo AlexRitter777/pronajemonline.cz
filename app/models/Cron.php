@@ -41,6 +41,14 @@ class Cron extends AppModel
      * After processing all relevant properties, it logs the action, including the interval,
      * time units, number of records found, and the number of emails successfully sent.
      *
+     * Note: In the context of a cron task, it's essential to explicitly specify the 'from' and 'name'
+     * parameters for the email sender, as the default values from the application's configuration
+     * container are not available. SMTP is not used for sending emails in this scenario due to the
+     * absence of the application's configuration initialization, requiring direct sending through PHPMailer
+     * without SMTP configuration. This simplifies email sending in a cron context but necessitates
+     * explicit sender information.
+     *
+     *
      * @param int $interval The number of time units from the current date to calculate the finish date for reminders.
      * @param string $timeUnits The type of time units ('days', 'months', 'years') used for the interval.
      * @throws \Exception Throws an exception if there is a problem with the date calculation.
@@ -83,7 +91,7 @@ class Cron extends AppModel
      */
     protected function makeLogRecord(int $interval, string $timeUnits, int $recordsCount, int $successfullySent): void
     {
-        error_log("[" . date('Y-m-d H:i:s') . "] Interval, {$timeUnits}: {$interval} | Records found: {$recordsCount} | Successfully sent e-mails: {$successfullySent}\n============================\n", 3, ROOT . '\tmp\cron_finish_contract_rem.log');
+        error_log("[" . date('Y-m-d H:i:s') . "] Interval, {$timeUnits}: {$interval} | Records found: {$recordsCount} | Successfully sent e-mails: {$successfullySent}\n============================\n", 3, ROOT . '/tmp/cron_finish_contract_rem.log');
 
     }
 }

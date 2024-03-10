@@ -37,6 +37,7 @@ class EmailSender
      */
     public static function sendEmail(string $email, string $subject, string $view, array $data = [],  bool $useSMTP = false, string $from = '', string $name = '')
     {
+        
         $mail = new PHPMailer();
         $mail->CharSet = 'UTF-8';
 
@@ -107,7 +108,7 @@ class EmailSender
         }
 
         // Record to logfile
-        file_put_contents(ROOT . '\tmp\email_error.log', $logRecord, FILE_APPEND);
+        file_put_contents(ROOT . '/tmp/email_error.log', $logRecord, FILE_APPEND);
 
 
     }

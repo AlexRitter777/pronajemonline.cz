@@ -525,6 +525,7 @@ class Validator {
 
     }
 
+    //called from main.js
     ajaxModalValidation(name, data){
         let result;
         $.ajax({
@@ -792,6 +793,16 @@ class Validator {
         this.processResponse('personEmail');
         this.processResponse('personPhone');
         this.processResponse('personAccount');
+
+    }
+
+    validatenewlandlordmodalForm() {
+
+        this.processResponse('landlord_name');
+        this.processResponse('landlord_address');
+        this.processResponse('landlord_email');
+        this.processResponse('landlord_phone_number');
+        this.processResponse('landlord_account');
 
     }
 

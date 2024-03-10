@@ -122,6 +122,16 @@ class AppModel extends Model {
         'propertyRentpayment' => '',
         'propertyServicespayment' =>'',
         'propertyElectropayment' => '',
+
+        //New landlord Modal window
+        'landlord_name' => '',
+        'landlord_address' => '',
+        'landlord_email' => '',
+        'landlord_phone_number' => '',
+        'landlord_account' => '',
+
+
+
     ];
 
 

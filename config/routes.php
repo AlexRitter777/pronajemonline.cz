@@ -20,14 +20,14 @@ use pronajem\Router;
 //User routes
 // These routes direct requests to controllers intended for user interactions.
 // Each route defines a specific path, controller, action, and uses the 'user' prefix.
-Router::add('^user/tenants$', ['controller' => 'Tenants', 'action' => 'index', 'prefix' => 'user']);
-Router::add('^user/landlords$', ['controller' => 'Landlords', 'action' => 'index', 'prefix' => 'user']);
-Router::add('^user/properties$', ['controller' => 'Properties', 'action' => 'index', 'prefix' => 'user']);
-Router::add('^user/calculations$', ['controller' => 'Calculations', 'action' => 'index', 'prefix' => 'user']);
-Router::add('^user/admins$', ['controller' => 'Admins', 'action' => 'index', 'prefix' => 'user']);
-Router::add('^user/elsuppliers$', ['controller' => 'Elsuppliers', 'action' => 'index', 'prefix' => 'user']);
-Router::add('^user/settings$', ['controller' => 'Settings', 'action' => 'index', 'prefix' => 'user']);
-Router::add('^user/error$', ['controller' => 'Error', 'action' => 'index', 'prefix' => 'user']);
+Router::add('^user/tenants$', ['controller' => 'Tenants', 'action' => 'index', 'prefix' => 'User']);
+Router::add('^user/landlords$', ['controller' => 'Landlords', 'action' => 'index', 'prefix' => 'User']);
+Router::add('^user/properties$', ['controller' => 'Properties', 'action' => 'index', 'prefix' => 'User']);
+Router::add('^user/calculations$', ['controller' => 'Calculations', 'action' => 'index', 'prefix' => 'User']);
+Router::add('^user/admins$', ['controller' => 'Admins', 'action' => 'index', 'prefix' => 'User']);
+Router::add('^user/elsuppliers$', ['controller' => 'Elsuppliers', 'action' => 'index', 'prefix' => 'User']);
+Router::add('^user/settings$', ['controller' => 'Settings', 'action' => 'index', 'prefix' => 'User']);
+Router::add('^user/error$', ['controller' => 'Error', 'action' => 'index', 'prefix' => 'User']);
 
 // Guest routes
 // Default routes for guests visiting the site. These do not have a prefix.
@@ -38,4 +38,4 @@ Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$'); // www.example.c
 //User universal route
 // A flexible route pattern that matches any user-related controller and action.
 // This pattern is useful for extending the user section without adding specific routes for each controller/action pair.
-Router::add('^user/?(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$', ['prefix' => 'user']);
+Router::add('^user/?(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$', ['prefix' => 'User']);

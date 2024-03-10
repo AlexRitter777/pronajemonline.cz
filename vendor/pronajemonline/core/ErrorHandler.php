@@ -44,7 +44,7 @@ class ErrorHandler
      * @param int $line The line number where the error occurred.
      */
     protected function logErrors($message = '', $file = '', $line = ''){
-        error_log("[" . date('Y-m-d H:i:s') . "] Error: {$message} | File: {$file} | Lime: {$line}\n============================\n", 3, ROOT . '\tmp\errors.log');
+        error_log("[" . date('Y-m-d H:i:s') . "] Error: {$message} | File: {$file} | Lime: {$line}\n============================\n", 3, ROOT . '/tmp/errors.log');
     }
 
 
