@@ -35,7 +35,7 @@ class EmailSender
      * @return bool Returns true if the email was sent successfully, false otherwise.
      * @throws \PHPMailer\PHPMailer\Exception If sending the email fails.
      */
-    public static function sendEmail(string $email, string $subject, string $view, array $data = [],  bool $useSMTP = false, string $from = '', string $name = '')
+    public static function sendEmail(string $email, string $subject, string $view, array $data = [], string $from = '', string $name = '')
     {
         
         $mail = new PHPMailer();
@@ -51,7 +51,7 @@ class EmailSender
         $mail->isHTML(true);
         $mail->Body = self::viewMailBody($view, $data);
 
-        if($useSMTP) {
+        if(SMTP) {
 
             $mail->isSMTP();
             $mail->Host = app::$app->getProperty('smtp_host');;

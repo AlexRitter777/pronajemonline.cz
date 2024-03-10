@@ -3,6 +3,11 @@
 // Enables or disables debug mode. When set to 1, errors will be displayed in the browser.
 define("DEBUG", 1);
 
+// Defines whether to use external SMTP settings for sending emails.
+// If set to 1, emails are sent using the SMTP configuration specified in an external file.
+// Set 0 for production mode.
+define("SMTP", 1);
+
 // Defines the root directory of the site.
 define("ROOT", dirname(__DIR__));
 

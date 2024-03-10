@@ -23,7 +23,7 @@ class SendmessageController extends AppController {
 
                 $email = app::$app->getProperty('info_email');
 
-                EmailSender::sendEmail($email, 'Pronjemonline.cz - nová zpráva', 'contactform_newmessage_admin', compact('contactName','contactEmail','contactMessage'), true);
+                EmailSender::sendEmail($email, 'Pronjemonline.cz - nová zpráva', 'contactform_newmessage_admin', compact('contactName','contactEmail','contactMessage'));
                 $_SESSION['messageSent'] = true;
 
 

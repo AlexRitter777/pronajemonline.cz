@@ -66,7 +66,7 @@ class Cron extends AppModel
             $sendMessage = new SendMessage();
             foreach ($properties as $index => $property) {
                 $user = R::findOne('users', 'id = ?', [$property->user_id]);
-                $result = EmailSender::sendEmail($user->email, 'Pronajemonline.cz - termín ukončení smlouvy', 'contract_finish_email', compact('property', 'user'), true);
+                $result = EmailSender::sendEmail($user->email, 'Pronajemonline.cz - termín ukončení smlouvy', 'contract_finish_email', compact('property', 'user'),'info@pronajemonline.cz', 'pronajemonline.cz');
                 if ($result) {
                     $successfullySent++;
                 }

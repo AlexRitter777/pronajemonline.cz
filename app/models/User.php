@@ -40,7 +40,7 @@ class User extends AppModel
     {
         $activationLink = PATH . "/user/activate?email=$email&activation_code=$activation_code";
 
-        EmailSender::sendEmail($email,'Pronajemonline.cz - Ověření emailové adresy', 'user_activationlink', compact('activationLink'), true );
+        EmailSender::sendEmail($email,'Pronajemonline.cz - Ověření emailové adresy', 'user_activationlink', compact('activationLink'));
 
 
 
@@ -50,7 +50,7 @@ class User extends AppModel
     {
 
 
-        EmailSender::sendEmail($email,'Pronajemonline.cz - Potvrzení registrace', 'user_register_confirmation', compact(null), true );
+        EmailSender::sendEmail($email,'Pronajemonline.cz - Potvrzení registrace', 'user_register_confirmation', compact(null));
 
 
     }
@@ -58,7 +58,7 @@ class User extends AppModel
 
     public function sendResetPasswordConfirmation(string $email)
     {
-        EmailSender::sendEmail($email,'Pronajemonline.cz - Potvrzení změny hesla', 'user_passwordreset_confirmation', compact(null), true );
+        EmailSender::sendEmail($email,'Pronajemonline.cz - Potvrzení změny hesla', 'user_passwordreset_confirmation', compact(null));
     }
 
 
@@ -402,7 +402,7 @@ class User extends AppModel
     {
         $resetLink = PATH . "/user/password-reset-auth?email=$email&reset_code=$resetCode";
 
-        EmailSender::sendEmail($email,'Pronajemonline.cz - Změna hesla', 'user_passwordreset', compact('resetLink'), true );
+        EmailSender::sendEmail($email,'Pronajemonline.cz - Změna hesla', 'user_passwordreset', compact('resetLink'));
 
     }
 

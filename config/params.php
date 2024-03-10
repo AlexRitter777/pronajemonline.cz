@@ -22,10 +22,12 @@
  */
 
 
+$smtpConfig = [];
 
-
-// Importing SMTP settings from a separate configuration file.
-$smtpConfig = require_once CONF . '/config_smtp.php';
+// Importing SMTP settings from a separate configuration file, if this file exists
+if(is_file(CONF . '/config_smtp.php')) {
+    $smtpConfig = require_once CONF . '/config_smtp.php';
+}
 
 return [
 
