@@ -140,12 +140,18 @@ class Validation extends AppModel {
         'userPasswordNew' => 'Nové heslo', //Change Password form
 
         //New landlord validation
-        'landlord_name' => 'Jméno',
-        'landlord_address' => 'Adresa',
-        'landlord_phone_number' => 'Telefonní číslo',
-        'landlord_email' => 'E-mailová adresa',
-        'landlord_account' => 'Číslo účtu'
+        'landlord_name' => 'Jméno pronjímatele',
+        'landlord_address' => 'Adresa pronjímatele',
+        'landlord_phone_number' => 'Telefonní číslo pronjímatele',
+        'landlord_email' => 'E-mailová adresa pronjímatele',
+        'landlord_account' => 'Číslo účtu pronjímatele',
 
+        //New landlord validation
+        'tenant_name' => 'Jméno nájemníka',
+        'tenant_address' => 'Adresa nájemníka',
+        'tenant_phone_number' => 'Telefonní číslo nájemníka',
+        'tenant_email' => 'E-mailová adresa nájemníka',
+        'tenant_account' => 'Číslo účtu nájemníka'
 
 
 
@@ -154,7 +160,7 @@ class Validation extends AppModel {
     /**
      * @var string Regular expression pattern for allowed characters validation
      */
-    protected $regex = '~^[a-zěščřžýáíéúůťň0-9)(+.,-/@ ?]{1,}$~ui';
+    protected $regex = '~^[a-zěščřžýáíéúůťň0-9)(+.,!-/@ ?]{1,}$~ui';
 
 
     // Validation methods for different forms like validateServices, validateElectro, etc.
@@ -827,36 +833,7 @@ class Validation extends AppModel {
 
 
     /**
-     * Validates data from any of new person form (tenant, landlord).
-     */
-    public function validateModalNewPerson(){
-
-        $this->validateValue('personName');
-        $this->validateLength('personName', 50);
-        $this->validateChars('personName');
-
-        $this->validateValue('personAddress');
-        $this->validateLength('personAddress', 150);
-        $this->validateChars('personAddress');
-
-        $this->validateLength('personEmail', 70);
-        $this->validateEmail('personEmail');
-
-        $this->validatePhoneNumber('personPhone');
-
-        $this->validateAccNumber('personAccount');
-
-        if ($this->errors) {
-            $this->data['errors'] = $this->errors;
-            $this->data['success'] = false;
-        } else {
-            $this->data['success'] = true;
-        }
-
-    }
-
-    /**
-     * Validates data from any of new landlord form.
+     * Validates data from any of new landlord modal form.
      */
     public function validateModalNewLandlord(){
 
@@ -887,8 +864,41 @@ class Validation extends AppModel {
 
 
 
+
     /**
-     * Validates data from any of new person form (tenant, landlord).
+     * Validates data from any of new landlord modal form.
+     */
+    public function validateModalNewTenant(){
+
+        $this->validateValue('tenant_name');
+        $this->validateLength('tenant_name', 50);
+        $this->validateChars('tenant_name');
+
+        $this->validateValue('tenant_address');
+        $this->validateLength('tenant_address', 150);
+        $this->validateChars('tenant_address');
+
+        $this->validateLength('tenant_email', 70);
+        $this->validateEmail('tenant_email');
+
+        $this->validatePhoneNumber('tenant_phone_number');
+
+        $this->validateAccNumber('tenant_account');
+
+        if ($this->errors) {
+
+            $this->data['errors'] = $this->errors;
+            $this->data['success'] = false;
+        } else {
+            $this->data['success'] = true;
+        }
+
+    }
+
+
+
+    /**
+     * Validates data from any of new admin modal window form .
      */
     public function validateModalNewAdmin(){
 

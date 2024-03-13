@@ -1060,7 +1060,7 @@ table{
 
     /*------------- My Account - Calculations -------------*/
 
-    .user-calculations-table .col-5 {
+    .user-calculations-table .col-6 {
         display: none;
     }
 
@@ -1079,7 +1079,7 @@ table{
 
     /*------------- My Account - index page -------------*/
 
-    .dashboard-table .col-5{
+    .dashboard-table .col-6{
         display: none;
     }
 

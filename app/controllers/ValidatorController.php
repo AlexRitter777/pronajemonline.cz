@@ -171,16 +171,9 @@ class ValidatorController extends AppController {
 
     public function modalnewtenantvalidationAction(){
         $data = $_POST;
-
-        $data['landlord_name'] = $data['personName'];
-        $data['landlord_address'] = $data['personAddress'];
-        $data['landlord_email'] = $data['personEmail'];
-        $data['landlord_phone_number'] = $data['personPhone'];
-        $data['tenant_account'] = $data['personAccount'];
-
         $validate = new Validation();
         $validate->load($data);
-        $validate->validateModalNewPerson();
+        $validate->validateModalNewTenant();
 
         echo json_encode($validate->data);
 

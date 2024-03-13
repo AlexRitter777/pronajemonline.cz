@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <h4 class="dashboard-calc-title">Poslední změněné vyúčtování</h4>
+    <h4 class="dashboard-calc-title">Poslední vyúčtování</h4>
 
     <?php if(!empty($calculations)): ?>
 

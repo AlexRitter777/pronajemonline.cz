@@ -110,13 +110,6 @@ class AppModel extends Model {
         'userPasswordOld' => '',
         'userPasswordNew' => '',
 
-        //New person form
-        'personName' =>'',
-        'peronAddress' => '',
-        'personEmail' => '',
-        'personPhone' => '',
-        'personAccount' => '',
-
         //New property form, additional to properties above
         'propertyAddinfo' => '',
         'propertyRentpayment' => '',
@@ -130,7 +123,12 @@ class AppModel extends Model {
         'landlord_phone_number' => '',
         'landlord_account' => '',
 
-
+        //New tenant Modal window
+        'tenant_name' => '',
+        'tenant_address' => '',
+        'tenant_email' => '',
+        'tenant_phone_number' => '',
+        'tenant_account' => '',
 
     ];
 

@@ -550,8 +550,7 @@ class Validator {
                         '<ul class = "errors" id = "errors"></ul>'
                     );
 
-                    this.validatenewpersonmodalForm();
-                    //this['validate'+ name + 'Form']();//create method below!!!
+                    this['validatenew'+ name + 'modalForm']();
                     result =  false;
 
                 } else {
@@ -786,13 +785,13 @@ class Validator {
 
     }
 
-    validatenewpersonmodalForm() {
+    validatenewtenantmodalForm() {
 
-        this.processResponse('personName');
-        this.processResponse('personAddress');
-        this.processResponse('personEmail');
-        this.processResponse('personPhone');
-        this.processResponse('personAccount');
+        this.processResponse('tenant_name');
+        this.processResponse('tenant_address');
+        this.processResponse('tenant_email');
+        this.processResponse('tenant_phone_number');
+        this.processResponse('tenant_account');
 
     }
 

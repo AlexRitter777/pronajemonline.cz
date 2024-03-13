@@ -7,7 +7,7 @@ use pronajem\app;
 use pronajem\libs\EmailSender;
 
 
-class SendmessageController extends AppController {
+class SendMessageController extends AppController {
 
 
     public function indexAction() {
