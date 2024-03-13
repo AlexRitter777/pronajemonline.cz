@@ -6,7 +6,7 @@ use DateTime;
 use pronajem\libs\EmailSender;
 use RedBeanPHP\R;
 
-class Cron extends AppModel
+class Cron
 {
     /**
      * Calculates and returns a future date based on the specified interval and time units.
