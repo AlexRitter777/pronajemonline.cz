@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /user/
+Disallow: /applications/*-calc
+Disallow: /applications/*-edit
+
+Sitemap: http://www.pronajemonline.cz/sitemap.xml
