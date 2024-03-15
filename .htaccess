@@ -1,6 +1,8 @@
 AddDefaultCharset utf-8
-#включаем движок перенаправления
-#все запросы посылаем в publiс, кгде лежит еще 1 .htaccess
+# Enable rewrite engine
 RewriteEngine On
+# Exclude robots.txt and sitemap.xml from being redirected
+RewriteCond %{REQUEST_URI} !^/(robots\.txt|sitemap\.xml)$
+# Redirect all requests not matching the above conditions to the public folder
 RewriteRule (.*) public/$1
 

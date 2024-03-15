@@ -3,4 +3,4 @@ Disallow: /user/
 Disallow: /applications/*-calc
 Disallow: /applications/*-edit
 
-Sitemap: http://www.pronajemonline.cz/sitemap.xml
+Sitemap: https://www.pronajemonline.cz/sitemap.xml
