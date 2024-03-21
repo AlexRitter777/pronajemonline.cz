@@ -6,7 +6,7 @@
             <a href="\" class="logo-link">
                 <div class="logo-items">
                     <h1 class="header-title">pronajemonline.cz</h1>
-                    <h2 class="header-subtitle">Vyúčtování při nájmu</h2>
+                    <h2 class="header-subtitle">Správa nemovitostí a pronájmů</h2>
                 </div>
 
                 <img class="logo-image" src="img/keys.png" alt="keys" height="40px">

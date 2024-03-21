@@ -1223,8 +1223,20 @@ input, select, textarea {
 }
 
 .calculation-header {
-  padding-bottom: 85px;
+
+  width: 50%;
+  padding-bottom: 70px;
+  margin: 0 auto;
 }
+
+.calculation-header h1 {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  font-size: 1.8em;
+  text-transform: uppercase;
+  color: #23558C;
+}
+
 
 .app-grid-container {
   display: grid;
@@ -1307,14 +1319,26 @@ input, select, textarea {
   max-width: 850px;
   margin: 0 auto 0;
 
+}
 
+.about-header {
+  width: 50%;
+  padding-bottom: 30px;
+  margin: 0 auto;
+}
 
+.about-header h1 {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  font-size: 1.8em;
+  text-transform: uppercase;
+  color: #23558C;
 }
 
 .about-header::after {
   content: "";
   height: 150px;
-  opacity: .3;
+  opacity: .15;
   background-image: url('/public/img/calculations.jpg');
   background-position: center;
   background-size: cover;
@@ -1331,11 +1355,6 @@ input, select, textarea {
   box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
   border-radius: 8px;
 }
-
-.about-header {
-  padding-bottom: 80px;
-}
-
 
 .about-text {
   padding: 3% 5% 5% 5%;
@@ -1550,6 +1569,9 @@ input, select, textarea {
     max-width: 95%;
   }
 
+  .about-header {
+    width: 70%;
+  }
 
 }
 
@@ -1703,8 +1725,20 @@ input, select, textarea {
   }
 
 
-}
 
+
+/*-----------------------------About--------------------------*/
+
+ .about-header {
+   width: 96%;
+   padding-bottom: 40px;
+ }
+
+ .about-header h1 {
+   font-size: 1.6em;
+ }
+
+}
 /*------------------------------------------------------------------------*/
 
 /*------------------------------600 px------------------------------------*/
@@ -1949,6 +1983,12 @@ input, select, textarea {
   /*------------------------Applications 600px---------------*/
 
 
+  .calculation-header {
+    width: 80%;
+    padding-bottom: 60px;
+  }
+
+
   .app-grid-container {
     grid-template-columns: 50% 50%;
   }
@@ -1989,6 +2029,10 @@ input, select, textarea {
   .picture-block {
     height: 210px;
     width: 100%;
+  }
+
+  .try-app a {
+    font-size: 1.3em;
   }
 
   .features {
@@ -2082,7 +2126,7 @@ input, select, textarea {
   }
 
   .try-app a {
-    font-size: 1.3em;
+    line-height: 22px;
   }
 
 /*------------------------------About--------------------------------*/
@@ -2120,6 +2164,10 @@ input, select, textarea {
     display: none;
   }
 
+  .about-header h1 {
+    font-size: 1.3em;
+    padding-bottom: 40px;
+  }
 
 }
 
@@ -2370,6 +2418,21 @@ input, select, textarea {
 
 }
 
+/*-----------------------Applications-------------------------------------*/
+
+.calculation-header h1 {
+  font-size: 1.7em;
+}
+
+/*-------------------------------350 px------------------------------------*/
+
+@media only screen and (max-width: 350px) {
+  .about-header {
+    padding-bottom: 20px;
+  }
+
+}
+
 /*-------------------------------317 px------------------------------------*/
 
 @media only screen and (max-width: 317px){
@@ -2389,6 +2452,7 @@ input, select, textarea {
   .header-top-title-text{
     line-height: 30px;
   }
+
 }
 
 

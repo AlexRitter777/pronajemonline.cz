@@ -2,32 +2,34 @@
 
 
     <div class="about-header">
-        <h3>O projektu</h3>
+        <h1>O projektu - <br>Správa nemovitosti a pronájmů online, vyúčtování služeb nájemníkům.</h1>
     </div>
 
 
    <div class="about-container">
 
        <div class="about-text">
-           <p>Tento projekt představuje komplexní webovou aplikaci pro majitele investičních bytů a rodinných domů. Aplikace nabízí širokou škálu funkcí pro efektivní správu nemovitostí a vztahů mezi pronajímateli a nájemníky. Hlavními funkcemi jsou:</p>
+           <p>Tento web poskytuje unikátní řešení pro majitele investičních bytů a rodinných domů, usnadňující správu nemovitostí a pronájmů. Nabízí komplexní sadu funkcí pro efektivní řízení vztahů mezi pronajímateli a nájemníky a online vytvoření vyúčtování služeb nájemníkům, zahrnující:</p>
 
            <ul>
-                <li><span>Vyúčtování Služeb spojených s užíváním bytu:</span> Umožňuje vytvořit vyúčtování služeb na základě dat od správce bytového domu, přičemž pronajímatel může vybírat relevantní služby podle zákona nebo nájemní smlouvy. Je vhodné v případě, že je potřeba vyúčtovat poměrnou část služeb za necelý kalendářní rok.</li>
+               <li><span>Správa nemovitostí online:</span> Platforma nabízí možnost vytvoření a uložení karet nemovitostí, nájemníků, pronajímatelů, správců a dodavatelů elektřiny, díky čemuž máte všechny důležité údaje a informace vždy po ruce. K každé nemovitosti mohou být přiřazeni pronajímatel, nájemník, správce a dodavatel elektřiny, což usnadňuje generování šablon pro vyúčtování služeb a dalších dokumentů. Aplikace rovněž automaticky upozorňuje e-mailem pronajímatele a nájemníka na důležité termíny, například na brzké ukončení nájemní smlouvy.</li>
 
-               <li><span>Zjednodušené Vyúčtování Služeb:</span> Vhodné pro případy, kdy nájemník bydlel v nemovitosti celý kalendářní rok a jsou k dispozici data od správce domu.
+                <li><span>Vyúčtování služeb spojených s užíváním bytu:</span> Umožňuje vytvořit vyúčtování služeb nájemníkům online na základě vyúčtování služeb od správce bytového domu. Pronajímatelé mohou podle potřeby a v souladu se zákonem nebo podmínkami nájemní smlouvy vybírat, které služby do vyúčtování zahrnout. Ideální pro situace, kdy je nutné rozpočítat náklady na služby za část roku, například při vyúčtování služeb po skončení nájmu, změně nájemníků, nebo pro první vyúčtování po nastěhování v průběhu roku.</li>
 
-               <li><span>Vyúčtování Spotřeby Elektřiny:</span> Poskytuje možnost prefakturace nákladů na elektřinu v případě, že nájemník nebyl převeden jako příjemce elektřiny.
+               <li><span>Zjednodušené vyúčtování služeb:</span> Umožňuje vytvořit vyúčtování služeb nájemníkům online za celý kalendářní rok na základě vyúčtování služeb od správce bytového domu. Pronajímatelé mohou podle potřeby a v souladu se zákonem nebo podmínkami nájemní smlouvy vybírat, které služby do vyúčtování zahrnout. Ideální pro vytvoření pravidelních vyúčtování služeb nájemníkům při dlouhodobém pronajmu.</li>
 
-               <li><span>Souhrnné Vyúčtování:</span> Slouží k zpracování výsledků z více vyúčtování do jednoho formuláře.
+               <li><span>Vyúčtování spotřeby elektřiny:</span>  Umožňuje pronajímatelům snadno a online vytvořit vyúčtování spotřeby elektřiny pro nájemníky. Speciálně navrženo pro případy, kdy nájemník nebyl oficiálně převeden jako příjemce elektřiny. Nabízí flexibilní možnosti přefakturace, buď na základě jednotkových cen elektřiny nebo na základě celkové fakturované částky od dodavatele elektřiny, což zajišťuje transparentní a spravedlivé rozdělení nákladů.</li>
 
-               <li><span>Vyúčtování Kauce:</span> Zabývá se vyúčtováním kauce složené nájemníkem, včetně případných nedoplatků nebo přeplatků.
+               <li><span>Souhrnné vyúčtování:</span> Umožňuje pronajímatelům efektivně a online vytvořit souhrnné vyúčtování služeb pro nájemníky. Slouží k integraci údajů z různých vyúčtování, například vyúčtování služeb spojených s užíváním bytu a vyúčtování spotřeby elektřiny, do jednoho přehledného dokumentu, což usnadňuje finanční přehled a správu nákladů na služby.</li>
 
-               <li><span>Univerzální Vyúčtování:</span> Umožňuje prefakturaci nákladů na další utility, jako jsou voda, plyn nebo stočné.
+               <li><span>Vyúčtování kauce:</span> Umožňuje pronajímatelům snadno a online vypracovat vyúčtování kauce složené nájemníkem, zahrnující všechny případné nedoplatky nebo přeplatky. Poskytuje jasný a transparentní způsob, jak zpracovat vracení kauce po skončení nájmu, což zvyšuje důvěru mezi pronajímateli a nájemníky.</li>
+
+               <li><span>Univerzální vyúčtování:</span> Umožňuje pronajímatelům efektivně a online vytvářet vyúčtování nákladů na elektřinu, vodu, plyn, nebo kanalizaci pro nájemníky. Speciálně navrženo pro případy, kdy nájemník nebyl oficiálně převeden jako příjemce uvedených výše energií. Nabízí flexibilní možnosti přefakturace, buď na základě jednotkových cen energií nebo na základě celkové fakturované částky od dodavatelů, což zajišťuje transparentní a spravedlivé rozdělení nákladů</li>
+
+               <li><span>Správa vyúčtování online:</span> Platforma nabízí uživatelům možnost ukládání, kopírování a úprav vyúčtování online, což šetří čas a zjednodušuje správu a přístup k důležitým dokumentům. Funkce výběru z nabídky uložených nemovitostí, pronajímatelů nebo nájemníků usnadňuje rychlé zpracování vyúčtování. Aplikace rovněž umožňuje snadný tisk a uložení vyúčtování a dalších dokumentů ve formátu PDF, což zajišťuje jejich bezproblémové sdílení a archivaci.</li>
+
            </ul>
 
-           <p>Aplikace také poskytuje nástroje pro správu nemovitostí, nájemníků, pronajímatelů a dodavatelů elektřiny, včetně možnosti přiřazení nemovitosti k nájemníkovi a pronajímateli. Uživatelé mají možnost ukládat a upravovat vyúčtování, stejně jako uchovávat důležité informace o nemovitosti a kontaktní údaje.</p>
-           <p>Aplikace navíc nabízí připomínání důležitých dat, jako je ukončení nájemní smlouvy.</p>
-           <p>Tato aplikace je ideálním nástrojem pro efektivní a transparentní správu nemovitostí.</p>
 
            <div class="about-buttons">
                <button type="button" class="header-top-button">

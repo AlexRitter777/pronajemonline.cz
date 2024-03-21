@@ -3,7 +3,7 @@
     <div class="app-container">
 
         <div class="calculation-header">
-            <h3>Aplikace</h3>
+            <h1> Aplikace pro vyúčtování služeb nájemníkům</h1>
         </div>
 
         <div class="app-grid-container">

@@ -26,6 +26,8 @@ class SendMessageController extends AppController {
                 EmailSender::sendEmail($email, 'Pronjemonline.cz - nová zpráva', 'contactform_newmessage_admin', compact('contactName','contactEmail','contactMessage'));
                 $_SESSION['messageSent'] = true;
 
+                $this->setMeta('Zpráva byla odeslána | pronajemonline.cz', 'Formulář pro kontakt a podporu' );
+
 
 
             } else {
@@ -34,7 +36,7 @@ class SendMessageController extends AppController {
             }
         } else {
             unset($_SESSION['messageSent']);
-            header('Location: /contact/new-message'); //Рабоать с этим!!!
+            header('Location: /contact/new-message');
         }
 
 

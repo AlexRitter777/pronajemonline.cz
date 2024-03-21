@@ -53,7 +53,7 @@
     <div class="header-top header-top-image">
         <div class="top-title-wrapper">
             <div class="header-top-title">
-                <h2 class="header-top-title-text">Komplexní platforma pro správu nemovitostí: zjednodušte vyúčtování s nájemníky a zefektivněte správu pronájmů.</h2>
+                <h2 class="header-top-title-text">Komplexní řešení pro správu nemovitostí: Efektivní vyúčtování služeb nájemníkům a flexibilní správa pronájmů bytů a rodinných domů.</h2>
             </div>
             <button type="button" class="header-top-button">
                 <a href="/about">Více informaci</a>
@@ -71,8 +71,8 @@
             <div class="text-block">
                 <ul>
                     <li>Pronajímáte nemovitost?</li>
-                    <li>Zjednodušte proces vyúčtování s vašimi nájemníky.</li>
-                    <li>S naší aplikací můžete snadno a přehledně zpracovat vyúčtování služeb, tepla, spotřeby elektřiny, plynu, vodného a stočného.</li>
+                    <li>Zefektivněte vyúčtování služeb a energií vašim nájemníkům.</li>
+                    <li>Naše platforma umožňuje rychlé a transparentní zpracování vyúčtování služeb, tepla, elektřiny, plynu, vodného a stočného pro správu pronájmů.</li>
                 </ul>
             </div>
 
@@ -84,7 +84,7 @@
                 <ul>
                     <li>Jste nájemník?</li>
                     <li>Získejte jistotu a transparentnost ve vašich finančních vztazích s pronajímatelem.</li>
-                    <li>Naše aplikace vám poskytne efektivní nástroje pro kontrolu a ověření  vyúčtování od vašeho pronajímatele.</li>
+                    <li>Naše platforma vám poskytne efektivní nástroje pro kontrolu a ověření  vyúčtování od vašeho pronajímatele.</li>
                 </ul>
             </div>
             <div class="picture-block right-block"></div>
@@ -92,7 +92,7 @@
     </div>
 
     <div class="try-app">
-        <a href="/applications">Zkuste naší aplikaci pro snadné vyúčtování</a>
+        <a href="/applications">Zkuste naší aplikaci pro vyúčtování služeb nájemníkům</a>
     </div>
 
     <div class="features">
@@ -105,12 +105,12 @@
         <div class="list-of-thesis">
             <div class="list-of-thesis-row-1">
                 <ul>
-                    <li>Jednoduchá a rychlá přefakturace nákladů na služby a energii, vypočítaná podle skutečné spotřeby a délky pronájmu</li>
-                    <li>Flexibilní vyúčtování za libovolné období podle vašich potřeb</li>
-                    <li>Vytváření souhrnných vyúčtování z několika vyúčtování pro přehlednou prezentaci nájemníkovi</li>
-                    <li>Transparentní vyúčtování kauce složené nájemníkem, včetně všech nedoplatků a přeplatků</li>
-                    <li>Efektivní správa a organizace všech uložených vyúčtován</li>
-                    <li>Pohodlná správa informací o vašich nemovitostech na jednom místě</li>
+                    <li>Pohodlná správa nemovitostí a pronájmů na jednom místě.</li>
+                    <li>Jednoduchá a rychlá přefakturace nákladů na služby a energii, vypočítaná podle skutečné spotřeby a doby pronájmu.</li>
+                    <li>Flexibilní vyúčtování služeb nájemníkům za libovolné období podle vašich požadavků.</li>
+                    <li>Vytváření souhrnných vyúčtování z několika vyúčtování služeb a energií pro přehlednou prezentaci nájemníkům.</li>
+                    <li>Transparentní vyúčtování kauce po skončení nájmu, včetně všech nedoplatků a přeplatků.</li>
+                    <li>Efektivní správa a organizace všech uložených vyúčtování.</li>
                 </ul>
                 <svg class="calculator">
                     <use xlink: href = "#calculator" >
