@@ -2,7 +2,7 @@ AddDefaultCharset utf-8
 # Enable rewrite engine
 RewriteEngine On
 # Exclude robots.txt and sitemap.xml from being redirected
-RewriteCond %{REQUEST_URI} !^/(robots\.txt|sitemap\.xml)$
+RewriteCond %{REQUEST_URI} !^/(robots\.txt|sitemap\.xml|Robots\.txt)$
 # Redirect all requests not matching the above conditions to the public folder
 RewriteRule (.*) public/$1
 
