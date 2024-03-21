@@ -44,35 +44,34 @@
 
     <?php if(!empty($calculations)): ?>
 
-
         <?php foreach ($calculations as $name => $calculation): ?>
+            <?php if($calculation): ?>
+            <div class="dashboard-table-container">
+                <h5 class="dashboard-calc-subtitle"><?= $name; ?></h5>
+                <table class="calculation-titles account-index-table dashboard-table" border="0">
+                    <tr class="row-1">
+                        <th class="col-1">Název</th>
+                        <th class="col-2">Nemovitost</th>
+                        <th class="col-3">Nájemník</th>
+                        <th class="col-4">Období</th>
+                        <th class="col-5">Vytvořeno</th>
+                        <th class="col-6">Změněno</th>
+                    </tr>
 
-        <div class="dashboard-table-container">
-            <h5 class="dashboard-calc-subtitle"><?= $name; ?></h5>
-            <table class="calculation-titles account-index-table dashboard-table" border="0">
-                <tr class="row-1">
-                    <th class="col-1">Název</th>
-                    <th class="col-2">Nemovitost</th>
-                    <th class="col-3">Nájemník</th>
-                    <th class="col-4">Období</th>
-                    <th class="col-5">Vytvořeno</th>
-                    <th class="col-6">Změněno</th>
-                </tr>
-
-                <?php foreach ($calculation as $calc): ?>
-                <tr class="row-click" data-href="/applications/<?=$calcTypes[$name]; ?>?calculation_id=<?=$calc->id;?>">
-                    <td class="col-1"><?= $calc->calculation_name; ?></td>
-                    <td class="col-2"><?= $calc->property_address; ?></td>
-                    <td class="col-3"><?= $calc->tenant_name; ?></td>
-                    <td class="col-4"><?= date("d.m.Y", strtotime($calc->rent_start_date)) . ' - ' . date("d.m.Y", strtotime($calc->rent_finish_date));?></td>
-                    <td class="col-5"><?= date("d.m.Y", strtotime($calc->created_at)); ?></td>
-                    <td class="col-6"><?= date("d.m.Y", strtotime($calc->updated_at)); ?></td>
-                </tr>
-
-                <?php endforeach; ?>
-            </table>
-            <div class="more-calc-btn"><a href="/user/calculations?calc_type=<?= $calcTypes[$name];?>">Ukázat vše...</a></div>
-        </div>
+                    <?php foreach ($calculation as $calc): ?>
+                    <tr class="row-click" data-href="/applications/<?=$calcTypes[$name]; ?>?calculation_id=<?=$calc->id;?>">
+                        <td class="col-1"><?= $calc->calculation_name; ?></td>
+                        <td class="col-2"><?= $calc->property_address; ?></td>
+                        <td class="col-3"><?= $calc->tenant_name; ?></td>
+                        <td class="col-4"><?= date("d.m.Y", strtotime($calc->rent_start_date)) . ' - ' . date("d.m.Y", strtotime($calc->rent_finish_date));?></td>
+                        <td class="col-5"><?= date("d.m.Y", strtotime($calc->created_at)); ?></td>
+                        <td class="col-6"><?= date("d.m.Y", strtotime($calc->updated_at)); ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </table>
+                <div class="more-calc-btn"><a href="/user/calculations?calc_type=<?= $calcTypes[$name];?>">Ukázat vše...</a></div>
+            </div>
+            <?php endif; ?>
         <?php endforeach; ?>
 
 

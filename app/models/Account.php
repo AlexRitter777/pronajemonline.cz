@@ -363,15 +363,21 @@ class Account extends AppModel {
             }else{
                 $result[$calcName] = $calculation;
             }
+
         }
-        $i = 0;
+
+        if(!empty(array_filter($result))) return $result;
+
+
+        /*$i = 0;
+
         foreach ($result as $key => $value) {
             if ($value) {
                 $i++;
             }
         }
 
-        if($i === count($result)) return $result;
+        if($i === count($result)) return $result;*/
 
         return null;
     }

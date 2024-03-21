@@ -249,7 +249,8 @@ class UserController extends AppController
             'Zjednodušené vyúčtování služeb spojených s užíváním nemovitostí' => 'easyservicescalc',
             'Vyúčtování spotřeby elektřiny' => 'electrocalc',
             'Vyúčtování kauce složené nájemníkem' => 'depositcalc',
-            'Souhrnné vyúčtování' => 'totalcalc'
+            'Souhrnné vyúčtování' => 'totalcalc',
+            'Univerzalní vyúčtování' => 'universalcalc',
         ];
 
         $calculations = $accountModel->createCalculationsBatch($calcTypes, $userID);

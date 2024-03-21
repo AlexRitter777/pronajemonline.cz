@@ -126,6 +126,10 @@ $(document).ready(function () {
             if(accountNumber) {
                 $('#accountNumber').val(accountNumber);
             }
+        }else{
+            $('#landlordName').empty();
+            $('#landlordAddress').val('');
+            $('#accountNumber').val('');
         }
 
         //get tenant data from DB and insert to specific fields
@@ -141,6 +145,9 @@ $(document).ready(function () {
 
             $('#tenantAddress').val(tenantAddress);
 
+        } else {
+            $('#tenantName').empty();
+            $('#tenantAddress').val('');
         }
 
         //get admin data from DB and insert to specific fields
@@ -151,6 +158,8 @@ $(document).ready(function () {
                 text: adminName,
                 'data-record_id': admin_id,
             }))
+        }else {
+            $('#adminName').empty();
         }
 
         //get elsupplier data from DB and insert to specific fields
@@ -162,6 +171,8 @@ $(document).ready(function () {
                 'data-record_id': elsupplier_id,
             }))
 
+        }else{
+            $('#supplierName').empty();
         }
 
     })
@@ -256,13 +267,27 @@ $(document).ready(function () {
             //databaseWrapper.getData(); debugging
             let newRecord =  await databaseWrapper.saveToDatabase();
 
-            //console.log(newRecord); //debugging
+            console.log(newRecord); //debugging
 
             //databaseWrapper.getData(); //debugging
 
-            //append new person in edit page person field
+            //append new entity in entity field (property, landlord, tenant, admin, elsupplier)
             if(newRecord){
 
+                //insert property address and type
+                if(newRecord['propertyAddress']) {
+                    $('.input-property-list').empty().append($('<option>', {
+                        value: newRecord['propertyAddress'],
+                        text: newRecord['propertyAddress'],
+                        'data-record_id': newRecord['propertyID'],
+                    }))
+                }
+
+                if(newRecord['propertyType']) {
+                    $('#propertyType').val(newRecord['propertyType']);
+                }
+
+                // insert entity properties (name, address, acc. number)
                 if(newRecord[databaseWrapper.formName + 'Name']) {
                     $('.input-'+ entity + '-list').empty().append($('<option>', {
                         value: newRecord[databaseWrapper.formName + 'Name'],
