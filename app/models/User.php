@@ -407,7 +407,8 @@ class User extends AppModel
     }
 
 
-    public function insertResetPasswordToken(int $userId, int $minutes = 60, string $selector, string $validator) : bool
+
+    public function insertResetPasswordToken(int $userId, string $selector, string $validator, int $minutes = 60) : bool
     {
 
         $expired_seconds = time() + 60 * $minutes;

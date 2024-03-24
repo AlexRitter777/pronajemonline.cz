@@ -39,9 +39,9 @@
             <div class="add_input_fields_deposit_items">
                 <div class="add_deposit_added_field first-field-deposit" id="1">
                     <select name="depositItems[]" class="select-list-deposit" id="load_php_deposit_items1" style="width: 55%">
-                        <option value="<?=$data['depositItems'][0]; ?>"><?=$data['depositItems'][0]; ?></option>
+                        <option value="<?=$data['depositItems'][0] ?? ''; ?>"><?=$data['depositItems'][0] ?? ''; ?></option>
                     </select>
-                    <input type="number" class="right-field" name="depositItemsPrice[]" id="deposit_items_price1" step="any" placeholder="Zadej částku v Kč" value="<?= ($data['depositItemsPrice'][0] < 0) ? ($data['depositItemsPrice'][0] * (-1)) : $data['depositItemsPrice'][0]  ?>" />
+                    <input type="number" class="right-field" name="depositItemsPrice[]" id="deposit_items_price1" step="any" placeholder="Zadej částku v Kč" value="<?= (isset($data['depositItemsPrice'][0]) && $data['depositItemsPrice'][0] < 0) ? ($data['depositItemsPrice'][0] * (-1)) : ($data['depositItemsPrice'][0] ?? '');  ?>" />
                 </div>
                 <!-- /.add_deposit_added_field first-field-->
 

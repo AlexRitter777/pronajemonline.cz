@@ -314,7 +314,7 @@ class Applications extends AppModel {
         return $finalCoefficient;
     }
 
-    public function costsPerPeriod($period,$costs=[]){
+    public function costsPerPeriod($period, $costs=[]){
 
         $result['commonCosts'] = array_sum($costs);
         $result['costsPerPeriod'] = round($result['commonCosts']/$period, 2);

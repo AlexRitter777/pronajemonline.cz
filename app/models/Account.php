@@ -235,7 +235,7 @@ class Account extends AppModel {
 
         foreach ($data as $key => $item){
 
-            if(false !== strpos($item, '^')){
+            if(false !== strpos($item ?? '', '^')){
                 $result[$this->snakeCaseToCamelCase($key)] = explode('^', (string)$item);
                 if (empty($result[$this->snakeCaseToCamelCase($key)][0])){
                     array_shift($result[$this->snakeCaseToCamelCase($key)]);

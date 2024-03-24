@@ -18,7 +18,7 @@
         </g>
     </symbol>
 </svg>
-<svg style="display:none;">
+<!--<svg style="display:none;">-->
 <svg style="display:none;">
     <!--Icon Help-->
     <symbol id="help" viewBox="0 0 24 24">
@@ -40,18 +40,18 @@
 
         <div class="date">
             <label for="contractStartDate" class="label_text">Nájemní smlouva uzavřena dne:*</label><br />
-            <input type="date" name="contractStartDate" class="field-start-deposit" id="contractStartDate" class="field" value="<?= $data['contractStartDate'];?>"><br />
+            <input type="date" name="contractStartDate" class="field-start-deposit" id="contractStartDate" class="field" value="<?= $data['contractStartDate'] ?? '';?>"><br />
         </div>
 
         <div class="date">
             <label for="contractFinishDate" class="label_text">Nájemní smlouva ukončena dne:*</label><br />
-            <input type="date" name="contractFinishDate" class="field-finish-deposit" id="contractFinishDate" class="field" value="<?= $data['contractFinishDate'];?>"><br />
+            <input type="date" name="contractFinishDate" class="field-finish-deposit" id="contractFinishDate" class="field" value="<?= $data['contractFinishDate'] ?? '';?>"><br />
         </div>
 
         <div class="origins">
             <label class="label_text">Důvod ukončení nájmu </label>
             <select name="rentFinishReason" class="select-list-rent_finish_reason" id="load_php_rent_finish_reason" style="width: 33%">
-                <option value="<?= $data['rentFinishReason'];?>"><?= $data['rentFinishReason'];?></option>
+                <option value="<?= $data['rentFinishReason'] ?? '';?>"><?= $data['rentFinishReason'] ?? '';?></option>
             </select>
         </div>
 
@@ -61,9 +61,9 @@
         <div class="add_input_fields_deposit_items">
             <div class="add_deposit_added_field first-field-deposit" id="1">
                 <select name="depositItems[]" class="select-list-deposit" id="load_php_deposit_items1" style="width: 55%">
-                    <option value="<?=$data['depositItems'][0]; ?>"><?=$data['depositItems'][0]; ?></option>
+                    <option value="<?=$data['depositItems'][0] ?? ''; ?>"><?=$data['depositItems'][0] ?? ''; ?></option>
                 </select>
-                <input type="number" class="right-field" name="depositItemsPrice[]" id="deposit_items_price1" step="any" placeholder="Zadej častku v Kč" value="<?= ($data['depositItemsPrice'][0] < 0) ? ($data['depositItemsPrice'][0] * (-1)) : $data['depositItemsPrice'][0]  ?>" />
+                <input type="number" class="right-field" name="depositItemsPrice[]" id="deposit_items_price1" step="any" placeholder="Zadej částku v Kč" value="<?= (isset($data['depositItemsPrice'][0]) && $data['depositItemsPrice'][0] < 0) ? ($data['depositItemsPrice'][0] * (-1)) : ($data['depositItemsPrice'][0] ?? '');  ?>" />
             </div>
             <!-- /.add_deposit_added_field first-field-->
 
@@ -189,7 +189,7 @@
             <div class="zalohy_deposit_label">
                 <label for="deposit" class="label_text">Kauce složená nájemníkem při podepsání smlouvy:*</label>
             </div>
-            <input type="number" class="field field-ceny-deposit" id="deposit" name="deposit" step="any" placeholder="Zadej častku v Kč" value="<?= $data['deposit'];?>" />
+            <input type="number" class="field field-ceny-deposit" id="deposit" name="deposit" step="any" placeholder="Zadej částku v Kč" value="<?= $data['deposit'] ?? '';?>" />
         </div>
 
         <div class="errors_field">

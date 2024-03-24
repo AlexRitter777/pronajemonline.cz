@@ -434,6 +434,7 @@ class Validator {
 
         this['create' + name + 'Request']();
 
+        //console.log(this.formData);
         $.ajax({
             type: "POST",
             url: `/validator/${name}-validation`,

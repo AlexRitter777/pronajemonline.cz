@@ -1005,7 +1005,7 @@ class Validation extends AppModel {
      * @param int $length The maximum allowed length.
      */
     public function validateLength(string $name, int $length) {
-        if (strlen($this->attributes[$name]) > $length) {
+        if (strlen($this->attributes[$name] ?? '') > $length) {
             $this->errors[$name] = 'Maximální počet symbolů pro "' . $this->desc[$name] . ' " ' . 'je ' . $length . '!';
         }
 
@@ -1293,7 +1293,7 @@ class Validation extends AppModel {
      * @param string $names The attribute name containing an array of values to be validated.
      * @param string $styles The attribute name containing an array of indicators (e.g., style attributes) corresponding to the primary values, used to determine whether a value should be validated.
      */
-    public function validateAddedRowsValueInside(string $styles, string $names){
+    public function validateAddedRowsValueInside(string $names, string $styles){
 
 
         for ($i=0; $i<count($this->attributes[$names]); $i++) {

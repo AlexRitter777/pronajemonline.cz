@@ -387,7 +387,7 @@ class UserController extends AppController
 
                 [$selector, $validator, $token] = $user->generateTokens();
 
-                if($user->insertResetPasswordToken($resetUser[0]['id'], 60, $selector, $validator)){
+                if($user->insertResetPasswordToken($resetUser[0]['id'], $selector, $validator, 60)){
 
                      $user->sendPasswordResetCode($email, $token);
                      $_SESSION['link_sent'] = true;
