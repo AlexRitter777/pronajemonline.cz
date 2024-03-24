@@ -63,7 +63,15 @@
                         <td class="col-1"><?= $calc->calculation_name; ?></td>
                         <td class="col-2"><?= $calc->property_address; ?></td>
                         <td class="col-3"><?= $calc->tenant_name; ?></td>
-                        <td class="col-4"><?= date("d.m.Y", strtotime($calc->rent_start_date)) . ' - ' . date("d.m.Y", strtotime($calc->rent_finish_date));?></td>
+                        <?php if($calcTypes[$name] === 'depositcalc'): ?>
+                            <td class="col-4"><?= date("d.m.Y", strtotime($calc->contract_start_date)) . ' - ' . date("d.m.Y", strtotime($calc->contract_finish_date));?></td>
+                        <?php elseif($calcTypes[$name] === 'easyservicescalc'): ?>
+                            <td class="col-4"><?= date("Y", strtotime($calc->rent_year_date));?></td>
+                        <?php elseif($calcTypes[$name] === 'totalcalc'): ?>
+                            <td class="col-4">-</td>
+                        <?php else: ?>
+                            <td class="col-4"><?= date("d.m.Y", strtotime($calc->rent_start_date)) . ' - ' . date("d.m.Y", strtotime($calc->rent_finish_date));?></td>
+                        <?php endif;?>
                         <td class="col-5"><?= date("d.m.Y", strtotime($calc->created_at)); ?></td>
                         <td class="col-6"><?= date("d.m.Y", strtotime($calc->updated_at)); ?></td>
                     </tr>

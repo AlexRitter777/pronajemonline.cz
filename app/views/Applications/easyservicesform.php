@@ -42,10 +42,10 @@
         <label for="adminName" class="label_text">Název firmy, vykonávající správu domu</label><br />
         <?php if(is_user_logged_in()): ?>
             <select name="adminName" id="adminName" class="field-1 select-admin select-ajax input-admin-list" data-entity="admin">
-                <option value="<?= $data['adminName'];?>"><?= $data['adminName'];?></option>
+                <option value="<?= $data['adminName'] ?? '';?>"><?= $data['adminName'] ?? '';?></option>
             </select><br />
         <?php else: ?>
-            <input type="text" name="adminName" id="adminName" class="field-1" maxlength="75" autocomplete="on" value="<?= $data['adminName'] ?>"><br />
+            <input type="text" name="adminName" id="adminName" class="field-1" maxlength="75" autocomplete="on" value="<?= $data['adminName'] ?? '' ?>"><br />
         <?php endif;?>
         <h2 class="subtitle">V. Vyúčtování za období</h2>
 
@@ -59,7 +59,7 @@
         <div class="origins">
             <label class="label_text">Období, za které se zpracovává vyúčtovaní *</label>
             <select name="rentYearDate" class="select-list-rent-date-year" id="rentYearDate" style="width: 32.5%">
-                <option value="<?= $data['rentYearDate'];?>"><?= $data['rentYearDate'];?></option>
+                <option value="<?= $data['rentYearDate'] ?? '';?>"><?= $data['rentYearDate'] ?? '';?></option>
             </select>
         </div>
 
@@ -75,9 +75,9 @@
         <div class="add_input_fields">
             <div class="add_field first-field">
                 <select name="pausalniNaklad[]" class="select-list" id="test1" style="width: 55%">
-                    <option value="<?=$data['pausalniNaklad'][0]; ?>"><?=$data['pausalniNaklad'][0]; ?></option>
+                    <option value="<?=$data['pausalniNaklad'][0] ?? ''; ?>"><?=$data['pausalniNaklad'][0] ?? ''; ?></option>
                 </select>
-                <input type="number" class="right-field" name="servicesCost[]" id="servicesCost1" step="any" placeholder="Zadej častku v Kč" value="<?=$data['servicesCost'][0] ?>" />
+                <input type="number" class="right-field" name="servicesCost[]" id="servicesCost1" step="any" placeholder="Zadej častku v Kč" value="<?=$data['servicesCost'][0] ?? '' ?>" />
             </div>
             <!-- /.add_field first-field-->
             <?php if(isset($data['pausalniNaklad'])): ?>
@@ -117,11 +117,11 @@
             <div class="zalohy_label">
                 <label for="advancedPayments" class="label_text">Součet zaloh za služby, zaplacených najmeníkem v ramcích učtovácího období</label>
             </div>
-            <input type="number" class="field field-slozky" id="advancedPayments" name="advancedPayments" step="any" placeholder="Zadej součet záloh" value="<?= $data['advancedPayments']; ?>" />
+            <input type="number" class="field field-slozky" id="advancedPayments" name="advancedPayments" step="any" placeholder="Zadej součet záloh" value="<?= $data['advancedPayments'] ?? ''; ?>" />
         </div>
 
         <label for="advancedPaymentsDesc" class="label_text">Uhrazené zálohy – komentář </label><br />
-        <input type="text" name="advancedPaymentsDesc" id="advancedPaymentsDesc" class="field-1" maxlength="75" placeholder="Např. Leden 2020 - Červen 2020 - 2000 Kč" value="<?=$data['advancedPaymentsDesc']?>"><br />
+        <input type="text" name="advancedPaymentsDesc" id="advancedPaymentsDesc" class="field-1" maxlength="75" placeholder="Např. Leden 2020 - Červen 2020 - 2000 Kč" value="<?=$data['advancedPaymentsDesc'] ?? ''?>"><br />
 
         <div class="errors_field">
 

@@ -76,7 +76,7 @@ class View
      * @param string $view The name of the view file to be rendered within the specified layout.
      * @param array $meta An associative array containing meta information ('title', 'desc', 'keywords') for the page.
      */
-    public function __construct($route, $layout = '', $view = '', $meta ){
+    public function __construct($route, $meta, $layout = '', $view = ''){
         $this->route = $route;
         $this->controller = $route['controller'];
         $this->view = $view;

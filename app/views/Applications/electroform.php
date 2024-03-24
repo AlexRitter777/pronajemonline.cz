@@ -18,10 +18,10 @@
         <label for="supplierName" class="label_text">Název firmy – dodavatele elektřiny</label><br />
         <?php if(is_user_logged_in()): ?>
             <select name="supplierName" id="supplierName" class="field-1 select-elsupplier select-ajax input-elsupplier-list" data-entity="elsupplier">
-                <option value="<?= $data['supplierName'];?>"><?= $data['supplierName'];?></option>
+                <option value="<?= $data['supplierName'] ?? '';?>"><?= $data['supplierName'] ?? '';?></option>
             </select><br />
         <?php else: ?>
-            <input type="text" name="supplierName" id="supplierName" class="field-1" maxlength="75" autocomplete="on" value="<?= $data['supplierName'];?>"><br />
+            <input type="text" name="supplierName" id="supplierName" class="field-1" maxlength="75" autocomplete="on" value="<?= $data['supplierName'] ?? '';?>"><br />
         <?php endif;?>
 
         <h2 class="subtitle">V. Vyúčtování za období</h2>
@@ -34,11 +34,11 @@
         </div>
         <div class="date">
             <label for="rentStartDate" class="label_text">Počáteční datum vyúčtování*</label><br />
-            <input type="date" name="rentStartDate" class="field-start-electro" id="rentStartDate" class="field" value="<?= $data['rentStartDate'];?>"><br />
+            <input type="date" name="rentStartDate" class="field-start-electro" id="rentStartDate" class="field" value="<?= $data['rentStartDate'] ?? '';?>"><br />
         </div>
         <div class="date">
             <label for="rentFinishDate" class="label_text">Konečný datum vyúčtování*</label><br />
-            <input type="date" name="rentFinishDate" class="field-finish-electro" id="rentFinishDate" class="field" value="<?= $data['rentFinishDate'];?>"><br />
+            <input type="date" name="rentFinishDate" class="field-finish-electro" id="rentFinishDate" class="field" value="<?= $data['rentFinishDate'] ?? '';?>"><br />
         </div>
 
         <h2 class="subtitle">VI. Odečty elektroměru </h2>
@@ -51,9 +51,9 @@
         </div>
 
         <div class="meters-electro">
-            <input type="number" class="field meter-electro-field" name="initialValueOne" id="initialValueOne" step="any" placeholder="Počáteční stav" value="<?= $data['initialValueOne'];?>" />
-            <input type="number" class="field meter-electro-field" name="endValueOne" id="endValueOne" step="any" placeholder="Koneční stav" value="<?= $data['endValueOne'];?>" />
-            <input type="text" class="field meter-electro-field" name="meterNumberOne" id="meterNumberOne" placeholder="Číslo elektroměru" value="<?= $data['meterNumberOne'];?>" />
+            <input type="number" class="field meter-electro-field" name="initialValueOne" id="initialValueOne" step="any" placeholder="Počáteční stav" value="<?= $data['initialValueOne'] ?? '';?>" />
+            <input type="number" class="field meter-electro-field" name="endValueOne" id="endValueOne" step="any" placeholder="Koneční stav" value="<?= $data['endValueOne'] ?? '';?>" />
+            <input type="text" class="field meter-electro-field" name="meterNumberOne" id="meterNumberOne" placeholder="Číslo elektroměru" value="<?= $data['meterNumberOne'] ?? '';?>" />
         </div>
 
         <div class="text-help">
@@ -62,13 +62,13 @@
         <div class="origins">
             <label class="label_text">Zdroj počátečního stavu elektroměru </label>
             <select name="originMeterStart" class="select-list-origin-electro-start" id="load_php_origin_electro_start" style="width: 32.5%">
-                <option value="<?= $data['originMeterStart'];?>"><?= $data['originMeterStart'];?></option>
+                <option value="<?= $data['originMeterStart'] ?? '';?>"><?= $data['originMeterStart'] ?? '';?></option>
             </select>
         </div>
         <div class="origins">
             <label class="label_text">Zdroj konečného stavu měřičů </label>
             <select name="originMeterEnd" class="select-list-origin-electro-end" id="load_php_origin_electro_end" style="width: 32.5%">
-                <option value="<?= $data['originMeterEnd'];?>"><?= $data['originMeterEnd'];?></option>
+                <option value="<?= $data['originMeterEnd'] ?? '';?>"><?= $data['originMeterEnd'] ?? '';?></option>
             </select>
         </div>
 
@@ -83,12 +83,12 @@
 
         <div class="cena_electro">
             <label for="electroPriceKWh" class="label_text">Průměrná jednotková cena za kWh</label>
-            <input type="number" class="field field-ceny-electro" id="electroPriceKWh" name="electroPriceKWh" step="any" placeholder="Zadej cenu" value="<?= $data['electroPriceKWh'];?>" />
+            <input type="number" class="field field-ceny-electro" id="electroPriceKWh" name="electroPriceKWh" step="any" placeholder="Zadej cenu" value="<?= $data['electroPriceKWh'] ?? '';?>" />
         </div>
 
         <div class="cena_electro">
             <label for="electroPriceMonth" class="label_text">Průměrná jednotková cena za měsíc </label>
-            <input type="number" class="field field-ceny-electro" id="electroPriceMonth" name="electroPriceMonth" step="any" placeholder="Zadej cenu" value="<?= $data['electroPriceMonth'];?>" />
+            <input type="number" class="field field-ceny-electro" id="electroPriceMonth" name="electroPriceMonth" step="any" placeholder="Zadej cenu" value="<?= $data['electroPriceMonth'] ?? '';?>" />
         </div>
 
         <div class="cena_electro">
@@ -98,11 +98,11 @@
                 </svg>
             </label>
 
-            <input type="number" class="field field-ceny-electro" id="electroPriceAdd" name="electroPriceAdd" step="any" placeholder="Zadej častku" value="<?= $data['electroPriceAdd'];?>" />
+            <input type="number" class="field field-ceny-electro" id="electroPriceAdd" name="electroPriceAdd" step="any" placeholder="Zadej častku" value="<?= $data['electroPriceAdd'] ?? '';?>" />
         </div>
 
         <label for="electroPriceAddDesc" class="label_text">Jiné náklady - popis (nepovinné) </label><br />
-        <input type="text" name="electroPriceAddDesc" id="electroPriceAddDesc" class="field-1" maxlength="75"  value="<?=$data['electroPriceAddDesc']?>"><br />
+        <input type="text" name="electroPriceAddDesc" id="electroPriceAddDesc" class="field-1" maxlength="75"  value="<?=$data['electroPriceAddDesc'] ?? ''?>"><br />
 
         <h2 class="subtitle">VIII. Uhrazené zálohy</h2>
 
@@ -110,11 +110,11 @@
             <div class="zalohy_electro_label">
                 <label for="advancedPayments" class="label_text">Součet záloh za elektřinu, zaplacených nájemníkem v rámcích účtovacího období*</label>
             </div>
-            <input type="number" class="field field-ceny-electro" id="advancedPayments" name="advancedPayments" step="any" placeholder="Zadej coučet záloh" value="<?= $data['advancedPayments'];?>" />
+            <input type="number" class="field field-ceny-electro" id="advancedPayments" name="advancedPayments" step="any" placeholder="Zadej coučet záloh" value="<?= $data['advancedPayments'] ?? '';?>" />
         </div>
 
         <label for="advancedPaymentsDesc" class="label_text">Uhrazené zálohy – komentář </label><br />
-        <input type="text" name="advancedPaymentsDesc" id="advancedPaymentsDesc" class="field-1" maxlength="75" placeholder="Např. Leden 2020 - Červen 2020 - 2000 Kč" value="<?=$data['advancedPaymentsDesc']?>"><br />
+        <input type="text" name="advancedPaymentsDesc" id="advancedPaymentsDesc" class="field-1" maxlength="75" placeholder="Např. Leden 2020 - Červen 2020 - 2000 Kč" value="<?=$data['advancedPaymentsDesc'] ?? '';?>"><br />
 
         <div class="errors_field">
 
