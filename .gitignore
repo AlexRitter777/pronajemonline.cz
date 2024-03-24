@@ -1,4 +1,5 @@
 config_smtp.php
+config_db.php
 tmp/
 vendor/*
 !vendor/pronajemonline/
