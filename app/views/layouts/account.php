@@ -24,6 +24,7 @@
 
 </head>
 
+<?php require_once APP . "/views/Includes/google_tag.php"; ?>
 
 
 <body>

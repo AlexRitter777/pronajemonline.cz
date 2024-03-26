@@ -269,7 +269,7 @@ class User extends AppModel
         };
 
 
-        $token = filter_input(INPUT_COOKIE, 'remember_me', FILTER_SANITIZE_STRING);
+        $token = $_COOKIE['remember_me'] ?? null;
 
         if($token && $this->tokenIsValid($token, 'usertokens')) {
 

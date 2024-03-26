@@ -25,6 +25,8 @@
     <script src="js/advanced_form.js" type="module"></script>
 </head>
 
+<?php require_once APP . "/views/Includes/google_tag.php"; ?>
+
 
 
 <body>
