@@ -30,7 +30,7 @@
 <div class="button-bar <?= $result['calculationName'] ? 'button-bar-calc-name' : ''; ?>">
     <?php if($result['calculationName']): ?>
         <div class="calculation-name"><?= $result['calculationName']; ?></div>
-    <? endif;?>
+    <?php endif;?>
     <div class="button-bar-inner">
         <?php if(is_user_logged_in()): ?>
             <a class="button-bar-link calc-list-btn" href="/user/calculations?calc_type=<?= $result['calcType'] ;?>calc">Seznam vyúčtování</a>
