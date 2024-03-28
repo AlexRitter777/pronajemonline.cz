@@ -2,32 +2,32 @@
     <span>Např. Byt 3kk + parking; Atelier 1kk; číslo jednotky; podlaží apod. </span>
 </div>
 <div id="real-hint-2" class="real-hint">
-    <span>Obvykle 1.01. – 31.12, ale v některých případech se muže lišit, např. dům byl předán do správy uprostřed roku (u novostaveb), změna majitele, změna správce apod. Počáteční a konečný data jsou vždycky uvedené ve vyúčtování správce.</span>
+    <span>Obvykle od 1.01. do 31.12, ale v některých případech se to může lišit, např. pokud byl dům předán do správy uprostřed roku (u novostaveb), došlo ke změně majitele nebo změně správce apod. Počáteční a konečná data jsou vždy uvedena ve vyúčtování od správce.</span>
 </div>
 <div id="real-hint-3" class="real-hint">
-    <span>Období obvykle ohraničeno začátkem nebo koncem kalendářního roku a dnem nastěhování/odstěhování nájemníka. V případě, jestli nájemník bydlel od 1.01-31.12 doporučujeme použit zjednodušené vyúčtování služeb.</span>
+    <span>Období je obvykle ohraničeno začátkem nebo koncem kalendářního roku a dnem nastěhování či odstěhování nájemníka. V případě, že nájemník bydlel od 1.01. do 31.12., doporučujeme použít zjednodušené vyúčtování služeb.</span>
 </div>
 <div id="real-hint-4" class="real-hint">
-    <span>Vyberte paušální náklady, které budete přefakturovat na nájemníka. Najdete jich seznam ve vyúčtování správce. Které náklady budou přefakturovány by měla určovat nájemní smlouva, pokud tomu tak není tak postupujte podle občanského zákoníku. Tady nezadávejte náklady na topení, teplou a studenou vodu. Ty budou spočítané dále dle aktuální spotřeby.</span>
+    <span>Vyberte paušální náklady k přefakturaci nájemníkovi, jejichž seznam naleznete ve vyúčtování správce. Typ nákladů, které mají být přefakturovány, by měl být specifikován v nájemní smlouvě. Pokud nájemní smlouva takové specifikace neobsahuje, postupujte podle předpisů občanského zákoníku. Nezahrnujte do těchto nákladů výdaje na topení, teplou a studenou vodu, protože ty budou vypočteny zvlášť na základě aktuální spotřeby.</span>
 </div>
 <div id="real-hint-5" class="real-hint">
-    <span>Nastehoval v průběhu roku a pokračuje bydlet: počáteční stavy – předávací protokol, konečný – vyúčtování správce (konec roku). Bydlel od začátku roku a odstěhoval v průběhu roku: počat. stavy – vyúčtování správce (začátek roku), konečný stavy – předávací protokol. Nastěhoval/odstěhoval v průběhu roku: stavy – předávací protokol. Bydlel celý rok: stavy  – vyúčtování správce.  </span>
+    <span>Nájemník nastěhoval se v průběhu roku a zůstává: počáteční stavy z předávacího protokolu, konečné z vyúčtování správce (konec roku). Bydlel od začátku do části roku: počáteční stavy z vyúčtování správce (začátek roku), konečné z předávacího protokolu. Nastěhoval/odstěhoval se během roku: stavy z předávacího protokolu. Bydlel celý rok: stavy z vyúčtování správce. </span>
 </div>
 <div id="real-hint-6" class="real-hint">
-    <span>Pokud ve vyúčtování nákladů na vytápění správce používá jeden nebo několik koeficientů vyplníte pole s koeficientem/koeficienty. Koeficienty jsou obvykle uvedené v vypočtu spotřeby kalorimetrů a/nebo ve vypočtu spotřební složky topných nákladů.</span>
+    <span>Pokud ve vyúčtování nákladů na vytápění správce používá jeden nebo více koeficientů, vyplňte pole s tímto/těmito koeficienty. Koeficienty jsou obvykle uvedeny ve výpočtu spotřeby z kalorimetrů a/nebo ve výpočtu spotřební složky topných nákladů.</span>
 </div>
 <div id="real-hint-7" class="real-hint">
-    <span>Část nákladu na vytápění a ohřev teplé vody, která se vypočítavá na cely rok podle plochy jednotky. Tady zadejte částky za celý rok pro TUV a UT.</span>
+    <span>Zadejte zde roční částky pro TUV (teplou užitkovou vodu) a UT (vytápění), představující část nákladů na vytápění a ohřev teplé vody, vypočítané na celý rok podle plochy jednotky. Tyto údaje naleznete ve vyúčtování správce v sekci vypočtu nákladů na vytápění a teplou vodu.</span>
 </div>
 <div id="real-hint-8" class="real-hint">
-    <span>Část nákladu na vytápění a ohřev teplé vody, která se vypočítavá na základě aktuální spotřeby. Tady zadejte ceny za jednotku topení, a za 1m3 teplé nebo studené vody, které najdete ve vyúčtování správce.</span>
+    <span>Část nákladu na vytápění a ohřev teplé vody, která se vypočítavá na základě aktuální spotřeby. Zde uveďte ceny za jednotku topení a za 1 m³ teplé nebo studené vody. Tyto informace najdete ve vyúčtování od správce.</span>
 </div>
 <div id="real-hint-9" class="real-hint">
-    <span>Jedná se o náklady na studenou vodu, která byla ohřátá na teplou vodu. Ve většině případu cena je stejná jako u studené vody, ale může se stát , bude se o něco lišit. Ceny za 1m3 najdete ve vyúčtování správce.</span>
+    <span>Jedná se o náklady na studenou vodu, která byla ohřáta na teplou vodu. Ve většině případů je cena stejná jako cena studené vody, ale může se stát, že se bude mírně lišit. Ceny za 1 m³ najdete ve vyúčtování správce.</span>
 </div>
 <div id="real-hint-10" class="real-hint">
-    <span>V případě, že správce použil ve vyúčtování korigovanou spotřební složku – tzn. výše spotřební složky neodpovídá součinu spotřebovaných jednotek tepla a ceny jedné jednotky, zadejte celkovou výši korigované spotřební složky a celkovou spotřebu tepla.</span>
+    <span>Pokud správce ve vyúčtování použil korigovanou spotřební složku, což znamená, že výše spotřební složky neodpovídá součinu spotřebovaných jednotek tepla a ceny za jednu jednotku, zadejte celkovou výši této korigované spotřební složky a celkovou spotřebu tepla.</span>
 </div>
 <div id="real-hint-11" class="real-hint">
-    <span>V případě, jestli ještě nemáte finální vyúčtování správce za aktuální období, můžete ručně na základě dohody s nájemníkem upravit ceny paušálních nákladů a energií s ohledem na inflaci, popř. deflaci. Stačí u vybrané položky zadat procenta odhadovaného navýšení/snížení ceny.</span>
+    <span>Pokud ještě nemáte finální vyúčtování od správce za aktuální období, máte možnost ručně upravit ceny paušálních nákladů a energií na základě dohody s nájemníkem s přihlédnutím k inflaci nebo deflaci. U vybrané položky stačí zadat procenta odhadovaného navýšení nebo snížení ceny.</span>
 </div>

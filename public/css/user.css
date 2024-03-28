@@ -484,6 +484,16 @@ table{
     margin-bottom: 8%;
 }
 
+.property-profile-table .col-1 {
+    width: 30%;
+}
+
+.property-profile-table .icon_help {
+    display: unset;
+    margin-top: 0;
+}
+
+
 .tenant-profile-buttons a, .new-item-btn
 {
     text-decoration: none;
@@ -928,6 +938,7 @@ table{
     .property-profile-table {
         width: 90%;
     }
+
 
 
 }

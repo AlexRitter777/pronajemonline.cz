@@ -403,4 +403,4 @@
     </form>
 </div>
 
-<?php require_once APP . "/views/Short_hints/easyservices_hints.php"; ?>
+<?php require_once APP . "/views/Short_hints/services_hints.php"; ?>

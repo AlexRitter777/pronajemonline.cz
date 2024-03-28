@@ -1,5 +1,5 @@
 <svg style="display:none;">
-    <!--Иконка Help-->
+    <!--Help icon-->
     <symbol id="help" viewBox="0 0 24 24">
         <g>
             <path d="M0 0h24v24H0z" fill="none" />
@@ -135,5 +135,5 @@
     </form>
 </div>
 
-<?php require_once APP . "/views/Short_hints/easyservices_hints.php"; ?>
+<?php require_once APP . "/views/Short_hints/universal_hints.php"; ?>
 

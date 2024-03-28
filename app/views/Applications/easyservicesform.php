@@ -51,7 +51,7 @@
 
         <div class="text-help">
             <h3 class="h3-subtitle">Vyúčtování zpracováno za období:</h3>
-            <svg class="icon_help help-right-text" data-hint="#real-hint-3">
+            <svg class="icon_help help-right-text" data-hint="#real-hint-2">
                 <use xlink: href="#help"></use>
             </svg>
         </div>
@@ -67,7 +67,7 @@
 
         <div class="text-help">
             <label class="label_text" id="label_text">Vyberte náklad a zadejte částku *</label><br />
-            <svg class="icon_help help-right-text" data-hint="#real-hint-4">
+            <svg class="icon_help help-right-text" data-hint="#real-hint-3">
                 <use xlink: href="#help"></use>
             </svg>
         </div>

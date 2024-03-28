@@ -2,11 +2,11 @@
     <span>Např. Byt 3kk + parking; Atelier 1kk; číslo jednotky; podlaží apod. </span>
 </div>
 <div id="real-hint-2" class="real-hint">
-    <span>Zadejte období, za které potřebujete zpracovat vyúčtování. V případě, že období vyúčtování je stejné jako období ve faktuře za elektřinu, zadejte celou částku z faktury v pole „jiné náklady“.  Průměrné ceny za kWh a za měsíc nezadávejte.</span>
+    <span>Zadejte období, za které potřebujete zpracovat vyúčtování. Pokud je období vyúčtování totožné s obdobím ve faktuře za elektřinu, prosím, zadejte celkovou částku z faktury do pole „jiné náklady“. Průměrné ceny za kWh a měsíční ceny nezadávejte.</span>
 </div>
 <div id="real-hint-3" class="real-hint">
-    <span>Použijte stavy z faktury za elektřinu nebo z předávacího protokolu. </span>
+    <span>Použijte stavy elektroměru z faktury za elektřinu nebo z předávacího protokolu. </span>
 </div>
 <div id="real-hint-4" class="real-hint">
-    <span>Tady můžete zadat bud celou částku z faktury za elektřinu, pokud potřebujete ji celou přefakturovat na nájemníka. Nebo můžete toto pole použit na zadaní např. částky POZE, pokud ceny elektřiny používáte z ceníku, nikoliv průměrné z faktury.  </span>
+    <span>Tady můžete zadat buď celou částku z faktury za elektřinu, pokud je nutné celou sumu přefakturovat na nájemníka, nebo můžete toto pole využít pro zadání částky za 'POZE', v případě, že pro výpočet ceny elektřiny používáte ceník, nikoli průměrné ceny uvedené na faktuře.</span>
 </div>
