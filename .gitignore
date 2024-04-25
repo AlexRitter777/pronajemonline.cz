@@ -5,3 +5,4 @@ tmp/
 vendor/*
 !vendor/pronajemonline/
 .idea/
+config/init.php
