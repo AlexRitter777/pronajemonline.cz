@@ -50,7 +50,7 @@ class User extends AppModel
     {
 
 
-        EmailSender::sendEmail($email,'Pronajemonline.cz - Potvrzení registrace', 'user_register_confirmation', compact(null));
+        EmailSender::sendEmail($email,'Pronajemonline.cz - Potvrzení registrace', 'user_register_confirmation');
 
 
     }
@@ -58,7 +58,7 @@ class User extends AppModel
 
     public function sendResetPasswordConfirmation(string $email)
     {
-        EmailSender::sendEmail($email,'Pronajemonline.cz - Potvrzení změny hesla', 'user_passwordreset_confirmation', compact(null));
+        EmailSender::sendEmail($email,'Pronajemonline.cz - Potvrzení změny hesla', 'user_passwordreset_confirmation');
     }
 
 

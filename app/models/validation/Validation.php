@@ -1043,7 +1043,7 @@ class Validation extends AppModel {
      * @param string $name The attribute name to validate.
      */
     public function validateZero(string $name) {
-        if ($this->attributes[$name] < 0) {
+        if (!empty($this->attributes[$name]) && $this->attributes[$name] < 0) {
             $this->errors[$name] = "\"{$this->desc[$name]}\" nemůže mít zápornou hodnotu!";
         }
 
