@@ -268,7 +268,6 @@ class User extends AppModel
             return true;
         };
 
-
         $token = $_COOKIE['remember_me'] ?? null;
 
         if($token && $this->tokenIsValid($token, 'usertokens')) {
@@ -353,7 +352,7 @@ class User extends AppModel
             return null;
         }
 
-        return R::getAll("SELECT users.id, username
+        return R::getAll("SELECT users.id, username, email  
             FROM users
             INNER JOIN $table ON user_id = users.id
             WHERE selector = :selector AND
