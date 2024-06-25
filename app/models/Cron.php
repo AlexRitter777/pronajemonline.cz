@@ -74,7 +74,7 @@ class Cron
 
         }
 
-        $this->makeLogRecord($interval, $timeUnits, $recordsCount, $successfullySent);
+        $this->makeLogRecord($interval, $timeUnits, $recordsCount, $successfullySent, $finishDate);
 
     }
 
@@ -89,9 +89,9 @@ class Cron
      * @param int $successfullySent The number of reminder emails successfully sent to users.
      * @return void
      */
-    protected function makeLogRecord(int $interval, string $timeUnits, int $recordsCount, int $successfullySent): void
+    protected function makeLogRecord(int $interval, string $timeUnits, int $recordsCount, int $successfullySent, string $finishDate): void
     {
-        error_log("[" . date('Y-m-d H:i:s') . "] Interval, {$timeUnits}: {$interval} | Records found: {$recordsCount} | Successfully sent e-mails: {$successfullySent}\n============================\n", 3, ROOT . '/tmp/cron_finish_contract_rem.log');
+        error_log("[" . date('Y-m-d H:i:s') . "] Interval, {$timeUnits}: {$interval} | Records found: {$recordsCount} with contract finish date $finishDate | Successfully sent e-mails: {$successfullySent}\n============================\n", 3, ROOT . '/tmp/cron_finish_contract_rem.log');
 
     }
 }
