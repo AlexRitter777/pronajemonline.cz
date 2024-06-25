@@ -12,12 +12,13 @@ use RedBeanPHP\R;
 new ErrorHandler();
 
 //Create DB connection
-$db = require_once CONF . '/config_db.php';
-R::setup($db['dsn'], $db['user'], $db['pass']);
-if( !R::testConnection()){
-    throw new \Exception('No database connection', 500);
+if(!R::testConnection()) {
+    $db = require_once CONF . '/config_db.php';
+    R::setup($db['dsn'], $db['user'], $db['pass']);
+    if (!R::testConnection()) {
+        throw new \Exception('No database connection', 500);
+    }
 }
-
 //start cron function
 contractFinishCron();
 
