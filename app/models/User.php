@@ -266,7 +266,7 @@ class User extends AppModel
     {
         if (isset($_SESSION['user_id'])){
             return true;
-        };
+        }
 
         $token = $_COOKIE['remember_me'] ?? null;
 
@@ -277,6 +277,7 @@ class User extends AppModel
             if($user) {
                 return $this->logUserIn($user);
             }
+
 
         }
 

@@ -2,6 +2,8 @@
 
 namespace pronajem\base;
 
+use pronajem\App;
+
 /**
  * Abstract base controller class that orchestrates the application's response to user input,
  * directing the flow between the model and the view.
@@ -86,7 +88,15 @@ abstract class Controller
      */
     public function getView(){
 
-        $viewObject = new View($this->route, $this->meta, $this->layout, $this->view);
+        $container = App::$app->getProperty('container');
+
+        $viewObject = $container->make('pronajem\base\View', [
+           'route' => $this->route,
+           'meta' => $this->meta,
+           'layout' => $this->layout,
+           'view' => $this->view
+
+        ]);
 
         $viewObject->render($this->data);
 

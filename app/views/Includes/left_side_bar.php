@@ -12,7 +12,10 @@
         <li><a href="user/landlords" class="user-item-title">Pronajímatele</a></li>
         <li><a href="user/tenants" class="user-item-title">Nájemníci</a></li>
         <li><a href="user/properties" class="user-item-title">Nemovitosti</a></li>
-        <li><a href="user/admins" class="user-item-title">Správci</a></li>
+        <li><a href="user/admins" class="user-item-title">Správci</a>
+        <?php if(is_admin()):?>
+            <li><a href="admin/users" class="user-item-title">Uživatelé</a>
+        <?php endif;?>
         <li><a href="user/elsuppliers" class="user-item-title">Dodavatelé elektřiny</a></li>
         <li><a href="user/settings" class="user-item-title">Nastavení</a></li>
 

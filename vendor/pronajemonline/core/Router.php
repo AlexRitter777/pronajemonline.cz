@@ -90,7 +90,13 @@ class Router {
 
             // Check if the controller class exists
             if (class_exists($controller)){
-                $controllerObject = new $controller(self::$route);
+                // Get DI Container instance
+                $container = App::$app->getProperty('container');
+
+                //Create Controller objact
+                $controllerObject = $container->make($controller, [
+                    'route' => self::$route,
+                ]);
 
                 // Construct the action method name from the route
                 $action = self::lowerCamelCase(self::$route['action']) . 'Action';

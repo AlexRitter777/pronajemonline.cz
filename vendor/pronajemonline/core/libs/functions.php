@@ -55,4 +55,11 @@ function is_user_logged_in(): bool
 
 }
 
+function is_admin(){
+
+    $admin = new \app\models\Admin;
+    
+    return $admin->isUserAdmin();
+
+}
 
