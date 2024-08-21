@@ -3,6 +3,7 @@
 namespace pronajem;
 
 use DI\Container;
+use DI\ContainerBuilder;
 
 /**
  * Application main class responsible for initializing core components.
@@ -36,8 +37,12 @@ class App
         // Load and set application parameters.
         $this->getParams();
 
-        // Initialize and save DI Container to properties
-        $container = new Container();
+        // Initialize, configure and save DI Container to properties
+        $containerBuilder = new ContainerBuilder();
+        $definitions = require CONF . '/di-config.php';
+        $containerBuilder->addDefinitions($definitions);
+        $containerBuilder->useAttributes(true);
+        $container = $container = $containerBuilder->build();
         self::$app->setProperty('container', $container);
 
         // Set up error handling.

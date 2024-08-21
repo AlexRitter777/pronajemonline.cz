@@ -3,12 +3,21 @@
 namespace app\controllers\User;
 
 use app\controllers\AppController;
+use app\db_models\Admin;
 use app\models\Account;
+use DI\Attribute\Inject;
+use pronajem\libs\PaginationSetParams;
 use RedBeanPHP\R;
 use Exception;
 use RedBeanPHP\RedException\SQL;
 
 class AdminsController extends AppController {
+
+    #[Inject]
+    private Admin $admin;
+
+    #[Inject]
+    private PaginationSetParams $pagination;
 
 
     public function indexAction(){
@@ -23,9 +32,11 @@ class AdminsController extends AppController {
 
         $this->layout = 'account';
 
-        $admins = R::findAll('admin', 'user_id=?', [$userID]);
+        $admins = $this->admin->getAllRecordsWithPagination(8, $userID);
 
-        $this->set(compact('admins'));
+        $pagination = $this->pagination;
+
+        $this->set(compact('admins', 'pagination'));
 
     }
 
@@ -240,44 +251,6 @@ class AdminsController extends AppController {
         }
 
     }
-
-    /*public function savemodalAction(){
-
-        if (!is_user_logged_in()) {
-            redirect('/user/login');
-        }
-
-        $response = [];
-
-        $userID = $_SESSION['user_id'];
-
-        //check if it is an ajax request and data was sent in POST
-        if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
-            if (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-
-                $data = $_POST;
-                $account = new Account();
-                $formName = $account->getFormName();
-                $recordId = $account->saveData($formName, $data, $userID);
-                $newRecord = $account->getRecordById($recordId, $formName, $userID);
-                $response["{$formName}ID"] = $recordId;
-                $response["{$formName}Name"] = $newRecord->name;
-
-                echo json_encode($response);
-                die;
-
-            }
-
-            redirect('/user/account');
-        }
-
-        redirect('/user/account');
-
-
-    }*/
-
-
-
 
 
 

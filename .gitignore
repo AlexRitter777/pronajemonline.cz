@@ -6,3 +6,4 @@ vendor/*
 !vendor/pronajemonline/
 .idea/
 config/init.php
+.phpunit.result.cache

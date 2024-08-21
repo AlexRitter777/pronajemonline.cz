@@ -2,7 +2,10 @@
 
 namespace pronajem\base;
 
+use pronajem\App;
 use pronajem\Db;
+use pronajem\libs\Pagination;
+use pronajem\libs\PaginationSetParams;
 use RedBeanPHP\R as R;
 
 /**
@@ -14,14 +17,74 @@ use RedBeanPHP\R as R;
  */
 abstract class Model {
 
+    protected $table;
+
+    protected $pagination;
 
     /**
-     * Constructs the model and initializes the database connection.
+     * Constructs the model, initializes the database connection, and optionally sets up pagination.
+     *
+     * @param PaginationSetParams|null $pagination An optional instance of the PaginationSetParams class
+     *                                             to handle pagination settings. If null, pagination
+     *                                             will not be initialized.
      */
-    public function __construct() {
+    public function __construct(PaginationSetParams $pagination = null) {
         Db::instance();
 
+        if (!$this->table) {
+            $this->table = $this->inferTableName();
+        }
+
+        $this->pagination = $pagination;
+
     }
+
+    /**
+     * Infers the database table name from the class name using snake_case conversion.
+     *
+     * @return string The inferred table name in snake_case format.
+     */
+    private function inferTableName() : string
+    {
+        $className = (new \ReflectionClass($this))->getShortName();
+
+        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $className));
+
+    }
+
+
+
+    public function getAllRecordsWithPagination(int $perPage, int $userId = null)
+    {
+        if(!$this->pagination) throw new \Exception('Pagination Model is not found', 404);
+
+        if($userId){
+            $total = R::count($this->table, 'user_id=?', [$userId] );
+        } else {
+            $total = R::count($this->table);
+        }
+                               
+        //$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+        $this->pagination->setPaginationParams($perPage, $total);
+
+        $start = $this->pagination->getStart();
+
+
+       if($userId) {
+           return R::findAll($this->table, "user_id=? LIMIT ?, ?", [$userId, $start, $perPage]);
+       }
+       else {
+           return R::findAll($this->table, "LIMIT ?, ?", [$start, $perPage]);
+       }
+    }
+
+
+
+
+
+
+
 
 
     /**

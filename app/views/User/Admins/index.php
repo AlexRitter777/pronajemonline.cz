@@ -46,6 +46,12 @@
         <p class="empty-data">Nemáte uložené žádné správce!</p>
     <?php endif;?>
 
+    <div class="text-center">
+        <?php if($pagination->countPages > 1): ?>
+            <?= $pagination; ?>
+        <?php endif; ?>
+    </div>
+
     <div class="new-item-btn-container">
         <a class="new-item-btn" href="user/admins/add">Nový správce</a>
     </div>
