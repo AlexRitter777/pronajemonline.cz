@@ -14,9 +14,10 @@ use pronajem\Router;
 
 //Admin routes
 // These routes use the 'admin' prefix to direct requests to controllers in the 'admin' namespace.
-//Router::add('^admin$', ['controller' => 'Main', 'action' => 'index', 'prefix' => 'admin']);
+Router::add('^admin$', ['controller' => 'Main', 'action' => 'index', 'prefix' => 'admin']);
 Router::add('^admin/?(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$', ['prefix' => 'admin']);
 Router::add('^admin/users$', ['controller' => 'Users', 'action' => 'index', 'prefix' => 'admin']);
+Router::add('^admin/admins$', ['controller' => 'Admins', 'action' => 'index', 'prefix' => 'admin']);
 
 
 

@@ -63,3 +63,22 @@ function is_admin(){
 
 }
 
+
+/**
+ * Flash a message
+ *
+ * @param string $name
+ * @param string $message
+ * @param string $type (error, warning, info, success)
+ * @return void
+ */
+function flash(string $name = '', string $message = '', string $type = ''): void
+{
+    if ($name !== '' && $message !== '' && $type !== '') {
+        \pronajem\libs\FlashMessages::create_flash_message($name, $message, $type);
+    } elseif ($name !== '' && $message === '' && $type === '') {
+        \pronajem\libs\FlashMessages::display_flash_message($name);
+    } elseif ($name === '' && $message === '' && $type === '') {
+        \pronajem\libs\FlashMessages::display_all_flash_messages();
+    }
+}

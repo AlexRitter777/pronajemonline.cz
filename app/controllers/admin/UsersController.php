@@ -3,33 +3,55 @@
 namespace app\controllers\admin;
 
 use app\controllers\AppController;
+use app\db_models\Users;
+use DI\Attribute\Inject;
 use pronajem\libs\Pagination;
+use pronajem\libs\PaginationSetParams;
 use RedBeanPHP\R;
 
 class UsersController extends AppController
 {
+    #[Inject]
+    private Users $users;
+
+    #[Inject]
+    private PaginationSetParams $pagination;
 
 
-    public function indexAction(){
+    public function __construct($route)
+    {
+
+        parent::__construct($route);
+
+        $this->layout = 'admin';
 
         if(!is_admin()){
             throw new \Exception('Stránka nebyla nalezena', 404);
         }
 
+    }
+
+    public function indexAction(){
+
+
         $this->setMeta('Uživatelé', 'Seznam uživatelů');
 
-        $this->layout = 'account';
+        $users = $this->users->getAllRecordsWithPagination(5);
 
-        //set pagination
-        $total = R::count('users');
-        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $perpage = 10;
-        $pagination = new Pagination($page, $perpage, $total);
-        $start = $pagination->getStart();
+        $pagination = $this->pagination;
 
-        $users = R::findAll('users', "LIMIT $start, $perpage");
+        $this->set(compact('users',  'pagination'));
 
-        $this->set(compact('users',  'pagination', 'total'));
+    }
+
+
+    public function profileAction(){
+
+        $userId = $_GET['user_id'];
+
+        $user = $this->users->getOneRecordById($userId);
+
+        $this->set(compact('user'));
 
     }
 

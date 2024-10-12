@@ -12,7 +12,7 @@
 
 
 <div class="user-header">
-    <h3>Uživatelé</h3>
+    <h3>Članky</h3>
 </div>
 
 <div class="central-bar">
@@ -21,28 +21,32 @@
         <span class="burger__item">Menu</span>
     </button>
 
-    <?php if($users): ?>
+    <?php if($posts): ?>
         <table class="admin-titles account-index-table user-admins-table" border="0">
             <tr class="row-1">
-                <th class="col-1">Username</th>
-                <th class="col-2">E-mail</th>
-                <th class="col-3">Active</th>
+                <th class="col-1">Název</th>
+                <th class="col-2">Popis</th>
+                <th class="col-3">Vytvořen</th>
+                <th class="col-3">Změněn</th>
                 <th class="col-4"></th>
             </tr>
 
 
-            <?php foreach ($users as $user): ?>
-                <tr class="row-click" data-href="admin/users/profile?user_id=<?=$user->id;?>">
-                    <td class="col-1"><?= $user->username; ?></td>
-                    <td class="col-2"><?= $user->email; ?></td>
-                    <td class="col-3"><?= ($user->active) ? 'Yes' : 'No'; ?></td>
-                    <td class="col-4"><span class="item_delete_button" style="pointer-events: none; color: gray; border-color: gray" data-del="#del-conf">Smazat</span></td>
+            <?php foreach ($posts as $post): ?>
+                <tr class="row-click" data-href="admin/posts/edit?post_id=<?=$post->id;?>">
+                    <td class="col-1"><?= $post->title;?></td>
+                    <td class="col-2"><?= $post->description;?></td>
+                    <td class="col-3"><?= $post->created_at; ?></td>
+                    <td class="col-3"><?= $post->updated_at; ?></td>
+                    <td class="col-4"><span class="item_delete_button" data-del="#del-conf" style="pointer-events: none; color: gray; border-color: gray">Smazat</span></td>
                 </tr>
             <?php endforeach;?>
 
         </table>
-    <?php endif; ?>
 
+    <?php else:?>
+        <p class="empty-data">Nemáte uložené žádné članky!</p>
+    <?php endif;?>
 
     <div class="text-center">
         <?php if($pagination->countPages > 1): ?>
@@ -51,7 +55,7 @@
     </div>
 
     <div class="new-item-btn-container">
-        <a class="new-item-btn" style="pointer-events: none; color: gray; border-color: gray" href="admin/users/add">Nový uživatel</a>
+        <a class="new-item-btn" href="admin/posts/create">Nový članek</a>
     </div>
 </div>
 
@@ -62,3 +66,4 @@
         <div><span class="modal_cancel_btn">Storno</span></div>
     </div>
 </div>
+

@@ -42,6 +42,7 @@ return [
 
     // Layout includes configuration for different view contexts
     'includes' => [
+        'admin' => ['admin_header','footer','admin_side_bar'],
         'account' => ['header','footer','left_side_bar'],
         'account_form' => ['header','footer','left_side_bar'],
         'account_form_new' => ['header','footer','left_side_bar'],

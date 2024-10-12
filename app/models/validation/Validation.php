@@ -151,7 +151,13 @@ class Validation extends AppModel {
         'tenant_address' => 'Adresa nájemníka',
         'tenant_phone_number' => 'Telefonní číslo nájemníka',
         'tenant_email' => 'E-mailová adresa nájemníka',
-        'tenant_account' => 'Číslo účtu nájemníka'
+        'tenant_account' => 'Číslo účtu nájemníka',
+
+        //New Post
+        'post_title' => 'Název članku',
+        'post_description' => 'Popis članlku',
+        'post_content' => 'Obsah članku'
+
 
 
 
@@ -969,6 +975,26 @@ class Validation extends AppModel {
             $this->data['success'] = true;
         }
 
+    }
+
+    public function validatePost(){
+        $this->validateValue('post_title');
+        $this->validateLength('post_title', 80);
+        $this->validateChars('post_title');
+
+        $this->validateValue('post_description');
+        $this->validateLength('post_description', 150);
+        $this->validateChars('post_description');
+
+        $this->validateValue('post_content');
+
+
+        if ($this->errors) {
+            $this->data['errors'] = $this->errors;
+            $this->data['success'] = false;
+        } else {
+            $this->data['success'] = true;
+        }
     }
 
 

@@ -12,7 +12,7 @@ class ValidationWrapper {
      * being the error message associated with that field. This array is reset each time
      * getErrors is called, ensuring that only relevant errors are returned for each validation attempt.
      */
-    private static $errors = [];
+    //private static $errors = [];
 
 
     /**
@@ -36,12 +36,20 @@ class ValidationWrapper {
         }
 
         $validation->load($data);
+
+
         $validation->$validationMethod();
 
         if(!$validation->data['success']){
             if($saveErrors) {
-                self::$errors = $validation->data['errors'];
+                $_SESSION['errors'] = $validation->data['errors'];
+
+                foreach ($data as $key => $value){
+                    $_SESSION['old_data'][$key] = $value;
+                }
+
             }
+
             return false;
         }
 
@@ -49,13 +57,35 @@ class ValidationWrapper {
 
     }
 
+
+
+
     /**
      * Returns errors and clears the stored errors.
      */
-    public static function getErrors(): array {
-        $result =  self::$errors;
-        self::$errors = [];
+    public static function getValidationResult() {
+
+        $result = [];
+
+        if(isset($_SESSION['errors'])){
+
+            $result['errors'] = $_SESSION['errors'];
+            unset($_SESSION['errors']);
+
+            if(isset($_SESSION['old_data'])){
+                foreach ($_SESSION['old_data'] as $key => $value){
+                    $result['old_data'][$key] = $value;
+                }
+                unset($_SESSION['old_data']);
+            }
+
         return $result;
+
+        }
+
+        return false;
+
+
     }
 
 

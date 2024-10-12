@@ -4,6 +4,6 @@
     </div>
 
 
-<p style="font-size: 18px; font-weight: 600"> <?= $_SESSION['account_error'];?></p>
+    <p style="font-size: 18px; font-weight: 600"><?= $error; ?></p>
 
 </div>

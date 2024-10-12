@@ -14,11 +14,16 @@ class Admin
     public function isUserAdmin() : bool
     {
 
-        $userId =  $_SESSION['user_id'];
+        if(!isset($_SESSION['user_id'])){
 
-        if(!$userId) return false;
+            return false;
+
+        }
+
+        $userId = $_SESSION['user_id'];
 
         $user = R::findOne( 'users', ' id = ? ', [ $userId ] );
+
 
         return (bool)$user->is_admin;
 

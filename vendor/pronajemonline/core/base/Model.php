@@ -60,12 +60,12 @@ abstract class Model {
 
         if($userId){
             $total = R::count($this->table, 'user_id=?', [$userId] );
-        } else {
+        } elseif(is_admin()) {
             $total = R::count($this->table);
+        } else {
+            throw new \Exception('Access dinided', 403);
         }
                                
-        //$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-
         $this->pagination->setPaginationParams($perPage, $total);
 
         $start = $this->pagination->getStart();
@@ -74,15 +74,51 @@ abstract class Model {
        if($userId) {
            return R::findAll($this->table, "user_id=? LIMIT ?, ?", [$userId, $start, $perPage]);
        }
-       else {
+       elseif(is_admin()) {
            return R::findAll($this->table, "LIMIT ?, ?", [$start, $perPage]);
+       } else {
+           throw new \Exception('Access dinided', 403);
        }
     }
 
 
+    public function getOneRecordById(string $recordId, int $userId = null) {
 
+        if($userId) {
+            return R::findOne($this->table, 'id=? AND user_id=?',[$recordId, $userId]);
+        } elseif (is_admin()){
+            return R::findOne($this->table, 'id=?',[$recordId]);
+        }else {
+            throw new \Exception('Access dinided', 403);
+        }
 
+    }
 
+    public function getAllRecordsByColumn(string $columnName, string $columnValue) {
+
+        return R::findAll($this->table, "$columnName=?", [$columnValue]);
+
+    }
+
+    public function saveAll($data) {
+        $bean = R::dispense($this->table);
+        foreach ($data as $k => $v){
+
+            $bean->$k = $v;
+
+        }
+        return R::store($bean);
+    }
+
+    
+    public function upadateAll($data, $bean) {
+        foreach ($data as $k => $v){
+
+            $bean->$k = $v;
+
+        }
+        return R::store($bean);
+    }
 
 
 

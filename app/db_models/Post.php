@@ -3,11 +3,11 @@
 namespace app\db_models;
 
 use app\models\AppModel;
-use pronajem\libs\Pagination;
 use pronajem\libs\PaginationSetParams;
 
-class Property extends AppModel
+class Post extends AppModel
 {
+
 
     public function __construct(PaginationSetParams $pagination)
     {
@@ -17,7 +17,4 @@ class Property extends AppModel
         parent::__construct($pagination);
 
     }
-
-
-
 }

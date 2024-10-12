@@ -130,6 +130,11 @@ class AppModel extends Model {
         'tenant_phone_number' => '',
         'tenant_account' => '',
 
+        //Posts
+        'post_title' => '',
+        'post_description' => '',
+        'post_content' => ''
+
     ];
 
 
