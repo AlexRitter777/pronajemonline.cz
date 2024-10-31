@@ -40,7 +40,7 @@
         </div>
 
         <div class="property-add-buttons">
-            <input type="submit" id="profile-submit" value="Uložit">
+            <input type="submit" class="post-submit-button" id="profile-submit" value="Uložit">
             <a href="admin/posts">Zrušit</a>
         </div>
     </form>

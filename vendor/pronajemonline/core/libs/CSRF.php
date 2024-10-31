@@ -6,7 +6,7 @@ namespace pronajem\libs;
 class CSRF
 {
 
-    public static function crateCsrfInput()
+    public static function createCsrfInput()
     {
 
         $_SESSION['token'] = md5(uniqid(mt_rand(), true));
@@ -18,13 +18,16 @@ class CSRF
     }
 
 
-    public static function checkCsrfToken(string $token)
+    public static function checkCsrfToken(string $token, bool $ajax = false)
     {
 
         if (!$token || $token !== $_SESSION['token']) {
             return false;
         }
-        unset($_SESSION['token']);
+
+        if(!$ajax){
+            unset($_SESSION['token']);
+        }
 
         return true;
     }

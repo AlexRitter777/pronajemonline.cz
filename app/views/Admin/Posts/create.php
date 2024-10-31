@@ -8,7 +8,7 @@
         <span class="burger__item">Menu</span>
     </button>
 
-    <form method="post" data-id="" name="property" action="admin/posts/save">
+    <form method="post" data-id="" name="property" id="post-form" action="admin/posts/save">
         <div class="post-card">
 
             <div class="">
@@ -38,7 +38,7 @@
         </div>
 
         <div class="property-add-buttons">
-            <input type="submit" id="profile-submit" value="Uložit">
+            <input type="submit" id="profile-submit" class="post-submit-button" value="Uložit">
             <a href="admin/posts">Zrušit</a>
         </div>
     </form>

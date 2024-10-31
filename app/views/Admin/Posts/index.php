@@ -21,6 +21,9 @@
         <span class="burger__item">Menu</span>
     </button>
 
+    <?php flash('success');?>
+
+
     <?php if($posts): ?>
         <table class="admin-titles account-index-table user-admins-table" border="0">
             <tr class="row-1">

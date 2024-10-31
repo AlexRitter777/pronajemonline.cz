@@ -82,3 +82,8 @@ function flash(string $name = '', string $message = '', string $type = ''): void
         \pronajem\libs\FlashMessages::display_all_flash_messages();
     }
 }
+
+
+function logErrors($message = '', $file = '', $line = ''){
+    error_log("[" . date('Y-m-d H:i:s') . "] Error: {$message} | File: {$file} | Line: {$line}\n============================\n", 3, ROOT . '/tmp/errors.log');
+}

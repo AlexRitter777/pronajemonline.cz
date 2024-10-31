@@ -1603,6 +1603,13 @@ input, select, textarea {
   border: 1px solid #c3e6cb;
 }
 
+
+/*-------------------------------Summernote-----------------------------------*/
+.note-modal-content {
+  margin-top: 120px!important;
+}
+
+
 /*-------------------------------Responsive design-------------------------------*/
 
 
