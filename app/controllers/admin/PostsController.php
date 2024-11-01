@@ -228,115 +228,98 @@ class PostsController extends AppController
      */
     public function saveimageAction()
     {
+        $this->validateHttpRequest();
 
-        if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
-            if (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-
-                if(!CSRF::checkCsrfToken($_POST['token'], true)){
-                    http_response_code(403);
-                    echo json_encode(['error' => 'Forbidden.']);
-                    exit();
-                }
-
-                $uploadDir = WWW . '/uploads/';
-                $defaultImage = 'img/default-blog-image.webp';
-                $response = [];
-
-                // Create the upload directory if it does not exist
-                if (!is_dir($uploadDir) && !mkdir($uploadDir, 0777, true)) {
-                    http_response_code(500);
-                    echo json_encode(['error' => 'Failed to create upload directory.']);
-                    exit();
-                }
-
-                if(!empty($_FILES)) {
-                    foreach ($_FILES as $index => $file) {
-                        $fileName = basename($file['name']);
-                        $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
-
-                        // Add a unique identifier to the file name to avoid overwrites
-                        $uniqueFileName = pathinfo($fileName, PATHINFO_FILENAME) . '_' . uniqid() . '.' . $fileExtension;
-                        $uploadFilePath = $uploadDir . $uniqueFileName;
-
-                        // Move the uploaded file to the target directory
-                        if (move_uploaded_file($file['tmp_name'], $uploadFilePath)) {
-                            $relativePath = strstr($uploadFilePath, 'uploads');
-                            $response[$index] = $relativePath;
-                        } else {
-                            $response[$index] = $defaultImage;
-                        }
-                    }
-                    echo json_encode($response);
-                    exit();
-                }
-                http_response_code(500);
-                echo json_encode(['error' => 'Data has not received.']);
-                exit();
-
-            }
-            http_response_code(404);
-            echo json_encode(['error' => 'Page is not found']);
+        if(!CSRF::checkCsrfToken($_POST['token'], true)){
+            http_response_code(403);
+            echo json_encode(['error' => 'Forbidden.']);
             exit();
         }
 
-        throw new Exception('Page is not found', 404);
+        $uploadDir = WWW . '/uploads/';
+        $defaultImage = 'img/default-blog-image.webp';
+        $response = [];
+
+        // Create the upload directory if it does not exist
+        if (!is_dir($uploadDir) && !mkdir($uploadDir, 0777, true)) {
+            http_response_code(500);
+            echo json_encode(['error' => 'Failed to create upload directory.']);
+            exit();
+        }
+
+        if(!empty($_FILES)) {
+            foreach ($_FILES as $index => $file) {
+                $fileName = basename($file['name']);
+                $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+
+                // Add a unique identifier to the file name to avoid overwrites
+                $uniqueFileName = pathinfo($fileName, PATHINFO_FILENAME) . '_' . uniqid() . '.' . $fileExtension;
+                $uploadFilePath = $uploadDir . $uniqueFileName;
+
+                // Move the uploaded file to the target directory
+                if (move_uploaded_file($file['tmp_name'], $uploadFilePath)) {
+                    $relativePath = strstr($uploadFilePath, 'uploads');
+                    $response[$index] = $relativePath;
+                } else {
+                    $response[$index] = $defaultImage;
+                }
+            }
+            echo json_encode($response);
+            exit();
+        }
+        http_response_code(500);
+        echo json_encode(['error' => 'Data has not received.']);
+        exit();
+
     }
 
 
+    /**
+     * Deletes specified images from the server based on provided links.
+     *
+     * @throws Exception If the HTTP request or CSRF token is invalid.
+     * @return void JSON response containing file paths or error messages.
+     */
     public function deleteImagesAction(){
 
-        if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
-            if (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $this->validateHttpRequest();
 
-                if(!CSRF::checkCsrfToken($_POST['token'], true)){
-                    http_response_code(403);
-                    echo json_encode(['error' => 'Forbidden.']);
-                    exit();
-                }
-
-                $response = [];
-
-                if(!empty($_POST['links'])){
-
-                    $links = $_POST['links'];
-                    foreach ($links as $link){
-
-                        $imageFile = WWW . '/' . $link;
-
-                        if(file_exists($imageFile)) {
-
-                            try {
-                                if (!unlink($imageFile)) {
-                                    throw new Exception("Image $link was not deleted");
-                                }
-                            }catch (Exception $e){
-                                logErrors($e->getMessage(), $e->getFile(), $e->getLine());
-                            }
-
-                        }
-                    }
-
-                    if(!empty($errors)){
-                        $response['success'] = false;
-                        echo json_encode($response);
-                        exit();
-                    }
-
-                    $response['success'] = true;
-                    echo json_encode($response);
-                    exit();
-                }
-
-                echo json_encode(['success' => 'true', 'message' => 'No images were deleted.']);
-                exit();
-
-
-            }
-            http_response_code(404);
-            echo json_encode(['error' => 'Page is not found']);
+        if(!CSRF::checkCsrfToken($_POST['token'], true)){
+            http_response_code(403);
+            echo json_encode(['error' => 'Forbidden.']);
             exit();
         }
-        throw new Exception('Page is not found', 404);
+
+        $errors = 0;
+
+        if(!empty($_POST['links'])){
+
+            $links = $_POST['links'];
+            foreach ($links as $link){
+                $imageFile = WWW . '/' . $link;
+                if(file_exists($imageFile)) {
+                    try {
+                        if (!unlink($imageFile)) {
+                            $errors++;
+                            throw new Exception("Image $link was not deleted");
+                        }
+                    }catch (Exception $e){
+                        logErrors($e->getMessage(), $e->getFile(), $e->getLine());
+                    }
+                }
+            }
+
+            if($errors>0){
+                echo json_encode(['success' => 'true', 'message' => 'Some images were not deleted.']);
+                exit();
+            }
+
+            echo json_encode(['success' => 'true', 'message' => 'All images were deleted.']);
+            exit();
+        }
+
+        echo json_encode(['success' => 'true', 'message' => 'Link were not received. No images were deleted.']);
+        exit();
 
     }
 

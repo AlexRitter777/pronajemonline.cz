@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Account;
 use app\models\Applications;
 use app\models\AppModel;
+use Exception;
 use pronajem\base\Controller;
 use pronajem\libs\PdfCreator;
 
@@ -178,7 +179,22 @@ class AppController extends Controller {
 
     }
 
-
+    /**
+     * Validates if the HTTP request is an AJAX request with the specified method.
+     *
+     * @param string $method
+     * @throws Exception
+     */
+    protected function validateHttpRequest(string $method = 'POST'){
+        if(!isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
+            throw new Exception('Page is not found', 404);
+        }
+        if(strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest' && $_SERVER['REQUEST_METHOD'] !== $method){
+           http_response_code(404);
+           echo json_encode(['error' => 'Page is not found']);
+           exit();
+        }
+    }
 
 
 
