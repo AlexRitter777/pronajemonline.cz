@@ -13,11 +13,12 @@
         <li><a href="admin/tenants" class="user-item-title" style="pointer-events: none; color: gray; border-color: gray">Nájemníci</a></li>
         <li><a href="admin/properties" class="user-item-title" style="pointer-events: none; color: gray; border-color: gray">Nemovitosti</a></li>
         <li><a href="admin/admins" class="user-item-title">Správci</a>
+        <li><a href="admin/elsuppliers" class="user-item-title" style="pointer-events: none; color: gray; border-color: gray">Dodavatelé elektřiny</a></li>
         <li><a href="admin/orders" class="user-item-title">Objednávky</a>
         <li><a href="admin/users" class="user-item-title">Uživatelé</a>
         <li><a href="admin/posts" class="user-item-title">Članky</a>
+        <li><a href="admin/categories" class="user-item-title">Kategorie</a>
         <li><a href="admin/upload" class="user-item-title">Upload</a>
-        <li><a href="admin/elsuppliers" class="user-item-title" style="pointer-events: none; color: gray; border-color: gray">Dodavatelé elektřiny</a></li>
         <li><a href="admin/settings" class="user-item-title">Nastavení</a></li>
 
     </ul>

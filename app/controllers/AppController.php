@@ -196,6 +196,12 @@ class AppController extends Controller {
         }
     }
 
+    protected function showRecordNotFoundError($recordType, $isAdmin = false){
+        $user = $isAdmin ? 'admin' : 'user';
+        $_SESSION[$user . '_error'] = ucfirst($recordType) . 'nebyl/nebyla nalezen!';
+        redirect('/' . $isAdmin . '/error');
+    }
+
 
 
 }

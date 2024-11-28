@@ -10,6 +10,7 @@ class ErrorController extends AppController
     public function indexAction(){
         $this->layout = 'admin';
 
+
         if(!is_admin()){
             throw new \Exception('Stránka nebyla nalezena', 404);
         }

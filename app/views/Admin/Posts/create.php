@@ -27,9 +27,9 @@
         </div>
 
 
-        <div class="errors_field errors_field_table">
+        <div class="errors_field errors_field_table ">
             <?php if(!empty($errors)): ?>
-                <ul class="errors" id="errors">
+                <ul class="errors scroll-message" id="errors">
                     <?php foreach ($errors as $key => $error): ?>
                         <li class="er"><?=$error;?></li>
                     <?php endforeach;?>

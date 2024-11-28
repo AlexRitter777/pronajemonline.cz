@@ -25,13 +25,13 @@
 
 
     <?php if($posts): ?>
-        <table class="admin-titles account-index-table user-admins-table" border="0">
+        <table class="account-index-table admin-posts-table" border="0">
             <tr class="row-1">
                 <th class="col-1">Název</th>
                 <th class="col-2">Popis</th>
                 <th class="col-3">Vytvořen</th>
-                <th class="col-3">Změněn</th>
-                <th class="col-4"></th>
+                <th class="col-4">Změněn</th>
+                <th class="col-5"></th>
             </tr>
 
 
@@ -40,8 +40,8 @@
                     <td class="col-1"><?= $post->title;?></td>
                     <td class="col-2"><?= $post->description;?></td>
                     <td class="col-3"><?= $post->created_at; ?></td>
-                    <td class="col-3"><?= $post->updated_at; ?></td>
-                    <td class="col-4"><span class="item_delete_button" data-del="#del-conf" style="pointer-events: none; color: gray; border-color: gray">Smazat</span></td>
+                    <td class="col-4"><?= $post->updated_at; ?></td>
+                    <td class="col-5"><span class="item_delete_button" data-del="#del-conf">Smazat</span></td>
                 </tr>
             <?php endforeach;?>
 
@@ -65,8 +65,13 @@
 
 <div id="del-conf" class="modal_del_confirmation">
     <div class="small_modal_wrapper">
-        <div><span class="modal_confirm_btn" data-href="user/admins/profile-delete?admin_id=">Smazat</span></div>
-        <div><span class="modal_cancel_btn">Storno</span></div>
+        <form action="" class="item_delete_form" method="post">
+            <?= $tokenInput; ?>
+            <input type="submit" class="index_delete_btn"  value="Smazat">
+        </form>
+        <div>
+            <span class="modal_cancel_btn">Storno</span>
+        </div>
     </div>
 </div>
 

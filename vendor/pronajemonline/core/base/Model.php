@@ -77,7 +77,7 @@ abstract class Model {
        elseif(is_admin()) {
            return R::findAll($this->table, "LIMIT ?, ?", [$start, $perPage]);
        } else {
-           throw new \Exception('Access dinided', 403);
+           throw new \Exception('Access dinied', 403);
        }
     }
 
@@ -86,15 +86,49 @@ abstract class Model {
 
         if($userId) {
             return R::findOne($this->table, 'id=? AND user_id=?',[$recordId, $userId]);
-        } elseif (is_admin()){
-            return R::findOne($this->table, 'id=?',[$recordId]);
-        }else {
-            throw new \Exception('Access dinided', 403);
         }
+
+        if(is_admin()){
+            return R::findOne($this->table, 'id=?',[$recordId]);
+        }
+
+        throw new \Exception('Access dinied', 403);
 
     }
 
+
+
+    public function getOneRecordBySlug(string $slug, int $userId = null) {
+
+        if(!$this->checkIfColumnExists($this->table, 'slug')) {
+            throw new \Exception('Column "Slug" does not exists in table' . $this->table);
+        }
+
+        if($userId) {
+            return R::findOne($this->table, 'slug=? AND user_id=?',[$slug, $userId]);
+        }
+
+        if(is_admin()){
+            return R::findOne($this->table, 'slug=?',[$slug]);
+        }
+
+        throw new \Exception('Access dinied', 403);
+    }
+
+
+
+    private function checkIfColumnExists(string $table, string $column) : bool {
+        $columns = R::inspect($table);
+        return array_key_exists($column, $columns);
+    }
+
+
+
     public function getAllRecordsByColumn(string $columnName, string $columnValue) {
+
+        if(!$this->checkIfColumnExists($this->table, $columnName)) {
+            throw new \Exception("Column $columnName does not exists");
+        }
 
         return R::findAll($this->table, "$columnName=?", [$columnValue]);
 
@@ -120,7 +154,16 @@ abstract class Model {
         return R::store($bean);
     }
 
+    public function deleteOneRecordbyId(string $recordId){
 
+        $record = $this->getOneRecordById($recordId);
+        if(!$record) {
+            return false;
+        }
+        R::trash($record);
+        return true;
+
+    }
 
 
     /**

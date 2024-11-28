@@ -988,7 +988,7 @@ $(document).ready(function () {
 
         })
 
-            $(window).on("click", function(e){
+            $(window).on("click", function(){
                 $('.modal_del_confirmation').fadeOut();
             })
 
@@ -996,18 +996,29 @@ $(document).ready(function () {
                 e.stopPropagation();
             })
 
-            $('.modal_cancel_btn').on('click', function (e){
+            $('.modal_cancel_btn').on('click', function (){
                 $('.modal_del_confirmation').fadeOut();
             })
 
             $('.modal_confirm_btn').on('click', function (e){
                 var id = hrefId.substring(hrefId.indexOf("=") + 1);
-                console.log(id);
+                //console.log(id);
                 var fullPath = $(this).data('href') + id;
-                console.log(fullPath);
+                //console.log(fullPath);
                 window.location = fullPath;
 
             })
+
+            //for forms with token
+            $('form[class=item_delete_form]').on('submit', function (e){
+                e.preventDefault();
+                let id = hrefId.substring(hrefId.indexOf("=") + 1);
+                let form = this;
+                let $form = $(form);
+                $form.attr('action', `admin/posts/delete?post_id=${id}`).off('submit').submit();
+            })
+
+
 
     })
 

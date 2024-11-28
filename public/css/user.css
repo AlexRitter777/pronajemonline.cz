@@ -329,7 +329,8 @@ table{
 }
 
 .modal_confirm_btn:hover, .modal_cancel_btn:hover,
-.modal_confirm_btn_ajax:hover, .modal_cancel_btn_ajax:hover{
+.modal_confirm_btn_ajax:hover, .modal_cancel_btn_ajax:hover,
+.index_delete_btn:hover {
 
     cursor: pointer;
     text-decoration: underline;
@@ -850,6 +851,45 @@ table{
 .change-password-table .col-1 {
     width: 30%;
 }
+
+
+/*------------------------Admin Posts page--------------------------------*/
+
+.admin-posts-table .col-1 {
+    width: 25%;
+
+}
+
+.admin-posts-table .col-2 {
+    width: 49%;
+
+}
+
+.admin-posts-table .col-3 {
+    width: 9%;
+}
+
+.admin-posts-table .col-4 {
+    width: 9%;
+}
+
+.admin-posts-table .col-5 {
+    width: 8%;
+    text-align: right;
+}
+
+.index_delete_btn{
+    border: none;
+    background-color: unset;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    height: unset;
+    color: #23558C;
+    font-weight: 600;
+}
+
+
 
 
 /*-------------------------------Responsive design-------------------------------*/

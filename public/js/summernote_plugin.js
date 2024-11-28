@@ -6,7 +6,7 @@
  *              Includes CSRF protection and handles various server responses.
  *
  * Author: Alexej Bogačev (RAIN WOLF s.r.o.)
- * Version: 1.1.0
+ * Version: 1.1.1
  * License: MIT
  *
  * Features:
@@ -133,9 +133,13 @@ $(function () {
             }
         }
 
-        // Force update editor content to ensure all changes are saved
+        // Force update editor content to ensure all changes are saved or clear editor contents from empty tags
         const editorContent = $('#postContent').summernote('code');
-        $('#postContent').summernote('code', editorContent);
+        if(editorContent !== '<p><br></p>') {
+            $('#postContent').summernote('code', editorContent);
+        }else {
+            $('#postContent').summernote('code', '');
+        }
 
         this.submit(); // Submit the form after all async operations
 

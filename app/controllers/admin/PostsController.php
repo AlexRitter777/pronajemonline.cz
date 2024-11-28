@@ -9,7 +9,7 @@ use DI\Attribute\Inject;
 use Exception;
 use pronajem\libs\CSRF;
 use pronajem\libs\PaginationSetParams;
-use URLify;
+use pronajem\libs\Slugger;
 
 class PostsController extends AppController
 {
@@ -19,6 +19,9 @@ class PostsController extends AppController
 
     #[Inject]
     private PaginationSetParams $pagination;
+
+    #[Inject]
+    private Slugger $slugger;
 
 
     public function __construct($route)
@@ -40,11 +43,13 @@ class PostsController extends AppController
 
         $this->setMeta('Sprava članků', 'Sprava članků');
 
-        $posts = $this->post->getAllRecordsWithPagination(8);
+        $posts = $this->post->getAllRecordsWithPagination(10);
 
         $pagination = $this->pagination;
 
-        $this->set(compact('posts', 'pagination'));
+        $tokenInput = CSRF::createCsrfInput();
+
+        $this->set(compact('posts', 'pagination', 'tokenInput'));
 
 
     }
@@ -53,13 +58,11 @@ class PostsController extends AppController
     {
 
         if (!isset($_GET['post_id'])) {
-
             redirect('admin/posts');
         }
 
         $errors = null;
         $oldData = null;
-
         $postId = $_GET['post_id'];
 
         $validationResult = ValidationWrapper::getValidationResult();
@@ -71,12 +74,13 @@ class PostsController extends AppController
 
         $post = $this->post->getOneRecordById($postId);
 
-        if (!$post) throw new \Exception('Post has not found!', 404);
+        if(!$post){
+            $this->showRecordNotFoundError('članek', true);
+        }
 
         $tokenInput = CSRF::createCsrfInput();
 
         $this->setMeta($post->title, 'Editace članků');
-
         $this->set(compact('post', 'errors', 'oldData', 'tokenInput'));
 
     }
@@ -84,19 +88,20 @@ class PostsController extends AppController
     public function updateAction()
     {
 
-        if (!isset($_GET['post_id'])) {
+        if (empty($_POST['token']) || !CSRF::checkCsrfToken($_POST['token'])) {
+            throw new Exception('Method Not Allowed', 405);
+        }
 
+        if (!isset($_GET['post_id'])) {
             redirect('admin/posts');
         }
 
         $postId = $_GET['post_id'];
 
-
         if (
             !isset($_POST['post_title']) ||
             !isset($_POST['post_description']) ||
-            !isset($_POST['post_content']) ||
-            !isset($_POST['token'])
+            !isset($_POST['post_content'])
         ) {
             redirect('admin/posts');
         }
@@ -104,11 +109,6 @@ class PostsController extends AppController
         $postTitle = $_POST['post_title'];
         $postDescription = $_POST['post_description'];
         $postContent = $_POST['post_content'];
-        $token = $_POST['token'];
-
-        if (!CSRF::checkCsrfToken($token)) {
-            throw new Exception('Method not allowed', 405);
-        };
 
         $dataForValidation = [
             'post_title' => $postTitle,
@@ -117,16 +117,12 @@ class PostsController extends AppController
         ];
 
         if (!ValidationWrapper::validate('validatePost', $dataForValidation, true, true)) {
-
             redirect();
-
         }
 
         $post = $this->post->getOneRecordById($postId);
 
         if ($post) {
-
-
             if (!$this->post->upadateAll(['title' => $postTitle,
                 'description' => $postDescription,
                 'content' => $postContent,
@@ -137,11 +133,8 @@ class PostsController extends AppController
             }
             flash('success', 'Post was updated!', 'success');
             redirect('edit?post_id=' . $postId);
-
         } else {
-            //new error page for admin
-            $_SESSION['admin_error'] = 'Nepodařilo se najít članek!';
-            redirect('/admin/error');
+            $this->showRecordNotFoundError('članek', true);
         }
 
     }
@@ -165,12 +158,14 @@ class PostsController extends AppController
 
     public function saveAction()
     {
+        if (empty($_POST['token']) || !CSRF::checkCsrfToken($_POST['token'])) {
+            throw new Exception('Method Not Allowed', 405);
+        }
 
         if (
             !isset($_POST['post_title']) ||
             !isset($_POST['post_description']) ||
-            !isset($_POST['post_content']) ||
-            !isset($_POST['token'])
+            !isset($_POST['post_content'])
         ) {
             redirect('admin/posts');
         }
@@ -178,12 +173,7 @@ class PostsController extends AppController
         $postTitle = $_POST['post_title'];
         $postDescription = $_POST['post_description'];
         $postContent = $_POST['post_content'];
-        $token = $_POST['token'];
 
-
-        if (!CSRF::checkCsrfToken($token)) {
-            throw new Exception('Method not allowed', 405);
-        };
 
         $dataForValidation = [
             'post_title' => $postTitle,
@@ -192,12 +182,10 @@ class PostsController extends AppController
         ];
 
         if (!ValidationWrapper::validate('validatePost', $dataForValidation, true, true)) {
-
             redirect();
-
         }
 
-        $postSlug = URLify::slug($postTitle);
+        $postSlug = $this->slugger->createSlug($postTitle, Post::class);
 
         if (!$this->post->saveAll([
             'title' => $postTitle,
@@ -214,6 +202,34 @@ class PostsController extends AppController
         redirect('/admin/posts');
 
     }
+
+
+    public function deleteAction(){
+
+        if (empty($_POST['token']) || !CSRF::checkCsrfToken($_POST['token'])) {
+            throw new Exception('Method Not Allowed', 405);
+        }
+
+        if (!isset($_GET['post_id']))
+        {
+            redirect('admin/posts');
+        }
+
+        $postId = $_GET['post_id'];
+
+        $deleteResult = $this->post->deleteOneRecordbyId($postId);
+
+        if ($deleteResult) {
+            flash('success', 'Post was deleted!', 'success');
+            redirect();
+        } else {
+            $this->showRecordNotFoundError('članek', true);
+        }
+
+
+    }
+
+
 
     /**
      * Handles the image upload process via AJAX.

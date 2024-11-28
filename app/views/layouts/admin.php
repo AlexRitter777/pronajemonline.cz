@@ -21,6 +21,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest"></script>
+
 
 </head>
 
@@ -44,7 +46,7 @@
 <script src="js/hamburger.js"></script>
 <script src="js/calculations.js" type="module"></script>
 <script src="js/summernote_plugin.js" type="module"></script>
-
+<script src="js/scroller.js" type="module"></script>
 
 </body>
 </html>
