@@ -3,6 +3,7 @@
 namespace app\controllers\admin;
 
 use app\controllers\AppController;
+use app\db_models\Category;
 use app\db_models\Post;
 use app\models\validation\ValidationWrapper;
 use DI\Attribute\Inject;
@@ -22,6 +23,10 @@ class PostsController extends AppController
 
     #[Inject]
     private Slugger $slugger;
+
+    #[Inject]
+    private Category $category;
+
 
 
     public function __construct($route)
@@ -57,6 +62,7 @@ class PostsController extends AppController
     public function editAction()
     {
 
+
         if (!isset($_GET['post_id'])) {
             redirect('admin/posts');
         }
@@ -78,15 +84,18 @@ class PostsController extends AppController
             $this->showRecordNotFoundError('članek', true);
         }
 
+        $categories = $this->category->getAllRecords();
+
         $tokenInput = CSRF::createCsrfInput();
 
         $this->setMeta($post->title, 'Editace članků');
-        $this->set(compact('post', 'errors', 'oldData', 'tokenInput'));
+        $this->set(compact('post', 'errors', 'oldData', 'tokenInput', 'categories'));
 
     }
 
     public function updateAction()
     {
+
 
         if (empty($_POST['token']) || !CSRF::checkCsrfToken($_POST['token'])) {
             throw new Exception('Method Not Allowed', 405);
@@ -101,7 +110,10 @@ class PostsController extends AppController
         if (
             !isset($_POST['post_title']) ||
             !isset($_POST['post_description']) ||
-            !isset($_POST['post_content'])
+            !isset($_POST['post_content']) ||
+            !isset($_POST['post_category']) ||
+            !isset($_POST['old_post_image']) ||
+            !isset($_POST['post_published'])
         ) {
             redirect('admin/posts');
         }
@@ -109,11 +121,18 @@ class PostsController extends AppController
         $postTitle = $_POST['post_title'];
         $postDescription = $_POST['post_description'];
         $postContent = $_POST['post_content'];
+        $postCategoryId = $_POST['post_category'];
+        $postPublished = $_POST['post_published'];
+        $oldPostImage = $_POST['old_post_image'];
+        $postImage = $_FILES['post_image'];
+
 
         $dataForValidation = [
             'post_title' => $postTitle,
             'post_description' => $postDescription,
-            'post_content' => $postContent
+            'post_content' => $postContent,
+            'post_category' => $postCategoryId,
+            'is_published' => $postPublished
         ];
 
         if (!ValidationWrapper::validate('validatePost', $dataForValidation, true, true)) {
@@ -122,12 +141,35 @@ class PostsController extends AppController
 
         $post = $this->post->getOneRecordById($postId);
 
+        $postCategory = $this->category->getOneRecordById($postCategoryId);
+
+        $updateCondition = [
+            'title' => $postTitle,
+            'description' => $postDescription,
+            'content' => $postContent,
+            'category' => $postCategory,
+            'is_published' => $postPublished,
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
+
+
+
+        if($postImage['error'] == 0){
+            if($post->thumbnail){
+                $this->post->deleteImage($post->thumbnail);
+            }
+            $updateCondition['thumbnail'] = $this->post->uploadImage($postImage);
+        } else {
+            if($post->thumbnail && !$oldPostImage){
+                $this->post->deleteImage($post->thumbnail);
+                $updateCondition['thumbnail'] = null;
+            }
+        }
+
+
         if ($post) {
-            if (!$this->post->upadateAll(['title' => $postTitle,
-                'description' => $postDescription,
-                'content' => $postContent,
-                'updated_at' => date('Y-m-d H:i:s'),
-            ],
+            if (!$this->post->upadateAll(
+                    $updateCondition,
                 $post)) {
                 throw new Exception('Chyba zápisu do DB!');
             }
@@ -151,8 +193,9 @@ class PostsController extends AppController
             $oldData = $validationResult['old_data'];
         }
         $this->setMeta('Nový članek', 'Nový članek');
+        $categories = $this->category->getAllRecords();
         $tokenInput = CSRF::createCsrfInput();
-        $this->set(compact('tokenInput', 'errors', 'oldData'));
+        $this->set(compact('tokenInput', 'errors', 'oldData', 'categories'));
 
     }
 
@@ -165,20 +208,27 @@ class PostsController extends AppController
         if (
             !isset($_POST['post_title']) ||
             !isset($_POST['post_description']) ||
-            !isset($_POST['post_content'])
+            !isset($_POST['post_content']) ||
+            !isset($_POST['post_category']) ||
+            !isset($_POST['post_published'])
         ) {
-            redirect('admin/posts');
+            redirect('/admin/posts');
         }
 
         $postTitle = $_POST['post_title'];
         $postDescription = $_POST['post_description'];
         $postContent = $_POST['post_content'];
+        $postCategoryId = $_POST['post_category'];
+        $postPublished = $_POST['post_published'];
+        $postImage = $_FILES['post_image'];
 
 
         $dataForValidation = [
             'post_title' => $postTitle,
             'post_description' => $postDescription,
-            'post_content' => $postContent
+            'post_content' => $postContent,
+            'post_category' => $postCategoryId,
+            'post_image' =>$postImage
         ];
 
         if (!ValidationWrapper::validate('validatePost', $dataForValidation, true, true)) {
@@ -187,24 +237,55 @@ class PostsController extends AppController
 
         $postSlug = $this->slugger->createSlug($postTitle, Post::class);
 
-        if (!$this->post->saveAll([
+        $postCategory = $this->category->getOneRecordById($postCategoryId);
+
+        $imageUrl = $this->post->uploadImage($postImage);
+
+        $postId = $this->post->saveAll([
             'title' => $postTitle,
             'slug' => $postSlug,
             'description' => $postDescription,
             'content' => $postContent,
+            'category' => $postCategory,
+            'is_published' => $postPublished,
+            'thumbnail' => $imageUrl,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
-        ])
-        ) {
+        ]);
+
+
+        if (!$postId) {
             throw new Exception('Chyba zápisu do DB!');
         }
-        flash('success', 'Post was created!', 'success');
-        redirect('/admin/posts');
+        flash('success', "Post was created!", 'success');
+        redirect("/admin/posts/edit?post_id=$postId");
 
     }
 
 
+    public function previewAction(){
+
+        if (!isset($_GET['post_id'])) {
+            redirect('admin/posts');
+        }
+
+        $this->layout = 'pronajem';
+
+        $postId = $_GET['post_id'];
+
+        $post = $this->post->getOneRecordById($postId);
+
+        if(!$post){
+            $this->showRecordNotFoundError('članek', true);
+        }
+
+        $this->setMeta($post->title, 'Nahled članků');
+        $this->set(compact('post'));
+
+    }
+
     public function deleteAction(){
+
 
         if (empty($_POST['token']) || !CSRF::checkCsrfToken($_POST['token'])) {
             throw new Exception('Method Not Allowed', 405);
@@ -216,6 +297,10 @@ class PostsController extends AppController
         }
 
         $postId = $_GET['post_id'];
+        $post = $this->post->getOneRecordById($postId);
+        $postThumbnail =  $post->thumbnail;
+        $this->post->deleteAllPostImages($postId);
+        $this->post->deleteImage($postThumbnail);
 
         $deleteResult = $this->post->deleteOneRecordbyId($postId);
 
@@ -228,6 +313,7 @@ class PostsController extends AppController
 
 
     }
+
 
 
 
@@ -252,7 +338,8 @@ class PostsController extends AppController
             exit();
         }
 
-        $uploadDir = WWW . '/uploads/';
+        $folder = date('Y-m-d');
+        $uploadDir = WWW . "/uploads/{$folder}/";
         $defaultImage = 'img/default-blog-image.webp';
         $response = [];
 

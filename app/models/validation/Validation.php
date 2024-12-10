@@ -2,9 +2,12 @@
 
 namespace app\models\validation;
 
+use app\db_models\Category;
 use app\models\AppModel;
 use app\models\User;
 use DateTime;
+use DI\Attribute\Inject;
+use pronajem\libs\PaginationSetParams;
 
 /**
  * Class Validation - Handles data validation for various forms in the application.
@@ -19,6 +22,8 @@ use DateTime;
  * security reasons, data must always be loaded using the load() method.
  */
 class Validation extends AppModel {
+
+
 
     /**
      * @var array Stores validation errors
@@ -154,9 +159,16 @@ class Validation extends AppModel {
         'tenant_account' => 'Číslo účtu nájemníka',
 
         //New Post
-        'post_title' => 'Název članku',
-        'post_description' => 'Popis članlku',
-        'post_content' => 'Obsah članku'
+        'post_title' => 'Název článku',
+        'post_description' => 'Popis článlku',
+        'post_content' => 'Obsah článku',
+        'post_category' => 'Nazev kategorie',
+        'post_image' => 'Úvodní obrazek článku',
+        'is_published' => 'Pole publikace článku',
+
+        //New Category
+
+        'category_title' => 'Nazev kategorie'
 
 
 
@@ -986,6 +998,21 @@ class Validation extends AppModel {
         $this->validateLength('post_description', 150);
         $this->validateChars('post_description');
 
+        $this->validateValue('post_category');
+        $this->isRecordNotExists('post_category', 'category', 'category_exists');
+
+        $this->validateFlag('is_published');
+
+        $this->validateFileType('post_image',
+                ['image/jpeg' => ['jpg', 'jpeg', 'jpe', 'JPG', 'JPEG', 'JPE'],
+                'image/png' => ['png'],
+                'image/gif' => ['gif'],
+                'image/webp' => ['webp'],
+                'image/svg+xml' => ['svg']
+                ]
+        );
+        $this->validateFileSize('post_image', 6);
+
         $this->validateValue('post_content');
 
 
@@ -996,6 +1023,24 @@ class Validation extends AppModel {
             $this->data['success'] = true;
         }
     }
+
+    public function validateCategory(){
+
+        $this->validateValue('category_title');
+        $this->validateLength('category_title', 80);
+        $this->validateChars('category_title');
+
+        $this->isRecordUniq('category_id','category_title', 'title', 'category', 'uniq_record');
+
+        if ($this->errors) {
+            $this->data['errors'] = $this->errors;
+            $this->data['success'] = false;
+        } else {
+            $this->data['success'] = true;
+        }
+    }
+
+
 
 
     // Validation methods
@@ -1515,7 +1560,7 @@ class Validation extends AppModel {
 
         if(!empty($this->attributes[$email])) {
 
-            $user = new User();
+            $user = new User($this->pagination);
 
             if (!$user->isUserExist($this->attributes[$email]) || !$user->isUserActiveByEmail($this->attributes[$email])) {
 
@@ -1559,6 +1604,96 @@ class Validation extends AppModel {
         }
 
     }
+
+    public function isRecordUniq(string $recordId, string $record, string $column, string $table, string $errorName){
+
+        if(!empty($this->attributes[$record])){
+
+
+            $recordBean = $this->getOneRecordByIdManual($this->attributes[$recordId], $table);
+
+            $recordValue = $recordBean[$column];
+
+            if($this->isRecordExistsManual($this->attributes[$record], $column, $table) && ($recordValue !== $this->attributes[$record])){
+                $this->errors[$errorName] = "Záznam " . $this->attributes[$record] . " už existuje! Zkuste prosím jiný.";
+            }
+
+        }
+
+    }
+
+    public function isRecordNotExists(string $recordId, string $table, string $errorName){
+
+        if(!empty($this->attributes[$recordId])){
+            $recordBean = $this->getOneRecordByIdManual($this->attributes[$recordId], $table);
+
+            if(!$recordBean){
+                $this->errors[$errorName] = "Záznam s ID = " . $this->attributes[$recordId] . " neexistuje! Obnovte stránku.";
+
+            }
+
+        }
+    }
+
+    /**
+     * Validates the file type based on allowed MIME types and extensions.
+     *
+     * Checks if the uploaded file matches the allowed MIME types and their corresponding extensions.
+     * If validation fails, an error message is added to the errors array.
+     *
+     * @param string $name The attribute key for the uploaded file data.
+     * @param array $allowedMimeTypes Array of allowed MIME types with their corresponding extensions.
+     */
+    private function validateFileType(string $name, array $allowedMimeTypes){
+
+        $file =  $this->attributes[$name];
+
+        if(!empty($file['tmp_name'])){
+            $fileMimeType = mime_content_type($file['tmp_name']);
+            $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
+            if((!array_key_exists($fileMimeType, $allowedMimeTypes)) || (!in_array($fileExtension, $allowedMimeTypes[$fileMimeType]))) {
+                $this->errors[$name] = 'Format souboru "' . $file['name'] . '" není podporovaný.';
+            }
+        }
+    }
+
+    /**
+     * Validates the file size for a specific uploaded file.
+     *
+     * Checks if the file size exceeds the specified maximum size in megabytes.
+     * If validation fails, an error message is added to the `$this->errors` array.
+     *
+     * @param string $name The attribute key for the uploaded file data.
+     * @param int $sizeInMegaBytes The maximum allowed file size in megabytes.
+     */
+    private function validateFileSize(string $name, int $sizeInMegaBytes) {
+
+        $file =  $this->attributes[$name];
+
+        if(!empty($file['tmp_name'])){
+            $fileSize = filesize($file['tmp_name']);
+            if($fileSize > $sizeInMegaBytes * 1024 * 1024){
+                $this->errors[$name] = 'Soubor "' . $file['name'] . '" nesmí být větší než ' . $sizeInMegaBytes . ' MB.';
+            }
+        }
+    }
+
+    /**
+     * Validates a flag (boolean-like value) to ensure it is either '0' or '1'.
+     *
+     * Checks the provided attribute value and adds an error message if it is not valid.
+     *
+     * @param string $name The attribute key for the flag being validated.
+     */
+    private function validateFlag(string $name)
+    {
+        if (!empty($this->attributes[$name])){
+            if(!in_array($this->attributes[$name], [0, 1])){
+                $this->errors[$name] = '"' . $this->desc[$name] . '" má chybnou hodnotu "value". Restartujte aplikaci.';
+            }
+        }
+    }
+
 
 
 }

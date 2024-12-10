@@ -966,7 +966,7 @@ $(document).ready(function () {
 })
 
 
-/*-------------------------------Item delete from list-------------------------------*/
+/*------------------------------- Delete Item from list-------------------------------*/
 
     $(document).ready(function (){
 
@@ -977,7 +977,7 @@ $(document).ready(function () {
             e.stopPropagation();//stop event propagation to parents DOM elements
             //console.log('Clicked!'); debugging
             hrefId = $(this).parent().parent().data('href');
-            console.log(hrefId);
+            //console.log(hrefId);
 
             var xpos = $(this).offset().left-130;
             var ypos = $(this).offset().top;
@@ -1001,9 +1001,9 @@ $(document).ready(function () {
             })
 
             $('.modal_confirm_btn').on('click', function (e){
-                var id = hrefId.substring(hrefId.indexOf("=") + 1);
+                let id = hrefId.substring(hrefId.indexOf("=") + 1);
                 //console.log(id);
-                var fullPath = $(this).data('href') + id;
+                let fullPath = $(this).data('href') + id;
                 //console.log(fullPath);
                 window.location = fullPath;
 
@@ -1013,11 +1013,22 @@ $(document).ready(function () {
             $('form[class=item_delete_form]').on('submit', function (e){
                 e.preventDefault();
                 let id = hrefId.substring(hrefId.indexOf("=") + 1);
+                let controller = getControllerName();
+                let entity =  getEntity();
                 let form = this;
                 let $form = $(form);
-                $form.attr('action', `admin/posts/delete?post_id=${id}`).off('submit').submit();
+                $form.attr('action', `admin/${controller}/delete?${entity}=${id}`).off('submit').submit();
             })
 
+            function getControllerName(){
+                let url = window.location.pathname;
+                return url.match(/\/([^\/]+)\/?$/)[1]
+            }
+
+            function getEntity(){
+                let match = hrefId.match(/(\?|&)([^=]+)=/);
+                return match ? match[2] : null;
+            }
 
 
     })
@@ -1477,6 +1488,66 @@ $(document).ready(function (){
         $('.jBox-overlay').remove();
 
     })
+
+})
+
+/*----------------------------------------Blog thumbnail upload ---------------------------------------------*/
+
+$(function(){
+
+    let image = $('#postImageOutput');
+    let errorMessage = $('#postImageError');
+    let imageNameWrapper = $('#postImageName');
+    let removeImageButton = $('#removePostImage');
+    let imageInput = $('#postImage');
+
+    const maxImageSize = 6 * 1024 * 1024; //6 Mb
+
+    if(image.attr('src')) {
+        image.attr('style', 'display: block;');
+        removeImageButton.attr('style', 'display: block;');
+    }
+
+    $('body').on('change', '#postImage', function (e){
+
+        const file = e.target.files[0];
+        errorMessage.empty();
+
+        if(file) {
+
+            if(!file.type.startsWith('image/')) {
+                removeImage();
+                errorMessage.append('Formát souboru není podporován');
+            } else if(file.size > maxImageSize) {
+                removeImage();
+                errorMessage.append(`Velikost souboru nesmí přesáhnout ${maxImageSize/1024/1024} Mb`);
+            }else{
+                image.attr('style', 'display: block;').attr('src', URL.createObjectURL(event.target.files[0]));
+                imageNameWrapper.prepend(`<p>${event.target.files[0].name}</p>`);
+                removeImageButton.attr('style', 'display: block;');
+            }
+
+        } else {
+            image.removeAttr('src').attr('style', 'display: none;');
+            removeImageButton.attr('style', 'display: none;');
+            $('#postImageName p').remove();
+        }
+    })
+    $('body').on('click', '#removePostImage', function (e){
+        e.preventDefault();
+        e.stopPropagation();
+        removeImage();
+        errorMessage.empty();
+        $('#oldPostImage').val('');
+
+    })
+
+    function removeImage(){
+        imageInput.val('');
+        image.removeAttr('src').attr('style', 'display: none;');
+        removeImageButton.attr('style', 'display: none;');
+        $('#postImageName p').remove();
+    }
 
 })
 

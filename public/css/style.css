@@ -1610,6 +1610,72 @@ input, select, textarea {
 }
 
 
+/*-------------------------------Single Post view and preview-----------------------------------*/
+
+.post-container {
+  max-width: 850px;
+  margin: 10px auto 0;
+}
+
+.post-card-public {
+  padding: 3% 5% 5% 5%;
+  text-align: left;
+  margin-bottom: 20px;
+  min-height: 600px;
+  border: solid 1px #C9EED2;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+  border-radius: 8px;
+}
+
+.post-card-public-title {
+  text-align: center;
+  margin-bottom: 15px;
+
+}
+
+
+.post-card-public-title h1 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  font-size: 1.8em;
+  text-transform: uppercase;
+  /*
+  color: #23558C;
+  */
+}
+
+.post-card-public-title .bread-crumbs {
+  text-align: center;
+  color: #23558C;
+}
+
+.post-card-public-title .post-meta {
+  margin-top: 3px;
+}
+
+.post-card-public-title .post-date {
+  color: #23558C;
+}
+
+.post-card-public img {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.thumbnail-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.post-card-public-content {
+  /*color: #23558C;*/
+}
+
+.post-card-public-content img {
+  margin: 0 10px 0 5px;
+}
+
+
 /*-------------------------------Responsive design-------------------------------*/
 
 

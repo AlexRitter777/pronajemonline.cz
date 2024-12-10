@@ -21,7 +21,7 @@ class CSRF
     public static function checkCsrfToken(string $token, bool $ajax = false)
     {
 
-        if (!$token || $token !== $_SESSION['token']) {
+        if (!$token || !isset($_SESSION['token']) || $token !== $_SESSION['token']) {
             return false;
         }
 

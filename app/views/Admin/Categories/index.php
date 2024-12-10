@@ -46,7 +46,7 @@
     </div>
 
     <div class="new-item-btn-container">
-        <a class="new-item-btn" href="admin/categorie/create">Nová kategorie</a>
+        <a class="new-item-btn" href="admin/categories/create">Nová kategorie</a>
     </div>
 </div>
 

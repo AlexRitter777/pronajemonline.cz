@@ -133,7 +133,14 @@ class AppModel extends Model {
         //Posts
         'post_title' => '',
         'post_description' => '',
-        'post_content' => ''
+        'post_content' => '',
+        'post_category' => '',
+        'post_image' => [],
+        'is_published' => null,
+
+        //Categories
+        'category_title' => '',
+        'category_id' => ''
 
     ];
 

@@ -81,6 +81,18 @@ abstract class Model {
        }
     }
 
+    public function getAllRecords(int $userId = null)
+    {
+        if($userId) {
+            return R::findAll($this->table, "user_id=?", [$userId]);
+        }
+        elseif(is_admin()) {
+            return R::findAll($this->table);
+        } else {
+            throw new \Exception('Access dinied', 403);
+        }
+    }
+
 
     public function getOneRecordById(string $recordId, int $userId = null) {
 
@@ -90,6 +102,20 @@ abstract class Model {
 
         if(is_admin()){
             return R::findOne($this->table, 'id=?',[$recordId]);
+        }
+
+        throw new \Exception('Access dinied', 403);
+
+    }
+
+    public function getOneRecordByIdManual(string $recordId, string $table, int $userId = null) {
+
+        if($userId) {
+            return R::findOne($table, 'id=? AND user_id=?',[$recordId, $userId]);
+        }
+
+        if(is_admin()){
+            return R::findOne($table, 'id=?',[$recordId]);
         }
 
         throw new \Exception('Access dinied', 403);
@@ -162,6 +188,37 @@ abstract class Model {
         }
         R::trash($record);
         return true;
+
+    }
+
+    /**
+     * Checks if a record exists in the specified table and column.
+     *
+     * @param string $record The value to search for in the column.
+     * @param string $column The name of the column to check.
+     * @param string $table The name of the table to search in.
+     * @param string|null $userId (Optional) The ID of the user for scoping the search.
+     *
+     * @return mixed|null Returns the record if found, otherwise null.
+     *
+     * @throws \Exception If the column does not exist in the table.
+     * @throws \Exception If the access is denied for non-admin users without a user ID.
+     */
+    public function isRecordExistsManual(string $record, string $column, string $table, string $userId = null) {
+
+        if(!$this->checkIfColumnExists($table, $column)) {
+            throw new \Exception("Column '$column' does not exists in table" . $table);
+        }
+
+        if($userId) {
+            return R::findOne($table, "$column=? AND user_id=?",[$record, $userId]);
+        }
+
+        if(is_admin()){
+            return R::findOne($table, "$column=?",[$record]);
+        }
+
+        throw new \Exception('Access dinied', 403);
 
     }
 

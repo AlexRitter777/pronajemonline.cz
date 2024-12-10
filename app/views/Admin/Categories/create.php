@@ -1,6 +1,6 @@
 
 <div class="user-header">
-    <h3><?= $category->title; ?></h3>
+    <h3>Nová kategorie</h3>
 </div>
 
 <div class="central-bar">
@@ -10,12 +10,12 @@
 
     <?php flash('success');?>
 
-    <form method="post" data-id="" name="property" action="admin/categories/update?category_id=<?=$category->id;?>">
+    <form method="post" data-id="" name="property" action="admin/categories/save">
 
             <div class="form-content">
                 <div class="">
                     <label for="category_title" class="label_text">Název</label>
-                    <input type="text" class="field-1 input-category-title" name="category_title" id="categoryTitle" value="<?= $oldData['category_title'] ?? $category->title; ?>">
+                    <input type="text" class="field-1 input-category-title" name="category_title" id="categoryTitle" value="<?= $oldData['category_title'] ?? ''; ?>">
                 </div>
                 <?= $tokenInput; ?>
 

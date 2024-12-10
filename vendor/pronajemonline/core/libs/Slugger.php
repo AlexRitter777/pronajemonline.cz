@@ -14,13 +14,16 @@ class Slugger
 {
 
     /**
-     * Pagination parameters injected via DI.
+     * Pagination parameters injected via constructor..
      *
      * @var PaginationSetParams
      */
-    #[Inject]
     private PaginationSetParams $pagination;
 
+
+    public function __construct(PaginationSetParams $pagination){
+        $this->pagination = $pagination;
+    }
 
     /**
      * Generates a unique slug for a given title in a specified table.
