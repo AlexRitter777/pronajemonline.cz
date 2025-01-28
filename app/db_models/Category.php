@@ -4,6 +4,7 @@ namespace app\db_models;
 
 use app\models\AppModel;
 use pronajem\libs\PaginationSetParams;
+use RedBeanPHP\R;
 
 class Category extends AppModel
 {
@@ -16,5 +17,15 @@ class Category extends AppModel
 
     }
 
+    public function getAllCategories()
+    {
+        return R::FindAll($this->table);
+    }
+
+    public function getOneCategoryBySlug(string $slug) {
+
+        return R::findOne($this->table, 'slug=?',[$slug]);
+
+    }
 
 }

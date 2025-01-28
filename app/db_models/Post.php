@@ -5,6 +5,8 @@ namespace app\db_models;
 use app\models\AppModel;
 use Exception;
 use pronajem\libs\PaginationSetParams;
+use RedBeanPHP\OODBBean;
+use RedBeanPHP\R;
 
 class Post extends AppModel
 {
@@ -120,5 +122,64 @@ class Post extends AppModel
         preg_match_all($pattern, $content, $matches);
         return $matches[0];
     }
+
+
+    /**
+     * @param int $perPage
+     * @return OODBBean[]
+     * @throws Exception
+     */
+    public function getAllPosts(int $perPage)
+    {
+        if(!$this->pagination) throw new \Exception('Pagination Model is not found', 404);
+
+        $total = R::count($this->table, 'is_published=1');
+
+        $this->pagination->setPaginationParams($perPage, $total);
+
+        $start = $this->pagination->getStart();
+
+        return R::FindAll($this->table, "is_published=1 LIMIT ?, ?", [$start, $perPage]);
+
+    }
+
+    public function getAllPostsByCategory(int $categoryId, int $perPage)
+    {
+        if(!$this->pagination) throw new \Exception('Pagination Model is not found', 404);
+
+        $total = R::count($this->table, 'is_published=1 AND category_id=?', [$categoryId]);
+
+        $this->pagination->setPaginationParams($perPage, $total);
+
+        $start = $this->pagination->getStart();
+
+        return R::FindAll($this->table, "is_published=1 AND category_id=? LIMIT ?, ?", [$categoryId, $start, $perPage]);
+
+    }
+
+   /* public function getSlug(string $url) : string
+    {
+        $needlePosition = strrpos($url, "/");
+        return substr($url, $needlePosition + 1);
+    }*/
+
+    public function getOnePostBySlug(string $slug) {
+
+        return R::findOne($this->table, 'slug=?',[$slug]);
+
+    }
+
+    public function getThumbnail(?string $url) : string
+    {
+        $defaultUrl = '/img/default_thumbnail.jpg';
+
+        if($url && file_exists($url)) {
+            return $url;
+        }
+
+        return $defaultUrl;
+    }
+
+
 
 }

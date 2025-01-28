@@ -65,7 +65,7 @@ abstract class Model {
         } else {
             throw new \Exception('Access dinided', 403);
         }
-                               
+
         $this->pagination->setPaginationParams($perPage, $total);
 
         $start = $this->pagination->getStart();
@@ -246,7 +246,11 @@ abstract class Model {
     }
 
 
-
+    public function getSlug(string $url) : string
+    {
+        $needlePosition = strrpos($url, "/");
+        return substr($url, $needlePosition + 1);
+    }
 
     
 

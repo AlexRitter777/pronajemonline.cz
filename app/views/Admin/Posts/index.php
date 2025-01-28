@@ -29,9 +29,10 @@
             <tr class="row-1">
                 <th class="col-1">Název</th>
                 <th class="col-2">Popis</th>
-                <th class="col-3">Vytvořen</th>
-                <th class="col-4">Změněn</th>
-                <th class="col-5"></th>
+                <th class="col-3">Publikováno</th>
+                <th class="col-4">Vytvořen</th>
+                <th class="col-5">Změněn</th>
+                <th class="col-6"></th>
             </tr>
 
 
@@ -39,9 +40,10 @@
                 <tr class="row-click" data-href="admin/posts/edit?post_id=<?=$post->id;?>">
                     <td class="col-1"><?= $post->title;?></td>
                     <td class="col-2"><?= $post->description;?></td>
-                    <td class="col-3"><?= $post->created_at; ?></td>
-                    <td class="col-4"><?= $post->updated_at; ?></td>
-                    <td class="col-5"><span class="item_delete_button" data-del="#del-conf">Smazat</span></td>
+                    <td class="col-3"><?= $post->is_published;?></td>
+                    <td class="col-4"><?= $post->created_at; ?></td>
+                    <td class="col-5"><?= $post->updated_at; ?></td>
+                    <td class="col-6"><span class="item_delete_button" data-del="#del-conf">Smazat</span></td>
                 </tr>
             <?php endforeach;?>
 

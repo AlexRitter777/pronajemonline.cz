@@ -33,13 +33,31 @@ Router::add('^user/elsuppliers$', ['controller' => 'Elsuppliers', 'action' => 'i
 Router::add('^user/settings$', ['controller' => 'Settings', 'action' => 'index', 'prefix' => 'User']);
 Router::add('^user/error$', ['controller' => 'Error', 'action' => 'index', 'prefix' => 'User']);
 
+
 // Guest routes
 // Default routes for guests visiting the site. These do not have a prefix.
 // The empty string route ('^$') directs to the main page of the site.
 Router::add('^$', ['controller' => 'Main', 'action' => 'index']); //empty string
+// Public Single Category Rote
+Router::add('^blog/category/([\w\-]+)/?', ['controller' => 'Blog', 'action' => 'category']);
+// Public Blog route
+Router::add('^blog/([\w\-]+)/?', ['controller' => 'Blog', 'action' => 'single']);
+// Universal guest route
 Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$'); // www.example.com/controller/action
+
+
+
+
 
 //User universal route
 // A flexible route pattern that matches any user-related controller and action.
 // This pattern is useful for extending the user section without adding specific routes for each controller/action pair.
 Router::add('^user/?(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$', ['prefix' => 'User']);
+
+
+
+
+
+
+
+
