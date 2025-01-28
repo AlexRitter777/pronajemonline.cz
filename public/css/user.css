@@ -861,20 +861,31 @@ table{
 }
 
 .admin-posts-table .col-2 {
-    width: 49%;
+    width: 25%;
 
 }
 
 .admin-posts-table .col-3 {
-    width: 9%;
+    width: 20%;
+    text-align: center;
 }
 
 .admin-posts-table .col-4 {
-    width: 9%;
+    width: 5%;
+    text-align: center;
 }
 
 .admin-posts-table .col-5 {
-    width: 8%;
+    width: 10%;
+    text-align: right;
+}
+
+.admin-posts-table .col-6 {
+    width: 10%;
+    text-align: right;
+}
+
+.admin-posts-table .col-7 {
     text-align: right;
 }
 

@@ -28,4 +28,12 @@ class Category extends AppModel
 
     }
 
+    public function getCategoryPosts(int $categoryId) {
+
+        $category = R::load($this->table, $categoryId);
+
+        return $category->ownPostList;
+
+    }
+
 }

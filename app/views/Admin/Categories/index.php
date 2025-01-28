@@ -10,7 +10,7 @@
     </button>
 
     <?php flash('success');?>
-
+    <?php flash('warning');?>
 
     <?php if($categories): ?>
         <table class="account-index-table admin-posts-table" border="0">

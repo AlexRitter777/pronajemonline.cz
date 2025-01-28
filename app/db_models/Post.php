@@ -139,7 +139,7 @@ class Post extends AppModel
 
         $start = $this->pagination->getStart();
 
-        return R::FindAll($this->table, "is_published=1 LIMIT ?, ?", [$start, $perPage]);
+        return R::FindAll($this->table, "is_published=1 ORDER BY created_at DESC LIMIT ?, ?", [$start, $perPage]);
 
     }
 
@@ -153,7 +153,7 @@ class Post extends AppModel
 
         $start = $this->pagination->getStart();
 
-        return R::FindAll($this->table, "is_published=1 AND category_id=? LIMIT ?, ?", [$categoryId, $start, $perPage]);
+        return R::FindAll($this->table, "is_published=1 AND category_id=? ORDER BY created_at DESC LIMIT ?, ?", [$categoryId, $start, $perPage]);
 
     }
 

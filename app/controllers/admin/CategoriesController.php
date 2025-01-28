@@ -194,10 +194,17 @@ private Slugger $slugger;
 
         if (!isset($_GET['category_id']))
         {
-            redirect('admin/categories');
+            redirect();
         }
 
         $categoryId = $_GET['category_id'];
+
+        $posts = $this->category->getCategoryPosts($categoryId);
+
+        if($posts){
+            flash('warning', 'This category has posts and cannot be deleted!', 'warning');
+            redirect();
+        }
 
         $deleteResult = $this->category->deleteOneRecordbyId($categoryId);
 

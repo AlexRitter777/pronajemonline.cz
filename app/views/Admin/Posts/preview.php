@@ -40,23 +40,23 @@
     header.appendChild(previewTitle);
 </script>
 
-
 <div class="main">
     <div class="post-container">
         <div class="post-card-public">
-                <div class="post-card-public-title">
-                    <h1><?= $post->title;?></h1>
-                    <span class="bread-crumbs">
-                        Blog / <?= $post->category->title; ?> / <?= $post->title;?>
-                    </span>
-                    <div class="post-meta">
-                        <small class="post-date">15 dubna 2024</small>
-                    </div>
-                </div><!--end post-card-public-title-->
-                <img class="thumbnail-fluid" src="<?= $post->thumbnail;?>">
-                <div class="post-card-public-content">
-                    <?= $post->content; ?>
+            <div class="post-card-public-title">
+                <h1><?= $post->title;?></h1>
+                <span class="bread-crumbs">
+                        <span>Blog</span> / <span><?= $post->category->title; ?></span> / <?= $post->title;?>
+                </span>
+                <div class="post-meta">
+                    <span class="post-date"><?= date('d.m.Y', $post->crrated_at);?></span>
                 </div>
-        </div><!--end post-card-public-->
-    </div><!--end post-container-->
-</div><!--end main-->
+            </div>
+            <?php require_once APP . "/views/Includes/single_post.php"; ?>
+        </div>
+    </div>
+</div>
+
+
+
+
