@@ -140,7 +140,12 @@ class AppModel extends Model {
 
         //Categories
         'category_title' => '',
-        'category_id' => ''
+        'category_id' => '',
+
+        //Uploads
+        'file_description' => '',
+        'file_file' => [],
+        'file_name' => ''
 
     ];
 

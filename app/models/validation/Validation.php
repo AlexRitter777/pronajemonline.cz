@@ -167,10 +167,12 @@ class Validation extends AppModel {
         'is_published' => 'Pole publikace článku',
 
         //New Category
+        'category_title' => 'Nazev kategorie',
 
-        'category_title' => 'Nazev kategorie'
-
-
+        //Uploads
+        'file_description' => 'Popis souboru',
+        'file_file' => 'Nahrávaný soubor',
+        'file_name' => 'Nahrávaný soubor'
 
 
     );
@@ -1041,7 +1043,31 @@ class Validation extends AppModel {
     }
 
 
+    public function validateUpload()
+    {
+        $this->validateValue('file_description');
+        $this->validateLength('file_description', 80);
+        $this->validateChars('file_description');
 
+
+        $this->validateValue('file_name');
+
+        $this->validateFileType('file_file',
+            [
+                'application/pdf' => ['pdf']
+            ]
+        );
+
+        $this->validateFileSize('post_image', 12);
+
+        if ($this->errors) {
+            $this->data['errors'] = $this->errors;
+            $this->data['success'] = false;
+        } else {
+            $this->data['success'] = true;
+        }
+
+    }
 
     // Validation methods
 

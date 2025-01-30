@@ -18,7 +18,7 @@
         <li><a href="admin/users" class="user-item-title">Uživatelé</a>
         <li><a href="admin/posts" class="user-item-title">Članky</a>
         <li><a href="admin/categories" class="user-item-title">Kategorie</a>
-        <li><a href="admin/upload" class="user-item-title">Upload</a>
+        <li><a href="admin/uploads" class="user-item-title">Uploads</a>
         <li><a href="admin/settings" class="user-item-title">Nastavení</a></li>
 
     </ul>

@@ -7,6 +7,7 @@ use pronajem\Db;
 use pronajem\libs\Pagination;
 use pronajem\libs\PaginationSetParams;
 use RedBeanPHP\R as R;
+use Exception;
 
 /**
  * Abstract base model class that provides common functionality for working with the database.
@@ -72,10 +73,10 @@ abstract class Model {
 
 
        if($userId) {
-           return R::findAll($this->table, "user_id=? LIMIT ?, ?", [$userId, $start, $perPage]);
+           return R::findAll($this->table, "user_id=? ORDER BY created_at DESC LIMIT ?, ?", [$userId, $start, $perPage]);
        }
        elseif(is_admin()) {
-           return R::findAll($this->table, "LIMIT ?, ?", [$start, $perPage]);
+           return R::findAll($this->table, "ORDER BY created_at DESC LIMIT ?, ?", [$start, $perPage]);
        } else {
            throw new \Exception('Access dinied', 403);
        }
@@ -252,7 +253,68 @@ abstract class Model {
         return substr($url, $needlePosition + 1);
     }
 
-    
+    /**
+     * Uploads an file file to the server.
+     *
+     * If the upload fails, logs the error and returns null.
+     *
+     * @param array $image The uploaded file data ($_FILES['input_name']).
+     * @return string|null The relative path to the uploaded file, or null if the upload fails.
+     */
+    public function uploadFile(array $file, $publicFolder)
+    {
+        if(empty($file)){
+            return null;
+        }
+
+        $uploadDir = WWW . $publicFolder;
+
+        try {
+            if (!is_dir($uploadDir) && !mkdir($uploadDir, 0777, true)) {
+                throw new Exception('Failed to create upload directory.', 500);
+            }
+            $fileName = basename($file['name']);
+            $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+            $uniqueFileName = pathinfo($fileName, PATHINFO_FILENAME) . '_' . uniqid() . '.' . $fileExtension;
+            $uploadFilePath = $uploadDir . $uniqueFileName;
+
+            if (move_uploaded_file($file['tmp_name'], $uploadFilePath)) {
+                return $uploadFilePath;
+            } else {
+                throw new Exception('Error saving the file.');
+            }
+        }catch(Exception $e) {
+            logErrors($e->getMessage(), $e->getFile(), $e->getLine());
+            return null;
+        }
+    }
+
+    /**
+     * Deletes a file from the server.
+     *
+     * Logs an error if the file cannot be deleted or does not exist.
+     * This method does not return a value, as file deletion is not critical
+     * for the application workflow.
+     *
+     * @param string $imageFile The absolute path to the image file.
+     */
+    public function deleteFile(string $filePath){
+
+        if(file_exists($filePath)) {
+            try {
+                if (!unlink($filePath)) {
+                    throw new Exception("Image $filePath was not deleted");
+                }
+            }catch (Exception $e){
+                logErrors($e->getMessage(), $e->getFile(), $e->getLine());
+                return false;
+            }
+        }else{
+            logErrors("File $filePath does not exist.");
+            return false;
+        }
+        return true;
+    }
 
     
 }

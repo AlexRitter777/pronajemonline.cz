@@ -464,7 +464,8 @@ table{
 }
 
 .tenant-add-buttons a, .tenant-add-buttons input,
-.property-add-buttons a, .property-add-buttons input  {
+.property-add-buttons a, .property-add-buttons input,
+.uploads-buttons a, .uploads-buttons input{
     text-decoration: none;
     border: 2px solid #23558C;
     border-radius: 3px;
@@ -477,7 +478,8 @@ table{
 }
 
 .tenant-add-buttons input:hover,
-.property-add-buttons input:hover{
+.property-add-buttons input:hover,
+.uploads-buttons input:hover{
     cursor: pointer;
 }
 .new-item-btn-container
@@ -959,7 +961,74 @@ table{
 }
 
 
+/*-----------------------------Uploads Page -------------------------------------*/
+.uploads-form{
+    margin: 0 auto 30px;
+    width: 85%;
+}
+
+.uploads-form-fields-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.uploads-form-fields {
+    display: flex;
+    width: 100%;
+}
+
+.uploads-form-field {
+    width: 50%;
+}
+
+.uploads-form-field input {
+    margin-right: 0;
+}
+
+.upload-file-title {
+    font-size: 1.2rem!important;
+    padding-bottom: 0!important;
+    margin-bottom: 10px!important;
+}
+
+.uploads-buttons {
+    margin: 20px auto 0;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.errors_field_uploads {
+    width: 70%;
+}
+
+.admin-uploads-table .col-1 {
+    width: 40%;
+
+}
+.admin-uploads-table .col-2 {
+    width: 40%;
+
+}
+.admin-uploads-table .col-3 {
+    width: 10%;
+}
+.admin-uploads-table .col-4 {
+    text-align: right;
+
+}
+
+.admin-uploads-table .item_delete_button {
+    cursor: default;
+}
+
+.admin-uploads-table .item_delete_button:hover{
+    cursor: pointer;
+}
+
 /*-------------------------------Responsive design-------------------------------*/
+/*-------------------------------------------------------------------------------*/
 
 
 /*------------------------------1050 px------------------------------------*/
@@ -1060,8 +1129,19 @@ table{
         width: 55%!important;
     }
 
+
+
 }
 
+/*-----------------------------Uploads Page ------------------------------------*/
+
+    .uploads-form-fields {
+        flex-direction: column;
+    }
+
+    .uploads-form-field {
+        width: 100%;
+    }
 
 
 /*------------------------------600 px------------------------------------*/
@@ -1189,7 +1269,20 @@ table{
             width: 65%!important;
         }
 
+/*-----------------------------Admin Posts Page ------------------------------------*/
+
+        .admin-posts-table .col-2 {
+            display: none;
+        }
+
+        .admin-posts-table .col-7 {
+            width: 5%;
+        }
     }
+
+
+
+
 /*------------------------------550 px------------------------------------*/
 
 
@@ -1261,6 +1354,17 @@ table{
     .post-submit-buttons{
         width: 90%!important;
     }
+
+    /*-----------------------------Admin Posts Page ------------------------------------*/
+
+    .admin-posts-table .col-3 {
+        display: none;
+    }
+
+    .admin-posts-table .col-1 {
+        width: 40%;
+    }
+
 }
 
 /*------------------------------400 px------------------------------------*/
