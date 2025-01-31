@@ -36,7 +36,7 @@ class UsersController extends AppController
 
         $this->setMeta('Uživatelé', 'Seznam uživatelů');
 
-        $users = $this->users->getAllRecordsWithPagination(5);
+        $users = $this->users->getAllRecordsWithPagination(15);
 
         $pagination = $this->pagination;
 
