@@ -13,12 +13,16 @@
             <div class="posts-area">
                 <?php if($categoryPosts): ?>
                     <?php foreach ($categoryPosts as $post): ?>
-                        <div class="post-card-in-public-list">
-                            <h2><a href="blog/<?=$post->slug?>"><?= $post->title; ?></a></h2>
-                            <p><?= $post->description; ?></p>
-                            <img class="public-thumbnail" src="<?= $postModel->getThumbnail($post->thumbnail);?>">
-
-                        </div>
+                       <div class="post-card-in-public-list">
+                           <div class="post-card-in-public-list-thumbnail-wrapper">
+                               <img class="public-thumbnail" src="<?= $postModel->getThumbnail($post->thumbnail);?>">
+                           </div>
+                           <div class="post-card-in-public-list-title-wrapper">
+                               <h2><a href="blog/<?=$post->slug?>"><?= $post->title; ?></a></h2>
+                                <p><?= $post->description; ?></p>
+                                <p>Publikováno: <?= date('d.m.Y', strtotime($post->created_at)); ?></p>
+                           </div>
+                       </div>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <p class="empty-data">Zatím tady nejsou žádné články!</p>

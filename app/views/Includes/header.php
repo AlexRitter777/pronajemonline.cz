@@ -29,6 +29,7 @@
                 <a class="nav_link" href="\">Home</a>
                 <a class="nav_link" href="about">O projektu</a>
                 <a class="nav_link" href="applications">Aplikace</a>
+                <a class="nav_link" href="upload">Návody</a>
                 <a class="nav_link" href="blog">Blog</a>
                 <a class="nav_link" href="contact">Kontakt</a>
             </nav>
