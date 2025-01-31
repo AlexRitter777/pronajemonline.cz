@@ -22,5 +22,5 @@
 #        it is appended to the new URL. This ensures that existing query parameters
 #        are preserved in addition to the new ones added by the rewrite rule.
 RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule (.*) index.php?$1 [L,QSA]
