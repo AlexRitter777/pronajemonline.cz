@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /user/
+Disallow: /admin/
 Disallow: /applications/*-calc
 Disallow: /applications/*-edit
 
