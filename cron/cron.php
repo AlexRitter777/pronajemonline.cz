@@ -1,7 +1,12 @@
 <?php
 
-//run init (define path constants, require autoloader)
-require __DIR__ . '/../config/init.php';
+define("ROOT", dirname(__DIR__));
+define("WWW", ROOT . '/public');
+define("CONF", ROOT . '/config');
+define("DEBUG", 1);
+
+// Includes the Composer autoloader.
+require_once ROOT . '/vendor/autoload.php';
 
 //use classes
 use app\models\Cron;
