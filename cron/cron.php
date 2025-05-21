@@ -37,8 +37,8 @@ contractFinishCron();
 function contractFinishCron(){
 
 $cron = new Cron();
-$cron->sendContractFinishRemind(3, 'months');
-$cron->sendContractFinishRemind(2, 'months');
+$cron->sendContractFinishRemind(90, 'days');
+$cron->sendContractFinishRemind(60, 'days');
 die();
 
 
