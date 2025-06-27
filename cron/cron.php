@@ -5,6 +5,7 @@ define("WWW", ROOT . '/public');
 define("CONF", ROOT . '/config');
 define("DEBUG", 1);
 define("APP", ROOT . '/app');
+define("SMTP", 0);
 
 // Includes the Composer autoloader.
 require_once ROOT . '/vendor/autoload.php';
