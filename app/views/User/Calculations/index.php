@@ -113,7 +113,7 @@
                     <?php if($calcType === 'depositcalc'): ?>
                         <td class="col-4"><?= date("d.m.Y", strtotime($calculation->contract_start_date)) . ' - ' . date("d.m.Y", strtotime($calculation->contract_finish_date));?></td>
                     <?php elseif($calcType === 'easyservicescalc'): ?>
-                        <td class="col-4"><?= date("Y", strtotime($calculation->rent_year_date));?></td>
+                        <td class="col-4"><?= $calculation->rent_year_date; ?></td>
                     <?php elseif($calcType === 'totalcalc'): ?>
                         <td class="col-4">-</td>
                     <?php else: ?>
