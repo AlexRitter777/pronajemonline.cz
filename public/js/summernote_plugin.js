@@ -52,7 +52,9 @@ $(function () {
             ['para', ['ul', 'ol', 'paragraph', 'height']],
             ['table', ['table']],
             ['insert', ['link', 'picture', 'video', 'hr']],
-            ['view', ['codeview', 'help', 'undo']]
+            ['view', ['codeview', 'help', 'undo']],
+            ['fontsize', ['fontsize']],
+
         ],
         fontSizes: ['8', '10', '12', '14', '16', '18', '20', '24', '28', '32', '36', '48', '64', '72'],
         callbacks: {
