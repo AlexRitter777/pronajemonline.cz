@@ -1,10 +1,31 @@
+# ==== PHP project ====
 config_smtp.php
 config_db.php
-.htaccess
-tmp/
+config/init.php
+
+# Composer vendor
 vendor/*
 !vendor/pronajemonline/
-.idea/
-config/init.php
+
+# Temp files
+tmp/
 .phpunit.result.cache
+
+# IDE & OS
+.idea/
+.DS_Store
+
+# Uploads
 public/uploads/*
+
+# ==== Node & Vite ====
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vite cache
+.vite/
+.cache/
+
+

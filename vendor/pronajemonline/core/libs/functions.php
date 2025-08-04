@@ -87,3 +87,29 @@ function flash(string $name = '', string $message = '', string $type = ''): void
 function logErrors($message = '', $file = '', $line = ''){
     error_log("[" . date('Y-m-d H:i:s') . "] Error: {$message} | File: {$file} | Line: {$line}\n============================\n", 3, ROOT . '/tmp/errors.log');
 }
+
+
+function vite_asset(string $path): string
+{
+
+    if (defined('APP_ENV') && APP_ENV === 'local') {
+        //run Vite server
+        return 'http://pronajemonline.local:5174/' . ltrim($path, '/');
+    }
+
+    // Production: read manifest.json from public/assets
+    $manifestPath = __DIR__ . '/../public/assets/manifest.json';
+    if (!file_exists($manifestPath)) {
+        // Not found — connect directly (fallback)
+        return '/assets/' . ltrim($path, '/');
+    }
+
+    $manifest = json_decode(file_get_contents($manifestPath), true);
+
+    if (!isset($manifest[$path])) {
+        // If path not found in manifest - connect directly
+        return '/assets/' . ltrim($path, '/');
+    }
+
+    return '/assets/' . $manifest[$path]['file'];
+}
