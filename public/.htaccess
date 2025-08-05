@@ -23,4 +23,4 @@
 #        are preserved in addition to the new ones added by the rewrite rule.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule (.*) index.php?$1 [L,QSA]
+RewriteRule ^(.*)$ index.php?$1 [L,QSA]
