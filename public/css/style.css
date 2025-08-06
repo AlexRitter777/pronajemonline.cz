@@ -1742,7 +1742,7 @@ input, select, textarea {
 
 .post-card-in-public-list-thumbnail-wrapper {
   width: 40%;
-  padding-right: 20px;
+  margin-right: 20px;
 }
 
 .post-card-in-public-list-title-wrapper {
@@ -2511,6 +2511,7 @@ input, select, textarea {
   .post-card-in-public-list-thumbnail-wrapper {
     width: 100%;
     margin-bottom: 1%;
+    margin-right: 0;
   }
 
   .post-card-in-public-list-title-wrapper {
