@@ -8,13 +8,21 @@
         </svg>
     </div>
     <ul class="user-items-title">
-        <li><a href="user/calculations" class="user-item-title">Vyúčtování</a></li>
-        <li><a href="user/landlords" class="user-item-title">Pronajímatele</a></li>
-        <li><a href="user/tenants" class="user-item-title">Nájemníci</a></li>
-        <li><a href="user/properties" class="user-item-title">Nemovitosti</a></li>
-        <li><a href="user/admins" class="user-item-title">Správci</a>
-        <li><a href="user/elsuppliers" class="user-item-title">Dodavatelé elektřiny</a></li>
-        <li><a href="user/settings" class="user-item-title">Nastavení</a></li>
+        <li><a href="user/account" class="user-item-title"><i class="fa-regular fa-house"></i> Přehled</a></li>
+        <li><a href="user/calculations" class="user-item-title"><i class="far fa-file-alt"></i> Vyúčtování</a></li>
+        <li><a href="user/landlords" class="user-item-title"><i class="fa-regular fa-circle-user"></i> Pronajímatele</a></li>
+        <li><a href="user/tenants" class="user-item-title"><i class="far fa-user"></i> Nájemníci</a></li>
+        <li><a href="user/properties" class="user-item-title"><i class="far fa-building"></i> Nemovitosti</a></li>
+        <li><a href="user/admins" class="user-item-title"><i class="fa-regular fa-handshake"></i> Správci</a>
+        <li><a href="user/elsuppliers" class="user-item-title"><i class="fa-regular fa-lightbulb"></i> Dodavatelé elektřiny</a></li>
+        <li><a href="user/settings" class="user-item-title"><i class="fa-solid fa-gear"></i> Nastavení</a></li>
+        <li><a href="user/settings" class="user-item-title"><i class="fa-solid fa-arrow-right-from-bracket"></i> Odhlásit se</a></li>
+
+
+
+        <li style="border-top: solid 1px #C9EED2; padding-top: 30px; margin-top: 20px"><a href="user/settings" class="user-item-title"><i class="fa-solid fa-book"></i> Dokumentace</a></li>
+        <li><a href="user/settings" class="user-item-title"><i class="fa-regular fa-circle-question"></i> Podpora</a></li>
 
     </ul>
+
 

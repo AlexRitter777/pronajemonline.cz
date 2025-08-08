@@ -1,3 +1,31 @@
+:root {
+
+  --body-color-bg: fcfcfd;
+  --font-main: 'Inter', sans-serif;
+  --color-accent: #1a1c23;
+  --color-accent-hover: #5850ec;
+  --sidebar-color-bg: #f9fafb;
+  --sidebar-color-border: #e5e7eb;
+  --content-color-border: #e2e8f0;
+
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/Inter/InterVariable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/Inter/InterVariable-Italic.woff2') format('woff2');
+}
+
 html {
    height: 100%;
    font-size: 12px;
@@ -7,10 +35,10 @@ html {
 body {
 
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: var(--font-main);
     color: #323232;
     -webkit-font-smoothing: antialiased;
-    background-color:#f5f5f5;
+    background-color: var(--body-color-bg);
     height: 100%;
 
 }
@@ -60,7 +88,7 @@ p {
   padding-bottom: 30px;
   font-size: 2.5em;
   text-transform: uppercase;
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 .main h4 {
@@ -68,7 +96,7 @@ p {
   margin-top: 10px;
   margin-bottom: 20px;
   font-size: 1.8em;
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 
@@ -190,7 +218,7 @@ input, select, textarea {
     display: block;
     height: 18px;
     width: 18px;
-    fill: #23558c;
+    fill: var(--color-accent);
     transition: fill .1s linear;
     float: left;
     margin-right: 5px;
@@ -201,7 +229,7 @@ input, select, textarea {
     display: block;
     height: 16px;
     width: 16px;
-    fill: #23558c;
+    fill: var(--color-accent);
     transition: fill .1s linear;
     float: left;
     margin-right: 5px;
@@ -218,7 +246,7 @@ input, select, textarea {
   width: 14px;
   min-width: 14px;
   min-height: 14px;
-  fill: #23558C;
+  fill: var(--color-accent);
   transition: fill .1s linear;
   margin-right: 5px;
 }
@@ -290,7 +318,7 @@ input, select, textarea {
   height: 32px;
   background-color: #fff;
   transition: background .1s linear;
-  color:#23558c;
+  color:var(--color-accent);
   margin-bottom: 10px;
 }
 
@@ -302,7 +330,7 @@ input, select, textarea {
   display: inline-block; 
   background-color: #fff;
   transition: background .1s linear;
-  color:#23558c;
+  color:var(--color-accent);
 }
 
 .add_meters_button{
@@ -410,8 +438,8 @@ input, select, textarea {
 }
 
 .submit_button:hover{
-  background-color: #23558C;
-  border: 2px solid #23558C;
+  background-color: var(--color-accent);
+  border: 2px solid var(--color-accent);
 }
 
 .submit_button_refresh {
@@ -420,9 +448,9 @@ input, select, textarea {
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #23558C;
+  color: var(--color-accent);
   border-radius: 4px;
-  border: 2px solid #23558C;;
+  border: 2px solid var(--color-accent);
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 8%);
   transition: all .2s ease;
   opacity: 1;
@@ -638,7 +666,7 @@ input, select, textarea {
   display: inline-block;
   background-color: #fff;
   transition: background .1s linear;
-  color:#23558c;
+  color:var(--color-accent);
 }
 
 .add_deposit_added_field {
@@ -743,7 +771,7 @@ input, select, textarea {
   margin-bottom: 50px;
   padding-top: 20px;
   font-size: 2.5em;
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 .submit-container {
@@ -764,7 +792,7 @@ input, select, textarea {
 }
 
 .contact-area label{
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 .text-message {
@@ -840,7 +868,7 @@ input, select, textarea {
   text-align: center;
   font-size: 1.5em;
   font-weight: 700;
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 
@@ -891,7 +919,7 @@ input, select, textarea {
 .header-top-title {
   max-width: 80%;
   display: block;
-  color:#23558C;
+  color: var(--color-accent);
 }
 
 .header-top-title-text {
@@ -913,8 +941,8 @@ input, select, textarea {
 
 .header-top-button {
   border-radius: 4px;
-  background-color: #23558C;
-  border-color: #23558C;
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 8%);
   transition: all .2s ease;
   opacity: .9;
@@ -960,7 +988,7 @@ input, select, textarea {
 .text-block li {
   margin-top: 10px;
   font-size: 1.3em;
-  color: #23558C;
+  color: var(--color-accent);
   font-weight: 700;
   list-style: none;
   line-height: 20px;
@@ -1007,7 +1035,7 @@ input, select, textarea {
 
 .try-app a {
   font-size: 1.5em;
-  color: #23558C;
+  color: var(--color-accent)
   text-decoration: none;
   font-weight: 700;
   text-transform: uppercase;
@@ -1042,7 +1070,7 @@ input, select, textarea {
 
 .feature span {
   font-size: 2em;
-  color: #23558C;
+  color: var(--color-accent);
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
@@ -1154,7 +1182,7 @@ input, select, textarea {
 
 .list-of-thesis ul>li {
   font-size: 1.3em;
-  color: #23558C;
+  color: var(--color-accent);
   font-weight: 700;
   line-height: 30px;
   padding-left: 10px;
@@ -1163,7 +1191,7 @@ input, select, textarea {
 
 .list-of-thesis ul>li::marker{
   content: "✔";
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 .list-of-thesis ul {
@@ -1171,7 +1199,7 @@ input, select, textarea {
 }
 
 .calculator {
-  fill: #23558C;
+  fill: var(--color-accent);
   padding-top: 10px;
   padding-left: 4%;
   height: 200px;
@@ -1235,7 +1263,7 @@ input, select, textarea {
   padding-bottom: 30px;
   font-size: 1.8em;
   text-transform: uppercase;
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 
@@ -1271,7 +1299,7 @@ input, select, textarea {
   width: 100%;
   height: 100%;
   text-decoration: none;
-  color: #23558C;
+  color: var(--color-accent);
   text-transform: uppercase;
   font-size: 1.3em;
   font-weight: 700;
@@ -1333,7 +1361,7 @@ input, select, textarea {
   padding-bottom: 30px;
   font-size: 1.8em;
   text-transform: uppercase;
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 .about-header::after {
@@ -1369,7 +1397,7 @@ input, select, textarea {
 
 .about-text p,
 .about-text ul{
-  color: #23558C;
+  color: var(--color-accent);
   font-size: 1.2em;
   line-height: 25px;
   text-indent: 30px;
@@ -1424,7 +1452,7 @@ input, select, textarea {
 }
 
 .login-area label{
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 .forgot-password-container {
@@ -1433,7 +1461,7 @@ input, select, textarea {
 
 .forgot-password-container a,
 .register-account a {
-  color: #23558C;
+  color: var(--color-accent);
   font-weight: 600;
   text-decoration: none;
   font-size: 1em;
@@ -1463,7 +1491,7 @@ input, select, textarea {
 }
 
 .stay-in-account{
-  color:  #23558C;
+  color:  var(--color-accent);
   font-weight: 600;
 }
 
@@ -1492,14 +1520,14 @@ input, select, textarea {
 .info_message{
   font-weight: 600;
   font-size: 1.2em;
-  color: #23558C;
+  color: var(--color-accent);
   margin-bottom: 17px;
   line-height: 22px;
 }
 
 .login-link{
   transition: all .2s ease;
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 .login-link:hover{
@@ -1641,12 +1669,12 @@ input, select, textarea {
   padding-bottom: 5px;
   font-size: 2em;
   text-transform: uppercase;
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 .post-card-public-title .bread-crumbs {
   text-align: center;
-  color: #23558C;
+  color: var(--color-accent);
   font-size: 1.2em;
 }
 
@@ -1659,7 +1687,7 @@ input, select, textarea {
 }
 
 .post-card-public-title .post-date {
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 .post-card-public img {
@@ -1677,7 +1705,7 @@ input, select, textarea {
 }
 
 .post-card-public-content {
-  /*color: #23558C;*/
+  /*color: var(--color-accent);*/
 }
 
 
@@ -1724,7 +1752,7 @@ input, select, textarea {
 
 .categories-area a {
   text-decoration: none;
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 .post-card-in-public-list {
@@ -1773,10 +1801,6 @@ input, select, textarea {
   font-weight: 700;
 }
 
-.central-bar a:visited {
-  color: #23558C;
-}
-
 .pagination a {
   text-decoration: none;
 }
@@ -1797,13 +1821,13 @@ input, select, textarea {
 
 .post-card-in-public-list a {
   text-decoration: none;
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 .post-card-in-public-list p {
   text-align: center;
   font-size: 1.2rem;
-  color: #23558C;
+  color: var(--color-accent);
 }
 
 .public-pagination {
@@ -1812,7 +1836,7 @@ input, select, textarea {
 
 .empty-data {
   font-size: 1.8em;
-  color: #23558C;
+  color: var(--color-accent);
   font-weight: 600;
   margin-top: 30px;
 
@@ -1822,7 +1846,7 @@ input, select, textarea {
 
 .uploads-content h2 {
   text-align: center;
-  color: #23558C;
+  color: var(--color-accent);
   margin-bottom: 10px;
 }
 
@@ -1830,7 +1854,7 @@ input, select, textarea {
   margin: 0 auto 30px;
   text-align: left;
   width: 100%;
-  color: #23558C;
+  color: var(--color-accent);
 
 }
 

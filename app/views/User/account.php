@@ -1,10 +1,6 @@
 <div class="user-header">
-    <h3>Můj účet - <?= $_SESSION['username'];?></h3>
+    <h3>Přehled</h3>
 </div>
-
-<button class="burger-sidebar" type="button" id="navToggle">
-    <span class="burger__item">Menu</span>
-</button>
 
 <div class="central-bar">
     <div class="account-items-container">

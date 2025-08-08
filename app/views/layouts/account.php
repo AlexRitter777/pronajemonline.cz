@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/user.css">
     <link rel="stylesheet" type="text/css" href="css/includes.css">
+    <link rel="stylesheet" type="text/css" href="fonts/Fontawesome/fontawesome-free/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
@@ -42,7 +43,7 @@
 
 <script type="module" src="<?= vite_asset('src/js/app.js')?>"></script>
 <script src="js/main.js"></script>
-<script src="js/hamburger.js"></script>
+<!--<script src="js/hamburger.js"></script>-->
 <script src="js/calculations.js" type="module"></script>
 
 

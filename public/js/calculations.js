@@ -446,11 +446,11 @@ $(document).ready(function() {
 
         $('.left-side-bar').removeClass('show-sidebar');
         $('.user-items-title').removeClass('show-ul');
-        $('.burger-sidebar').removeClass('hide-burger-sidebar');
+        $('#navToggle').removeClass('hide-burger-sidebar');
 
     })
 
-    $(".burger-sidebar").click(function (){
+    $("#navToggle").click(function (){
         $('.left-side-bar').addClass('show-sidebar');
         $('.user-items-title').addClass('show-ul');
         $(this).addClass('hide-burger-sidebar');

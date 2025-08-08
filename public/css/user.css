@@ -1,5 +1,7 @@
 
 
+
+
 table{
     border-collapse: collapse;
 }
@@ -15,14 +17,16 @@ table{
 
 .left-side-bar {
     width: 18%;
-    border-right: solid 1px #C9EED2;
-    box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+    border-right: solid 1px var(--sidebar-color-border);
+    border-left: solid 1px var(--sidebar-color-border);
+    box-shadow: 0 4px 5px 0 rgb(0 0 0 / 8%);
+    background: var(--sidebar-color-bg);
 
 }
 
 .left-side-bar ul{
     list-style: none;
-    margin-top: 50px;
+    margin-top: 20px;
     padding-left: 10%;
     text-align: left;
 
@@ -36,27 +40,38 @@ table{
 .left-side-bar a{
 
     text-decoration: none;
-    font-size: 1.1em;
-    font-weight: 600;
-    color: #23558C;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    transition: color 0.2s ease;
+
+}
+
+.active-item {
+    color: var(--color-accent-hover)!important;
 }
 
 .left-side-bar a:visited {
-    color: #23558C;
+    color: var(--color-accent);
 }
+
+.left-side-bar a:hover {
+    color: var(--color-accent-hover);
+}
+
 
 .center-content {
     width: 82%;
+    border-right: 1px solid #e2e8f0;
+    box-shadow: 0 4px 5px 0 rgb(0 0 0 / 8%);
 
 }
 .central-bar a {
-    color: #23558C;
+    color: var(--color-accent);
+    transition: color 0.2s ease;
 }
 
 
-.central-bar a:visited {
-    color: #23558C;
-}
 
 .account-index-table {
     margin: 0 auto 30px;
@@ -70,10 +85,6 @@ table{
     margin: -30px auto 20px;
 }
 
-
-.user-header h3 {
-    font-size: 2em;
-}
 
 
 .account-index-table tr{
@@ -92,8 +103,8 @@ table{
 }
 
 .account-index-table .row-1 {
-    border-bottom: 2px solid #23558C;
-    color: #23558C;
+    border-bottom: 2px solid var(--color-accent);
+    color: var(--color-accent);
     text-transform: uppercase;
 
     
@@ -104,7 +115,7 @@ table{
 }
 
 .calculation-select-type label{
-    color: #23558C;
+    color: var(--color-accent);
     font-weight: bold;
     font-size: 1.1em;
     margin-right: 5px;
@@ -117,7 +128,7 @@ table{
 
 .calculation-select-type .select2-container .select2-selection--single .select2-selection__rendered{
     line-height: 23px;
-    color: #23558C;
+    color: var(--color-accent);
     font-weight: bold;
 }
 
@@ -127,9 +138,9 @@ table{
 }
 
 .sbm_calc_type {
-    color: #23558C;
+    color: var(--color-accent);
     font-family: 'Open Sans', sans-serif;
-    border: 2px solid #23558C;
+    border: 2px solid var(--color-accent);
     border-radius: 3px;
     font-weight: 700;
     width: 70px;
@@ -159,7 +170,7 @@ table{
 }
 
 .icons-order svg{
-    fill: #23558C;
+    fill: var(--color-accent);
 }
 
 .title-filter span{
@@ -167,7 +178,7 @@ table{
 }
 
 .title-filter polygon{
-    fill: #23558C!important;
+    fill: var(--color-accent)!important;
 }
 
 
@@ -299,7 +310,7 @@ table{
 }
 
 .empty-data {
-    color: #23558C;
+    color: var(--color-accent);
     font-size: 1.3em;
     margin-bottom: 30px;
 }
@@ -310,7 +321,7 @@ table{
     position: absolute;
     display: none;
     border: 1px solid #f5f5f5;
-    color: #23558C;
+    color: var(--color-accent);
     background-color: #f5f5f5;
     padding: 8px 10px;
     width: 140px;
@@ -377,13 +388,13 @@ table{
 }
 
 .jBox-Confirm-button-submit:hover {
-    background: #23558C!important;
+    background: var(--color-accent)!important;
 }
 
 .jBox-Confirm-button-cancel{
 
-    color: #23558C!important;
-    border: 2px solid #23558C!important;
+    color: var(--color-accent)!important;
+    border: 2px solid var(--color-accent)!important;
     background: #fff!important;
 
 }
@@ -402,7 +413,7 @@ table{
 
 .jBox-title > div {
     font-weight: 600;
-    color: #23558C;
+    color: var(--color-accent);
     text-transform: uppercase;
 }
 
@@ -410,7 +421,7 @@ table{
     font-family: sans-serif;
     font-size: 1.2em;
     letter-spacing: 1px;
-    color: #23558C;
+    color: var(--color-accent);
     line-height: 20px;
     padding: 30px 35px!important;
 }
@@ -420,7 +431,7 @@ table{
     margin: 0 auto;
     width: 60%;
     font-size: 1.2em;
-    color: #23558C;
+    color: var(--color-accent);
     margin-bottom: 40px;
 }
 
@@ -467,12 +478,12 @@ table{
 .property-add-buttons a, .property-add-buttons input,
 .uploads-buttons a, .uploads-buttons input{
     text-decoration: none;
-    border: 2px solid #23558C;
+    border: 2px solid var(--color-accent);
     border-radius: 3px;
     padding: 3px 18px;
     font-weight: 700;
     margin: 0;
-    color: #23558C;
+    color: var(--color-accent);
     height: auto;
     width: 80px;
 }
@@ -501,7 +512,7 @@ table{
 {
     text-decoration: none;
 
-    border: 2px solid #23558C;
+    border: 2px solid var(--color-accent);
     border-radius: 3px;
     padding: 3px 5px;
     font-weight: 700;
@@ -509,9 +520,9 @@ table{
 }
 
 .tenant-profile-buttons button{
-    color: #23558C;
+    color: var(--color-accent);
     font-family: 'Open Sans', sans-serif;
-    border: 2px solid #23558C;
+    border: 2px solid var(--color-accent);
     border-radius: 3px;
     padding: 3px 5px;
     font-weight: 700;
@@ -580,11 +591,11 @@ table{
     font-family: 'Open Sans', sans-serif;
     background-color: #ffffff;
     margin-left: 1.5%;
-    border: 2px solid #23558C;
+    border: 2px solid var(--color-accent);
     border-radius: 3px;
     padding: 2px 7px;
     font-weight: 700;
-    color: #23558C;
+    color: var(--color-accent);
     height: auto;
     width: 50px;
 }
@@ -604,8 +615,7 @@ table{
 }
 
 .user-header h3 {
-    font-size: 1.3em;
-    text-transform: uppercase;
+    font-size: 1.5rem;
 }
 
 .user-header-modal{
@@ -617,7 +627,7 @@ table{
     margin: 0 auto;
     width: 95%;
     font-size: 1em;
-    color: #23558C;
+    color: var(--color-accent);
 
 }
 
@@ -689,14 +699,14 @@ table{
     height: 100px;
     width: 17%;
     border: solid 1px #C9EED2;
-    box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
+    box-shadow: 0 4px 5px 0 rgb(0 0 0 / 8%);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .account-item-title {
-    color: #23558C;
+    color: var(--color-accent);
     font-size: 1.3em;
     font-weight: 600;
 }
@@ -708,7 +718,7 @@ table{
 }
 
 .account-item-count:hover{
-    text-decoration: underline;
+    color: var(--color-accent-hover);
 }
 
 .dashboard-table {
@@ -723,14 +733,13 @@ table{
 
 .dashboard-calc-subtitle{
     font-size: 1.2em;
-    color: #23558C;
-    margin-bottom: 15px;
-    text-decoration: underline;
+    color: var(--color-accent);
+    margin-bottom: 30px;
 }
 
 .more-calc-btn a {
     text-decoration: none;
-    color: #23558C;
+    color: var(--color-accent);
     font-weight: 600;
 }
 
@@ -738,8 +747,11 @@ table{
     text-decoration: underline;
 }
 .dashboard-table-container{
-    margin-bottom: 20px;
-}
+    border: solid 1px #C9EED2;
+    box-shadow: 0 4px 5px 0 rgb(0 0 0 / 8%);
+    width: 90%;
+    margin: 20px auto 40px auto;
+    padding: 20px 0 20px 0;}
 
 
     /*------ Save calculation modal window ------------*/
@@ -824,8 +836,8 @@ table{
 .change_password {
     margin: 0;
     font-weight: normal;
-    background-color: #23558C;
-    border: 2px solid #23558C;
+    background-color: var(--color-accent);
+    border: 2px solid var(--color-accent);
 
 }
 
@@ -898,7 +910,7 @@ table{
     padding: 0;
     margin: 0;
     height: unset;
-    color: #23558C;
+    color: var(--color-accent);
     font-weight: 600;
 }
 
@@ -927,7 +939,7 @@ table{
 .post-image-name p {
     margin-bottom: 0;
     margin-right: 5px;
-    color: #23558C;
+    color: var(--color-accent);
     font-weight: 700;
 }
 
@@ -941,7 +953,7 @@ table{
     font-weight: 700;
     margin: 0;
     padding: 2px;
-    color: #23558C;
+    color: var(--color-accent);
     background: #fff;
     cursor: pointer;
     font-size: 1em;
@@ -1209,7 +1221,7 @@ table{
             position: absolute;
             height: 100%;
             transition: transform 0.5s ease-out;
-            background-color: #ffffff;
+            background-color: var(--sidebar-color-bg);
             left: -50%;
             z-index: 1;
         }
@@ -1248,15 +1260,19 @@ table{
         }
 
         .hide-burger-sidebar {
-            display: none;
+            display: none!important;
         }
 
         .cross-close {
-            display: unset;
+            height: 20px;
+            width: 20px;
+            position: absolute;
+            right: 12px;
+            display: block;
         }
 
         .cross-close svg {
-            fill: #23558C;
+            fill: var(--color-accent);
             float: right;
             margin-top: 8%;
             margin-right: 8%;

@@ -3,41 +3,23 @@
     <div class="header-inner">
 
         <div class="header-logo">
-            <a href="\" class="logo-link">
-                <div class="logo-items">
-                    <h1 class="header-title">pronajemonline.cz</h1>
-                    <h2 class="header-subtitle">Správa nemovitostí a pronájmů</h2>
-                </div>
-
-                <img class="logo-image" src="img/keys.png" alt="keys" height="40px">
-
+            <a href="/user/account" class="logo-link">
+                    <img class="logo-image" src="img/PronajemOnline_logo_transparent.png" alt="PronajemOnline Logo" height="40px">
             </a>
         </div>
         <div class="header-right">
-            <div class="header-login">
-                <?php if(is_user_logged_in()): ?>
-                    <span class="user_welcome">Ahoj,&nbsp</span><a href="user/account" class="user_name"><?= $_SESSION['username']; ?>.</a>
-                    <a class="login_link" style="width: 90px;" href="user/account">Můj účet</a>
-                    <a class="login_link" style="width: 90px;" href="user/logout">Odhlásit se</a>
-                <?php else: ?>
-                    <a class="login_link" href="user/signup">Registrace /</a>
-                    <a class="login_link" href="user/login">Přihlášení</a>
-                <?php endif;?>
+            <div class="header-login" x-data="{user_menu_open: false}">
+                <span class="user_welcome">Ahoj,&nbsp</span><a href="" @click.prevent.stop="user_menu_open = !user_menu_open"  class="user_name"><?= $_SESSION['username']; ?>.</a>
+                <div x-show="user_menu_open" x-cloak @click.outside="user_menu_open = false" class="header-user-menu">
+                    <a class="login_link" href="user/settings"><i class="fa-solid fa-gear"></i> Nastavení</a>
+                    <a class="login_link" href="user/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Odhlásit se</a>
+                </div>
             </div>
-
-            <nav class="header-menu" id="nav">
-                <a class="nav_link" href="\">Home</a>
-                <a class="nav_link" href="about">O projektu</a>
-                <a class="nav_link" href="applications">Aplikace</a>
-                <a class="nav_link" href="upload">Návody</a>
-                <a class="nav_link" href="blog">Blog</a>
-                <a class="nav_link" href="contact">Kontakt</a>
-            </nav>
         </div>
-
         <button class="burger" type="button" id="navToggle">
             <span class="burger__item">Menu</span>
         </button>
+
 
 
 
