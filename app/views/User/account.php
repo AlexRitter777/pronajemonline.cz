@@ -30,10 +30,27 @@
         </div>
         <div class="account-item-container">
             <div class="account-item">
-                <p class="account-item-title">Dodavatelé elektřiny:</p>
+                <p class="account-item-title" style="margin-bottom: 0;">Dodavatelé elektřiny:</p>
                 <a class="account-item-count" href="/user/elsuppliers"><?=$count['elsupplier']?></a>
             </div>
         </div>
+    </div>
+
+    <h4 class="dashboard-calc-title">Výtvořit</h4>
+    <div class="dashboard-buttons-container">
+        <a class="new-dashboard-btn" href=""><i class="far fa-file-alt"></i> <span>Vyúčtování</span></a>
+        <a class="new-dashboard-btn" href="user/properties/add"><i class="far fa-building"></i> <span>Nemovitost</span></a>
+        <a class="new-dashboard-btn" href="user/tenants/add"><i class="far fa-user"></i> <span>Nájemník</span></a>
+        <a class="new-dashboard-btn" href="user/landlords/add"><i class="fa-regular fa-circle-user"></i> <span>Pronájímatel</span></a>
+        <a class="new-dashboard-btn" href="user/admins/add"><i class="fa-regular fa-handshake"></i> <span>Správce</span></a>
+
+    </div>
+
+    <h4 class="dashboard-calc-title">Rychlé vyúčtování</h4>
+    <div class="dashboard-calculations-container">
+        <a class="new-dashboard-btn" href=""><i class="far fa-file-alt"></i> <span>Vyúčtování služeb</span></a>
+        <a class="new-dashboard-btn" href=""><i class="far fa-file-alt"></i> <span>Zjednodušené vyúčtování</span></a>
+        <a class="new-dashboard-btn" href=""><i class="far fa-file-alt"></i> <span>Vyúčtování kauce</span></a>
     </div>
 
     <h4 class="dashboard-calc-title">Poslední vyúčtování</h4>
@@ -44,7 +61,7 @@
             <?php if($calculation): ?>
             <div class="dashboard-table-container">
                 <h5 class="dashboard-calc-subtitle"><?= $name; ?></h5>
-                <table class="calculation-titles account-index-table dashboard-table" border="0">
+                <table class="calculation-titles dashboard-table" border="0">
                     <tr class="row-1">
                         <th class="col-1">Název</th>
                         <th class="col-2">Nemovitost</th>
@@ -73,7 +90,7 @@
                     </tr>
                     <?php endforeach; ?>
                 </table>
-                <div class="more-calc-btn"><a href="/user/calculations?calc_type=<?= $calcTypes[$name];?>">Ukázat vše...</a></div>
+                <div class="more-calc-btn"><a class="show-more-btn" href="/user/calculations?calc_type=<?= $calcTypes[$name];?>">Ukázat vše</a></div>
             </div>
             <?php endif; ?>
         <?php endforeach; ?>
