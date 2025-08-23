@@ -454,7 +454,7 @@ class Validator {
                     );
 
                     this['validate'+ name + 'Form']();
-                    this.loaderSpinnerProfileOff();
+                    // this.loaderSpinnerProfileOff();
 
                 } else {
 
@@ -468,7 +468,7 @@ class Validator {
                     )
                     {
 
-                        form.attr('action', `/applications/${name}-calc`).off('submit').submit();
+                        form.attr('action', `/user/calculations/${name}-calc`).off('submit').submit();
 
                     }
 
@@ -575,14 +575,18 @@ class Validator {
 
    validateservicesForm(){
 
-        this.processResponse('landlordName');
+        this.processResponse('landlordName'); //demo
+        this.processResponseSelect2('landlordName');
         this.processResponse('landlordAddress');
         this.processResponse('accountNumber');
-        this.processResponse('propertyAddress');
+        this.processResponse('propertyAddress'); //demo
+        this.processResponseSelect2('propertyAddress');
         this.processResponse('propertyType');
-        this.processResponse('tenantName');
+        this.processResponse('tenantName'); //demo
+        this.processResponseSelect2('tenantName');
         this.processResponse('tenantAddress');
-        this.processResponse('adminName');
+        this.processResponse('adminName'); //demo
+        this.processResponseSelect2('adminName');
         this.processResponse('calcStartDate');
         this.processResponse('calcFinishDate');
         this.processResponse('rentStartDate');
@@ -838,7 +842,7 @@ class Validator {
                 '<li id="er">' + this.data['errors'][name] + '</li>'
             );
 
-            $("[aria-controls='select2-" + name + "-container']").attr('style', 'border: 1.5px solid #c00!important');
+            $("[aria-controls='select2-" + name + "-container']").attr('style', 'border: 1.5px solid var(--error-border)!important');
         } else {
 
             $("[aria-controls='select2-" + name + "-container']").attr('style', '');
@@ -915,7 +919,7 @@ class Validator {
 
                 if (this.data['errorsBool'][name + item][i] || $("#" + ID + i).hasClass('val_err')) {
 
-                    $("[aria-controls='select2-" + ID + i + "-container']").attr('style', 'border: 1.5px solid #c00!important');
+                    $("[aria-controls='select2-" + ID + i + "-container']").attr('style', 'border: 1.5px solid var(--error-border)!important');
                     $("#" + ID + i).addClass("val_err");
 
                 } else {

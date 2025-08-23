@@ -191,7 +191,8 @@ $(document).ready(function () {
 
         //Get modal window template
         const modalBox = new ModalBox();
-        let content = await modalBox.getTemplate(entity);
+
+        let content = getTemplate(entity);
 
         //Make and open new modal window with JBox
         modalWindow = new jBox(
@@ -317,6 +318,14 @@ $(document).ready(function () {
     })
 })
 
+
+//get Modal window temlate
+
+function getTemplate(name){
+    let elementId = name + '-modal';
+    let template = document.getElementById(elementId);
+    return template.innerHTML.trim();
+}
 
 //remove old Modal jbox window after close by Cancel button
 $('body').on('click','.submit_button_refresh_modal', function (e){

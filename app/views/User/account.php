@@ -48,7 +48,7 @@
 
     <h4 class="dashboard-calc-title">Rychlé vyúčtování</h4>
     <div class="dashboard-calculations-container">
-        <a class="new-dashboard-btn" href=""><i class="far fa-file-alt"></i> <span>Vyúčtování služeb</span></a>
+        <a class="new-dashboard-btn" href="user/calculations/services-form"><i class="far fa-file-alt"></i> <span>Vyúčtování služeb</span></a>
         <a class="new-dashboard-btn" href=""><i class="far fa-file-alt"></i> <span>Zjednodušené vyúčtování</span></a>
         <a class="new-dashboard-btn" href=""><i class="far fa-file-alt"></i> <span>Vyúčtování kauce</span></a>
     </div>
@@ -59,9 +59,9 @@
 
         <?php foreach ($calculations as $name => $calculation): ?>
             <?php if($calculation): ?>
-            <div class="dashboard-table-container">
+            <div class="table-container">
                 <h5 class="dashboard-calc-subtitle"><?= $name; ?></h5>
-                <table class="calculation-titles dashboard-table" border="0">
+                <table class="calculations-dashboard-table account-table" border="0">
                     <tr class="row-1">
                         <th class="col-1">Název</th>
                         <th class="col-2">Nemovitost</th>

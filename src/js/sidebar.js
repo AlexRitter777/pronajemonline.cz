@@ -1,8 +1,9 @@
 export default () => {
-
     document.querySelectorAll('.user-item-title').forEach(item => {
 
-        if(item.href === window.location.href) {
+        const itemPath = new URL(item.href).pathname;
+
+        if(itemPath === window.location.pathname) {
             item.classList.add('active-item')
         }
     });

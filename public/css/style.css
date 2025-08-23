@@ -8,6 +8,7 @@
   --sidebar-color-border: #e5e7eb;
   --content-color-border: #e2e8f0;
   --table-header-bg: #f6f8fb;
+  --table-header-text: #475569;
   --table-border: #e2e8f0;
   --table-text: #252f3f;
   --text: #252f3f;
@@ -16,6 +17,9 @@
   --btn-bg-hover: #e9edf5;
   --btn-fg: #1f3b75;
   --card-color-text: #475569;
+  --error-border: #f87171;
+  --card-bg: #fcfcfd;
+  --card-border: #e5e7eb;
 
 }
 
@@ -58,11 +62,10 @@ body {
 
 h1, h2, h3, h4, h5, h6 { 
     margin: 0;
-
     font-weight: 600;
-    letter-spacing: .01em;
-    color: #111827;
-  }
+    letter-spacing: .01rem;
+    color: var(--color-accent);
+
 }
 
 p {
@@ -93,14 +96,14 @@ p {
 
 }
 
-.main h3 {
+/*.main h3 {*/
 
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-size: 2.5em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-}
+/*  padding-top: 20px;*/
+/*  padding-bottom: 20px;*/
+/*  font-size: 2.5em;*/
+/*  text-transform: uppercase;*/
+/*  color: var(--color-accent);*/
+/*}*/
 
 .main h4 {
 
@@ -132,15 +135,17 @@ p {
 .label_text{
   display: inline-block;
   font-weight: 600;
-  color: #323232;
+  color: var(--color-accent);
   margin-bottom: 4px;
+  font-size: 1.08rem;
+  padding-right: 10px;
 
 }
 
-#label_text {
-  font-size: 1.08em;
-  margin-bottom: 8px;
-}
+/*#label_text {*/
+
+/*  !*margin-bottom: 8px;*!*/
+/*}*/
 
 .label_text_with_help {
   width: 51%;
@@ -248,6 +253,7 @@ input, select, textarea {
 
 .text-help{
   display: flex;
+  align-items: center;
   
 }
 
@@ -287,7 +293,7 @@ input, select, textarea {
 .add_meters_added_field {
   display: flex;
   align-items: center;
-  width: 114%;
+  width: 113%;
 }
 
 .origins {
@@ -327,7 +333,7 @@ input, select, textarea {
   display: flex;
   align-items: center;
   height: 32px;
-  background-color: #fff;
+  background-color: var(--card-bg);
   transition: background .1s linear;
   color:var(--color-accent);
   margin-bottom: 10px;
@@ -368,6 +374,7 @@ input, select, textarea {
 
 .coefficient_label_text {
   margin-top: 12px;
+  align-items: flex-start;
 }
 
 .chekbox_coefficient{
@@ -484,7 +491,7 @@ input, select, textarea {
 }
 
 .error_field_form {
-  border-color: #c00!important;
+  border-color: var(--error-border)!important;
   border-width: 1.5px!important;
 }
 
@@ -504,12 +511,20 @@ input, select, textarea {
 }
 
 .errors {
-  color: #D8000C;
-  background-color: #FFD2D2;
-  padding: 15px 0 15px 30px;
-  font-weight: 600;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  border-radius: 6px;
+  padding: 12px 16px;
+  /*font-size: 0.95rem;*/
+  line-height: 1.5;
 }
 
+.errors li {
+  margin-left: 1.2rem;
+  list-style-type: "⚠️ ";
+  padding-left: 5px;
+}
 
 #er {
   margin-bottom: 3px;
@@ -839,7 +854,8 @@ input, select, textarea {
 
 .loader-wrapper {
   position: absolute;
-  top: 29%;
+  top: 80%;
+  left: 7%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -1797,28 +1813,28 @@ input, select, textarea {
   width: 100%;
 }
 
-.pagination {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-}
+/*.pagination {*/
+/*  list-style: none;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*}*/
 
-.pagination .active {
-  text-decoration: underline;
-}
+/*.pagination .active {*/
+/*  text-decoration: underline;*/
+/*}*/
 
-.pagination li {
-  padding: 0 5px 0 5px;
-  font-weight: 700;
-}
+/*.pagination li {*/
+/*  padding: 0 5px 0 5px;*/
+/*  font-weight: 700;*/
+/*}*/
 
-.pagination a {
-  text-decoration: none;
-}
+/*.pagination a {*/
+/*  text-decoration: none;*/
+/*}*/
 
-.is_active {
-  text-decoration: underline!important;
-}
+/*.is_active {*/
+/*  text-decoration: underline!important;*/
+/*}*/
 
 .post-card-public-content img {
   margin: 0 10px 0 5px;
@@ -1915,9 +1931,7 @@ input, select, textarea {
 /*------------------------------840 px------------------------------------*/
 
 @media only screen and (max-width: 840px) {
-  .form {
-    margin: 0 40px;
-  }
+
 
 
   /*-----Index--------*/
@@ -2089,58 +2103,6 @@ input, select, textarea {
 /*------------------------------600 px------------------------------------*/
 @media only screen and (max-width: 600px){
 
-  .subtitle, .h3-subtitle {
-    font-size: 1em;
-  }
-
-  .label_text {
-
-    font-size: 0.95em;
-
-  }
-  #label_text {
-    font-size: 0.98em;
-  }
-
-
-  .date {
-    display: block;
-  }
-
-  .form {
-    margin: 0;
-  }
-
-  .date .label_text {
-    width: 100%;
-    margin-bottom: 7px;
-  }
-
-  .field-start-date,
-  .field-finish-date,
-  .field-start-rent,
-  .field-finish-rent
-  {
-    width: 60%;
-  }
-
-  .icon_title {
-    display: none;
-  }
-
-  .add_meters_added_field {
-    width: 111%;
-  }
-
-  .spotrebni_slozka .label_text {
-    width: 50%;
-  }
-
-  .help-right-label {
-    margin-top: 0;
-    margin-left: 0;
-  }
-
 
 
 
@@ -2158,19 +2120,7 @@ input, select, textarea {
   .meter-electro-field {
     width: 59%;
   }
-  .origins .select2 {
-    width: 59.5% !important;
-  }
 
-
-  .origins {
-    display: block;
-  }
-
-  .origins .label_text {
-    width: 100%;
-    margin-bottom: 7px;
-  }
 
 
  .cena_electro{
@@ -2560,133 +2510,10 @@ input, select, textarea {
 @media only screen and (max-width: 400px){
 
 
-  .field-start-date,
-  .field-finish-date,
-  .field-start-rent,
-  .field-finish-rent {
-    width: 100%;
-  }
-
-  .chekbox_coefficient {
-    margin: 15px 15px 15px 0;
-  }
-
-  .icon_plus {
-    margin-top: 5px;
-  }
-
-  .icon_minus {
-    margin-left: 5px;
-  }
-
-  .spotrebni_slozka, .zakladni_slozka, .zalohy {
-    width: 104%;
-   }
-
-  .add_field .select2 {
-    width: 50% !important;
-  }
-
-  .add_field input {
-    width: 31%;
-  }
-
-  .add_meters {
-    margin-bottom: 0;
-  }
-
-  .add_meters_added_field {
-    display: block;
-  }
-
-  .add_meters_added_field .select2 {
-    width: 86%!important;
-    margin-bottom: 10px;
-  }
-
-  .add_meters_added_field #initialValue1 {
-
-    margin-right: 6px;!important;
-  }
 
 
-  .add_meters_added_field [id*="initialValue"]{
-    width: 42%!important;
-    margin-left: 0;
-    margin-right: 9px;
-  }
-
-  .add_meters_added_field [id*="endValue"] {
-    width: 41%!important;
-  }
-
-  .add_meters_added_field [id*="meterNumber"] {
-    width: 86%!important;
-    margin-top: 10px;
-    margin-bottom: 25px!important;
-  }
 
 
-  .remove_meters{
-    display: block;
-    float: right;
-    position: relative;
-    top: -24px;
-    left: -4px;
-  }
-
-  /*.origins - used also in Year select2 in easy-calc */
-  .origins {
-    display: block;
-  }
-
-  .origins .label_text {
-    width: 100%;
-    margin-bottom: 7px;
-  }
-
-  .origins .select2 {
-    width: 100% !important;
-  }
-
-  .coefficient_label_text {
-    margin-top: 20px;
-  }
-
-  .zakladni_slozka {
-    display: block;
-  }
-
-  .zakladni_slozka .label_text {
-    margin-bottom: 7px;
-    width: 100%;
-  }
-
-  .zakladni_slozka input {
-    width: 91%;
-  }
-
-  .spotrebni_slozka, .zalohy {
-    display: block;
-  }
-
-  .spotrebni_slozka .label_text,
-  .zalohy_label  {
-    width: 100%;
-    margin-bottom: 7px;
-  }
-
-  .help-right-label {
-    float: right;
-    position: relative;
-    top: -35px;
-    right: -10%;
-  }
-
-  .spotrebni_slozka input, .zalohy input {
-    width: 91%;
-
-  }
 
   /*------------------Electro-form-400px--------------------------*/
 

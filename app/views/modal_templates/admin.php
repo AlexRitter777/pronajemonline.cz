@@ -68,8 +68,8 @@
             <div class="errors_field user_errors_field modal_errors_field"></div>
 
             <div class="modal_buttons">
-                <input type="submit" class="submit_button submit_button_modal recaptcha" id="new-admin" value="Uložit">
-                <button type="button" class="submit_button_refresh submit_button_refresh_modal">Zrušit</button>
+                <input type="submit" class="form-btn btn-submit recaptcha" id="new-property" value="Uložit">
+                <input type="button" class="form-btn btn-reset submit_button_refresh_modal" value="Zrušit">
             </div>
         </form>
 

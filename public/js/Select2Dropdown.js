@@ -38,6 +38,7 @@ export class Select2Dropdown {
                 cache: true,
 
             },
+            width: '100%',
             minimumInputLength: 1,
             allowClear: true,
             language: {

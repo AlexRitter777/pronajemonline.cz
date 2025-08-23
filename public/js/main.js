@@ -133,8 +133,8 @@ $(document).ready(function () {
         '<select name="appMeters[]" id="load_php_meters' + (y + lenMeters) + '" style="width: 21%">' +
         '</select>' +
         '<input type="number" class="field right-field" name="initialValue[]" id="initialValue' + (y + lenMeters) + '" step="any" placeholder="Počateční stav" style="width: 16%" />' +
-        '<input type="number" class="field last-field" name="endValue[]" id="endValue' + (y + lenMeters) + '" step="any" placeholder="Koneční stav" style="width: 16%" />' +
-        '<input type="text" class="field last-field" name="meterNumber[]" id="meterNumber' + (y + lenMeters) + '" placeholder="Číslo měříče" style="width: 27%" />' +
+        '<input type="number" class="field last-field" name="endValue[]" id="endValue' + (y + lenMeters) + '" step="any" placeholder="Konečný stav" style="width: 16%" />' +
+        '<input type="text" class="field last-field" name="meterNumber[]" id="meterNumber' + (y + lenMeters) + '" placeholder="Číslo měřídla" style="width: 27%" />' +
         '<a href="#" class="remove_meters">' +
         '<svg class="icon_minus">' +
         '<use xlink: href = "#minus" >' +
@@ -277,7 +277,7 @@ $(document).ready(function () {
 
 // Toggle between ANO/NE, connect the first row
 $(document).ready(function () {
-  var coefficientDiv = $('<div class = "add_coefficient"><div class = "add_coefficient_field" ><input type = "number" class = "coefficient_field" id = "coefficientValue1" name = "coefficientValue[]" step = "any" placeholder = "zadej koeficient"/><br/></div><a href="#" class="add_coefficient_button"><svg class="icon_plus"><use xlink: href = "#plus"></use></svg><span class="icon_title">Přidat koeficient</span></a></div>');
+  var coefficientDiv = $('<div class = "add_coefficient"><div class = "add_coefficient_field" ><input type = "number" class = "coefficient_field" id = "coefficientValue1" name = "coefficientValue[]" step = "any" placeholder = "Zadej koeficient"/><br/></div><a href="#" class="add_coefficient_button"><svg class="icon_plus"><use xlink: href = "#plus"></use></svg><span class="icon_title">Přidat koeficient</span></a></div>');
   var checkedAno = $('#ano_coefficient');
   var checkedNe = $('#ne_coefficient');
   var z = 1; // Counter for dynamically added coefficient fields
@@ -298,7 +298,7 @@ $(document).ready(function () {
     e.preventDefault();
     if (z + lenCoefficient < max_coefficients) { // Check if the max number of coefficients hasn't been reached
       z++;
-      $('.add_coefficient_field').append('<div class = "coefficient_added_field" id="' + (z + lenCoefficient) + '"><input type="number" class="coefficient_field" id="coefficientValue' + (z + lenCoefficient) + '" name="coefficientValue[]" step="any" placeholder="zadej koeficent" /><a href="#" class="remove_coefficients"><svg class="icon_minus"><use xlink: href = "#minus" ></use ></svg ><span class = "icon_title">Odebrat</span></a></div>');
+      $('.add_coefficient_field').append('<div class = "coefficient_added_field" id="' + (z + lenCoefficient) + '"><input type="number" class="coefficient_field" id="coefficientValue' + (z + lenCoefficient) + '" name="coefficientValue[]" step="any" placeholder="Zadej koeficient" /><a href="#" class="remove_coefficients"><svg class="icon_minus"><use xlink: href = "#minus" ></use ></svg ><span class = "icon_title">Odebrat</span></a></div>');
     }
     if (z + lenCoefficient == max_coefficients) {
       $('.add_coefficient_button').css('display', 'none'); // Hide add button if max coefficients reached

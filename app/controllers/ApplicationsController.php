@@ -22,14 +22,6 @@ class ApplicationsController extends AppController {
      * Forms actions
      */
 
-    //Vyúčtování služeb
-    public function servicesformAction() {
-        $this->setMeta('Vyúčtování služeb spojených s užíváním bytu | pronajemonline.cz - Vyúčtování služeb nájemníkům', 'Tato aplikace umožňuje vyhotovit online pravidelné vyúčtování služeb nájemníkům nebo vyúčtování služeb při skončení nájmu. Přehledné výstupy ve formátu PDF. Ideální pro správu nemovitostí a pronájmů.');
-        $this->layout = 'pronajemform';
-        $data = null;
-
-        $this->set(compact('data'));
-    }
 
     //Zjednodušené vyúčtování služeb
     public function easyservicesformAction() {
@@ -86,17 +78,6 @@ class ApplicationsController extends AppController {
      * Edit forms actions
      */
 
-    public function servicesformeditAction() {
-        $this->setMeta('Vyúčtování služeb', 'Vyúčtování služeb spojených s užíváním bytu', '');
-        $this->layout = 'pronajemform';
-        if(isset($_SESSION['servicesResult'][$_GET['id']])) {
-            $data = $_SESSION['servicesResult'][$_GET['id']];
-            unset($_SESSION['servicesResult'][$_GET['id']]);
-        } else {
-            $data = null;
-        }
-        $this->set(compact('data'));
-    }
 
     public function easyservicesformeditAction() {
         $this->setMeta('Vyúčtování služeb', 'Vyúčtování služeb spojených s užíváním bytu', '');
@@ -162,14 +143,6 @@ class ApplicationsController extends AppController {
     /**
      * Calculations actions
      */
-
-    //Vyúčtování služeb
-    public function servicescalcAction() {
-        $this->setMeta('Vyúčtování služeb', 'Vyúčtování služeb spojených s užíváním bytu', '');
-        $this->layout = 'pronajemcalc';
-        $result = $this->processCalculation('services');
-        $this->set(compact('result'));
-    }
 
 
     //Zjednodušené vyúčtování služeb

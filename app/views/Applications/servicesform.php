@@ -196,10 +196,19 @@
             </select>
         </div>
 
+<!--        <div class="coefficient_label_text text-help">-->
+<!--            <label class="label_text" id="label_text">-->
+<!--                <span>Byly ve vyúčtování od správce použité nějaké koeficienty pro výpočet spotřeby </span><br>-->
+<!--                <span>UT (ústředního topení)?</span>-->
+<!--            </label>-->
+<!--            <svg class="icon_help help-right-text" data-hint="#real-hint-6">-->
+<!--                <use xlink: href="#help"></use>-->
+<!--            </svg>-->
+<!--        </div>-->
+
         <div class="coefficient_label_text text-help">
             <label class="label_text" id="label_text">
-                <span>Byly ve vyúčtování od správce použité nějaké koeficienty pro výpočet spotřeby </span><br>
-                <span>UT (ústředního topení)?</span>
+                Byly ve vyúčtování od správce použité nějaké koeficienty pro výpočet spotřeby UT (ústředního topení)?
             </label>
             <svg class="icon_help help-right-text" data-hint="#real-hint-6">
                 <use xlink: href="#help"></use>
@@ -220,13 +229,13 @@
 
                 <div class = "add_coefficient">
                     <div class="add_coefficient_field">
-                        <input type = "number" class = "coefficient_field" id = "coefficientValue1" name = "coefficientValue[]" step = "any" placeholder = "zadej koeficient" value="<?=$data['coefficientValue'][0] ?>"/><br/>
+                        <input type = "number" class = "coefficient_field" id = "coefficientValue1" name = "coefficientValue[]" step = "any" placeholder = "Zadej koeficient" value="<?=$data['coefficientValue'][0] ?>"/><br/>
 
 
                         <?php for ($i = 1; $i <= count($data['coefficientValue']); $i++):?>
                             <?php if (!empty($data['coefficientValue'][$i])): ?>
                                 <div class = "coefficient_added_field" id="<?= ($i+1); ?>">
-                                    <input type="number" class="coefficient_field added_coefficient_field" id="coefficientValue<?= ($i + 1); ?>" name="coefficientValue[]" step="any" placeholder="zadej koeficent" value="<?= $data['coefficientValue'][$i]?>" />
+                                    <input type="number" class="coefficient_field added_coefficient_field" id="coefficientValue<?= ($i + 1); ?>" name="coefficientValue[]" step="any" placeholder="Zadej koeficient" value="<?= $data['coefficientValue'][$i]?>" />
                                     <a href="#" class="remove_coefficients">
                                         <svg class="icon_minus">
                                             <use xlink: href = "#minus" ></use >

@@ -11,14 +11,18 @@ use RedBeanPHP\R;
 
 class CalculationsController extends AppController {
 
-    /**
-     * Main page "Calculations"
-     */
-    public function indexAction(){
+    public function __construct($route) {
+        parent::__construct($route);
 
         if(!is_user_logged_in()){
             redirect('/user/login');
         }
+    }
+
+    /**
+     * Main page "Calculations"
+     */
+    public function indexAction(){
 
         $userID = $_SESSION['user_id'];
 
@@ -28,6 +32,11 @@ class CalculationsController extends AppController {
 
         //set default calculation type
         $calcType = 'servicescalc';
+
+        $calcMap = [
+          'servicescalc' => 'servicesform',
+          'easyservicescalc' => 'easyservicesform',
+        ];
 
         //set default order by
         $order = 'ORDER BY created_at DESC';
@@ -57,6 +66,8 @@ class CalculationsController extends AppController {
             }
         }
 
+        $formType = $calcMap[$calcType];
+
         //variables for SQL conditions
         $condition = '';
         $params = [];
@@ -64,7 +75,7 @@ class CalculationsController extends AppController {
         //create Account model
         $accountModel = new Account();
 
-        //create SQL conditions for filtr
+        //create SQL conditions for filter
         if($_GET) {
             $filterCond = $accountModel->filterQueryMaker($_GET, $calcType);
             $condition = $filterCond[0];
@@ -87,7 +98,7 @@ class CalculationsController extends AppController {
         $calcTypeValue = Services::getCalcValue($calcType);
 
 
-        $this->set(compact('calculations', 'calcType', 'calcTypeValue', 'calcURL', 'pagination', 'total', 'accountModel'));
+        $this->set(compact('calculations', 'calcType', 'formType', 'calcTypeValue', 'calcURL', 'pagination', 'total', 'accountModel'));
 
     }
 
@@ -99,9 +110,9 @@ class CalculationsController extends AppController {
      * client code is located in ../calculations.js
      */
    public function savemodalAction() {
-       if(!is_user_logged_in()){
-           redirect('/user/login');
-       }
+//       if(!is_user_logged_in()){
+//           redirect('/user/login');
+//       }
 
        $userID = $_SESSION['user_id'];
        $response = null;
@@ -159,9 +170,9 @@ class CalculationsController extends AppController {
      * Save calculation in DB with same id
      */
     public function saveAction() {
-        if(!is_user_logged_in()){
-            redirect('/user/login');
-        }
+//        if(!is_user_logged_in()){
+//            redirect('/user/login');
+//        }
 
         $userID  = $_SESSION['user_id'];
         $data = [];
@@ -262,6 +273,52 @@ class CalculationsController extends AppController {
         }*/
 
     }
+
+    public function newAction()
+    {
+        //get list of possible calculations /user/calculations/new
+    }
+
+
+    //Nové vyúčtování služeb
+    public function servicesformAction() {
+        $this->setMeta('Vyúčtování služeb spojených s užíváním bytu | pronajemonline.cz - Vyúčtování služeb nájemníkům', 'Tato aplikace umožňuje vyhotovit online pravidelné vyúčtování služeb nájemníkům nebo vyúčtování služeb při skončení nájmu. Přehledné výstupy ve formátu PDF. Ideální pro správu nemovitostí a pronájmů.');
+        $this->layout = 'account';
+        $data = null;
+        $reCaptcha = true;
+
+        $this->set(compact('data', 'reCaptcha'));
+    }
+
+    //Úpravit vyúčtování služeb
+    public function servicesformeditAction() {
+        $this->setMeta('Vyúčtování služeb', 'Vyúčtování služeb spojených s užíváním bytu', '');
+        $this->layout = 'pronajemform';
+        if(isset($_SESSION['servicesResult'][$_GET['id']])) {
+            $data = $_SESSION['servicesResult'][$_GET['id']];
+            unset($_SESSION['servicesResult'][$_GET['id']]);
+        } else {
+            $data = null;
+        }
+
+        $reCaptcha = true;
+
+        $this->set(compact('data', 'reCaptcha'));
+    }
+
+    //Vyúčtování služeb - výsledek
+    public function servicescalcAction() {
+        $this->setMeta('Vyúčtování služeb', 'Vyúčtování služeb spojených s užíváním bytu', '');
+        $this->layout = 'pronajemcalc';
+        $result = $this->processCalculation('services');
+        $this->set(compact('result'));
+    }
+
+
+
+
+
+
 
 
 

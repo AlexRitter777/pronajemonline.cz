@@ -3,6 +3,7 @@
 /* ===== Content layout ===== */
 
 .user-content {
+    position: relative;
     display: flex;
     max-width: 1152px;
     margin: 0 auto 0;
@@ -15,6 +16,25 @@
     border-right: 1px solid #e2e8f0;
     box-shadow: 0 4px 5px 0 rgb(0 0 0 / 8%);
 
+}
+
+
+/*========== Dashboard header ===============*/
+
+.user-header {
+    text-align: center;
+    margin-top: -5px;
+    margin-bottom: -10px;
+
+
+}
+
+.user-header h3 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 1.5rem;
+    color: var(--btn-fg);
+    text-transform: none;
 }
 
 
@@ -109,35 +129,108 @@ table{
     border-collapse: collapse;
 }
 
+.table-container{
+    background-color: #fcfcfd;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    width: 94%;
+    margin: 20px auto 40px auto;
+    overflow-x: auto;
+}
 
-    /*Calculations table columns widths*/
-    /*Dashboard and Calculations pages*/
-.calculation-titles .col-1 {
+.account-table {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.account-table th{
+    background-color: var(--table-header-bg);
+    color: #475569;
+    font-weight: 600;
+    padding:  0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--table-border);
+    text-transform: uppercase;
+}
+
+.account-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #f1f5f9;
+    color: var(--table-text);
+}
+
+.account-table tr:nth-child(even) td {
+    background-color: #fafafa;
+}
+
+.account-table tr:hover td {
+    background-color: var(--table-row-hover);
+    cursor: pointer;
+    transition: background .1s linear;
+}
+
+/*Calculations dashboard table columns widths*/
+
+.calculations-dashboard-table .col-1 {
     width: 10%;
 }
 
-.calculation-titles .col-2 {
+.calculations-dashboard-table .col-2 {
     width: 25%;
 }
 
-.calculation-titles .col-3 {
+.calculations-dashboard-table .col-3 {
     width: 15%;
 }
 
-.calculation-titles .col-4 {
+.calculations-dashboard-table .col-4 {
     width: 20%;
 }
 
-.calculation-titles .col-5 {
+.calculations-dashboard-table .col-5 {
     width: 13%;
 }
 
-.calculation-titles .col-6 {
+.calculations-dashboard-table .col-6 {
     width: 12%;
     text-align: left;
 }
 
-.calculation-titles .col-7 {
+.calculations-dashboard-table .col-7 {
+    width: 5%;
+    text-align: right;
+}
+
+/*Calculations page table columns widths*/
+.calculations-table .col-1 {
+    width: 20%;
+}
+
+.calculations-table .col-2 {
+    width: 25%;
+}
+
+.calculations-table .col-3 {
+    width: 20%;
+}
+
+.calculations-table .col-4 {
+    width: 15%;
+}
+
+.calculations-table .col-5 {
+    width: 10%;
+}
+
+.calculations-table .col-6 {
+    width: 8%;
+    text-align: left;
+}
+
+.calculations-table .col-7 {
     width: 5%;
     text-align: right;
 }
@@ -268,51 +361,9 @@ table{
 }
 
 
-    /*Dashboard Tables*/
-.dashboard-table-container{
-    background-color: #fcfcfd;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-    width: 94%;
-    margin: 20px auto 40px auto;
-    overflow-x: auto;
-}
 
-.dashboard-table {
-    width: 100%;
-    margin-bottom: 10px;
-    text-align: left;
-}
 
-.dashboard-table th{
-    background-color: var(--table-header-bg);
-    color: #475569;
-    font-weight: 600;
-    padding:  0.75rem;
-    text-align: left;
-    border-bottom: 1px solid var(--table-border);
-    text-transform: uppercase;
-}
-
-.dashboard-table td {
-    padding: 0.75rem;
-    border-bottom: 1px solid #f1f5f9;
-    color: var(--table-text);
-}
-
-.dashboard-table tr:nth-child(even) td {
-    background-color: #fafafa;
-}
-
-.dashboard-table tr:hover td {
-    background-color: var(--table-row-hover);
-    cursor: pointer;
-    transition: background .1s linear;
-}
-
-    /*Dashboard actions buttons*/
+    /*Dashboard buttons containers*/
 .dashboard-buttons-container,
 .dashboard-calculations-container{
     height: 80px;
@@ -334,10 +385,16 @@ table{
     width: 31%;
 }
 
-.show-more-btn {
-    display:inline-flex; align-items:center; gap:8px;
+/*Buttons*/
+
+.show-more-btn,
+.new-entity-button {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
     padding: 6px 12px;
-    font-size: 13px; font-weight: 500;
+    font-size: 13px;
+    font-weight: 500;
     color: var(--btn-fg);
     background: var(--btn-bg);
     border: 1px solid var(--table-border);
@@ -346,10 +403,16 @@ table{
     transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
 }
 
-.show-more-btn:hover {
+.show-more-btn:hover,
+.new-entity-button:hover {
     background: var(--btn-bg-hover);
     color: var(--btn-fg);
     box-shadow: 0 1px 2px rgba(0,0,0,.06) inset;
+}
+
+.new-entity-button{
+    margin-top: 16px;
+    margin-bottom: 6px;
 }
 
 .new-dashboard-btn {
@@ -370,6 +433,92 @@ table{
     color: var(--btn-fg);
     box-shadow: 0 1px 2px rgba(0,0,0,.06) inset;
 }
+
+
+/*============== Calculations =================*/
+
+.main-container {
+
+    width: 96%;
+    max-width: 820px;
+    min-height: 1100px;
+    margin: 0 auto 15px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    text-align: left;
+}
+
+.calculation-title {
+
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.calculation-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-top: 20px;
+}
+
+.select-wrapper {
+    width: 96%;
+    margin-bottom: 10px;
+}
+
+.form-btn {
+    padding: 8px 16px;
+    min-width: 140px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1px solid var(--table-border);
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+
+
+
+.coefficient_label_text .label_text {
+    max-width: 80%;
+}
+
+.korekce .label_text {
+    max-width: 60%;
+}
+
+
+/* Clear */
+.btn-reset {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.btn-reset:hover {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* Submit */
+.btn-submit {
+    background-color: var(--btn-bg);
+    color: var(--btn-fg);
+    border: 1px solid var(--table-border);
+}
+
+.btn-submit:hover {
+    background-color: var(--btn-bg-hover);
+    color: var(--color-accent-hover);
+}
+
+
+
 
 
 
@@ -517,9 +666,10 @@ table{
     text-decoration: underline;
 
 }
+
 .item_delete_button:hover,
 .item_delete_button_ajax:hover{
-    text-decoration: underline;
+    color: var(--color-accent-hover);
 }
 /*---------------Properties---------------------*/
 
@@ -537,6 +687,46 @@ table{
 
 
 /*-------------j-box additional styles-----------------*/
+
+.jBox-container{
+    background: var(--card-bg)!important;
+    border: 1px solid var(--card-border)!important;
+    border-radius: 8px!important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03)!important;
+}
+
+.jBox-container h3 {
+    padding-top: 0!important;
+}
+
+#new_property_full {
+    margin: 10px 0 10px 0;
+}
+
+.jBox-content {
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    color: var(--color-accent);
+    line-height: 20px;
+    padding: 30px 25px 20px !important;
+}
+
+.jBox-title {
+    /*background: #f5f5f5!important;*/
+    background: var(--table-header-bg)!important;
+    border-bottom: 1px solid var(--table-border)!important;
+    /*border-bottom: 1px solid #f5f5f5!important;*/
+
+}
+
+.jBox-title > div {
+    font-weight: 600;
+    color: var(--color-accent);
+    text-transform: uppercase;
+}
+
+
+
 .jBox-Confirm-footer {
     display: flex;
     justify-content: space-around;
@@ -576,25 +766,9 @@ table{
     color: #c00!important;
 }
 
-.jBox-title {
-    background: #f5f5f5!important;
-    border-bottom: 1px solid #f5f5f5!important;
-}
 
-.jBox-title > div {
-    font-weight: 600;
-    color: var(--color-accent);
-    text-transform: uppercase;
-}
 
-.jBox-content {
-    font-family: sans-serif;
-    font-size: 1.2em;
-    letter-spacing: 1px;
-    color: var(--color-accent);
-    line-height: 20px;
-    padding: 30px 35px!important;
-}
+
 
 /*--------------------Profil nájemníka------------------*/
 .tenants {
@@ -758,7 +932,6 @@ table{
 .person_added_btn,
 .admin_added_btn,
 .btn_open_modal {
-    font-family: 'Open Sans', sans-serif;
     background-color: #ffffff;
     margin-left: 1.5%;
     border: 2px solid var(--color-accent);
@@ -770,24 +943,16 @@ table{
     width: 50px;
 }
 
-.person_added_btn:hover{
+.person_added_btn:hover,
+.admin_added_btn:hover,
+.btn_open_modal:hover {
     cursor: pointer;
-    background-color:#f5f5f5;
+    color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
 }
 
 /*---------------------------Modal window new person-------------------*/
-.user-header {
-    text-align: center;
-    margin-top: -5px;
-    margin-bottom: -10px;
 
-
-}
-
-.user-header h3 {
-    font-size: 1.5rem;
-    color: var(--btn-fg);
-}
 
 .user-header-modal{
     margin-top: -10px;
@@ -798,32 +963,48 @@ table{
     margin: 0 auto;
     width: 95%;
     font-size: 1em;
+    font-weight: 600;
     color: var(--color-accent);
+}
 
+.tenants-modal tr {
+    height: 55px;
+}
+
+.tenants-modal .col-1 {
+    width: 35%;
+}
+
+.tenants-modal .link-wrapper {
+    height: 50px;
+}
+
+.tenants-modal a:hover {
+    color: var(--color-accent-hover);
 }
 
 .input-profile-modal {
     width: 100%;
 }
 
-.submit_button_modal{
-    width: 80px;
-    min-width: 60px;
-    height: 30px;
-    margin: 0;
-    padding: 0;
-}
+/*.submit_button_modal{*/
+/*    width: 80px;*/
+/*    min-width: 60px;*/
+/*    height: 30px;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
 
 .submit_button_refresh_modal,
 .submit_button_refresh_modal_old{
-    background-color: #ffffff;
-    width: 80px;
-    min-width: 60px;
-    height: 30px;
-    font-weight: 600;
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    padding: 0;
+    /*background-color: #ffffff;*/
+    /*width: 80px;*/
+    /*min-width: 60px;*/
+    /*height: 30px;*/
+    /*font-weight: 600;*/
+    /*font-family: 'Open Sans', sans-serif;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
 }
 
 .modal_buttons {
@@ -834,9 +1015,17 @@ table{
 
 .modal_errors_field .errors {
     font-weight: normal;
-    padding: 5px 0 5px 30px;
+    padding: 5px 0 5px 10px;
+    font-size: 1rem;
+    margin-bottom: 25px;
+    margin-top: 5px;
 
 }
+
+.modal_errors_field .errors li {
+    list-style: disc;
+}
+
 .modal_errors_field #er {
     margin-bottom: 1px;
 
@@ -848,17 +1037,19 @@ table{
     border-width: 5px;
 }
 
-.loader-wrapper_profile {
-
-    top: 45%;
-    left: 7%;
-}
 
 .opacity-for-loader{
     height: 100%;
 }
 
+#modal-opacity {
+    position: relative;
+}
 
+.loader-wrapper_modal{
+    top: 50%;
+    left: unset;
+}
 
     /*------ Save calculation modal window ------------*/
 
@@ -903,28 +1094,37 @@ table{
 
 /*----------------- Pagination---------------------*/
 
+.pagination a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-accent);
+    transition: color 0.2s ease;
+    font-weight: 600;
+    height: 20px;
+    width: 23px;
+    text-decoration: none;
+    border: 1px solid #e2e8f0;
+}
+
+.pagination .active {
+    color: var(--color-accent-hover);
+    background: var(--table-header-bg);
+}
+
+
 .pagination {
     list-style: none;
     display: flex;
     justify-content: center;
-
-}
-.pagination li {
-    padding: 0 5px 0 5px;
-    font-weight: 700;
+    padding: 0;
+    margin: 0;
 }
 
-.pagination a {
-    text-decoration: none;
+.pagination-wrapper{
+    margin-top: 20px;
 }
 
-.pagination .active {
-    text-decoration: underline;
-}
-
-.text-center {
-    margin-bottom: 20px;
-}
 
 /*--------------------Account settings--------------------------------*/
 
@@ -1166,6 +1366,13 @@ table{
         margin-bottom: 2px;
     }
 
+    /*------------- Services form ----------------*/
+    .form-prices-group .label_text {
+        max-width: 60%;
+    }
+
+
+
 }
 /*------------------------------896 px------------------------------------*/
 
@@ -1193,6 +1400,18 @@ table{
         justify-content: space-around;
     }
 
+    /*Services form*/
+
+    .form {
+        margin: 0 40px;
+    }
+
+    .icon_title {
+        display: none;
+    }
+
+
+
 }
 
 
@@ -1203,11 +1422,6 @@ table{
 
 
 
-    /*------------- My Account - Calculations -------------*/
-
-    .user-calculations-table{
-        width: 95%;
-    }
 
     /*------------- My Account - New landlord, New Tenant -------------*/
 
@@ -1327,6 +1541,19 @@ table{
         cursor: pointer;
     }
 
+    /*Services form*/
+    .add_field
+     {
+        width: 110%;
+    }
+
+    .form-service-charges-group .select2-container {
+        width: 58%!important;
+    }
+
+    .add_input_fields input {
+        width: 28%;
+    }
 
 }
 
@@ -1362,23 +1589,8 @@ table{
 
     @media only screen and (max-width: 600px) {
 
-        /*------------- My Account - index page -------------*/
-
-        /*.user-content {*/
-        /*    position: relative;*/
-        /*    justify-content: center;*/
-
-        /*}*/
-
 
         /*------------- My Account - Calculations -------------*/
-
-        .user-calculations-table .col-1{
-            display: none;
-        }
-        .user-calculations-table .col-4{
-            width: 15%;
-        }
 
         .icons-order {
             flex-direction: unset;
@@ -1435,6 +1647,48 @@ table{
     .dashboard-table .col-6 {
         display: none;
     }
+
+    /*Modal jBox position adjustment*/
+    #jBox1, #jBox2 {
+        inset: 227.75px auto auto 16px!important;
+    }
+
+
+    /*------------- Calculations forms ---------------*/
+
+    .calculation-form {
+        margin: 0 20px;
+    }
+
+
+    .subtitle, .h3-subtitle {
+        font-size: 1em;
+    }
+
+    .label_text {
+
+        font-size: 0.95em;
+
+    }
+    #label_text {
+        font-size: 0.98em;
+    }
+
+
+    /*------------- Services form ----------------*/
+
+
+
+    .spotrebni_slozka .label_text {
+        width: 50%;
+    }
+
+    .help-right-label {
+        margin-top: 0;
+        margin-left: 0;
+    }
+
+
 }
 
 
@@ -1490,6 +1744,97 @@ table{
         display: flex;
         margin-bottom: 0;
     }
+
+
+    /*------------- Services form ----------------*/
+
+    .date {
+      display: block;
+    }
+
+    .date .label_text {
+      width: 100%;
+      margin-bottom: 7px;
+    }
+
+    .field-start-date,
+    .field-finish-date,
+    .field-start-rent,
+    .field-finish-rent
+    {
+        width: 100%;
+    }
+
+    .origins .select2 {
+        width: 100% !important;
+    }
+
+    .origins {
+        display: block;
+    }
+
+    .origins .label_text {
+        width: 100%;
+        margin-bottom: 7px;
+    }
+
+    .coefficient_field {
+        width: 96%;
+    }
+
+    .coefficient_added_field .coefficient_field {
+        width: 83.5%;
+    }
+
+
+    .spotrebni_slozka, .zakladni_slozka, .zalohy {
+        width: 105%;
+    }
+
+    .zakladni_slozka {
+        display: block;
+    }
+
+    .zakladni_slozka .label_text {
+        margin-bottom: 7px;
+        width: 100%;
+    }
+
+    .zakladni_slozka input {
+        width: 91%;
+    }
+
+    .spotrebni_slozka, .zalohy {
+        display: block;
+    }
+
+    .spotrebni_slozka .label_text,
+    .zalohy_label  {
+        width: 100%;
+        margin-bottom: 7px;
+    }
+
+    .help-right-label {
+        float: right;
+        position: relative;
+        top: 10px;
+        right: 35%;
+    }
+
+    .spotrebni_slozka input, .zalohy input {
+        width: 91%;
+
+    }
+
+    .korekce{
+        display: block;
+    }
+
+    .korekce input {
+        width: 96%;
+    }
+
+
 }
 
 
@@ -1558,6 +1903,86 @@ table{
         width: 40%;
     }
 
+    /*---------------- Services form calculation ----------------------*/
+    .add_field{
+        display: block;
+
+    }
+
+    .form-service-charges-group .select2-container {
+        width: 87%!important;
+        margin-bottom: 10px;
+    }
+
+    .add_input_fields input {
+        width: 87%;
+        margin-left: 0;
+        margin-bottom: 20px!important;
+    }
+
+    .form-service-charges-group .add_field {
+        position: relative;
+    }
+
+    .form-service-charges-group .remove_field {
+        display: block;
+        position: absolute;
+        bottom: 30px;
+        right: 5px;
+    }
+
+    .add_meters {
+        margin-bottom: 0;
+    }
+
+    .add_meters_added_field {
+        display: block;
+        position: relative;
+    }
+
+    .add_meters_added_field .select2 {
+        width: 85%!important;
+        margin-bottom: 10px;
+    }
+
+    .add_meters_added_field #initialValue1 {
+
+        margin-right: 6px;!important;
+    }
+
+
+    .add_meters_added_field [id*="initialValue"]{
+        width: 41.5%!important;
+        margin-left: 0;
+        margin-right: 9px;
+    }
+
+    .add_meters_added_field [id*="endValue"] {
+        width: 41%!important;
+    }
+
+    .add_meters_added_field [id*="meterNumber"] {
+        width: 85%!important;
+        margin-top: 10px;
+        margin-bottom: 20px!important;
+    }
+
+
+    .remove_meters{
+        display: block;
+        position: absolute;
+        top: 50px;
+        right: 16px;
+    }
+
+    .chekbox_coefficient {
+        margin: 15px 15px 15px 0;
+    }
+
+    .coefficient_label_text {
+        margin-top: 20px;
+    }
+
 }
 
 /*------------------------------384 px------------------------------------*/
@@ -1568,6 +1993,15 @@ table{
     /*Dashboard tables*/
     .dashboard-table .col-5{
         display: none;
+    }
+
+    /*Services form*/
+    .remove_meters{
+        right: 10px;
+    }
+
+    .form-btn {
+        min-width: 80px;
     }
 }
 

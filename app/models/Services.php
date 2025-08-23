@@ -8,7 +8,6 @@ class Services extends AppModel {
         'Garáže',
         'Odměny výboru SVJ',
         'Odpad',
-        'Pojištění domu',
         'Společná el. energie',
         'Údržba zeleně',
         'Údržba komunikaci, pozemků, zeleně',
@@ -26,7 +25,6 @@ class Services extends AppModel {
         'Náklady na odečty a rozučtování',
         'Havarijní služba',
         'Recepce',
-        'Fond oprav',
         'Odměna správci',
 
     );

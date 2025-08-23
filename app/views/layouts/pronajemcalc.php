@@ -17,13 +17,9 @@
     <link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.all.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.all.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
 
 </head>
 
-<?php require_once APP . "/views/Includes/google_tag.php"; ?>
 
 <body>
 
@@ -37,8 +33,8 @@
         <?php if(is_user_logged_in()): ?>
             <a class="button-bar-link calc-list-btn" href="/user/calculations?calc_type=<?= $result['calcType'] ;?>calc">Seznam vyúčtování</a>
         <?php endif; ?>
-        <a class="button-bar-link" href="/applications/create-pdf?calculation_type=<?= $result['calcType'] ;?>&id=<?= $result['id'] ;?>">PDF</a>
-        <a class="button-bar-link" href="/applications/<?= $result['calcType']; ?>-form-edit?id=<?= $result['id'] ;?>">Upravit</a>
+        <a class="button-bar-link" href="/user/calculations/create-pdf?calculation_type=<?= $result['calcType'] ;?>&id=<?= $result['id'] ;?>">PDF</a>
+        <a class="button-bar-link" href="/user/calculations/<?= $result['calcType']; ?>-form-edit?id=<?= $result['id'] ;?>">Upravit</a>
         <a class="button-bar-link" href="#" id="print-button">Tisk</a>
         <?php if(is_user_logged_in()): ?>
             <?php if(!empty($result['calculationId'])): ?>
@@ -48,7 +44,7 @@
         <?php else:?>
             <a class="button-bar-link un-logged-save" data-item="login" data-title="Přihlášení" href="" >Uložit jako</a>
         <?php endif;?>
-        <a class="button-bar-link" href="/applications/<?= $result['calcType']; ?>-form" id="home-button">Nový</a>
+        <a class="button-bar-link" href="/user/calculations/new" id="home-button">Nový</a>
     </div>
 </div>
 
@@ -62,7 +58,6 @@
 <?= $footer ?>
 
 <script src="js/calculations.js" type="module"></script>
-<script src="js/hamburger.js"></script>
 
 </body>
 </html>

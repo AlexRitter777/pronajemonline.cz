@@ -463,53 +463,6 @@ $(document).ready(function() {
 })
 
 
-/**
- * Icon "minus" instead "Smazat" string in account tables when screen size is less than 700px
- */
-
-//1. on load
-$(window).on('load', function  (){
-
-    let cross = `
-     <svg class="icon_minus">
-        <use xlink: href = "#minus" >
-        </use >
-    </svg >
-    
-    `;
-
-    if(screen.width < 700) {
-        $('.item_delete_button_ajax, .item_delete_button').html(cross);
-
-    }else {
-        $('.item_delete_button_ajax, .item_delete_button').text('Smazat');
-    }
-
-
-})
-
-//2. on screen size change
-$(document).ready(function (){
-
-    let cross = `
-     <svg class="icon_minus">
-        <use xlink: href = "#minus" >
-        </use >
-    </svg >
-    
-    `;
-
-    $(window).resize(function (){
-        if(screen.width < 700){
-            $('.item_delete_button_ajax, .item_delete_button').html(cross);
-        } else {
-            $('.item_delete_button_ajax, .item_delete_button').text('Smazat');
-        }
-
-    })
-
-})
-
 
 /**
  * Change password from account settings
@@ -652,8 +605,11 @@ function removeJboxTraces(){
     //everytime JBox create new Modal window,
     //every time after close modal window we should delete the old one
     //because we have more than one modal box in different files, we don't use destroy() method
-    modalWindow.close();
-    modalWindow.destroy();
+    if(modalWindow){
+        modalWindow.close();
+        modalWindow.destroy();
+    }
+
 
 }
 

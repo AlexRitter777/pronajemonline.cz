@@ -50,7 +50,7 @@ return [
         'pdf' => [],
         'pronajem' => ['header', 'footer'],
         'pronajemcalc' => ['header', 'footer'],
-        'pronajemform' => ['header', 'footer']
+        'pronajemform' => ['header', 'footer', 'left_side_bar'],
 
     ]
 

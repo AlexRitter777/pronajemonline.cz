@@ -14,24 +14,18 @@
     <h3>Vyúčtování</h3>
 </div>
 
-<div class="central-bar">
-
-    <button class="burger-sidebar" type="button" id="navToggle">
-        <span class="burger__item">Menu</span>
-    </button>
+<div class="table-container">
 
     <div class="calculation-select-type">
         <form method="get" class="calc_type_form" action="/user/calculations">
-            <!--<label for="calc_type">Druh vyúčtování</label>-->
             <select name="calc_type" class="select-calctype" id="calc-type-list">
                 <option value="<?= $calcType; ?>"><?= $calcTypeValue; ?></option>
             </select>
-            <!--<input type="submit" class="sbm_calc_type" value="Vybrat">-->
         </form>
     </div>
 
     <?php if($calculations): ?>
-        <table class="calculation-titles account-index-table user-calculations-table" border="0">
+        <table class="calculations-table account-table" border="0">
             <tr class="row-1">
                 <th class="col-1">Název</th>
                 <th class="col-2">
@@ -121,22 +115,30 @@
                     <?php endif;?>
                     <td class="col-5"><?= date("d.m.Y", strtotime($calculation->created_at));?></td>
                     <td class="col-6"><?= date("d.m.Y", strtotime($calculation->updated_at));?></td>
-                    <td class="col-7"><span class="item_delete_button_ajax" data-type="<?= $calcURL; ?>" data-id="<?=$calculation->id;?>" data-del="#del-conf">Smazat</span></td>
+                    <td class="col-7"><span class="item_delete_button_ajax" data-type="<?= $calcURL; ?>" data-id="<?=$calculation->id;?>" data-del="#del-conf"><i class="fa-regular fa-trash-can"></i></span></td>
 
                 </tr>
             <?php endforeach;?>
         </table>
 
-        <div class="text-center">
+        <div class="text-center pagination-wrapper">
             <?php if($pagination->countPages > 1): ?>
                 <?= $pagination; ?>
             <?php endif; ?>
         </div>
 
+        <div class="more-calc-btn">
+            <a class="new-entity-button" href="/user/calculations/<?= $formType;?>">Nové vyúčtování</a>
+        </div>
+
+
 
 
     <?php else:?>
         <p class="empty-data">Nemáte uložené žádné vyúčtování!</p>
+        <div class="more-calc-btn">
+            <a class="new-entity-button" href="/user/calculations/<?= $formType;?>">Nové vyúčtování</a>
+        </div>
     <?php endif;?>
 
     <?php //debug($servicesCalculations); ?>
