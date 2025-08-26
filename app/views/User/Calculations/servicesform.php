@@ -434,10 +434,13 @@
         </div>
         <!--End Validation errors-->
 
+        <!--Buttons-->
         <div class="submit_button_div">
             <input type="submit" class="form-btn btn-submit btn-calc-submit" id="btn_submit" value="Spočítat" />
             <input type="button" class="form-btn btn-reset" id="btn_clear" value="Vymazat" />
         </div>
+        <!--End Buttons-->
+
         <input type="hidden" name="calculationName" value="<?= $data['calculationName'] ?? '';?>">
         <input type="hidden" name="id" value="<?= $data['calculationId'] ?? '';?>">
     </form>

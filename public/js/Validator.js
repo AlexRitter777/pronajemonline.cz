@@ -443,7 +443,7 @@ class Validator {
             encode: true,
         })
             .done((data) => {
-                //console.log(data); //vypnout v produkcnim provozu!
+                // console.log(data); //vypnout v produkcnim provozu!
 
                 this.data = data;
 
@@ -575,22 +575,23 @@ class Validator {
 
    validateservicesForm(){
 
-        this.processResponse('landlordName'); //demo
-        this.processResponseSelect2('landlordName');
+        this.processResponseOrSelect2('propertyAddress');
+        this.processResponse('propertyType');
+
+        this.processResponseOrSelect2('landlordName');
         this.processResponse('landlordAddress');
         this.processResponse('accountNumber');
-        this.processResponse('propertyAddress'); //demo
-        this.processResponseSelect2('propertyAddress');
-        this.processResponse('propertyType');
-        this.processResponse('tenantName'); //demo
-        this.processResponseSelect2('tenantName');
+
+        this.processResponseOrSelect2('tenantName');
         this.processResponse('tenantAddress');
-        this.processResponse('adminName'); //demo
-        this.processResponseSelect2('adminName');
+
+        this.processResponseOrSelect2('adminName');
+
         this.processResponse('calcStartDate');
         this.processResponse('calcFinishDate');
         this.processResponse('rentStartDate');
         this.processResponse('rentFinishDate');
+
         this.processResponse('constHotWaterPrice');
         this.processResponse('constHeatingPrice');
         this.processResponse('hotWaterPrice');
@@ -599,13 +600,14 @@ class Validator {
         this.processResponse('heatingPrice');
         this.processResponse('changedHeatingCosts');
         this.processResponse('heatingYearSum');
+
         this.processResponse('servicesCostCorrection');
         this.processResponse('hotWaterCorrection');
         this.processResponse('heatingCorrection');
         this.processResponse('coldWaterCorrection');
+
         this.processResponse('advancedPayments');
         this.processResponse('advancedPaymentsDesc');
-
 
         this.processTwoDatesResponse('calcDiffDates', 'calcStartDate', 'calcFinishDate');
         this.processTwoDatesResponse('rentDiffDates', 'rentStartDate', 'rentFinishDate');
@@ -738,14 +740,15 @@ class Validator {
 
     validateeasyservicesForm(){
 
-        this.processResponse('landlordName');
+        this.processResponseOrSelect2('propertyAddress');
+        this.processResponse('propertyType');
+        this.processResponseOrSelect2('landlordName');
         this.processResponse('landlordAddress');
         this.processResponse('accountNumber');
-        this.processResponse('propertyAddress');
-        this.processResponse('propertyType');
-        this.processResponse('tenantName');
+        this.processResponseOrSelect2('tenantName');
         this.processResponse('tenantAddress');
         this.processResponse('adminName');
+        this.processResponseSelect2('adminName');
         this.processResponse('advancedPayments');
 
         this.processAddedRowsSelect2Response('pausalniNaklad', 'test', ['Value','Char','Length']);
@@ -845,6 +848,21 @@ class Validator {
             $("[aria-controls='select2-" + name + "-container']").attr('style', 'border: 1.5px solid var(--error-border)!important');
         } else {
 
+            $("[aria-controls='select2-" + name + "-container']").attr('style', '');
+
+        }
+    }
+
+    processResponseOrSelect2(name){
+        if (this.data['errors'][name]){
+            $("#errors").append(
+                '<li id="er">' + this.data['errors'][name] + '</li>'
+            );
+            $('#' + name).addClass("error_field_form");
+            $("[aria-controls='select2-" + name + "-container']").attr('style', 'border: 1.5px solid var(--error-border)!important');
+
+        } else {
+            $('#' + name).removeClass("error_field_form");
             $("[aria-controls='select2-" + name + "-container']").attr('style', '');
 
         }

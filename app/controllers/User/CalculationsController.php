@@ -279,6 +279,9 @@ class CalculationsController extends AppController {
         //get list of possible calculations /user/calculations/new
     }
 
+    /*
+     * Vyúčtování služeb (services calculation). Formulář.
+     */
 
     //Nové vyúčtování služeb
     public function servicesformAction() {
@@ -293,7 +296,7 @@ class CalculationsController extends AppController {
     //Úpravit vyúčtování služeb
     public function servicesformeditAction() {
         $this->setMeta('Vyúčtování služeb', 'Vyúčtování služeb spojených s užíváním bytu', '');
-        $this->layout = 'pronajemform';
+        $this->layout = 'account';
         if(isset($_SESSION['servicesResult'][$_GET['id']])) {
             $data = $_SESSION['servicesResult'][$_GET['id']];
             unset($_SESSION['servicesResult'][$_GET['id']]);
@@ -313,6 +316,22 @@ class CalculationsController extends AppController {
         $result = $this->processCalculation('services');
         $this->set(compact('result'));
     }
+
+
+    /*
+     * Zjednodušené Vyúčtování služeb (easy services calculation). Formulář.
+     */
+
+    //Zjednodušené vyúčtování služeb
+    public function easyservicesformAction() {
+        $this->setMeta('Zjednodušené vyúčtování služeb spojených s užíváním bytu | pronajemonline.cz - Vyúčtování služeb nájemníkům', 'Tato aplikace umožňuje vyhotovit online pravidelné vyúčtování služeb nájemníkům za uplynulý rok. Přehledné výstupy ve formátу PDF. Ideální pro správu nemovitostí a pronájmů.');
+        $this->layout = 'account';
+        $data = null;
+        $reCaptcha = true;
+
+        $this->set(compact('data', 'reCaptcha'));
+    }
+
 
 
 

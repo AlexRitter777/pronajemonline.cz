@@ -49,7 +49,7 @@
     <h4 class="dashboard-calc-title">Rychlé vyúčtování</h4>
     <div class="dashboard-calculations-container">
         <a class="new-dashboard-btn" href="user/calculations/services-form"><i class="far fa-file-alt"></i> <span>Vyúčtování služeb</span></a>
-        <a class="new-dashboard-btn" href=""><i class="far fa-file-alt"></i> <span>Zjednodušené vyúčtování</span></a>
+        <a class="new-dashboard-btn" href="user/calculations/easy-services-form"><i class="far fa-file-alt"></i> <span>Zjednodušené vyúčtování</span></a>
         <a class="new-dashboard-btn" href=""><i class="far fa-file-alt"></i> <span>Vyúčtování kauce</span></a>
     </div>
 

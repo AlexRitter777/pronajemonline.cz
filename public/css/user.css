@@ -519,6 +519,68 @@ table{
 
 
 
+/*=============== Validation and errors =================*/
+
+
+.errors_field{
+    margin: 15px 23px 15px 0;
+}
+
+.errors {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+    border-radius: 6px;
+    padding: 12px 16px;
+    line-height: 1.5;
+}
+
+.errors li {
+    margin-left: 1.2rem;
+    list-style-type: "⚠️ ";
+    padding-left: 5px;
+}
+
+#er {
+    margin-bottom: 3px;
+}
+
+/*================== Spinning loader ===================*/
+
+
+.loader-wrapper {
+    position: absolute;
+    top: 80%;
+    left: 7%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.loader {
+    border: 10px solid #c2c2c2;
+    border-radius: 50%;
+    border-top: 10px solid #3498db;
+    width: 90px;
+    height: 90px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    z-index: 2000;
+
+
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 
 
@@ -1555,6 +1617,12 @@ table{
         width: 28%;
     }
 
+    /*Spinning Loader*/
+    .loader-wrapper {
+        left: 0;
+    }
+
+
 }
 
 /*------------------------------672 px------------------------------------*/
@@ -1581,6 +1649,16 @@ table{
     .dashboard-table {
         font-size: 0.9rem;
     }
+
+    /*-------- Spinning Loader ---------*/
+    .loader {
+        border: 8px solid #c2c2c2;
+        border-top: 8px solid #3498db;
+        width: 70px;
+        height: 70px;
+
+    }
+
 }
 
 
@@ -1688,6 +1766,11 @@ table{
         margin-left: 0;
     }
 
+    /*------------- Validation and errors -----------*/
+    .errors {
+        font-size: 0.9em;
+
+    }
 
 }
 
@@ -1834,6 +1917,16 @@ table{
         width: 96%;
     }
 
+    /*-------------- Validation and errors ---------------*/
+    .errors_field {
+        width: 96%;
+    }
+
+
+    /*--------------- Spinning loader -------------------*/
+    .loader-wrapper {
+        top: 86%
+    }
 
 }
 
