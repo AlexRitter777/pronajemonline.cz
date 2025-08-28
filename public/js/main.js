@@ -438,7 +438,7 @@ $(document).ready(function() {
 //Meters reading
 $(document).ready(function() {
   $('.select-list-meters').select2({
-      placeholder: "Vyber ze seznamu",
+      placeholder: "Vyberte ze seznamu",
       minimumResultsForSearch: -1,
       sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
     });
@@ -448,7 +448,7 @@ $(document).ready(function() {
 // Meter reading sources - start
 $(document).ready(function() {
   $('.select-list-origin-start').select2({
-      placeholder: "Vyber ze seznamu",
+      placeholder: "Vyberte ze seznamu",
       minimumResultsForSearch: -1,
       sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
     });
@@ -458,7 +458,7 @@ $(document).ready(function() {
 // Meter reading sources - end
 $(document).ready(function() {
   $('.select-list-origin-end').select2({
-      placeholder: "Vyber ze seznamu",
+      placeholder: "Vyberte ze seznamu",
       minimumResultsForSearch: -1,
       sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
     });
@@ -468,7 +468,7 @@ $(document).ready(function() {
 // Electricity meter reading sources - start
 $(document).ready(function() {
     $('.select-list-origin-electro-start').select2({
-      placeholder: "Vyber ze seznamu",
+      placeholder: "Vyberte ze seznamu",
       minimumResultsForSearch: -1,
       sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
     });
@@ -478,7 +478,7 @@ $(document).ready(function() {
 // Electricity meter reading sources - end
 $(document).ready(function() {
   $('.select-list-origin-electro-end').select2({
-      placeholder: "Vyber ze seznamu",
+      placeholder: "Vyberte ze seznamu",
       minimumResultsForSearch: -1,
       sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
     });
@@ -488,7 +488,7 @@ $(document).ready(function() {
 // Reasons for ending the lease agreement
 $(document).ready(function() {
     $('.select-list-rent_finish_reason').select2({
-        placeholder: "Vyber ze seznamu",
+        placeholder: "Vyberte ze seznamu",
         minimumResultsForSearch: -1,
         //sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
     });
@@ -498,7 +498,7 @@ $(document).ready(function() {
 // Year of the statement
 $(document).ready(function() {
     $('.select-list-rent-date-year').select2({
-        placeholder: "Vyber rok",
+        placeholder: "Zvolte rok",
         minimumResultsForSearch: -1,
         //sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
     });
@@ -508,7 +508,7 @@ $(document).ready(function() {
 // Options for the statement of deposit (depositcalc)
 $(document).ready(function() {
     $('.select-list-deposit').select2({
-        placeholder: "Vyber ze seznamu",
+        placeholder: "Vyberte ze seznamu",
         //sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
     });
 
@@ -517,7 +517,7 @@ $(document).ready(function() {
 //Calculation types
 $(document).ready(function() {
     $('.select-list-calc-type').select2({
-        placeholder: "Vyber ze seznamu",
+        placeholder: "Vyberte ze seznamu",
         //sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
     });
 

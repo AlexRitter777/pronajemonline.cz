@@ -1,7 +1,7 @@
 <div id="modal-opacity">
 
     <div class="user-header user-header-modal">
-        <h3>Nový nájemník</h3>
+        <h3>Vyplňte údaje</h3>
     </div>
 
     <div class="central-bar">

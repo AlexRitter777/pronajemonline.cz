@@ -49,7 +49,7 @@ export class Select2Dropdown {
                     return "Odstraňte všechny položky"
                 }
             },
-            placeholder: "Vyber ze seznamu",
+            placeholder: "Vyberte ze seznamu",
 
             //add to every option data-record_id attribute with record_id value received from server (DB record Id)
             templateSelection: function (data, container){
@@ -80,6 +80,8 @@ export class Select2Dropdown {
         dict.tenant = 'nájemník';
         dict.landlord = 'pronajímatel';
         dict.property = 'nemovitost';
+        dict.admin = 'správce';
+        dict.elsupplier = 'dodavatel elektřiny';
 
         let new_word = '';
 

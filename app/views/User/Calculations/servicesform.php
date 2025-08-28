@@ -67,12 +67,12 @@
             </div>
 
             <div class="date">
-                <label for="calcStartDate" class="label_text">Počáteční datum vyúčtování správce *</label><br />
-                <input type="date" class="field-start-date" name="calcStartDate" id="calcStartDate" value="<?=$data['calcStartDate'] ?? ''; ?>"><br />
+                <label for="calcStartDate" class="label_text">Počáteční datum vyúčtování správce *</label>
+                <input type="date" class="field-start-date" name="calcStartDate" id="calcStartDate" value="<?=$data['calcStartDate'] ?? ''; ?>">
             </div>
             <div class="date">
-                <label for="calcFinishDate" class="label_text">Konečný datum vyúčtování správce *</label><br />
-                <input type="date" class="field-finish-date" name="calcFinishDate" id="calcFinishDate" value="<?=$data['calcFinishDate'] ?? '';?>"><br />
+                <label for="calcFinishDate" class="label_text">Konečný datum vyúčtování správce *</label>
+                <input type="date" class="field-finish-date" name="calcFinishDate" id="calcFinishDate" value="<?=$data['calcFinishDate'] ?? '';?>">
             </div>
 
             <div class="text-help">
@@ -82,12 +82,12 @@
                 </svg>
             </div>
             <div class="date">
-                <label for="rentStartDate" class="label_text">Počáteční datum vyúčtování pronajímatele *</label><br />
-                <input type="date" name="rentStartDate" class="field-start-rent" id="rentStartDate" class="field" value="<?= $data['rentStartDate'] ?? '';?>"><br />
+                <label for="rentStartDate" class="label_text">Počáteční datum vyúčtování pronajímatele *</label>
+                <input type="date" name="rentStartDate" class="field-start-rent" id="rentStartDate" class="field" value="<?= $data['rentStartDate'] ?? '';?>">
             </div>
             <div class="date">
-                <label for="rentFinishDate" class="label_text">Konečný datum vyúčtování pronajímatele *</label><br />
-                <input type="date" name="rentFinishDate" class="field-finish-rent" id="rentFinishDate" class="field" value="<?= $data['rentFinishDate'] ?? '';?>"><br />
+                <label for="rentFinishDate" class="label_text">Konečný datum vyúčtování pronajímatele *</label>
+                <input type="date" name="rentFinishDate" class="field-finish-rent" id="rentFinishDate" class="field" value="<?= $data['rentFinishDate'] ?? '';?>">
             </div>
         </div>
         <!--End Období-->
@@ -418,7 +418,7 @@
 
             <div class="zalohy">
                 <div class="zalohy_label">
-                    <label for="advancedPayments" class="label_text">Součet záloh na služby zaplacených nájemníkem za zúčtovací období</label>
+                    <label for="advancedPayments" class="label_text">Součet záloh na služby zaplacených nájemníkem za účtovací období</label>
                 </div>
                 <input type="number" class="field field-slozky" id="advancedPayments" name="advancedPayments" step="any" placeholder="Zadej součet záloh" value="<?= $data['advancedPayments'] ?? ''; ?>" />
             </div>

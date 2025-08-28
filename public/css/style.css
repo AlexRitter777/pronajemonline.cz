@@ -562,10 +562,7 @@ input, select, textarea {
   width: 31%;
 }
 
-.zalohy_electro_label {
-  width: 50%;
-  line-height: 20px;
-}
+
 
 .cena_electro .icon_help {
   float: right;
@@ -2038,54 +2035,6 @@ input, select, textarea {
 
 
 
-
-  /*-------------Electro-form-600px----------------*/
-
-
-  .field-start-electro, .field-finish-electro {
-    width: 59.5%;
-  }
-
-  .meters-electro {
-    display: block;
-  }
-
-  .meter-electro-field {
-    width: 59%;
-  }
-
-
-
- .cena_electro{
-   display: block;
- }
-
- .cena_electro .label_text {
-   width: 100%;
-   margin-bottom: 7px;
- }
-
- .cena_electro input {
-   width: 57%;
- }
-
-  .zalohy_electro {
-    display: block;
-  }
-
-  .zalohy_electro .label_text {
-    width: 150%;
-    margin-bottom: 7px;
-  }
-
-  .zalohy_electro input {
-    width: 57%;
-  }
-
-  .cena_electro .icon_help {
-    margin-right: 45%;
-  }
-
 /*-----------------Deposit-form-600-----------------*/
 
   .field-start-deposit,
@@ -2443,30 +2392,30 @@ input, select, textarea {
 
   /*------------------Electro-form-400px--------------------------*/
 
-  .field-start-electro, .field-finish-electro {
-    width: 100%;
-  }
+  /*.field-start-electro, .field-finish-electro {*/
+  /*  width: 100%;*/
+  /*}*/
 
-  .meter-electro-field {
-    width: 99%;
-  }
+  /*.meter-electro-field {*/
+  /*  width: 99%;*/
+  /*}*/
 
 
-  .cena_electro input {
-    width: 96%;
-  }
+  /*.cena_electro input {*/
+  /*  width: 96%;*/
+  /*}*/
 
-  .zalohy_electro .label_text {
-    width: 200%;
-   }
+  /*.zalohy_electro .label_text {*/
+  /*  width: 200%;*/
+  /* }*/
 
-  .zalohy_electro input {
-    width: 96%;
-  }
+  /*.zalohy_electro input {*/
+  /*  width: 96%;*/
+  /*}*/
 
-  .cena_electro .icon_help {
-    margin-right: 5%;
-  }
+  /*.cena_electro .icon_help {*/
+  /*  margin-right: 5%;*/
+  /*}*/
 /*----------------------Deposit-form-400px-----------------*/
 
   .field-start-deposit,

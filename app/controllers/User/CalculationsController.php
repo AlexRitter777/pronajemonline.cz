@@ -333,6 +333,20 @@ class CalculationsController extends AppController {
     }
 
 
+    /*
+   * Vyúčtování spotřeby elektřiny (electro calculation). Formulář.
+   */
+
+    //Nové vyúčtování spotřeby elektřiny
+    public function electroformAction() {
+        $this->setMeta('Vyúčtování spotřeby elektřiny | pronajemonline.cz - Vyúčtování služeb nájemníkům', 'Tato aplikace umožňuje vyhotovit online vyúčtování spotřeby elektřiny nájemníkům. Přehledné výstupy ve formátu PDF. Ideální pro správu nemovitostí a pronájmů.');
+        $this->layout = 'account';
+        $data = null;
+        $reCaptcha = true;
+
+        $this->set(compact('data', 'reCaptcha'));
+    }
+
 
 
 

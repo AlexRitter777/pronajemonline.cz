@@ -519,6 +519,31 @@ table{
 
 
 
+/*============== Electro calc form =====================*/
+.form-electricity-dates-group .text-help {
+    width: 96%;
+}
+
+.form-electricity-prices-group .text-help {
+    width: 96%;
+    margin-bottom: 10px;
+}
+
+.form-electricity-prices-group .label_text{
+    max-width: 60%;
+}
+
+
+.form-electricity-meter-group .text-help {
+    margin-bottom: 10px;
+}
+
+.zalohy_electro_label {
+    max-width: 60%;
+    line-height: 20px;
+}
+
+
 /*=============== Validation and errors =================*/
 
 
@@ -1752,6 +1777,9 @@ table{
         font-size: 0.98em;
     }
 
+    .calculation-subtitle {
+        font-size: 1rem;
+    }
 
     /*------------- Services form ----------------*/
 
@@ -1812,6 +1840,8 @@ table{
     .dashboard-buttons-container .new-dashboard-btn:nth-last-child(-n + 3) {
         margin-bottom: 0;
     }
+
+
 
 
 
@@ -1915,6 +1945,35 @@ table{
 
     .korekce input {
         width: 96%;
+    }
+
+    /*--------------- Electro form --------------------*/
+    .meters-electro{
+        display: block;
+    }
+
+    .meter-electro-field {
+        width: 99%;
+    }
+
+    .cena_electro {
+        display: block;
+    }
+
+    .field-ceny-electro {
+        width: 96%;
+    }
+
+    .form-electricity-prices-group .label_text {
+        max-width: 96%;
+    }
+
+    .zalohy_electro {
+        display: block;
+    }
+
+    .zalohy_electro_label {
+        max-width: 96%;
     }
 
     /*-------------- Validation and errors ---------------*/
