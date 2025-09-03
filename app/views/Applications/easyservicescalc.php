@@ -38,7 +38,7 @@
 </div>
 
 <div class="admin-text-left">
-    <h3 class="sub-subtitle">Spravce domu:</h3>
+    <h3 class="sub-subtitle">Správce domu:</h3>
     <span>
             <?= !empty($result['adminName']) ? $result['adminName'] : 'Neuvedeno' ?>
         </span>
