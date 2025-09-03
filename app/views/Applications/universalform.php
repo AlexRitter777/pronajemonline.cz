@@ -39,7 +39,7 @@
             </svg>
         </div>
         <div class="date">
-            <label for="rentStartDate" class="label_text">Počáteční datum vyúčtování*</label><br />
+            <label for="rentStartDate" class="label_text">Počátečné datum vyúčtování*</label><br />
             <input type="date" name="rentStartDate" class="field-start-electro" id="rentStartDate" class="field" value="<?= $data['rentStartDate'] ?? '';?>"><br />
         </div>
         <div class="date">

@@ -73,13 +73,13 @@ class Validation extends AppModel {
         'universalCalcType' => 'Druh vyúčtování', //U
         'supplierName' =>'Název dodavatele elektřiny', //E
         'universalSupplierName' => 'Název firmy – dodavatele média', //U
-        'calcStartDate' => 'Počáteční datum vyúčtování správce', //S
+        'calcStartDate' => 'Počátečné datum vyúčtování správce', //S
         'calcFinishDate' => 'Konečný datum vyúčtování správce', //S
-        'rentStartDate' => 'Počáteční datum vyúčtování pronajmatele', //S, E, U
+        'rentStartDate' => 'Počátečné datum vyúčtování pronajmatele', //S, E, U
         'rentFinishDate' => 'Konečný datum vyúčtování pronajmatele', //S, E, U
         'rentYearDate' => 'Období vyúčtování', //ES
         'rentFinishReason' => 'Důvod ukončení nájmu', //D
-        'contractStartDate' => 'Počáteční datům nájemní smlouvy', // D
+        'contractStartDate' => 'Počátečné datům nájemní smlouvy', // D
         'contractFinishDate' => 'Konečný datům nájemní smlouvy ', // D
         'pausalniNaklad' => 'Paušální náklad',
         'initialValueOne' => 'Počáteční stav elektroměru', //E
@@ -116,7 +116,7 @@ class Validation extends AppModel {
         'universalPriceAddDesc' => 'Jiné náklady - popis', //U
         'depositItems' =>'Položky vyúčtování', //D, T
         'depositItemsPrice' =>'Cena položky vyúčtování', //D, T
-        'itemsStartDate' =>'Počáteční datum vyúčtování v položce', //D, T
+        'itemsStartDate' =>'Počátečné datum vyúčtování v položce', //D, T
         'itemsFinishDate' =>'Konečný datum vyúčtování v položce', //D, T
         'damageDesc' => 'Popis vady/poškození v položce', //D, T
         'advancedPayments' => 'Součet záloh, zaplacených nájemníkem', //S, E, U

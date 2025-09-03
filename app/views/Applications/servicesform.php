@@ -57,7 +57,7 @@
         </div>
 
         <div class="date">
-            <label for="calcStartDate" class="label_text">Počáteční datum vyúčtování správce *</label><br />
+            <label for="calcStartDate" class="label_text">Počátečné datum vyúčtování správce *</label><br />
             <input type="date" class="field-start-date" name="calcStartDate" id="calcStartDate" value="<?=$data['calcStartDate'] ?? ''; ?>"><br />
         </div>
         <div class="date">
@@ -72,7 +72,7 @@
             </svg>
         </div>
         <div class="date">
-            <label for="rentStartDate" class="label_text">Počáteční datum vyúčtování pronajímatele *</label><br />
+            <label for="rentStartDate" class="label_text">Počátečné datum vyúčtování pronajímatele *</label><br />
             <input type="date" name="rentStartDate" class="field-start-rent" id="rentStartDate" class="field" value="<?= $data['rentStartDate'] ?? '';?>"><br />
         </div>
         <div class="date">
