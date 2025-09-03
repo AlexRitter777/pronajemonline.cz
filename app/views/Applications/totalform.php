@@ -41,7 +41,7 @@
                     <select name="depositItems[]" class="select-list-deposit" id="load_php_deposit_items1" style="width: 55%">
                         <option value="<?=$data['depositItems'][0] ?? ''; ?>"><?=$data['depositItems'][0] ?? ''; ?></option>
                     </select>
-                    <input type="number" class="right-field" name="depositItemsPrice[]" id="deposit_items_price1" step="any" placeholder="Zadej částku v Kč" value="<?= (isset($data['depositItemsPrice'][0]) && $data['depositItemsPrice'][0] < 0) ? ($data['depositItemsPrice'][0] * (-1)) : ($data['depositItemsPrice'][0] ?? '');  ?>" />
+                    <input type="number" class="right-field" name="depositItemsPrice[]" id="deposit_items_price1" step="any" placeholder="Zadejte částku" value="<?= (isset($data['depositItemsPrice'][0]) && $data['depositItemsPrice'][0] < 0) ? ($data['depositItemsPrice'][0] * (-1)) : ($data['depositItemsPrice'][0] ?? '');  ?>" />
                 </div>
                 <!-- /.add_deposit_added_field first-field-->
 
@@ -92,7 +92,7 @@
                                 <select name="depositItems[]" class="select-list-deposit" id="load_php_deposit_items<?= ($i+1);?>" style="width: 55%">
                                     <option value="<?=$data['depositItems'][$i]; ?>"><?=$data['depositItems'][$i]; ?></option>
                                 </select>
-                                <input type="number" class="right-field" name="depositItemsPrice[]" id="deposit_items_price<?= ($i+1);?>" step="any" placeholder="Zadej částku v Kč" value="<?= ($data['depositItemsPrice'][$i] < 0) ? ($data['depositItemsPrice'][$i] * (-1)) : $data['depositItemsPrice'][$i]  ?>" />
+                                <input type="number" class="right-field" name="depositItemsPrice[]" id="deposit_items_price<?= ($i+1);?>" step="any" placeholder="Zadejte částku" value="<?= ($data['depositItemsPrice'][$i] < 0) ? ($data['depositItemsPrice'][$i] * (-1)) : $data['depositItemsPrice'][$i]  ?>" />
                                 <a href="#" class="remove_field">
                                     <svg class="icon_minus">
                                         <use xlink: href = "#minus" >

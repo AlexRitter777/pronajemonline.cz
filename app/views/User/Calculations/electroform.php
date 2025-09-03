@@ -46,7 +46,7 @@
                 <input type="date" name="rentStartDate" class="field-start-date" id="rentStartDate" class="field" value="<?= $data['rentStartDate'] ?? '';?>">
             </div>
             <div class="date">
-                <label for="rentFinishDate" class="label_text">Konečný datum vyúčtování*</label>
+                <label for="rentFinishDate" class="label_text">Konečné datum vyúčtování*</label>
                 <input type="date" name="rentFinishDate" class="field-finish-date" id="rentFinishDate" class="field" value="<?= $data['rentFinishDate'] ?? '';?>"><br />
             </div>
         </div>
@@ -65,7 +65,7 @@
 
             <div class="meters-electro">
                 <input type="number" class="field meter-electro-field" name="initialValueOne" id="initialValueOne" step="any" placeholder="Počáteční stav" value="<?= $data['initialValueOne'] ?? '';?>" />
-                <input type="number" class="field meter-electro-field" name="endValueOne" id="endValueOne" step="any" placeholder="Koneční stav" value="<?= $data['endValueOne'] ?? '';?>" />
+                <input type="number" class="field meter-electro-field" name="endValueOne" id="endValueOne" step="any" placeholder="Konečný stav" value="<?= $data['endValueOne'] ?? '';?>" />
                 <input type="text" class="field meter-electro-field" name="meterNumberOne" id="meterNumberOne" placeholder="Číslo elektroměru" value="<?= $data['meterNumberOne'] ?? '';?>" />
             </div>
 

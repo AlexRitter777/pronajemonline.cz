@@ -71,7 +71,7 @@
                 <input type="date" class="field-start-date" name="calcStartDate" id="calcStartDate" value="<?=$data['calcStartDate'] ?? ''; ?>">
             </div>
             <div class="date">
-                <label for="calcFinishDate" class="label_text">Konečný datum vyúčtování správce *</label>
+                <label for="calcFinishDate" class="label_text">Konečné datum vyúčtování správce *</label>
                 <input type="date" class="field-finish-date" name="calcFinishDate" id="calcFinishDate" value="<?=$data['calcFinishDate'] ?? '';?>">
             </div>
 
@@ -86,7 +86,7 @@
                 <input type="date" name="rentStartDate" class="field-start-rent" id="rentStartDate" class="field" value="<?= $data['rentStartDate'] ?? '';?>">
             </div>
             <div class="date">
-                <label for="rentFinishDate" class="label_text">Konečný datum vyúčtování pronajímatele *</label>
+                <label for="rentFinishDate" class="label_text">Konečné datum vyúčtování pronajímatele *</label>
                 <input type="date" name="rentFinishDate" class="field-finish-rent" id="rentFinishDate" class="field" value="<?= $data['rentFinishDate'] ?? '';?>">
             </div>
         </div>
@@ -109,7 +109,7 @@
                     <select name="pausalniNaklad[]" class="select-list" id="test1" style="width: 55%">
                         <option value="<?=$data['pausalniNaklad'][0] ?? ''; ?>"><?=$data['pausalniNaklad'][0] ?? ''; ?></option>
                     </select>
-                    <input type="number" class="right-field" name="servicesCost[]" id="servicesCost1" step="any" placeholder="Zadej částku v Kč" value="<?=$data['servicesCost'][0] ?? ''; ?>" />
+                    <input type="number" class="right-field" name="servicesCost[]" id="servicesCost1" step="any" placeholder="Zadejte částku" value="<?=$data['servicesCost'][0] ?? ''; ?>" />
                 </div>
                 <!-- /.add_field first-field-->
                 <?php if(isset($data['pausalniNaklad'])):?>
@@ -120,7 +120,7 @@
                                 <select name="pausalniNaklad[]" class="added-content select-list" id="test<?= ($i+1)?>" style="width: 55%">
                                     <option value="<?=$data['pausalniNaklad'][$i]; ?>"><?=$data['pausalniNaklad'][$i]; ?></option>
                                 </select>
-                                <input type="number" class="right-field" name="servicesCost[]" id="servicesCost<?= ($i+1)?>" step="any" placeholder="Zadej částku v Kč" value="<?=$data['servicesCost'][$i]; ?>"/>
+                                <input type="number" class="right-field" name="servicesCost[]" id="servicesCost<?= ($i+1)?>" step="any" placeholder="Zadejte částku" value="<?=$data['servicesCost'][$i]; ?>"/>
                                 <a href="#" class="remove_field">
                                     <svg class="icon_minus">
                                         <use xlink: href = "#minus" ></use >
@@ -242,13 +242,13 @@
 
                     <div class = "add_coefficient">
                         <div class="add_coefficient_field">
-                            <input type = "number" class = "coefficient_field" id = "coefficientValue1" name = "coefficientValue[]" step = "any" placeholder = "Zadej koeficient" value="<?=$data['coefficientValue'][0] ?>"/><br/>
+                            <input type = "number" class = "coefficient_field" id = "coefficientValue1" name = "coefficientValue[]" step = "any" placeholder = "Zadejte koeficient" value="<?=$data['coefficientValue'][0] ?>"/><br/>
 
 
                             <?php for ($i = 1; $i <= count($data['coefficientValue']); $i++):?>
                                 <?php if (!empty($data['coefficientValue'][$i])): ?>
                                     <div class = "coefficient_added_field" id="<?= ($i+1); ?>">
-                                        <input type="number" class="coefficient_field added_coefficient_field" id="coefficientValue<?= ($i + 1); ?>" name="coefficientValue[]" step="any" placeholder="Zadej koeficient" value="<?= $data['coefficientValue'][$i]?>" />
+                                        <input type="number" class="coefficient_field added_coefficient_field" id="coefficientValue<?= ($i + 1); ?>" name="coefficientValue[]" step="any" placeholder="Zadejte koeficient" value="<?= $data['coefficientValue'][$i]?>" />
                                         <a href="#" class="remove_coefficients">
                                             <svg class="icon_minus">
                                                 <use xlink: href = "#minus" ></use >
@@ -282,7 +282,7 @@
             <h2 class="calculation-title">VIII. Ceny energií</h2>
 
             <div class="text-help">
-                <label class="label_text" id="label_text"><i>Ceny zadávejte jen tehdy, pokud byly vybrány odpovídající měřidla v části VII</i></label>
+                <label class="label_text prices-warning" id="label_text"><i>Ceny zadávejte jen tehdy, pokud byly vybrány odpovídající měřidla v části VII</i></label>
             </div>
 
             <div class="text-help" style="align-items:center;">
@@ -295,12 +295,12 @@
 
             <div class="zakladni_slozka">
                 <label for="constHotWaterPrice" class="label_text">Základní složka za ohřev teplé užitkové vody(TUV)</label>
-                <input type="number" class="field field-slozky" id="constHotWaterPrice" name="constHotWaterPrice" step="any" placeholder="Zadej cenu" value="<?= $data['constHotWaterPrice'] ?? '';?>" />
+                <input type="number" class="field field-slozky" id="constHotWaterPrice" name="constHotWaterPrice" step="any" placeholder="Zadejte cenu" value="<?= $data['constHotWaterPrice'] ?? '';?>" />
             </div>
 
             <div class="zakladni_slozka">
                 <label for="constHeatingPrice" class="label_text">Základní složka za ústřední topení (UT)</label>
-                <input type="number" class="field field-slozky" id="constHeatingPrice" name="constHeatingPrice" step="any" placeholder="Zadej cenu" value="<?= $data['constHeatingPrice'] ?? ''; ?>" />
+                <input type="number" class="field field-slozky" id="constHeatingPrice" name="constHeatingPrice" step="any" placeholder="Zadejte cenu" value="<?= $data['constHeatingPrice'] ?? ''; ?>" />
             </div>
 
             <div class="text-help" style="align-items:center;">
@@ -312,22 +312,23 @@
 
             <div class="spotrebni_slozka">
                 <label for="hotWaterPrice" class="label_text">Cena za ohřev 1 m3 teplé užitkové vody (TUV)</label>
-                <input type="number" class="field field-slozky" id="hotWaterPrice" name="hotWaterPrice" step="any" placeholder="Zadej cenu jednotky" value="<?= $data['hotWaterPrice'] ?? '';?>" />
+                <input type="number" class="field field-slozky" id="hotWaterPrice" name="hotWaterPrice" step="any" placeholder="Zadejte cenu jednotky" value="<?= $data['hotWaterPrice'] ?? '';?>" />
             </div>
 
             <div class="spotrebni_slozka">
                 <label for="coldWaterPrice" class="label_text">Cena za 1 m3 studené užitkové vody (SUV)</label>
-                <input type="number" class="field field-slozky" id="coldWaterPrice" name="coldWaterPrice" step="any" placeholder="Zadej cenu jednotky" value="<?= $data['coldWaterPrice'] ?? ''; ?>" />
+                <input type="number" class="field field-slozky" id="coldWaterPrice" name="coldWaterPrice" step="any" placeholder="Zadejte cenu jednotky" value="<?= $data['coldWaterPrice'] ?? ''; ?>" />
             </div>
 
             <div class="spotrebni_slozka" style="margin-bottom: 15px;">
                 <label for="coldForHotWaterPrice" class="label_text label_text_with_help">
-                    Cena 1 m3 studené užitkové vody, použité pro přípravu teplé užitkové vody (SUV pro TUV)
+                    <span>Cena 1 m3 studené užitkové vody, použité pro přípravu teplé užitkové vody (SUV pro TUV)</span>
+                    <svg class="icon_help help-right-label" data-hint="#real-hint-9">
+                        <use xlink: href="#help"></use>
+                    </svg>
                 </label>
-                <svg class="icon_help help-right-label" data-hint="#real-hint-9">
-                    <use xlink: href="#help"></use>
-                </svg>
-                <input type="number" class="field field-slozky" id="coldForHotWaterPrice" name="coldForHotWaterPrice" step="any" placeholder="Zadej cenu jednotky" value="<?= $data['coldForHotWaterPrice'] ?? ''; ?>" />
+
+                <input type="number" class="field field-slozky" id="coldForHotWaterPrice" name="coldForHotWaterPrice" step="any" placeholder="Zadejte cenu jednotky" value="<?= $data['coldForHotWaterPrice'] ?? ''; ?>" />
             </div>
 
             <div class="coefficient_label_text text-help">
@@ -351,18 +352,18 @@
                 <?php if (isset($data['changedHeatingCosts'])):?>
                     <div class="spotrebni_slozka">
                         <label for="changedHeatingCosts" class="label_text">Celkové náklady na korigovanou spotřební složku</label>
-                        <input type="number" class="field field-slozky" id="changedHeatingCosts" name="changedHeatingCosts" step="any" placeholder="Zadej celkovou cenu" value="<?= $data['changedHeatingCosts']; ?>" />
+                        <input type="number" class="field field-slozky" id="changedHeatingCosts" name="changedHeatingCosts" step="any" placeholder="Zadejte celkovou cenu" value="<?= $data['changedHeatingCosts']; ?>" />
                     </div>
                     <div class="spotrebni_slozka">
                         <label for="heatingYearSum" class="label_text">Spotřeba tepla za období vyúčtování správce</label>
-                        <input type="number" class="field field-slozky" id="heatingYearSum" name="heatingYearSum" step="any" placeholder="Zadej celkovou spotřebu" value="<?= $data['heatingYearSum']; ?>" />
+                        <input type="number" class="field field-slozky" id="heatingYearSum" name="heatingYearSum" step="any" placeholder="Zadejte celkovou spotřebu" value="<?= $data['heatingYearSum']; ?>" />
                     </div>
                 <?php endif;?>
             </div>
             <div class="spotrebni_slozka" id="spotrebni_slozka_heating">
                 <?php if (!isset($data['changedHeatingCosts'])):?>
                 <label for="heatingPrice" class="label_text">Cena za jednotku ústředního topení (UT)</label>
-                <input type="number" class="field field-slozky" id="heatingPrice" name="heatingPrice" step="any" placeholder="Zadej cenu jednotky" value="<?= $data['heatingPrice'] ?? ''; ?>" />
+                <input type="number" class="field field-slozky" id="heatingPrice" name="heatingPrice" step="any" placeholder="Zadejte cenu jednotky" value="<?= $data['heatingPrice'] ?? ''; ?>" />
                 <?php endif;?>
             </div>
         </div>
@@ -373,8 +374,7 @@
             <h2 class="calculation-title">IX. Korekce cen pro aktuální zúčtovací období </h2>
             <div class="coefficient_label_text text-help">
                 <label class="label_text" id="label_text">
-                    <span>Potřebujete navýšit/snížit ceny služeb nebo energií pro aktuální</span><br>
-                    <span>zúčtovací období?</span>
+                    <span>Potřebujete navýšit/snížit ceny služeb nebo energií pro aktuální zúčtovací období?</span>
                 </label>
                 <svg class="icon_help help-right-text" data-hint="#real-hint-11">
                     <use xlink: href="#help"></use>
@@ -393,19 +393,19 @@
                 <?php if (isset($data['servicesCostCorrection']) || isset($data['hotWaterCorrection']) || isset($data['heatingCorrection']) || isset($data['coldWaterCorrection'])): ?>
                 <div class="korekce">
                     <label for="servicesCostCorrection" class="label_text">Odhadovaná průměrná změna cen služeb a správy domu</label>
-                    <input type="number" class="field field-slozky" id="servicesCostCorrection" name="servicesCostCorrection" step="any" placeholder="Zadej %" value="<?= $data['servicesCostCorrection']?>" />
+                    <input type="number" class="field field-slozky" id="servicesCostCorrection" name="servicesCostCorrection" step="any" placeholder="Zadejte %" value="<?= $data['servicesCostCorrection']?>" />
                 </div>
                 <div class="korekce">
                     <label for="hotWaterCorrection" class="label_text">Odhadovaná průměrná změna cen nákladů na TUV</label>
-                    <input type="number" class="field field-slozky" id="hotWaterCorrection" name="hotWaterCorrection" step="any" placeholder="Zadej %" value="<?= $data['hotWaterCorrection']?>" />
+                    <input type="number" class="field field-slozky" id="hotWaterCorrection" name="hotWaterCorrection" step="any" placeholder="Zadejte %" value="<?= $data['hotWaterCorrection']?>" />
                 </div>
                 <div class="korekce">
                     <label for="heatingCorrection" class="label_text">Odhadovaná průměrná změna cen nákladů na UT</label>
-                    <input type="number" class="field field-slozky" id="heatingCorrection" name="heatingCorrection" step="any" placeholder="Zadej %" value="<?= $data['heatingCorrection']?>" />
+                    <input type="number" class="field field-slozky" id="heatingCorrection" name="heatingCorrection" step="any" placeholder="Zadejte %" value="<?= $data['heatingCorrection']?>" />
                 </div>
                 <div class="korekce">
                     <label for="coldWaterCorrection" class="label_text">Odhadovaná průměrná změna cen nákladů na SUV</label>
-                    <input type="number" class="field field-slozky" id="coldWaterCorrection" name="coldWaterCorrection" step="any" placeholder="Zadej %" value="<?=$data['coldWaterCorrection'] ?>" />
+                    <input type="number" class="field field-slozky" id="coldWaterCorrection" name="coldWaterCorrection" step="any" placeholder="Zadejte %" value="<?=$data['coldWaterCorrection'] ?>" />
                 </div>
                 <?php endif;?>
             </div>
@@ -420,7 +420,7 @@
                 <div class="zalohy_label">
                     <label for="advancedPayments" class="label_text">Součet záloh na služby zaplacených nájemníkem za účtovací období</label>
                 </div>
-                <input type="number" class="field field-slozky" id="advancedPayments" name="advancedPayments" step="any" placeholder="Zadej součet záloh" value="<?= $data['advancedPayments'] ?? ''; ?>" />
+                <input type="number" class="field field-slozky" id="advancedPayments" name="advancedPayments" step="any" placeholder="Zadejte součet záloh" value="<?= $data['advancedPayments'] ?? ''; ?>" />
             </div>
 
             <label for="advancedPaymentsDesc" class="label_text">Uhrazené zálohy – poznámka </label><br />

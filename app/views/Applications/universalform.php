@@ -63,7 +63,7 @@
         </div>
 
         <div class="text-help">
-            <label class="label_text" id="label_text">Vyber z uvedených možností zdroje odečtů měřidel</label>
+            <label class="label_text" id="label_text">Vyberte z uvedených možností zdroje odečtů měřidel</label>
         </div>
         <div class="origins">
             <label class="label_text">Zdroj počátečního stavu měřidel </label>
@@ -89,12 +89,12 @@
 
         <div class="cena_universal">
             <label for="universalPriceOne" class="label_text">Průměrná jednotková cena za měrnou jednotku</label>
-            <input type="number" class="field field-ceny-universal" id="universalPriceOne" name="universalPriceOne" step="any" placeholder="Zadej cenu" value="<?= $data['universalPriceOne'] ?? '';?>" />
+            <input type="number" class="field field-ceny-universal" id="universalPriceOne" name="universalPriceOne" step="any" placeholder="Zadejte cenu" value="<?= $data['universalPriceOne'] ?? '';?>" />
         </div>
 
         <div class="cena_universal">
             <label for="universalPriceMonth" class="label_text">Průměrná jednotková cena za měsíc </label>
-            <input type="number" class="field field-ceny-universal" id="universalPriceMonth" name="universalPriceMonth" step="any" placeholder="Zadej cenu" value="<?= $data['universalPriceMonth'] ?? '';?>" />
+            <input type="number" class="field field-ceny-universal" id="universalPriceMonth" name="universalPriceMonth" step="any" placeholder="Zadejte cenu" value="<?= $data['universalPriceMonth'] ?? '';?>" />
         </div>
 
         <div class="cena_universal">
@@ -104,12 +104,12 @@
                 </svg>
             </label>
 
-            <input type="number" class="field field-ceny-universal" id="universalPriceAdd" name="universalPriceAdd" step="any" placeholder="Zadej častku" value="<?= $data['universalPriceAdd'] ?? '';?>" />
+            <input type="number" class="field field-ceny-universal" id="universalPriceAdd" name="universalPriceAdd" step="any" placeholder="Zadejte častku" value="<?= $data['universalPriceAdd'] ?? '';?>" />
         </div>
 
         <div class="cena_electro">
             <label for="universalPriceAddDesc" class="label_text">Jiné náklady - popis (nepovinné) </label>
-            <input type="text" class="field field-ceny-universal" id="universalPriceAddDesc" name="universalPriceAddDesc" placeholder="Zadej popis" value="<?= $data['universalPriceAddDesc'] ?? '';?>" />
+            <input type="text" class="field field-ceny-universal" id="universalPriceAddDesc" name="universalPriceAddDesc" placeholder="Zadejte popis" value="<?= $data['universalPriceAddDesc'] ?? '';?>" />
         </div>
 
         <h2 class="subtitle">VIX. Uhrazené zálohy</h2>
@@ -118,7 +118,7 @@
             <div class="zalohy_universal_label">
                 <label for="advancedPayments" class="label_text">Součet záloh, zaplacených nájemníkem v rámcích účtovacího období*</label>
             </div>
-            <input type="number" class="field field-ceny-universal" id="advancedPayments" name="advancedPayments" step="any" placeholder="Zadej součet záloh" value="<?= $data['advancedPayments'] ?? '';?>" />
+            <input type="number" class="field field-ceny-universal" id="advancedPayments" name="advancedPayments" step="any" placeholder="Zadejte součet záloh" value="<?= $data['advancedPayments'] ?? '';?>" />
         </div>
 
         <div class="errors_field">

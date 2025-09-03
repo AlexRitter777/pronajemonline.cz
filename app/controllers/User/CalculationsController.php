@@ -36,7 +36,10 @@ class CalculationsController extends AppController {
         $calcMap = [
           'servicescalc' => 'servicesform',
           'easyservicescalc' => 'easyservicesform',
+          'electrocalc' => 'electroform',
+          'depositcalc' => 'depositform',
         ];
+
 
         //set default order by
         $order = 'ORDER BY created_at DESC';
@@ -152,7 +155,7 @@ class CalculationsController extends AppController {
                    $data['updated_at'] = date('Y-m-d H:i:s');
 
                    //save in DB and return record Id
-                   $response = AppModel::dbSave($data, "${calcType}calc");
+                   $response = AppModel::dbSave($data, "{$calcType}calc");
 
                }
 
@@ -204,9 +207,9 @@ class CalculationsController extends AppController {
                 $data['updated_at'] = date('Y-m-d H:i:s');
                 //$calcType = $_SESSION['costsResult'][$_GET['id']]['calcType'];
 
-                $response = AppModel::dbSave($data, "${calcType}calc"); //process invalid response!!!
+                $response = AppModel::dbSave($data, "{$calcType}calc"); //process invalid response!!!
 
-                redirect("/applications/${calcType}-calc?calculation_id=" . $data['id']);
+                redirect("/applications/{$calcType}-calc?calculation_id=" . $data['id']);
 
             }
         }
@@ -332,8 +335,7 @@ class CalculationsController extends AppController {
         $this->set(compact('data', 'reCaptcha'));
     }
 
-
-    /*
+  /*
    * Vyúčtování spotřeby elektřiny (electro calculation). Formulář.
    */
 
@@ -350,7 +352,21 @@ class CalculationsController extends AppController {
 
 
 
+   /*
+    * Vyúčtování kauce (deposit calculation). Formulář.
+    */
 
+    //Nové vyúčtování kauce
+    public function depositformAction() {
+        $this->setMeta('Vyúčtování kauce po skončení nájmu | pronajemonline.cz - Vyúčtování služeb nájemníkům', 'Tato aplikace umožňuje vyhotovit online vyúčtování kauce složené nájemníkem, zajišťující transparentní vracení kauce po skončení nájmu. Přehledné výstupy ve formátu PDF. Ideální pro správu nemovitostí a pronájmů.');
+        $this->layout = 'account';
+        $data = null;
+        $reCaptcha = true;
+
+        $this->set(compact('data', 'reCaptcha'));
+
+
+    }
 
 
 

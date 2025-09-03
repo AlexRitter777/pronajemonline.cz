@@ -1,6 +1,126 @@
+:root {
+
+    --body-color-bg: fcfcfd;
+    --font-main: 'Inter', sans-serif;
+    --color-accent: #1a1c23;
+    --color-accent-hover: #5850ec;
+    --sidebar-color-bg: #f9fafb;
+    --sidebar-color-border: #e5e7eb;
+    --content-color-border: #e2e8f0;
+    --table-header-bg: #f6f8fb;
+    --table-header-text: #475569;
+    --table-border: #e2e8f0;
+    --table-text: #252f3f;
+    --text: #252f3f;
+    --table-row-hover: #f5f7fa;
+    --btn-bg: #f3f4f6;
+    --btn-bg-hover: #e9edf5;
+    --btn-fg: #1f3b75;
+    --card-color-text: #475569;
+    --error-border: #f87171;
+    --card-bg: #fcfcfd;
+    --card-border: #e5e7eb;
+
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('../fonts/Inter/InterVariable.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('../fonts/Inter/InterVariable-Italic.woff2') format('woff2');
+}
 
 
-/* ===== Content layout ===== */
+html {
+    height: 100%;
+    font-size: 13px;
+
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-main);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--body-color-bg);
+    height: 100%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: .01rem;
+    color: var(--color-accent);
+
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+
+.main{
+    padding-top: 80px;
+    text-align: center;
+}
+
+
+.main h4 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: var(--btn-fg);
+}
+
+/*--------------Forms elements---------------------*/
+input, select, textarea {
+    padding: 6px 5px;
+    border: 1px solid #c2c2c2;
+    border-radius: 2px;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 6%);
+    transition: border 0.2s ease;
+    background: #fff;
+    height: 32px;
+    margin-bottom: 10px;
+    margin-right: 6px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+/*--------------select-2 style---------------------*/
+
+.select2-container .select2-selection--single{
+    border: 1px solid #c2c2c2!important;
+    height: 32px!important;
+    border-radius: 2px!important;
+    box-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 6%);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12.5px!important;
+    font-weight: 300;
+}
+
+.calc-form .select2-container {
+    width: 96% !important;
+}
+
+/* =========== Content layout =========== */
 
 .user-content {
     position: relative;
@@ -38,7 +158,7 @@
 }
 
 
-/* ===== Sidebar ===== */
+/* ============== Sidebar ============= */
 
 .left-side-bar {
     width: 220px;
@@ -482,17 +602,6 @@ table{
     transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
 }
 
-
-
-.coefficient_label_text .label_text {
-    max-width: 80%;
-}
-
-.korekce .label_text {
-    max-width: 60%;
-}
-
-
 /* Clear */
 .btn-reset {
     background-color: #fef2f2;
@@ -517,6 +626,67 @@ table{
     color: var(--color-accent-hover);
 }
 
+
+.label_text{
+    display: inline-block;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: 4px;
+    font-size: 1.08rem;
+    padding-right: 10px;
+
+}
+
+.text-help{
+    display: flex;
+    align-items: center;
+
+}
+
+.label_text_with_help {
+    width: 51%;
+    margin-right: 1%;
+}
+
+.right-field{
+    margin-left: 8px;
+    margin-bottom: 0px!important;
+}
+
+/*============== Services calc form =====================*/
+
+
+
+.last-field{
+    margin-bottom: 0px!important;
+}
+
+.added-content{
+    height: 40px !important;
+    width: 100px !important;
+}
+
+.spotrebni_slozka .label_text_with_help {
+    display: flex;
+    justify-content: space-between;
+    width: 57%;
+}
+
+.spotrebni_slozka .label_text_with_help span {
+    width: 90%;
+}
+
+.prices-warning {
+    max-width: 98%!important;
+}
+
+.coefficient_label_text .label_text {
+    max-width: 80%!important;
+}
+
+.korekce .label_text {
+    max-width: 60%;
+}
 
 
 /*============== Electro calc form =====================*/
@@ -543,12 +713,137 @@ table{
     line-height: 20px;
 }
 
+/*============== Deposit calc form =====================*/
+
+/*----------------------------Deposit-form (add. to electro-form) ----------------------------*/
+
+.field-start-deposit {
+    margin: 0 -60px 0 0;
+    width: 33%;
+}
+
+.field-finish-deposit {
+    margin: 0 -58px 0 0;
+    width: 33%;
+}
+
+.zalohy_deposit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 97%;
+}
+
+.zalohy_deposit_label {
+    width: 50%;
+    line-height: 20px;
+}
+
+.field-ceny-deposit {
+    width: 32%;
+}
+
+.origins .label_text{
+    margin-right: 10px;
+}
+
+.dates_append, .description_append {
+    display: flex;
+    align-items: center;
+    width: 115%;
+    margin: 5px 0 5px 0;
+    justify-content: flex-end;
+    position: relative;
+    right: 17.6%;
+}
+
+.description_append {
+    right: 17.9%;
+}
+
+.dates_append label{
+    margin-right: 11px;
+    margin-left: 110px;
+
+}
+
+
+.description_append label{
+    margin-right: 25px;
+    margin-left: 29px;
+
+}
+
+.deposit_append .field-deposit{
+    margin-right: 8px;
+}
+
+
+.deposit_append .border {
+    border-bottom: 1px solid #c2c2c2;
+    box-shadow: inset 0 1px 2px 0 rgb(0 0 0 / 6%);
+    margin: 15px 0 15px 0;
+    width: 96%;
+}
+
+.add_input_fields_deposit_items .description_field {
+    width: 55.2%;
+    margin-left: -14px;
+}
+
+.add_input_fields_deposit_items input {
+    width: 27%;
+
+}
+
+.add_input_fields_deposit_items select {
+    width: 55%;
+
+}
+
+.add_input_fields_deposit_items {
+    margin-bottom: 10px;
+}
+
+.add_input_fields_deposit_items_button {
+    display: inline-block;
+    background-color: #fff;
+    transition: background .1s linear;
+    color:var(--color-accent);
+}
+
+.add_deposit_added_field {
+    margin-right: 9px;
+    display: flex;
+    align-items: center;
+    width: 115.3%;
+    justify-content: flex-start;.
+}
+
+.add_input_fields_deposit_items .first-field-deposit {
+    position: relative;
+    right: 18%;
+
+}
+
+.first-field-deposit {
+    padding-bottom: 5px;
+    justify-content: flex-end!important;
+    width: 115.1%!important;
+}
+
+.cena_universal .icon_help {
+    float: right;
+    margin-left: 5px;
+}
+
 
 /*=============== Validation and errors =================*/
 
 
 .errors_field{
-    margin: 15px 23px 15px 0;
+    width: 96%;
 }
 
 .errors {
@@ -1784,11 +2079,6 @@ table{
     /*------------- Services form ----------------*/
 
 
-
-    .spotrebni_slozka .label_text {
-        width: 50%;
-    }
-
     .help-right-label {
         margin-top: 0;
         margin-left: 0;
@@ -1899,6 +2189,9 @@ table{
         width: 83.5%;
     }
 
+    .add_meters_added_field {
+        width: 113%;
+    }
 
     .spotrebni_slozka, .zakladni_slozka, .zalohy {
         width: 105%;
@@ -1910,7 +2203,7 @@ table{
 
     .zakladni_slozka .label_text {
         margin-bottom: 7px;
-        width: 100%;
+        max-width: 100%;
     }
 
     .zakladni_slozka input {
@@ -1921,10 +2214,27 @@ table{
         display: block;
     }
 
-    .spotrebni_slozka .label_text,
-    .zalohy_label  {
-        width: 100%;
+    .spotrebni_slozka .label_text
+     {
+        max-width: 100%;
         margin-bottom: 7px;
+    }
+
+    .zalohy_label {
+        width: 100%;
+    }
+
+    .spotrebni_slozka .label_text_with_help {
+        width: 95%;
+    }
+
+    .spotrebni_slozka .label_text_with_help span {
+        width: 95%;
+    }
+
+    .spotrebni_slozka .help-right-label {
+        position: unset;
+        float: unset;
     }
 
     .help-right-label {
@@ -1976,10 +2286,68 @@ table{
         max-width: 96%;
     }
 
-    /*-------------- Validation and errors ---------------*/
-    .errors_field {
-        width: 96%;
+    /*----------- Deposit form ---------------*/
+
+    .add_deposit_added_field {
+        display: block;
     }
+
+    .add_deposit_added_field .select2-container {
+        width: 83% !important;
+        margin-bottom: 10px;
+    }
+
+    .add_input_fields_deposit_items .first-field-deposit {
+        position: unset;
+    }
+
+    .add_input_fields_deposit_items input,
+    .add_input_fields_deposit_items .description_field {
+        margin-left: 0;
+        width: 83%;
+    }
+
+    .dates_append, .description_append {
+        display: block;
+        position: unset;
+    }
+
+    .dates_append label {
+        margin-left: 0;
+    }
+
+    .form-deposit-items-group .remove_field {
+        justify-content: flex-end;
+        width: 91%;
+        margin-bottom: 0;
+    }
+
+    .description_append label {
+        display: none;
+    }
+
+    .zalohy_deposit {
+        display: block;
+    }
+
+    .zalohy_deposit_label{
+        width: unset;
+    }
+
+    .field-ceny-deposit{
+        width: 98%;
+    }
+
+
+)
+
+
+
+
+    /*-------------- Validation and errors ---------------*/
+    /*.errors_field {*/
+    /*    width: 96%;*/
+    /*}*/
 
 
     /*--------------- Spinning loader -------------------*/
@@ -2154,6 +2522,11 @@ table{
 
     .form-btn {
         min-width: 80px;
+    }
+
+    /*Deposit form*/
+    .form-deposit-items-group .remove_field {
+        width: 93%;
     }
 }
 

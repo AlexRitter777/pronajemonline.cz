@@ -67,7 +67,7 @@ class Services extends AppModel {
         'Nedoplatek nájemného',
         'Jiný přeplatek',
         'Jiný nedoplatek',
-        'Váda/poškození'
+        'Vada/poškození'
 
     );// в main.js ругклярка - смотрит Preplatek или Nedoplatek в начале фразы - выдает даты, в остальных случаях -  текстовое поле.
 

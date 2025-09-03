@@ -46,7 +46,7 @@ class Validation extends AppModel {
     protected $desc = Array(
 
         //Landlord
-        'landlordName' => 'Jméno a příjmení/název firmy pronajímátele', //S, E, D, U, T
+        'landlordName' => 'Jméno a příjmení / název firmy pronajímátele', //S, E, D, U, T
         'landlordAddress' => 'Adresa pronajímatele', //S, E, D, U, T
         'accountNumber' => 'Číslo účtu', //S, E, D, U, T
 
@@ -55,7 +55,7 @@ class Validation extends AppModel {
         'propertyType' => 'Popis nemovitosti', //S, E, D, U, T, Prop
 
         //Tenant
-        'tenantName' => 'Jméno a příjmení/název firmy nájemníka', //S, E, D, U, T
+        'tenantName' => 'Jméno a příjmení / název firmy nájemníka', //S, E, D, U, T
         'tenantAddress' => 'Adresa nájemníka', //S, E, D, U, T
 
         //Admin - správce
@@ -74,25 +74,25 @@ class Validation extends AppModel {
         'supplierName' =>'Název dodavatele elektřiny', //E
         'universalSupplierName' => 'Název firmy – dodavatele média', //U
         'calcStartDate' => 'Počáteční datum vyúčtování správce', //S
-        'calcFinishDate' => 'Konečný datum vyúčtování správce', //S
+        'calcFinishDate' => 'Konečné datum vyúčtování správce', //S
         'rentStartDate' => 'Počáteční datum vyúčtování pronajmatele', //S, E, U
-        'rentFinishDate' => 'Konečný datum vyúčtování pronajmatele', //S, E, U
+        'rentFinishDate' => 'Konečné datum vyúčtování pronajmatele', //S, E, U
         'rentYearDate' => 'Období vyúčtování', //ES
         'rentFinishReason' => 'Důvod ukončení nájmu', //D
-        'contractStartDate' => 'Počáteční datům nájemní smlouvy', // D
-        'contractFinishDate' => 'Konečný datům nájemní smlouvy ', // D
-        'pausalniNaklad' => 'Paušální náklad',
+        'contractStartDate' => 'Datum uzavření nájemní smlouvy', // D
+        'contractFinishDate' => 'Datum ukončení nájemní smlouvy ', // D
+        'pausalniNaklad' => 'Náklady na služby a správu domu ',
         'initialValueOne' => 'Počáteční stav elektroměru', //E
         'endValueOne' => 'Konečný stav elektroměru', //E
         'meterNumberOne' => 'Výrobní číslo elektroměru', //E
         'initialValueUniversal' => 'Počáteční stav měřidla', //U
         'endValueUniversal' => 'Konečný stav měřidla', //U
         'meterNumberUniversal' => 'Výrobní číslo měřidla', //U
-        'servicesCost' => 'Výši paušálních nákladů', //S
-        'appMeters' => 'Druh měřiče', //S
-        'initialValue' => 'Počáteční stavy měřičů', //S
-        'endValue' => 'Konečný stavy měřičů', //S
-        'meterNumber' => 'Výrobní čísla měřičů', //S
+        'servicesCost' => 'Výši nákladů na služby a správu domu', //S
+        'appMeters' => 'Druh měřidla', //S
+        'initialValue' => 'Počáteční stavy měřidel', //S
+        'endValue' => 'Konečné stavy měřidel', //S
+        'meterNumber' => 'Výrobní čísla měřidel', //S
         'coefficientValue' => 'Koeficient/koeficienty pro ústřední topení', //S
         'constHotWaterPrice' => 'Základní složka za ohřev teplé užitkové vody(TUV)', //S
         'constHeatingPrice' => 'Základní složka za ústřední topení (UT)', //S
@@ -102,7 +102,7 @@ class Validation extends AppModel {
         'changedHeatingCosts' => 'Celkové náklady na korigovanou spotřební složku', //S
         'heatingYearSum'=>'Spotřeba tepla za období vyúčtování správce',//S
         'heatingPrice' => 'Cena za jednotku ústředního topení (UT)', //S
-        'servicesCostCorrection' => 'Odhadovaná průměrná změna cen paušálních nákladů', //S
+        'servicesCostCorrection' => 'Odhadovaná průměrná změna cen nákladů na služby a správu domu', //S
         'hotWaterCorrection' => 'Odhadovaná průměrná změna cen nákladů na TUV', //S
         'heatingCorrection' => 'Odhadovaná průměrná změna cen nákladů na UT', //S
         'coldWaterCorrection' => 'Odhadovaná průměrná změna cen nákladů na SUV', //S
@@ -117,11 +117,11 @@ class Validation extends AppModel {
         'depositItems' =>'Položky vyúčtování', //D, T
         'depositItemsPrice' =>'Cena položky vyúčtování', //D, T
         'itemsStartDate' =>'Počáteční datum vyúčtování v položce', //D, T
-        'itemsFinishDate' =>'Konečný datum vyúčtování v položce', //D, T
+        'itemsFinishDate' =>'Konečné datum vyúčtování v položce', //D, T
         'damageDesc' => 'Popis vady/poškození v položce', //D, T
         'advancedPayments' => 'Součet záloh, zaplacených nájemníkem', //S, E, U
-        'advancedPaymentsDesc' => 'Uhrazené zálohy – komentář', //S, E, U
-        'deposit' => 'Výše kauci', //D
+        'advancedPaymentsDesc' => 'Uhrazené zálohy – poznámka', //S, E, U
+        'deposit' => 'Výše kauce', //D
 
         //Contact form
         'contactName' => 'Jméno', //K

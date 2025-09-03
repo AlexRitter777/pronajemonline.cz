@@ -93,7 +93,7 @@
                     <select name="pausalniNaklad[]" class="select-list" id="test1" style="width: 55%">
                         <option value="<?=$data['pausalniNaklad'][0] ?? ''; ?>"><?=$data['pausalniNaklad'][0] ?? ''; ?></option>
                     </select>
-                    <input type="number" class="right-field" name="servicesCost[]" id="servicesCost1" step="any" placeholder="Zadej častku v Kč" value="<?=$data['servicesCost'][0] ?? '' ?>" />
+                    <input type="number" class="right-field" name="servicesCost[]" id="servicesCost1" step="any" placeholder="Zadejte častku" value="<?=$data['servicesCost'][0] ?? '' ?>" />
                 </div>
                 <!-- /.add_field first-field-->
                 <?php if(isset($data['pausalniNaklad'])): ?>
@@ -104,7 +104,7 @@
                                 <select name="pausalniNaklad[]" class="added-content select-list" id="test<?= ($i+1)?>" style="width: 55%">
                                     <option value="<?=$data['pausalniNaklad'][$i]; ?>"><?=$data['pausalniNaklad'][$i]; ?></option>
                                 </select>
-                                <input type="number" class="right-field" name="servicesCost[]" id="servicesCost<?= ($i+1)?>" step="any" placeholder="Zadej častku v Kč" value="<?=$data['servicesCost'][$i]; ?>"/>
+                                <input type="number" class="right-field" name="servicesCost[]" id="servicesCost<?= ($i+1)?>" step="any" placeholder="Zadejte častku" value="<?=$data['servicesCost'][$i]; ?>"/>
                                 <a href="#" class="remove_field">
                                     <svg class="icon_minus">
                                         <use xlink: href = "#minus" ></use >
@@ -136,7 +136,7 @@
                 <div class="zalohy_label">
                     <label for="advancedPayments" class="label_text">Součet zaloh za služby, zaplacených najmeníkem v ramcích učtovácího období</label>
                 </div>
-                <input type="number" class="field field-slozky" id="advancedPayments" name="advancedPayments" step="any" placeholder="Zadej součet záloh" value="<?= $data['advancedPayments'] ?? ''; ?>" />
+                <input type="number" class="field field-slozky" id="advancedPayments" name="advancedPayments" step="any" placeholder="Zadejte součet záloh" value="<?= $data['advancedPayments'] ?? ''; ?>" />
             </div>
 
             <label for="advancedPaymentsDesc" class="label_text">Uhrazené zálohy – komentář </label><br />

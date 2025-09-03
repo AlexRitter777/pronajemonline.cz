@@ -60,7 +60,7 @@ $(document).ready(function () {
         '<div class="add_field" id="' + (x + len) + '">'+
         '<select name="pausalniNaklad[]" class="select-list" id="test' + (x + len) + '" style="width: 55%">'+
         '</select>' +
-        '<input type="number" class="right-field" name="servicesCost[]" id="servicesCost' + (x + len) + '" step="any" placeholder="Zadej častku v Kč" />'+
+        '<input type="number" class="right-field" name="servicesCost[]" id="servicesCost' + (x + len) + '" step="any" placeholder="Zadejte častku" />'+
         '<a href="#" class="remove_field">'+
         '<svg class="icon_minus">'+
         '<use xlink: href = "#minus" >' +
@@ -79,7 +79,7 @@ $(document).ready(function () {
     // Activate Select2 for the added row
     $('#test' + (x + len)).select2({
       tags: true,
-      placeholder: "Vyber ze seznamu nebo napiš vlastní",
+      placeholder: "Vyberte ze seznamu nebo napište vlastní",
       sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
     });
   });
@@ -100,7 +100,7 @@ $(document).ready(function () {
                 $('#servicesCost' + i).attr('id', 'servicesCost' + (i-1));
                 $('#test' + (i - 1)).select2({ // Re-activate Select2 for each row after removing one
                     tags: true,
-                    placeholder: "Vyber ze seznamu nebo napiš vlastní",
+                    placeholder: "Vyberte ze seznamu nebo napište vlastní",
                     sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
                 });
             }
@@ -151,7 +151,7 @@ $(document).ready(function () {
     }
         // Initialize select2
       $('#load_php_meters' + (y + lenMeters)).select2({
-      placeholder: "Vyber ze seznamu",
+      placeholder: "Vyberte ze seznamu",
       sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
     });
   });
@@ -172,7 +172,7 @@ $(document).ready(function () {
               // Reinitialize select2 for the adjusted elements
               $('#load_php_meters' + (i - 1)).select2({
                   tags: true,
-                  placeholder: "Vyber ze seznamu",
+                  placeholder: "Vyberte ze seznamu",
                   sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
               });
           }
@@ -205,7 +205,7 @@ $(document).ready(function () {
                             style="width: 55%">
                     </select>
                     <input type="number" class="right-field" name="depositItemsPrice[]" id="deposit_items_price${n+lenDepositItems}"
-                           step="any" placeholder="Zadej častku v Kč" />
+                           step="any" placeholder="Zadejte častku" />
                     
                     <a href="#" class="remove_field">
                         <svg class="icon_minus">
@@ -222,7 +222,7 @@ $(document).ready(function () {
         }
         // Initialize select2 for the newly added row
         $('#load_php_deposit_items' + (n + lenDepositItems)).select2({ //активируем Select2 для добавленнного ряда
-            placeholder: "Vyber ze seznamu",
+            placeholder: "Vyberte ze seznamu",
 
         });
         // Hide the add button after adding a new field
@@ -255,7 +255,7 @@ $(document).ready(function () {
                     // Reinitialize select2
                     $('#load_php_deposit_items' + (i - 1)).select2({
                         tags: true,
-                        placeholder: "Vyber ze seznamu",
+                        placeholder: "Vyberte ze seznamu",
                         sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
                     });
                 }
@@ -277,7 +277,7 @@ $(document).ready(function () {
 
 // Toggle between ANO/NE, connect the first row
 $(document).ready(function () {
-  var coefficientDiv = $('<div class = "add_coefficient"><div class = "add_coefficient_field" ><input type = "number" class = "coefficient_field" id = "coefficientValue1" name = "coefficientValue[]" step = "any" placeholder = "Zadej koeficient"/><br/></div><a href="#" class="add_coefficient_button"><svg class="icon_plus"><use xlink: href = "#plus"></use></svg><span class="icon_title">Přidat koeficient</span></a></div>');
+  var coefficientDiv = $('<div class = "add_coefficient"><div class = "add_coefficient_field" ><input type = "number" class = "coefficient_field" id = "coefficientValue1" name = "coefficientValue[]" step = "any" placeholder = "Zadejte koeficient"/><br/></div><a href="#" class="add_coefficient_button"><svg class="icon_plus"><use xlink: href = "#plus"></use></svg><span class="icon_title">Přidat koeficient</span></a></div>');
   var checkedAno = $('#ano_coefficient');
   var checkedNe = $('#ne_coefficient');
   var z = 1; // Counter for dynamically added coefficient fields
@@ -298,7 +298,7 @@ $(document).ready(function () {
     e.preventDefault();
     if (z + lenCoefficient < max_coefficients) { // Check if the max number of coefficients hasn't been reached
       z++;
-      $('.add_coefficient_field').append('<div class = "coefficient_added_field" id="' + (z + lenCoefficient) + '"><input type="number" class="coefficient_field" id="coefficientValue' + (z + lenCoefficient) + '" name="coefficientValue[]" step="any" placeholder="Zadej koeficient" /><a href="#" class="remove_coefficients"><svg class="icon_minus"><use xlink: href = "#minus" ></use ></svg ><span class = "icon_title">Odebrat</span></a></div>');
+      $('.add_coefficient_field').append('<div class = "coefficient_added_field" id="' + (z + lenCoefficient) + '"><input type="number" class="coefficient_field" id="coefficientValue' + (z + lenCoefficient) + '" name="coefficientValue[]" step="any" placeholder="Zadejte koeficient" /><a href="#" class="remove_coefficients"><svg class="icon_minus"><use xlink: href = "#minus" ></use ></svg ><span class = "icon_title">Odebrat</span></a></div>');
     }
     if (z + lenCoefficient == max_coefficients) {
       $('.add_coefficient_button').css('display', 'none'); // Hide add button if max coefficients reached
@@ -339,19 +339,19 @@ $(document).ready(function () {
 $(document).ready(function () {
     var corectionDiv = $('<div class="korekce">\n' +
                 '            <label for="servicesCostCorrection" class="label_text">Odhadovaná průměrná změna cen paušálních nákladů</label>\n' +
-                '            <input type="number" class="field field-slozky" id="servicesCostCorrection" name="servicesCostCorrection" step="any" placeholder="Zadej %" value="" />\n' +
+                '            <input type="number" class="field field-slozky" id="servicesCostCorrection" name="servicesCostCorrection" step="any" placeholder="Zadejte %" value="" />\n' +
                 '           </div>\n' +
                 '        <div class="korekce">\n' +
                 '            <label for="hotWaterCorrection" class="label_text">Odhadovaná průměrná změna cen nákladů na TUV</label>\n' +
-                '            <input type="number" class="field field-slozky" id="hotWaterCorrection" name="hotWaterCorrection" step="any" placeholder="Zadej %" value="" />\n' +
+                '            <input type="number" class="field field-slozky" id="hotWaterCorrection" name="hotWaterCorrection" step="any" placeholder="Zadejte %" value="" />\n' +
                 '        </div>\n' +
                 '        <div class="korekce">\n' +
                 '            <label for="heatingCorrection" class="label_text">Odhadovaná průměrná změna cen nákladů na UT</label>\n' +
-                '            <input type="number" class="field field-slozky" id="heatingCorrection" name="heatingCorrection" step="any" placeholder="Zadej %" value="" />\n' +
+                '            <input type="number" class="field field-slozky" id="heatingCorrection" name="heatingCorrection" step="any" placeholder="Zadejte %" value="" />\n' +
                 '        </div>\n' +
                 '        <div class="korekce">\n' +
                 '            <label for="coldWaterCorrection" class="label_text">Odhadovaná průměrná změna cen nákladů na SUV</label>\n' +
-                '            <input type="number" class="field field-slozky" id="coldWaterCorrection" name="coldWaterCorrection" step="any" placeholder="Zadej %" value="" />\n' +
+                '            <input type="number" class="field field-slozky" id="coldWaterCorrection" name="coldWaterCorrection" step="any" placeholder="Zadejte %" value="" />\n' +
                 '        </div>');
     var checkedYes = $('#costCorrectionYes');
     var checkedNo = $('#costCorrectionNo');
@@ -374,15 +374,15 @@ $(document).ready(function () {
 $(document).ready(function () {
     var changedHeatingDiv = $(`<div class="spotrebni_slozka">
     <label for="changedHeatingCosts" class="label_text">Celkové náklady na zkorigovanou spotřební složku</label>
-    <input type="number" class="field field-slozky" id="changedHeatingCosts" name="changedHeatingCosts" step="any" placeholder="Zadej celkovou cenu" value="" />
+    <input type="number" class="field field-slozky" id="changedHeatingCosts" name="changedHeatingCosts" step="any" placeholder="Zadejte celkovou cenu" value="" />
 </div>`);
     var heatingYearSum = $(`<div class="spotrebni_slozka">
     <label for="heatingYearSum" class="label_text">Spotřeba tepla za období vyúčtování správce</label>
-    <input type="number" class="field field-slozky" id="heatingYearSum" name="heatingYearSum" step="any" placeholder="Zadej celkovou spotřebu" value="" />
+    <input type="number" class="field field-slozky" id="heatingYearSum" name="heatingYearSum" step="any" placeholder="Zadejte celkovou spotřebu" value="" />
 </div>`);
     var heatingPrice = $(`
         <label for="heatingPrice" class="label_text">Cena za jednotku ústředního topení (UT)</label>
-        <input type="number" class="field field-slozky" id="heatingPrice" name="heatingPrice" step="any" placeholder="Zadej cenu jednotky" value="" />`);
+        <input type="number" class="field field-slozky" id="heatingPrice" name="heatingPrice" step="any" placeholder="Zadejte cenu jednotky" value="" />`);
     var checkedYes = $('#changedHeatingCostsYes');
     var checkedNo = $('#changedHeatingCostsNo');
 
@@ -429,7 +429,7 @@ $(function () {
 $(document).ready(function() {
   $('.select-list').select2({
       tags: true, //возможность вводить свои значения
-      placeholder: "Vyber ze seznamu nebo napiš vlastní",
+      placeholder: "Vyberte ze seznamu nebo napište vlastní",
       sorter: data => data.sort((a, b) => a.text.localeCompare(b.text)) //сортировка по АБВ
     });
 
@@ -845,7 +845,7 @@ $(document).ready(function (){
         <!-- /.dates_append-->
         <div class="description_append">
             <label class="label_text">Popis</label>
-            <input type="text" name="damageDesc[]" class="description_field" id="damageDesc${idItem}"/>
+            <input type="text" name="damageDesc[]" class="description_field" id="damageDesc${idItem}" placeholder="Zadejte popis"/>
         </div>
         <!-- /.description_append-->
         <div class="border"></div>`
@@ -1105,7 +1105,7 @@ $(document).ready(function() {
                 return"Odstraňte všechny položky"
             }
         },
-        placeholder: "Vyber ze seznamu",
+        placeholder: "Vyberte ze seznamu",
 
         //add pagination in case more results!!!
     });
@@ -1151,7 +1151,7 @@ $(document).ready(function() {
                 return"Odstraňte všechny položky"
             }
         },
-        placeholder: "Vyber ze seznamu",
+        placeholder: "Vyberte ze seznamu",
 
         //add pagination in case more results!!!
     });
@@ -1197,7 +1197,7 @@ $(document).ready(function() {
                 return"Odstraňte všechny položky"
             }
         },
-        placeholder: "Vyber ze seznamu",
+        placeholder: "Vyberte ze seznamu",
 
         //add pagination in case more results!!!
     });
@@ -1244,7 +1244,7 @@ $(document).ready(function() {
                 return"Odstraňte všechny položky"
             }
         },
-        placeholder: "Vyber ze seznamu",
+        placeholder: "Vyberte ze seznamu",
 
         //add pagination in case more results!!!
     });

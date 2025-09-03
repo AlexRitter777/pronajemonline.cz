@@ -591,6 +591,20 @@ class Validator {
         this.processResponse('calcFinishDate');
         this.processResponse('rentStartDate');
         this.processResponse('rentFinishDate');
+        this.processTwoDatesResponse('calcDiffDates', 'calcStartDate', 'calcFinishDate');
+        this.processTwoDatesResponse('rentDiffDates', 'rentStartDate', 'rentFinishDate');
+        this.processTwoDatesResponse('calcIntervalDates','calcStartDate', 'calcFinishDate');
+
+        this.processAddedRowsSelect2Response('pausalniNaklad', 'test', ['Value','Char','Length']);
+        this.processAddedRowsResponse('servicesCost', 'servicesCost', ['Value','Length','Zero']);
+
+        this.processAddedRowsSelect2Response('appMeters', 'load_php_meters', ['Value']);
+        this.processAddedRowsResponse('initialValue', 'initialValue', ['Value','Length','Zero']);
+        this.processAddedRowsResponse('endValue', 'endValue', ['Value','Length','Zero']);
+        this.processTwoAddedValuesResponse('diffValues','initialValue', 'endValue' );
+        this.processAddedRowsResponse('meterNumber', 'meterNumber', ['Value','Length','Zero']);
+
+        this.processAddedRowsResponse('coefficientValue', 'coefficientValue', ['Value','Length','Zero']);
 
         this.processResponse('constHotWaterPrice');
         this.processResponse('constHeatingPrice');
@@ -609,91 +623,107 @@ class Validator {
         this.processResponse('advancedPayments');
         this.processResponse('advancedPaymentsDesc');
 
-        this.processTwoDatesResponse('calcDiffDates', 'calcStartDate', 'calcFinishDate');
-        this.processTwoDatesResponse('rentDiffDates', 'rentStartDate', 'rentFinishDate');
-        this.processTwoDatesResponse('calcIntervalDates','calcStartDate', 'calcFinishDate');
-
-        this.processAddedRowsSelect2Response('pausalniNaklad', 'test', ['Value','Char','Length']);
-        this.processAddedRowsSelect2Response('appMeters', 'load_php_meters', ['Value']);
-
-        this.processAddedRowsResponse('servicesCost', 'servicesCost', ['Value','Length','Zero']);
-        this.processAddedRowsResponse('initialValue', 'initialValue', ['Value','Length','Zero']);
-        this.processAddedRowsResponse('endValue', 'endValue', ['Value','Length','Zero']);
-        this.processAddedRowsResponse('meterNumber', 'meterNumber', ['Value','Length','Zero']);
-        this.processAddedRowsResponse('coefficientValue', 'coefficientValue', ['Value','Length','Zero']);
-
-        this.processTwoAddedValuesResponse('diffValues','initialValue', 'endValue' );
     }
 
+    validateeasyservicesForm(){
 
+        this.processResponseOrSelect2('propertyAddress');
+        this.processResponse('propertyType');
+
+        this.processResponseOrSelect2('landlordName');
+        this.processResponse('landlordAddress');
+        this.processResponse('accountNumber');
+
+        this.processResponseOrSelect2('tenantName');
+        this.processResponse('tenantAddress');
+
+        this.processResponse('adminName');
+        this.processResponseSelect2('adminName');
+
+        this.processResponseSelect2('rentYearDate');
+
+        this.processAddedRowsSelect2Response('pausalniNaklad', 'test', ['Value','Char','Length']);
+        this.processAddedRowsResponse('servicesCost', 'servicesCost', ['Value','Length','Zero']);
+
+        this.processResponse('advancedPayments');
+
+    }
 
 
     validateelectroForm(){
 
+        this.processResponse('propertyAddress');
+        this.processResponse('propertyType');
+
         this.processResponse('landlordName');
         this.processResponse('landlordAddress');
         this.processResponse('accountNumber');
-        this.processResponse('propertyAddress');
-        this.processResponse('propertyType');
+
         this.processResponse('tenantName');
         this.processResponse('tenantAddress');
+
         this.processResponse('supplierName');
+
         this.processResponse('rentStartDate');
         this.processResponse('rentFinishDate');
+        this.processTwoDatesResponse('rentDiffDates', 'rentStartDate', 'rentFinishDate');
+
+
         this.processResponse('initialValueOne');
         this.processResponse('endValueOne');
+        this.processTwoValuesResponse('diffValues', 'initialValueOne', 'endValueOne');
         this.processResponse('meterNumberOne');
+
         this.processResponse('electroPriceKWh');
         this.processResponse('electroPriceMonth');
         this.processResponse('electroPriceAdd');
         this.processResponse('electroPriceAddDesc');
+
         this.processResponse('advancedPayments');
-
-        this.processTwoValuesResponse('diffValues', 'initialValueOne', 'endValueOne');
-
-        this.processTwoDatesResponse('rentDiffDates', 'rentStartDate', 'rentFinishDate');
-
 
     }
 
-
     validatedepositForm() {
+
+        this.processResponse('propertyAddress');
+        this.processResponse('propertyType');
 
         this.processResponse('landlordName');
         this.processResponse('landlordAddress');
         this.processResponse('accountNumber');
-        this.processResponse('propertyAddress');
-        this.processResponse('propertyType');
+
         this.processResponse('tenantName');
         this.processResponse('tenantAddress');
+
         this.processResponse('contractStartDate');
         this.processResponse('contractFinishDate');
-        this.processResponse('deposit');
-
         this.processTwoDatesResponse('contractDiffDates', 'contractStartDate', 'contractFinishDate');
 
-        this.processAddedRowsSelect2Response('depositItems', 'load_php_deposit_items', ['Value']);
 
+        this.processAddedRowsSelect2Response('depositItems', 'load_php_deposit_items', ['Value']);
         this.processAddedRowsResponse('depositItemsPrice', 'deposit_items_price', ['Value','Length','Zero']);
         this.processAddedRowsResponse('itemsStartDate', 'itemsStartDate', ['Value']);
         this.processAddedRowsResponse('itemsFinishDate', 'itemsFinishDate', ['Value']);
         this.processAddedRowsResponse('damageDesc', 'damageDesc', ['Value', 'Length', 'Char']);
+
+        this.processResponse('deposit');
 
     }
 
 
     validatetotalForm(){
 
+        this.processResponse('propertyAddress');
+        this.processResponse('propertyType');
+
         this.processResponse('landlordName');
         this.processResponse('landlordAddress');
         this.processResponse('accountNumber');
-        this.processResponse('propertyAddress');
-        this.processResponse('propertyType');
+
         this.processResponse('tenantName');
         this.processResponse('tenantAddress');
 
         this.processAddedRowsSelect2Response('depositItems', 'load_php_deposit_items', ['Value']);
-
         this.processAddedRowsResponse('depositItemsPrice', 'deposit_items_price', ['Value','Length','Zero']);
         this.processAddedRowsResponse('itemsStartDate', 'itemsStartDate', ['Value']);
         this.processAddedRowsResponse('itemsFinishDate', 'itemsFinishDate', ['Value']);
@@ -703,59 +733,48 @@ class Validator {
 
     validateuniversalForm(){
 
+        this.processResponse('propertyAddress');
+        this.processResponse('propertyType');
+
         this.processResponse('landlordName');
         this.processResponse('landlordAddress');
         this.processResponse('accountNumber');
-        this.processResponse('propertyAddress');
-        this.processResponse('propertyType');
+
         this.processResponse('tenantName');
         this.processResponse('tenantAddress');
+
         this.processResponseSelect2('universalCalcType');
+
         this.processResponse('universalSupplierName');
+
         this.processResponse('rentStartDate');
         this.processResponse('rentFinishDate');
+        this.processTwoDatesResponse('rentDiffDates', 'rentStartDate', 'rentFinishDate');
+
         this.processResponse('initialValueUniversal');
         this.processResponse('endValueUniversal');
+        this.processTwoValuesResponse('diffValues', 'initialValueUniversal', 'endValueUniversal');
         this.processResponse('meterNumberUniversal');
+
         this.processResponse('universalPriceOne');
         this.processResponse('universalPriceMonth');
         this.processResponse('universalPriceAdd');
         this.processResponse('universalPriceAddDesc');
+
         this.processResponse('advancedPayments');
 
-        this.processTwoValuesResponse('diffValues', 'initialValueUniversal', 'endValueUniversal');
-
-        this.processTwoDatesResponse('rentDiffDates', 'rentStartDate', 'rentFinishDate');
-
-
     }
+
+
+
+
+
 
     validatecontactForm() {
 
         this.processResponse('contactName');
         this.processResponse('contactEmail');
         this.processResponse('contactMessage');
-    }
-
-
-    validateeasyservicesForm(){
-
-        this.processResponseOrSelect2('propertyAddress');
-        this.processResponse('propertyType');
-        this.processResponseOrSelect2('landlordName');
-        this.processResponse('landlordAddress');
-        this.processResponse('accountNumber');
-        this.processResponseOrSelect2('tenantName');
-        this.processResponse('tenantAddress');
-        this.processResponse('adminName');
-        this.processResponseSelect2('adminName');
-        this.processResponse('advancedPayments');
-
-        this.processAddedRowsSelect2Response('pausalniNaklad', 'test', ['Value','Char','Length']);
-        this.processAddedRowsResponse('servicesCost', 'servicesCost', ['Value','Length','Zero']);
-
-        this.processResponseSelect2('rentYearDate');
-
     }
 
     validateregisterForm(){
