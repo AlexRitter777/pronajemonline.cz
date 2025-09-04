@@ -1,9 +1,10 @@
 import {Select2Dropdown} from "./Select2Dropdown.js";
 import {AjaxProcessor} from "./AjaxProcessor.js";
-import {ModalBox} from "./ModalBox.js";
 import {ReCaptcha} from "./ReCaptcha.js";
 import {ModalValidator} from "./ModalValidator.js";
 import {DatabaseWrapper} from "./DatabaseWrapper.js";
+import {closeModalOnButton, closeModalOnCross} from "./jbox_helpers.js";
+import {loaderSpinnerModalOff, loaderSpinnerModalOn} from "./loader_spinner.js";
 
 //global modal window
 let modalWindow;
@@ -181,17 +182,14 @@ $(document).ready(function () {
     /**
      * New jBox modal window with a form
      */
-    $('body').on('click','.btn_open_modal', async function (e) {
+    $('body').on('click','.btn_open_modal',  function (e) {
         e.preventDefault();
-        // Add possibility saving modal window in local storage!!!
 
         //Get entity (form name) name and modal window title from button data attribute
         entity = $(this).data('item');
         let title = $(this).data('title');
 
-        //Get modal window template
-        const modalBox = new ModalBox();
-
+        //Get Modal window template
         let content = getTemplate(entity);
 
         //Make and open new modal window with JBox
@@ -203,12 +201,16 @@ $(document).ready(function () {
                 closeOnClick: false,
                 draggable: 'title',
                 id: entity,
+                onOpenComplete: function (){
+                    closeModalOnCross(this, entity);
+                    closeModalOnButton(this, entity);
 
+                }
             }
         );
+
         modalWindow.setWidth(450);
         modalWindow.open();
-
     })
 
     /**
@@ -319,7 +321,7 @@ $(document).ready(function () {
 })
 
 
-//get Modal window temlate
+//get Modal window template
 
 function getTemplate(name){
     let elementId = name + '-modal';
@@ -327,44 +329,7 @@ function getTemplate(name){
     return template.innerHTML.trim();
 }
 
-//remove old Modal jbox window after close by Cancel button
-$('body').on('click','.submit_button_refresh_modal', function (e){
-    modalWindow.close();
-    removeJboxTraces();
-})
 
-//close Modal JBox window and remove old Modal JBox window after close by cross icon
-//we have same code in main.js, here it is not necessary
-/*$('body').on('click','.jBox-closeButton', function (e){
-    removeJboxTraces();
-})*/
-
-//close modal window in case if user chose to create new property with full information
-$('body').on('click', "#new_property_full", function (e){
-    modalWindow.close();
-    removeJboxTraces();
-})
-
-//spinner  make  class!!!
-function loaderSpinnerModalOn(){
-    $('#modal-opacity').addClass('opacity');
-    $('.loader-wrapper').removeAttr('style');
-    $('#new-admin').attr('disabled', 'disabled').removeClass('submit_button').addClass('submit_button_pushed');
-}
-
-function loaderSpinnerModalOff(){
-    $('#modal-opacity').removeClass('opacity');
-    $('.loader-wrapper').attr('style', 'display:none;');
-    $('#new-admin').removeAttr('disabled').removeClass('submit_button_pushed').addClass('submit_button');
-}
-
-function removeJboxTraces(){
-    //everytime JBox create new Modal window,
-    //every time after close modal window we should delete the old one
-    //because we have more than one modal box in different files, we don't use destroy() method
-    $('.jBox-wrapper').remove();
-    $('.jBox-overlay').remove();
-}
 
 
 

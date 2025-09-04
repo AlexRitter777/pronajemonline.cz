@@ -1470,24 +1470,24 @@ $(document).ready(function (){
     })
 
     //remove old Modal jbox window after close by Cancel button
-    $('body').on('click','.submit_button_refresh_modal_old', function (e){
-
-        modalConf.close();
-        //everytime jbox create new Modal window, every time after close modal window we should delete the old one
-        $('.jBox-wrapper').remove();
-        $('.jBox-overlay').remove();
-
-    })
-
-    //close Modal JBox window and remove old Modal JBox window after close by cross icon
-    $('body').on('click','.jBox-closeButton', function (e){
-
-        //modalConf.close();
-        //everytime jbox create new Modal window, every time after close modal window we should delete the old one
-        $('.jBox-wrapper').remove();
-        $('.jBox-overlay').remove();
-
-    })
+    // $('body').on('click','.submit_button_refresh_modal_old', function (e){
+    //
+    //     modalConf.close();
+    //     //everytime jbox create new Modal window, every time after close modal window we should delete the old one
+    //     $('.jBox-wrapper').remove();
+    //     $('.jBox-overlay').remove();
+    //
+    // })
+    //
+    // //close Modal JBox window and remove old Modal JBox window after close by cross icon
+    // $('body').on('click','.jBox-closeButton', function (e){
+    //
+    //     //modalConf.close();
+    //     //everytime jbox create new Modal window, every time after close modal window we should delete the old one
+    //     $('.jBox-wrapper').remove();
+    //     $('.jBox-overlay').remove();
+    //
+    // })
 
 })
 
@@ -1553,17 +1553,7 @@ $(function(){
 
 
 
-function loaderSpinnerModalOn(){
-    $('#modal-opacity').addClass('opacity');
-    $('.loader-wrapper').removeAttr('style');
-    $('#new-admin').attr('disabled', 'disabled').removeClass('submit_button').addClass('submit_button_pushed');
-}
 
-function loaderSpinnerProfileOff(){
-    $('#opacity').removeClass('opacity');
-    $('.loader-wrapper').attr('style', 'display:none;');
-    $('#profile-submit').removeAttr('disabled').removeClass('submit_button_profile_pushed');
-}
 
 
 

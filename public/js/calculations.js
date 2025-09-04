@@ -3,6 +3,7 @@ import {ModalBox} from "./ModalBox.js";
 import {ModalValidator} from "./ModalValidator.js";
 import {DatabaseWrapper} from "./DatabaseWrapper.js";
 import {AjaxProcessor} from "./AjaxProcessor.js";
+import {closeModalOnButton, closeModalOnCross, closeOnClickOutside} from "./jbox_helpers.js";
 
 //global variable for modal window object
 let modalWindow;
@@ -114,15 +115,15 @@ $(document).ready(function () {
     })
 
 
-    //remove old Modal jbox window after close by Cancel button
-    $('body').on('click','.submit_button_refresh_modal', function (e){
-        removeJboxTraces();
-    })
-
-    //close Modal JBox window and remove old Modal JBox window after close by cross icon
-    $('body').on('click','.jBox-closeButton', function (e){
-        removeJboxTraces();
-    })
+    // //remove old Modal jbox window after close by Cancel button
+    // $('body').on('click','.submit_button_refresh_modal', function (e){
+    //     removeJboxTraces();
+    // })
+    //
+    // //close Modal JBox window and remove old Modal JBox window after close by cross icon
+    // $('body').on('click','.jBox-closeButton', function (e){
+    //     removeJboxTraces();
+    // })
 
 
 })
@@ -177,7 +178,7 @@ $(document).ready(function () {
 })
 
 /**
- * Creates Modal window with checkboxes from unique values of specific column from "servicescalc" table
+ * Creates Modal window with checkboxes from unique values of specific column from specific table
  *
  */
 $(document).ready(function (){
@@ -186,10 +187,12 @@ $(document).ready(function (){
         e.preventDefault();
         let target = $(this);
         let filterBy = target.data('filter');
+
+        const calcType = $('.calc_type_form').find('select[name="calc_type"]').val();
         const ajaxProcessor = new AjaxProcessor();
 
         //get uniq values from database
-        let uniqValues = await ajaxProcessor.getUniqValues('servicescalc', filterBy);
+        let uniqValues = await ajaxProcessor.getUniqValues(calcType, filterBy);
 
         //copy of div content to use in modal window
         let content = $('#filter-list').clone();
@@ -228,9 +231,13 @@ $(document).ready(function (){
         });
 
        // $('#filter-list-content').append('</ul>');
+
         //create Modal window
+        let jBoxId = 'property-filter'
+
         modalWindow = new jBox(
             'Modal', {
+                id: jBoxId,
                 content: content,
                 overlay: false,
                 closeOnClick: 'body',
@@ -239,7 +246,11 @@ $(document).ready(function (){
                 position: {x: 'left', y: ''}, // position relative target
                 outside: 'y',
                 reposition: true,
-                offset: {x: -70, y: 0}
+                offset: {x: -70, y: 0},
+                onOpenComplete: function (){
+                    closeModalOnButton(this, jBoxId);
+                    closeOnClickOutside(this);
+                }
             }
         );
 
@@ -251,13 +262,13 @@ $(document).ready(function (){
     /*
      * Close Modal window in case of click outside modal window
      */
-    $(document).click(function(e) {
-        if(modalWindow) {
-            if (!$(e.target).closest('.jBox-container').length) {
-                removeJboxTraces();
-            }
-        }
-    });
+    // $(document).click(function(e) {
+    //     if(modalWindow) {
+    //         if (!$(e.target).closest('.jBox-container').length) {
+    //             removeJboxTraces();
+    //         }
+    //     }
+    // });
 
 })
 
@@ -371,19 +382,6 @@ $(document).ready(function (){
             localStorage.removeItem('user_just_logged');
         }
     })
-
-
-    //remove old Modal jbox window after close by Cancel button
-    $('body').on('click','.submit_button_refresh_modal', function (e){
-        removeJboxTraces();
-    })
-
-    //close Modal JBox window and remove old Modal JBox window after close by cross icon
-    $('body').on('click','.jBox-closeButton', function (e){
-        removeJboxTraces();
-    })
-
-
 
 
 })
@@ -597,35 +595,6 @@ $(document).ready(function () {
     })
 
 })
-
-
-
-
-function removeJboxTraces(){
-    //everytime JBox create new Modal window,
-    //every time after close modal window we should delete the old one
-    //because we have more than one modal box in different files, we don't use destroy() method
-    if(modalWindow){
-        modalWindow.close();
-        modalWindow.destroy();
-    }
-
-
-}
-
-
-//spinner
-function loaderSpinnerModalOn(){
-    $('#modal-opacity').addClass('opacity');
-    $('.loader-wrapper').removeAttr('style');
-    $('#new-admin').attr('disabled', 'disabled').removeClass('submit_button').addClass('submit_button_pushed');
-}
-
-function loaderSpinnerModalOff(){
-    $('#modal-opacity').removeClass('opacity');
-    $('.loader-wrapper').attr('style', 'display:none;');
-    $('#new-admin').removeAttr('disabled').removeClass('submit_button_pushed').addClass('submit_button');
-}
 
 //cut GET request from url
 function cutGetRequest(){

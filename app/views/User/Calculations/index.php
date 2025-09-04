@@ -158,10 +158,12 @@
             </div>
 
             <div class="modal_buttons">
-                <input type="submit" class="submit_button submit_button_modal recaptcha" id="" value="Použit">
-                <button type="button" class="submit_button_refresh submit_button_refresh_modal">Zrušit</button>
+                <input type="submit" class="form-btn btn-submit recaptcha" id="" value="Použit">
+                <input type="button" class="form-btn btn-reset submit_button_refresh_modal" value="Zrušit">
             </div>
         </form>
+
+
     </div>
 
 

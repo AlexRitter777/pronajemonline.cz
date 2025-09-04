@@ -1,6 +1,6 @@
 export class ModalBox {
 
-    getTemplate(name){
+    getAjaxTemplate(name){
 
         return new Promise((resolve, reject) => {
             let content;
@@ -32,5 +32,6 @@ export class ModalBox {
         })
 
     }
+
 
 }
