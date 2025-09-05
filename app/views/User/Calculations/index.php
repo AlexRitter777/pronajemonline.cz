@@ -152,14 +152,14 @@
 
 
     <div id="filter-list" style="display: none">
-        <form id="filter_calc_form" action="">
+        <form id="filter_calc_form" method="get" action="user/calculations">
             <div id="filter-list-content">
 
             </div>
 
             <div class="modal_buttons">
-                <input type="submit" class="form-btn btn-submit recaptcha" id="" value="Použit">
-                <input type="button" class="form-btn btn-reset submit_button_refresh_modal" value="Zrušit">
+                <input type="submit" class="form-btn btn-submit filter-btn" id="" value="Použit">
+                <input type="button" class="form-btn btn-reset submit_button_refresh_modal filter-btn" value="Zrušit">
             </div>
         </form>
 

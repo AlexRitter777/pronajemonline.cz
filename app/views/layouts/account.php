@@ -45,8 +45,6 @@
 
 <script type="module" src="<?= vite_asset('src/js/app.js')?>"></script>
 <script src="js/main.js"></script>
-<script src="js/calculations.js" type="module"></script>
-<script src="js/advanced_form.js" type="module"></script>
 <script src="js/Validator.js"></script>
 <script src="js/validation.js"></script>
 

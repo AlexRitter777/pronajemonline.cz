@@ -1,8 +1,8 @@
-import {Select2Dropdown} from "./Select2Dropdown.js";
-import {AjaxProcessor} from "./AjaxProcessor.js";
-import {ReCaptcha} from "./ReCaptcha.js";
-import {ModalValidator} from "./ModalValidator.js";
-import {DatabaseWrapper} from "./DatabaseWrapper.js";
+import {Select2Dropdown} from "./classes/Select2Dropdown.js";
+import {AjaxProcessor} from "./classes/AjaxProcessor.js";
+import {ReCaptcha} from "./classes/ReCaptcha.js";
+import {ModalValidator} from "./classes/ModalValidator.js";
+import {DatabaseWrapper} from "./classes/DatabaseWrapper.js";
 import {closeModalOnButton, closeModalOnCross} from "./jbox_helpers.js";
 import {loaderSpinnerModalOff, loaderSpinnerModalOn} from "./loader_spinner.js";
 

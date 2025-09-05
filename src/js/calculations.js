@@ -1,9 +1,10 @@
 //import classes
-import {ModalBox} from "./ModalBox.js";
-import {ModalValidator} from "./ModalValidator.js";
-import {DatabaseWrapper} from "./DatabaseWrapper.js";
-import {AjaxProcessor} from "./AjaxProcessor.js";
-import {closeModalOnButton, closeModalOnCross, closeOnClickOutside} from "./jbox_helpers.js";
+import {ModalBox} from "./classes/ModalBox.js";
+import {ModalValidator} from "./classes/ModalValidator.js";
+import {DatabaseWrapper} from "./classes/DatabaseWrapper.js";
+import {AjaxProcessor} from "./classes/AjaxProcessor.js";
+import {closeModalOnButton, closeOnClickOutside} from "./jbox_helpers.js";
+import {loaderSpinnerModalOff, loaderSpinnerModalOn} from "./loader_spinner";
 
 //global variable for modal window object
 let modalWindow;
@@ -113,18 +114,6 @@ $(document).ready(function () {
         //Stop loader-spinner after record was created
         loaderSpinnerModalOff();
     })
-
-
-    // //remove old Modal jbox window after close by Cancel button
-    // $('body').on('click','.submit_button_refresh_modal', function (e){
-    //     removeJboxTraces();
-    // })
-    //
-    // //close Modal JBox window and remove old Modal JBox window after close by cross icon
-    // $('body').on('click','.jBox-closeButton', function (e){
-    //     removeJboxTraces();
-    // })
-
 
 })
 
@@ -258,17 +247,6 @@ $(document).ready(function (){
 
     })
 
-
-    /*
-     * Close Modal window in case of click outside modal window
-     */
-    // $(document).click(function(e) {
-    //     if(modalWindow) {
-    //         if (!$(e.target).closest('.jBox-container').length) {
-    //             removeJboxTraces();
-    //         }
-    //     }
-    // });
 
 })
 
