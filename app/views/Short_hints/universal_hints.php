@@ -8,5 +8,6 @@
     <span>Použijte stavy měřidel z faktury od dodavatele nebo z předávacího protokolu. </span>
 </div>
 <div id="real-hint-4" class="real-hint">
-    <span>Tady můžete zadat buď celou částku z faktury od dodavatele, pokud je nutné ji celou přefakturovat na nájemníka, nebo můžete toto pole využít k zadání jiných souvisejících nákladů, například pokud používáte ceník.</span>
+    <span>Zde můžete zadat buď celkovou částku z faktury za médium nebo službu, pokud ji chcete plně přefakturovat nájemníkovi, nebo libovolný dodatečný náklad.
+Při zadání celkové částky nepoužívejte pole pro cenu za měrnou jednotku ani měsíční cenu.</span>
 </div>

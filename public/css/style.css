@@ -410,50 +410,6 @@
 
 
 
-/*----------------------------Universal-form (add. to deposit-form) ----------------------------*/
-.calc-type-div {
-  display: flex;
-  justify-content: space-between;
-  width: 96%;
-}
-
-.calc-type-div .select2-container {
-  width: 50% !important;
-}
-
-
-.meters-universal {
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  width: 97%;
-
-}
-
-
-.meter-universal-field{
-  width: 33%;
-}
-
-
-.cena_universal, .zalohy_universal {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.field-ceny-universal {
-  margin: 0 23px 0 0;
-  width: 31%;
-}
-
-.zalohy_universal_label {
-  width: 50%;
-  line-height: 20px;
-}
-
 
 /*--------------------------------Kontakt-------------------------------------*/
 
@@ -1781,57 +1737,46 @@
 
   /*---------------Universal-600--------------*/
 
-  .calc-type-div {
-    display: block;
-  }
 
-  .calc-type-div .label_text {
-    width: 100%;
-    margin-bottom: 7px;
-  }
 
-  .calc-type-div .select2-container {
-    width: 100% !important;
-  }
+  /*.meters-universal {*/
+  /*  display: block;*/
+  /*}*/
 
-  .meters-universal {
-    display: block;
-  }
+  /*.meter-universal-field {*/
+  /*  width: 59%;*/
+  /*}*/
 
-  .meter-universal-field {
-    width: 59%;
-  }
+  /*.cena_universal {*/
+  /*  display: block;*/
+  /*}*/
 
-  .cena_universal {
-    display: block;
-  }
+  /*.cena_universal .label_text {*/
+  /*  width: 100%;*/
+  /*  margin-bottom: 7px;*/
+  /*}*/
 
-  .cena_universal .label_text {
-    width: 100%;
-    margin-bottom: 7px;
-  }
+  /*.cena_universal input {*/
+  /*  width: 57%;*/
+  /*}*/
 
-  .cena_universal input {
-    width: 57%;
-  }
+  /*.cena_universal .icon_help {*/
+  /*  margin-right: 45%;*/
 
-  .cena_universal .icon_help {
-    margin-right: 45%;
+  /*}*/
 
-  }
+  /*.zalohy_universal {*/
+  /*  display: block;*/
+  /*}*/
 
-  .zalohy_universal {
-    display: block;
-  }
+  /*.zalohy_universal .label_text {*/
+  /*  width: 150%;*/
+  /*  margin-bottom: 7px;*/
+  /*}*/
 
-  .zalohy_universal .label_text {
-    width: 150%;
-    margin-bottom: 7px;
-  }
-
-  .zalohy_universal input {
-    width: 57%;
-  }
+  /*.zalohy_universal input {*/
+  /*  width: 57%;*/
+  /*}*/
 
 
 

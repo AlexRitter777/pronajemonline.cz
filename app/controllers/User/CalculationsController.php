@@ -38,6 +38,8 @@ class CalculationsController extends AppController {
           'easyservicescalc' => 'easyservicesform',
           'electrocalc' => 'electroform',
           'depositcalc' => 'depositform',
+          'totalcalc' => 'totalform',
+          'universalcalc' => 'universalform'
         ];
 
 
@@ -359,6 +361,37 @@ class CalculationsController extends AppController {
     //Nové vyúčtování kauce
     public function depositformAction() {
         $this->setMeta('Vyúčtování kauce po skončení nájmu | pronajemonline.cz - Vyúčtování služeb nájemníkům', 'Tato aplikace umožňuje vyhotovit online vyúčtování kauce složené nájemníkem, zajišťující transparentní vracení kauce po skončení nájmu. Přehledné výstupy ve formátu PDF. Ideální pro správu nemovitostí a pronájmů.');
+        $this->layout = 'account';
+        $data = null;
+        $reCaptcha = true;
+
+        $this->set(compact('data', 'reCaptcha'));
+
+
+    }
+
+    /*
+     * Souhrnné vyúčtování kauce (total calculation). Formulář.
+     */
+
+    //Souhrnné vyúčtování
+    public function totalformAction() {
+        $this->setMeta('Souhrnné vyúčtování služeb spojených s užíváním bytu | pronajemonline.cz - Vyúčtování služeb nájemníkům', 'Tato aplikace umožňuje vyhotovit online souhrnné vyúčtování služeb nájemníkům. Například, pomůže dát dohromady data z vyúčtování služeb spojených s užíváním bytu, vyúčtování spotřeby elektřiny a případných dalších vyúčtování. Přehledné výstupy ve formátu PDF. Ideální pro správu nemovitostí a pronájmů.');
+        $this->layout = 'account';
+        $data = null;
+        $reCaptcha = true;
+
+        $this->set(compact('data', 'reCaptcha'));
+
+    }
+
+   /*
+    * Univerzální vyúčtování (total calculation). Formulář.
+    */
+
+    //Univerzální vyúčtování
+    public function universalformAction() {
+        $this->setMeta('Univerzální vyúčtování energií | pronajemonline.cz - Vyúčtování služeb nájemníkům', 'Tato aplikace umožňuje vyhotovit online vyúčtování spotřeby elektřiny, vodného, stočného nebo plynu nájemníkům. Přehledné výstupy ve formátu PDF. Ideální pro správu nemovitostí a pronájmů.');
         $this->layout = 'account';
         $data = null;
         $reCaptcha = true;

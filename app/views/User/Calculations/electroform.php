@@ -42,11 +42,11 @@
                 </svg>
             </div>
             <div class="date">
-                <label for="rentStartDate" class="label_text">Počáteční datum vyúčtování*</label>
+                <label for="rentStartDate" class="label_text">Počátečné datum vyúčtování*</label>
                 <input type="date" name="rentStartDate" class="field-start-date" id="rentStartDate" class="field" value="<?= $data['rentStartDate'] ?? '';?>">
             </div>
             <div class="date">
-                <label for="rentFinishDate" class="label_text">Konečné datum vyúčtování*</label>
+                <label for="rentFinishDate" class="label_text">Konečný datum vyúčtování*</label>
                 <input type="date" name="rentFinishDate" class="field-finish-date" id="rentFinishDate" class="field" value="<?= $data['rentFinishDate'] ?? '';?>"><br />
             </div>
         </div>

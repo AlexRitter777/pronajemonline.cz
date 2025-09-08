@@ -60,6 +60,7 @@
         </div>
         <!--End Nájemní smlouva-->
 
+        <!--Položky vyúčtování-->
         <div class="form-deposit-items-group">
             <h2 class="calculation-title">V. Položky vyúčtování </h2>
 
@@ -185,6 +186,7 @@
                 <span class="icon_title">Přidat řadek</span>
             </a>
         </div>
+        <!--End Položky vyúčtování-->
 
         <!--Kauce-->
         <div class="form-deposit-payed-group">

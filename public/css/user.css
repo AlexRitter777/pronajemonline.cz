@@ -843,6 +843,61 @@ table{
     margin-left: 5px;
 }
 
+/*----------------------------Universal-form (add. to deposit-form) ----------------------------*/
+.calc-type-div {
+    display: flex;
+    justify-content: space-between;
+    width: 96%;
+    align-items: center;
+}
+
+.calc-type-div .select2-container {
+    width: 50% !important;
+}
+
+
+.meters-universal {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 97%;
+
+}
+
+
+.meter-universal-field{
+    width: 33%;
+}
+
+.form-universal-prices-group .label_text {
+    max-width: 60%;
+}
+
+.form-universal-meter-group .text-help {
+    width: 96%;
+    margin-bottom: 10px;
+}
+
+.cena_universal, .zalohy_universal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.field-ceny-universal {
+    margin: 0 23px 0 0;
+    width: 31%;
+}
+
+.zalohy_universal_label {
+    max-width: 60%;
+    line-height: 20px;
+}
+
+
+
 
 /*=============== Validation and errors =================*/
 
@@ -2344,10 +2399,47 @@ table{
     }
 
 
-)
+    /*------------ Universal form --------------*/
+    .calc-type-div {
+        display: block;
+    }
 
+    .calc-type-div .label_text {
+        width: 100%;
+        margin-bottom: 7px;
+    }
 
+    .calc-type-div .select2-container {
+        width: 100% !important;
+    }
 
+    .meters-universal {
+        display: block;
+    }
+
+    .meter-universal-field{
+        width: 99%;
+    }
+
+    .cena_universal {
+        display: block;
+    }
+
+    .form-universal-prices-group .label_text {
+        max-width: 96%;
+    }
+
+    .field-ceny-universal {
+        width: 96%;
+    }
+
+    .zalohy_universal {
+        display: block;
+    }
+
+    .zalohy_universal_label{
+        max-width: 96%;
+    }
 
     /*-------------- Validation and errors ---------------*/
     /*.errors_field {*/
