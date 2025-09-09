@@ -27,7 +27,7 @@
                 x-cloak
             >
                 <ul>
-                    <li><a href="user/calculations"><i class="far fa-file-alt"></i> Vyúčtování</a></li>
+                    <li><a href="user/calculations/new"><i class="far fa-file-alt"></i> Vyúčtování</a></li>
                     <li><a href="user/properties/add"><i class="far fa-building"></i> Nemovitost</a></li>
                     <li><a href="user/tenants/add"><i class="far fa-user"></i> Nájemník</a></li>
                     <li><a href="user/landlords/add"><i class="fa-regular fa-circle-user"></i> Pronájímatel</a></li>

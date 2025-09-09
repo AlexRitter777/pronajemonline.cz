@@ -281,7 +281,9 @@ class CalculationsController extends AppController {
 
     public function newAction()
     {
-        //get list of possible calculations /user/calculations/new
+        $this->setMeta('Nové vyúčtováíní', 'Vyberte jeden z dostupných typů vyúčtování.');
+        $this->layout = 'account';
+
     }
 
     /*
@@ -290,7 +292,7 @@ class CalculationsController extends AppController {
 
     //Nové vyúčtování služeb
     public function servicesformAction() {
-        $this->setMeta('Vyúčtování služeb spojených s užíváním bytu | pronajemonline.cz - Vyúčtování služeb nájemníkům', 'Tato aplikace umožňuje vyhotovit online pravidelné vyúčtování služeb nájemníkům nebo vyúčtování služeb při skončení nájmu. Přehledné výstupy ve formátu PDF. Ideální pro správu nemovitostí a pronájmů.');
+        $this->setMeta('Vyúčtování služeb', 'Vytvořte nové vyúčtování služeb spojených s užíváním bytu.');
         $this->layout = 'account';
         $data = null;
         $reCaptcha = true;
@@ -329,7 +331,7 @@ class CalculationsController extends AppController {
 
     //Zjednodušené vyúčtování služeb
     public function easyservicesformAction() {
-        $this->setMeta('Zjednodušené vyúčtování služeb spojených s užíváním bytu | pronajemonline.cz - Vyúčtování služeb nájemníkům', 'Tato aplikace umožňuje vyhotovit online pravidelné vyúčtování služeb nájemníkům za uplynulý rok. Přehledné výstupy ve formátу PDF. Ideální pro správu nemovitostí a pronájmů.');
+        $this->setMeta('Zjednodušené vyúčtování služeb', 'Rychle vytvořte zjednodušené vyúčtování služeb za celý rok.');
         $this->layout = 'account';
         $data = null;
         $reCaptcha = true;
@@ -343,7 +345,7 @@ class CalculationsController extends AppController {
 
     //Nové vyúčtování spotřeby elektřiny
     public function electroformAction() {
-        $this->setMeta('Vyúčtování spotřeby elektřiny | pronajemonline.cz - Vyúčtování služeb nájemníkům', 'Tato aplikace umožňuje vyhotovit online vyúčtování spotřeby elektřiny nájemníkům. Přehledné výstupy ve formátu PDF. Ideální pro správu nemovitostí a pronájmů.');
+        $this->setMeta('Vyúčtování spotřeby elektřiny', 'Vypočítejte náklady na spotřebu elektřiny nájemníkem.');
         $this->layout = 'account';
         $data = null;
         $reCaptcha = true;
@@ -360,7 +362,7 @@ class CalculationsController extends AppController {
 
     //Nové vyúčtování kauce
     public function depositformAction() {
-        $this->setMeta('Vyúčtování kauce po skončení nájmu | pronajemonline.cz - Vyúčtování služeb nájemníkům', 'Tato aplikace umožňuje vyhotovit online vyúčtování kauce složené nájemníkem, zajišťující transparentní vracení kauce po skončení nájmu. Přehledné výstupy ve formátu PDF. Ideální pro správu nemovitostí a pronájmů.');
+        $this->setMeta('Vyúčtování kauce', 'Přehledné vyúčtování kauce složené nájemníkem.');
         $this->layout = 'account';
         $data = null;
         $reCaptcha = true;
@@ -376,7 +378,7 @@ class CalculationsController extends AppController {
 
     //Souhrnné vyúčtování
     public function totalformAction() {
-        $this->setMeta('Souhrnné vyúčtování služeb spojených s užíváním bytu | pronajemonline.cz - Vyúčtování služeb nájemníkům', 'Tato aplikace umožňuje vyhotovit online souhrnné vyúčtování služeb nájemníkům. Například, pomůže dát dohromady data z vyúčtování služeb spojených s užíváním bytu, vyúčtování spotřeby elektřiny a případných dalších vyúčtování. Přehledné výstupy ve formátu PDF. Ideální pro správu nemovitostí a pronájmů.');
+        $this->setMeta('Souhrnné vyúčtování', 'Vytvořte souhrnné vyúčtování na základě více podkladů.');
         $this->layout = 'account';
         $data = null;
         $reCaptcha = true;
@@ -391,7 +393,7 @@ class CalculationsController extends AppController {
 
     //Univerzální vyúčtování
     public function universalformAction() {
-        $this->setMeta('Univerzální vyúčtování energií | pronajemonline.cz - Vyúčtování služeb nájemníkům', 'Tato aplikace umožňuje vyhotovit online vyúčtování spotřeby elektřiny, vodného, stočného nebo plynu nájemníkům. Přehledné výstupy ve formátu PDF. Ideální pro správu nemovitostí a pronájmů.');
+        $this->setMeta('Univerzální vyúčtování', 'Vypočítejte náklady na energie nebo služby podle zadaných údajů.');
         $this->layout = 'account';
         $data = null;
         $reCaptcha = true;

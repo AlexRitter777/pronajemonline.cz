@@ -902,73 +902,8 @@
 }
 
 
-.app-grid-container {
-  display: grid;
-  grid-template-columns: 33.333% 33.333% 33.333%;
 
 
-}
-
-.app-block {
-
-  height: 250px;
-  position: relative;
-  overflow: hidden;
-  border: solid 1px #C9EED2;
-  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%);
-  border-radius: 8px;
-
-}
-
-.app-block:hover {
-  background-color: #ffffff;
-  transition: linear 0.1s;
-}
-
-
-.app-block a{
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: var(--color-accent);
-  text-transform: uppercase;
-  font-size: 1.3em;
-  font-weight: 700;
-  padding-top: 10px;
-
-}
-
-.app-block-title {
-  margin-bottom: 0;
-}
-
-.app-block-desc{
-  text-transform: none;
-  font-size: 0.9em;
-  font-weight: 500;
-  padding: 5%;
-}
-
-.item-1, .item-4 {
-  margin-right: 5%;
-}
-
-.item-2, .item-5 {
-  margin: 0 5% 0;
-}
-
-.item-3, .item-6 {
-  margin-left: 5%;
-}
-
-.item-1, .item-2, .item-3,
-.item-4, .item-5, .item-6 {
-  margin-bottom: 30px;
-}
 
 
 
@@ -1786,25 +1721,25 @@
   /*------------------------Applications 600px---------------*/
 
 
-  .calculation-header {
-    width: 80%;
-    padding-bottom: 60px;
-  }
+  /*.calculation-header {*/
+  /*  width: 80%;*/
+  /*  padding-bottom: 60px;*/
+  /*}*/
 
 
-  .app-grid-container {
-    grid-template-columns: 50% 50%;
-  }
+  /*.app-grid-container {*/
+  /*  grid-template-columns: 50% 50%;*/
+  /*}*/
 
 
 
-  .app-grid-container [class*="item-"] {
-    margin: 0 3% 15px 3%;
-  }
+  /*.app-grid-container [class*="item-"] {*/
+  /*  margin: 0 3% 15px 3%;*/
+  /*}*/
 
-  .app-block-desc{
-    padding-top: 5%;
-  }
+  /*.app-block-desc{*/
+  /*  padding-top: 5%;*/
+  /*}*/
 
 
 /*----------------------Index 600px-----------------------*/
@@ -1898,39 +1833,39 @@
 
 
   /*------------------Applications--------------------*/
-  .app-grid-container {
-    grid-template-columns: 100%;
-  }
+  /*.app-grid-container {*/
+  /*  grid-template-columns: 100%;*/
+  /*}*/
 
 
 
-  .app-grid-container [class*="item-"] {
-    margin: 0 5% 30px 5%;
-  }
+  /*.app-grid-container [class*="item-"] {*/
+  /*  margin: 0 5% 30px 5%;*/
+  /*}*/
 
-  .app-block {
-    height: 103px;
-    overflow: scroll;
+  /*.app-block {*/
+  /*  height: 103px;*/
+  /*  overflow: scroll;*/
 
-  }
+  /*}*/
 
-  .app-block a {
-    padding-top: 5px;
-  }
+  /*.app-block a {*/
+  /*  padding-top: 5px;*/
+  /*}*/
 
-  .app-block p {
-    padding: 0 2% 0 2%;
-    margin: 0;
+  /*.app-block p {*/
+  /*  padding: 0 2% 0 2%;*/
+  /*  margin: 0;*/
 
-  }
+  /*}*/
 
-  .app-block-desc {
-    font-size: 0.8em;
-  }
+  /*.app-block-desc {*/
+  /*  font-size: 0.8em;*/
+  /*}*/
 
-  .try-app a {
-    line-height: 22px;
-  }
+  /*.try-app a {*/
+  /*  line-height: 22px;*/
+  /*}*/
 
 /*------------------------------About--------------------------------*/
 
@@ -1959,18 +1894,18 @@
     bottom: 155px;
   }
 /*-----------Applications-------------*/
-  .app-block-title{
-    margin-bottom: 1%!important;
-  }
+/*  .app-block-title{*/
+/*    margin-bottom: 1%!important;*/
+/*  }*/
 
-  .calc-hidden {
-    display: none;
-  }
+/*  .calc-hidden {*/
+/*    display: none;*/
+/*  }*/
 
-  .about-header h1 {
-    font-size: 1.3em;
-    padding-bottom: 40px;
-  }
+/*  .about-header h1 {*/
+/*    font-size: 1.3em;*/
+/*    padding-bottom: 40px;*/
+/*  }*/
 
   /*----------------------List of posts 458 ----------------------*/
 
@@ -2033,25 +1968,25 @@
 
  /*---------------------Universal -400px ----------------*/
 
-  .meter-universal-field {
-    width: 99%;
-  }
+  /*.meter-universal-field {*/
+  /*  width: 99%;*/
+  /*}*/
 
-  .cena_universal input {
-    width: 96%;
-  }
+  /*.cena_universal input {*/
+  /*  width: 96%;*/
+  /*}*/
 
-  .cena_universal .icon_help {
-    margin-right: 5%;
-  }
+  /*.cena_universal .icon_help {*/
+  /*  margin-right: 5%;*/
+  /*}*/
 
-  .zalohy_universal .label_text {
-    width: 200%;
-  }
+  /*.zalohy_universal .label_text {*/
+  /*  width: 200%;*/
+  /*}*/
 
-  .zalohy_universal input {
-    width: 96%;
-  }
+  /*.zalohy_universal input {*/
+  /*  width: 96%;*/
+  /*}*/
 
 
 
@@ -2086,9 +2021,9 @@
 
 /*-----------------------Applications-------------------------------------*/
 
-.calculation-header h1 {
-  font-size: 1.7em;
-}
+/*.calculation-header h1 {*/
+/*  font-size: 1.7em;*/
+/*}*/
 
 /*-------------------------------350 px------------------------------------*/
 

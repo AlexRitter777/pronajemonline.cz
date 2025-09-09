@@ -553,6 +553,72 @@ table{
     box-shadow: 0 1px 2px rgba(0,0,0,.06) inset;
 }
 
+/*================= New calculation page =====================*/
+
+.app-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: #fcfcfd;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    padding: 1rem;
+    width: 94%;
+    margin: 20px auto 40px auto;
+    gap: 20px;
+
+}
+
+.app-block {
+
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--table-border);
+    border-radius: 6px;
+    background: var(--btn-bg);
+    transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
+}
+
+.app-block:hover {
+    background: var(--btn-bg-hover);
+    color: var(--btn-fg);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .06) inset;
+}
+
+
+.app-block a{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: var(--btn-fg);
+    padding-top: 10px;
+
+}
+
+.app-block-title {
+    margin-bottom: 0;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0 6px 0 6px;
+}
+
+.app-block-desc{
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: justify;
+    line-height: 1.5;
+    padding: 5%;
+}
+
+
+
+
 
 /*============== Calculations Index Page =================*/
 
@@ -1852,8 +1918,15 @@ table{
         display: none;
     }
 
+    /*------------- New calculation page -----------------*/
 
+    .app-grid-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
 
+    .app-grid-container .app-block {
+        height: 250px;
+    }
 }
 
 
@@ -2002,6 +2075,15 @@ table{
         left: 0;
     }
 
+    /*------------- New calculation page -----------------*/
+
+    .app-grid-container{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .app-grid-container .app-block {
+        height: 300px;
+    }
 
 }
 
@@ -2037,6 +2119,15 @@ table{
         width: 70px;
         height: 70px;
 
+    }
+
+    /*------------- New calculation page -----------------*/
+
+    .app-grid-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .app-grid-container .app-block {
+        height: 280px;
     }
 
 }
@@ -2441,10 +2532,22 @@ table{
         max-width: 96%;
     }
 
-    /*-------------- Validation and errors ---------------*/
-    /*.errors_field {*/
-    /*    width: 96%;*/
-    /*}*/
+    /*------------- New calculation page -----------------*/
+
+    .app-grid-container{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .app-grid-container .app-block {
+        height: 110px;
+    }
+
+    .app-grid-container .app-block-desc {
+        padding: 2%;
+    }
+
+    .app-grid-container .calc-hidden{
+        display: none;
+    }
 
 
     /*--------------- Spinning loader -------------------*/
@@ -2625,6 +2728,17 @@ table{
     .form-deposit-items-group .remove_field {
         width: 93%;
     }
+
+    /*New calculation page*/
+
+    .app-grid-container .app-block-desc {
+        line-height: 1.3rem;
+    }
+
+    .app-grid-container .app-block-title {
+        font-size: 1.1rem;
+    }
+
 }
 
 /*------------------------------288 px------------------------------------*/
