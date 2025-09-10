@@ -69,14 +69,14 @@ abstract class Model {
 
         $this->pagination->setPaginationParams($perPage, $total);
 
-        $start = $this->pagination->getStart();
+        $start = (int)$this->pagination->getStart();
 
 
        if($userId) {
-           return R::findAll($this->table, "user_id=? ORDER BY created_at DESC LIMIT ?, ?", [$userId, $start, $perPage]);
+           return R::findAll($this->table, "user_id=? ORDER BY created_at DESC LIMIT $start, $perPage", [$userId]);
        }
        elseif(is_admin()) {
-           return R::findAll($this->table, "ORDER BY created_at DESC LIMIT ?, ?", [$start, $perPage]);
+           return R::findAll($this->table, "ORDER BY created_at DESC LIMIT $start, $perPage");
        } else {
            throw new \Exception('Access dinied', 403);
        }

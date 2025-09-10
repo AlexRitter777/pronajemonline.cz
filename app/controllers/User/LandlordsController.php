@@ -3,17 +3,37 @@
 namespace app\controllers\User;
 
 use app\controllers\AppController;
+use app\db_models\Landlord;
 use app\models\Account;
+use DI\Attribute\Inject;
 use Exception;
+use pronajem\libs\PaginationSetParams;
 use RedBeanPHP\R;
 use RedBeanPHP\RedException\SQL;
 
 class LandlordsController extends AppController {
 
-    public function indexAction(){
+
+    #[Inject]
+    private Account $accountModel;
+
+    #[Inject]
+    private Landlord $landlord;
+
+    #[Inject]
+    private PaginationSetParams $pagination;
+
+    public function __construct($route) {
+
+        parent::__construct($route);
+
         if(!is_user_logged_in()){
             redirect('/user/login');
         }
+
+    }
+
+    public function indexAction(){
 
         $userID = $_SESSION['user_id'];
 
@@ -21,14 +41,11 @@ class LandlordsController extends AppController {
 
         $this->layout = 'account';
 
-        $landlords = R::findAll('landlord', 'user_id=?', [$userID]);
+        $landlords = $this->landlord->getAllRecordsWithPagination(8, $userID);
 
-        $accountModel = new Account();
-
-        $landlordProp = $accountModel->personProps('landlord');
+        $landlordProp = $this->accountModel->personProps('landlord');
 
         $this->set(compact('landlords', 'landlordProp'));
-
 
     }
 

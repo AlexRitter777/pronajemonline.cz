@@ -155,9 +155,9 @@ class PaginationSetParams
      *
      * @return int The offset for the items query.
      */
-    public function getStart(){
+    public function getStart() : int
+    {
         return ($this->currentPage - 1) * $this->perpage;
-
     }
 
     /**
