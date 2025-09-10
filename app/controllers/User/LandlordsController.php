@@ -45,7 +45,11 @@ class LandlordsController extends AppController {
 
         $landlordProp = $this->accountModel->personProps('landlord');
 
-        $this->set(compact('landlords', 'landlordProp'));
+        $pagination = $this->pagination;
+
+        $accountModel = $this->accountModel;
+
+        $this->set(compact('landlords', 'landlordProp', 'pagination', 'accountModel'));
 
     }
 

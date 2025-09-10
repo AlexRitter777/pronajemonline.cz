@@ -354,22 +354,22 @@ table{
     text-align: right;
 }
 
+/*Landlords page table columns widths*/
 
 .landlord-titles .col-1 {
     width: 30%;
 }
 
 .landlord-titles .col-2 {
-    width: 30%;
+    width: 40%;
 }
 
 .landlord-titles .col-3 {
-    width: 50%;
+    width: 40%;
 }
 
 .landlord-titles .col-4 {
     width: 10%;
-    text-align: right;
 }
 
 .tenant-titles .col-1 {
