@@ -199,13 +199,12 @@ class LandlordsController extends AppController {
     }
 
     public function addAction(){
-        if(!is_user_logged_in()){
-            redirect('/user/login');
-        }
 
-        $this->layout = 'account_form_new';
+        $this->layout = 'account';
+        $reCaptcha = true;
 
         $this->setMeta('Nový pronajímatel', 'Vytvoření nového pronajímatele');
+        $this->set(compact('reCaptcha'));
 
     }
 
@@ -215,10 +214,6 @@ class LandlordsController extends AppController {
      * @throws Exception
      */
     public function saveAction(){
-
-        if (!is_user_logged_in()) {
-            redirect('/user/login');
-        }
 
         $this->layout = 'account';
 

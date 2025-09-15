@@ -3,14 +3,9 @@
     <h3>Nový pronajímatel</h3>
 </div>
 
-<div class="central-bar">
+<div class="table-container">
 
-    <button class="burger-sidebar" type="button" id="navToggle">
-        <span class="burger__item">Menu</span>
-    </button>
-
-
-    <form method="post" name="landlord" action="user/landlords/save" data-type="classic">
+    <form method="post" name="landlord" class="add-entity-form" action="user/landlords/save" data-type="classic">
         <table class="tenants" border="0">
 
             <tr class="">
@@ -44,9 +39,10 @@
 
         <div class="errors_field errors_field_table"></div>
 
-        <div class="tenant-add-buttons">
-            <input type="submit" class="profile-form-submit" value="Uložit">
-            <a href="user/landlords">Zrušit</a>
+
+        <div class="submit_button_div">
+            <input type="submit" class="form-btn btn-submit profile-form-submit" value="Uložit">
+            <a class="form-btn btn-reset" href="user/landlords">Zpět</a>
         </div>
     </form>
 

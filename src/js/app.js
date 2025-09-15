@@ -2,6 +2,7 @@ import Alpine from 'alpinejs';
 import sidebar from "./sidebar";
 import "./calculations.js";
 import "./advanced_form.js";
+import "./form_validation.js"
 
 window.Alpine = Alpine;
 
