@@ -3,9 +3,9 @@
     <h3>Nový pronajímatel</h3>
 </div>
 
-<div class="table-container">
+<div class="table-container entity-table">
 
-    <form method="post" name="landlord" class="add-entity-form" action="user/landlords/save" data-type="classic">
+    <form method="post" name="landlord" class="" action="user/landlords/save" data-type="classic">
         <table class="tenants" border="0">
 
             <tr class="">

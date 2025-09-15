@@ -55,21 +55,18 @@ class LandlordsController extends AppController {
 
     public function profileAction(){
 
-        if(!is_user_logged_in()){
-            redirect('/user/login');
-        }
-
         $this->layout = 'account';
 
         $userID = $_SESSION['user_id'];
 
         if(isset($_GET['landlord_id'])){
             $landlord_id = $_GET['landlord_id'];
-            $landlord = R::findOne('landlord', 'id=? AND user_id=?',[$landlord_id, $userID]);
+
+            $landlord = $this->landlord->getOneRecordById($landlord_id, $userID);
+
             if ($landlord) {
 
-                $accountModel = new Account();
-                $propertyList = $accountModel->propertyList($landlord->id, 'landlord');
+                $propertyList = $this->accountModel->propertyList($landlord->id, 'landlord');
                 $this->setMeta($landlord->name, 'Profil pronajímatele');
                 $this->set(compact('landlord', 'propertyList'));
 
@@ -218,6 +215,8 @@ class LandlordsController extends AppController {
         $this->layout = 'account';
 
         $userID = $_SESSION['user_id'];
+
+        //Ajax validation via form-validation.js
 
         if(!empty($_POST['landlord_name']) &&
             !empty($_POST['landlord_address']) &&

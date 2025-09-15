@@ -3,11 +3,7 @@
     <h3>Profil pronajímatele</h3>
 </div>
 
-<div class="central-bar">
-
-    <button class="burger-sidebar" type="button" id="navToggle">
-        <span class="burger__item">Menu</span>
-    </button>
+<div class="table-container entity-table">
 
     <table class="tenants" border="0">
 
@@ -49,11 +45,14 @@
         <?php endif;?>
 
     </table>
-    <div class="tenant-profile-buttons">
-        <button onClick="history.back()">Zpět</button>
-        <a href="user/landlords/profile-editing?landlord_id=<?=$landlord->id;?>">Upravit</a>
-        <a href="" data-item="landlord" data-href="user/landlords/profile-delete?landlord_id=<?=$landlord->id;?>" id="profile-delete">Smazat</a>
+
+    <div class="submit_button_div">
+        <a class="form-btn btn-submit" href="user/landlords">Zpět</a>
+        <a class="form-btn btn-submit" href="user/landlords/profile-editing?landlord_id=<?=$landlord->id;?>">Upravit</a>
+        <a class="form-btn btn-reset" data-item="landlord" data-href="user/landlords/profile-delete?landlord_id=<?=$landlord->id;?>" id="profile-delete">Smazat</a>
     </div>
+
+
 </div>
 
 

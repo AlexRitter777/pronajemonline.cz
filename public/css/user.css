@@ -1039,7 +1039,7 @@ table{
 
 /* ================== Profil entity ======================*/
 
-.add-entity-form .submit_button_div {
+.entity-table .submit_button_div {
     width: 80%;
     margin: 0 auto 10px;
 }
@@ -1183,7 +1183,7 @@ table{
     width: 100%;
 }
 
-.add-entity-form .errors_field_table{
+.entity-table .errors_field_table{
     margin-bottom: 30px;
 }
 
@@ -1397,37 +1397,48 @@ table{
 }
 
 .jBox-Confirm-button {
-    width: 35%!important;
-    height: 33px!important;
+
+    /*padding: 8px 16px!important;*/
+    min-width: 100px!important;
+    width: unset!important;
+    height: 30px!important;
     line-height: 30px!important;
-    border-radius: 3px!important;
-    font-weight: 600;
+    font-size: 1rem!important;
+    font-weight: 600!important;
+    border-radius: 8px!important;
+    border: 1px solid var(--table-border)!important;
+    cursor: pointer!important;
+    transition: background-color .2s ease, color .2s ease, box-shadow .2s ease!important;
+
 }
 
 .jBox-Confirm-button-submit{
 
-    background: #c00!important;
-
+    background-color: #fef2f2!important;
+    color: #b91c1c!important;
+    border: 1px solid #fecaca!important;
 
 }
 
 .jBox-Confirm-button-submit:hover {
-    background: var(--color-accent)!important;
+    background-color: #fee2e2!important;
+    color: #991b1b!important;
+
 }
 
 .jBox-Confirm-button-cancel{
 
-    color: var(--color-accent)!important;
-    border: 2px solid var(--color-accent)!important;
-    background: #fff!important;
+    background-color: var(--btn-bg)!important;
+    color: var(--btn-fg)!important;
+    border: 1px solid var(--table-border)!important;
 
 }
 
 .jBox-Confirm-button-cancel:hover {
 
-    background: #f5f5f5!important;
-    border: 2px solid #c00!important;
-    color: #c00!important;
+    background-color: var(--btn-bg-hover)!important;
+    color: var(--color-accent-hover)!important;
+
 }
 
 
@@ -2177,15 +2188,7 @@ table{
             width: 95%;
         }
 
-        /*------------- My Account - All New items, edit All items -------------*/
 
-        .tenants {
-            width: 90%;
-        }
-
-        .errors_field_table {
-            width: 90%;
-        }
 
 
 /*-----------------------------Edit Post Page ------------------------------------*/
@@ -2215,9 +2218,18 @@ table{
         display: none;
     }
 
-    /*Modal jBox position adjustment*/
-    #jBox1, #jBox2 {
-        inset: 227.75px auto auto 16px!important;
+    /*------------- My Account - All New items, edit All items -------------*/
+
+    .tenants {
+        width: 90%;
+    }
+
+    .errors_field_table {
+        width: 90%;
+    }
+
+    .entity-table .submit_button_div {
+        width: unset;
     }
 
 
@@ -2571,6 +2583,11 @@ table{
     /*--------------- Spinning loader -------------------*/
     .loader-wrapper {
         top: 86%
+    }
+
+    /*------------- My Account - All New items, edit All items -------------*/
+    .entity-table .form-btn {
+        min-width: 80px;
     }
 
 }
