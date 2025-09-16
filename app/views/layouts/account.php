@@ -31,7 +31,11 @@
 
     <section class="content user-content">
         <div class="left-side-bar main"><?= $left_side_bar; ?></div>
-        <div class="center-content main"><?= $content; ?></div>
+        <div class="center-content main">
+            <?php flash(); ?>
+            <?= $content; ?>
+        </div>
+
         <?php require_once APP . "/views/Includes/spinner.php"; ?>
 
     </section>

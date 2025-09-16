@@ -79,7 +79,7 @@ class FlashMessages
 
         // show all flash messages
         foreach ($flash_messages as $flash_message) {
-            echo slef::format_flash_message($flash_message);
+            echo self::format_flash_message($flash_message);
         }
     }
 

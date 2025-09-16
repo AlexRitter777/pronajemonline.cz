@@ -3,11 +3,7 @@
     <h3>Profil pronajímatele</h3>
 </div>
 
-<div class="central-bar">
-
-    <button class="burger-sidebar" type="button" id="navToggle">
-        <span class="burger__item">Menu</span>
-    </button>
+<div class="table-container entity-table">
 
     <form method="post" name="landlord" action="user/landlords/profile-save?landlord_id=<?=$landlord->id;?>" data-type="classic">
         <table class="tenants" border="0">
@@ -42,11 +38,11 @@
 
         <div class="errors_field errors_field_table"></div>
 
-
-        <div class="tenant-add-buttons">
-            <input type="submit" class="profile-form-submit" value="Uložit">
-            <a href="user/landlords/profile?landlord_id=<?=$landlord->id;?>">Zrušit</a>
+        <div class="submit_button_div">
+            <input type="submit" class="form-btn btn-submit profile-form-submit" value="Uložit">
+            <a class="form-btn btn-reset" href="user/landlords/profile?landlord_id=<?=$landlord->id;?>">Zpět</a>
         </div>
+
     </form>
 
 

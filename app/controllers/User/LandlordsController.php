@@ -33,6 +33,7 @@ class LandlordsController extends AppController {
 
     }
 
+    // List of landlords
     public function indexAction(){
 
         $userID = $_SESSION['user_id'];
@@ -53,6 +54,7 @@ class LandlordsController extends AppController {
 
     }
 
+    // Landlord profile
     public function profileAction(){
 
         $this->layout = 'account';
@@ -71,60 +73,52 @@ class LandlordsController extends AppController {
                 $this->set(compact('landlord', 'propertyList'));
 
             }else{
-
-                $_SESSION['account_error'] = 'Nepodařilo se najít pronajímatele!';
-                redirect('/user/error');
+                flash('error', 'Nepodařilo se najít pronajímatele!', 'error');
+                redirect();
 
             }
 
         }else {
-
-            redirect('/user/landlords');
+            flash('error', 'Nepodařilo se najít pronajímatele!', 'error');
+            redirect();
 
         }
 
     }
 
+    // Edit landlord profile
     public function profileeditingAction(){
 
-        if(!is_user_logged_in()){
-            redirect('/user/login');
-        }
-
-        $this->layout = 'account_form_new';
-        //$this->layout = 'account';
+        $this->layout = 'account';
 
         $userID = $_SESSION['user_id'];
 
         if(isset($_GET['landlord_id'])){
             $landlord_id = $_GET['landlord_id'];
-            $landlord = R::findOne('landlord', 'id=? AND user_id=?',[$landlord_id, $userID]);
+            $landlord = $this->landlord->getOneRecordById($landlord_id, $userID);
             if ($landlord) {
-
-                $this->set(compact('landlord'));
+                $reCaptcha = true;
+                $this->set(compact('landlord', 'reCaptcha'));
                 $this->setMeta($landlord->name . '- editace', 'Profil pronajímatele');
-
             }else{
-                $_SESSION['account_error'] = 'Nepodařilo se najít pronajímatele!';
-                redirect('/user/error');
+                flash('error', 'Nepodařilo se najít pronajímatele!', 'error');
+                redirect();
             }
 
         } else {
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
             redirect('/user/landlords');
         }
 
     }
 
+    // Save edited landlord profile
     /**
      * @throws SQL
      * @throws Exception
      */
     public function profilesaveAction()
     {
-
-        if (!is_user_logged_in()) {
-            redirect('/user/login');
-        }
 
         $this->layout = 'account';
 
@@ -140,61 +134,67 @@ class LandlordsController extends AppController {
                 isset($_POST['landlord_phone_number']) &&
                 isset($_POST['landlord_account'])){
 
-                $landlord = R::findOne('landlord', 'id=? AND user_id=?',  [$landlordID, $userID] );
+                $landlord = $this->landlord->getOneRecordById($landlordID, $userID);
+
                 if($landlord){
 
-                    $landlord->name = $_POST['landlord_name'];
-                    $landlord->address = $_POST['landlord_address'];
-                    $landlord->phone_number = $_POST['landlord_phone_number'];
-                    $landlord->email = $_POST['landlord_email'];
-                    $landlord->account = $_POST['landlord_account'];
+                    $data = $this->landlord->saveAll([
+                            'name' => $_POST['landlord_name'],
+                            'address' => $_POST['landlord_address'],
+                            'phone_number' => $_POST['landlord_phone_number'],
+                            'email' => $_POST['landlord_email'],
+                            'account' => $_POST['landlord_account']
+                        ]
+                    );
 
-                    if (!R::store($landlord)) throw new Exception('Chyba zápisu do DB!');
+                    if (!$data) throw new Exception('Chyba zápisu do DB!');
 
+                    flash('success', 'Profil pronajímatele byl úspěšně upraven.', 'success');
                     redirect("/user/landlords/profile?landlord_id={$landlordID}");
 
                 } else {
-                    $_SESSION['account_error'] = 'Nepodařilo se najít pronajímatele!';
-                    redirect('/user/error');
+                    flash('error', 'Nepodařilo se najít pronajímatele!', 'error');
+                    redirect();
                 }
 
             }else{
-                redirect('/user/landlords');
+                flash('error', 'Vyplňte prosím všechny potřebné údaje.', 'error');
+                redirect();
             }
 
         } else {
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
             redirect('/user/landlords');
         }
 
     }
 
+    // Delete landlord
     public function profiledeleteAction(){
 
-        if (!is_user_logged_in()) {
-            redirect('/user/login');
-        }
         $userID = $_SESSION['user_id'];
 
         if (isset($_GET['landlord_id'])) {
             $landlordID = $_GET['landlord_id'];
-            $landlord = R::findOne('landlord', 'id=? AND user_id=?', [$landlordID, $userID]);
-            if ($landlord) {
 
-                R::trash($landlord);
+            $recordDeleted = $this->landlord->deleteOneRecordbyId($landlordID);
+
+            if($recordDeleted){
+                flash('success', 'Pronajímatel byl úspěšně smazán.', 'success');
                 redirect('/user/landlords');
-
             } else {
-                $_SESSION['account_error'] = 'Nepodařilo se najít pronajímatele!';
-                redirect('/user/error');
+                flash('error', 'Nepodařilo se najít pronajímatele!', 'error');
+                redirect();
             }
+
         }else{
-
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
             redirect('/user/landlords');
-
         }
 
     }
 
+    // New landlord form
     public function addAction(){
 
         $this->layout = 'account';
@@ -206,6 +206,7 @@ class LandlordsController extends AppController {
     }
 
 
+    // Save new landlord
     /**
      * @throws SQL
      * @throws Exception
@@ -224,93 +225,33 @@ class LandlordsController extends AppController {
             isset($_POST['landlord_phone_number']) &&
             isset($_POST['landlord_account'])){
 
-            $landlord = R::dispense('landlord');
+            $landlordID = $this->landlord->saveAll([
+                'name' => $_POST['landlord_name'],
+                'address' => $_POST['landlord_address'],
+                'phone_number' => $_POST['landlord_phone_number'],
+                'email' => $_POST['landlord_email'],
+                'account' => $_POST['landlord_account'],
+                'user_id' => $userID
+            ]);
 
-            $landlord->name = $_POST['landlord_name'];
-            $landlord->address = $_POST['landlord_address'];
-            $landlord->phone_number = $_POST['landlord_phone_number'];
-            $landlord->email = $_POST['landlord_email'];
-            $landlord->account = $_POST['landlord_account'];
-            $landlord->user_id = $userID;
+            if (!($landlordID)) throw new Exception('Chyba zápisu do DB!');
 
-            if (!($landlordID = R::store($landlord))) throw new Exception('Chyba zápisu do DB!');
-
+            flash('success', 'Pronajímatel byl úspěšně vytvořen.', 'success');
             redirect("/user/landlords/profile?landlord_id={$landlordID}");
 
         } else {
+            flash('error', 'Vyplňte prosím všechny potřebné údaje.', 'error');
             redirect('/user/landlords');
         }
 
     }
 
 
-    /*public function savemodalAction(){
-
-        if (!is_user_logged_in()) {
-            redirect('/user/login');
-        }
-
-
-        $response = [];
-
-        $userID = $_SESSION['user_id'];
-
-
-        if(!empty($_POST['landlord_name']) &&
-            !empty($_POST['landlord_address']) &&
-            isset($_POST['landlord_email']) &&
-            isset($_POST['landlord_phone_number']) &&
-            isset($_POST['landlord_account'])){
-
-
-
-            $landlord = R::dispense('landlord');
-
-            $landlord->name = $_POST['landlord_name'];
-            $landlord->address = $_POST['landlord_address'];
-            $landlord->phone_number = $_POST['landlord_phone_number'];
-            $landlord->email = $_POST['landlord_email'];
-            $landlord->account = $_POST['landlord_account'];
-            $landlord->user_id = $userID;
-
-
-            unset($_POST['landlord_name']);
-            unset($_POST['landlord_address']);
-            unset($_POST['landlord_email']);
-            unset($_POST['landlord_phone_number']);
-            unset($_POST['landlord_account']);
-
-
-
-            if (!($landlordID = R::store($landlord))) throw new Exception('Chyba zápisu do DB!');
-
-            $landlordName = R::findOne('landlord', 'id=? AND user_id=?',[$landlordID, $userID]);
-
-            $response['landlordID'] = $landlordID;
-            $response['landlordName'] = $landlordName->name;
-            $response['success'] =  true;
-
-            echo json_encode($response);
-            die();
-
-        } else {
-
-
-            $response['success'] =  false;
-            $response['error'] = 'Error!';
-            echo json_encode($response);
-            die();
-        }
-
-    }*/
-
 
 
 
     public function getlandlordlistAction(){
-        if(!is_user_logged_in()){
-            redirect('/user/login');
-        }
+
         $userID = $_SESSION['user_id'];
 
         $request = $_GET['term'];
@@ -328,7 +269,7 @@ class LandlordsController extends AppController {
             }
 
             echo json_encode($result);
-            die();
+            exit();
         }
 
         return null;

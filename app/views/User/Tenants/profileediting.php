@@ -3,7 +3,7 @@
     <h3>Profil nájemníka</h3>
 </div>
 
-<div class="central-bar">
+<div class="table-container entity-table">
 
     <button class="burger-sidebar" type="button" id="navToggle">
         <span class="burger__item">Menu</span>
@@ -42,10 +42,12 @@
 
         <div class="errors_field errors_field_table"></div>
 
-        <div class="tenant-add-buttons">
-            <input type="submit" value="Ulozit" class="profile-form-submit">
-            <a href="user/tenants/profile?tenant_id=<?=$tenant->id;?>">Zrušit</a>
+
+        <div class="submit_button_div">
+            <input type="submit" class="form-btn btn-submit profile-form-submit" value="Uložit">
+            <a class="user/tenants/profile?tenant_id=<?=$tenant->id;?>">Zpět</a>
         </div>
+
     </form>
 
 
