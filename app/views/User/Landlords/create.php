@@ -36,7 +36,7 @@
 
 
         </table>
-
+        <?= $tokenInput; ?>
         <div class="errors_field errors_field_table"></div>
 
 

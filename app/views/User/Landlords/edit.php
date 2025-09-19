@@ -5,7 +5,7 @@
 
 <div class="table-container entity-table">
 
-    <form method="post" name="landlord" action="user/landlords/profile-save?landlord_id=<?=$landlord->id;?>" data-type="classic">
+    <form method="post" name="landlord" action="user/landlords/update?landlord_id=<?=$landlord->id;?>" data-type="classic">
         <table class="tenants" border="0">
 
             <tr class="">
@@ -35,6 +35,7 @@
             </tr>
 
         </table>
+        <?= $tokenInput; ?>
 
         <div class="errors_field errors_field_table"></div>
 

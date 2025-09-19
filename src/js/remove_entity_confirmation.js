@@ -12,27 +12,55 @@ $(document).ready(function (){
 
 
     $('#profile-delete').click(function (e){
+
         e.preventDefault();
-        let delPath = $(this).data('href');
-        let itemName = $(this).data('item');
-        let name = $(`#${itemName}-profile-name`).html();
-        let modalConf = new jBox(
+
+        const delPath = $(this).data('href');
+        const entityName = $(this).data('item');
+        const entityId = $(this).data('id');
+        const name = $(`#${entityName}-profile-name`).html();
+
+        const modalConf = new jBox(
             'Confirm',{
-                title: `Smazat ${dict[itemName]}`,
-                content: `Opravdu chcete smazat ${dict[itemName]}:<br> ${name}?`,
+                title: `Smazat ${dict[entityName]}`,
+                content: `Opravdu chcete smazat ${dict[entityName]}:<br> ${name}?`,
                 confirmButton: 'Smazat',
                 cancelButton: 'Storno',
                 closeOnClick: 'overlay',
                 closeOnEsc: true,
                 draggable: 'title',
                 confirm: function (){
-                    window.location = delPath;
+
+                    const $form = createDeleteForm(entityId, delPath, entityName);
+
+                    $form.attr('action', delPath);
+                    $('body').append($form);
+                    $form.trigger('submit');
+
                 }
+
             }
         );
         modalConf.open();
 
     })
+
+
+    function createDeleteForm(entityId, delPath, entityName){
+        const deleteForm = document.getElementById('delete-form-template');
+        const clone = deleteForm.content.cloneNode(true);
+        const $form = $(clone).find('form');
+        const $input = $(createEntityIdInput(entityId, entityName));
+        $form.append($input);
+
+        $form.attr('action', delPath);
+        $('body').append($form);
+        return $form;
+    }
+
+    function createEntityIdInput(entityId, entityName){
+        return `<input type="hidden" name="${entityName}" value="${entityId}">`;
+    }
 
 
 })

@@ -192,6 +192,17 @@ abstract class Model {
 
     }
 
+    public function deleteOneRecordbyIdAndUserId(string $recordId, string $userId){
+
+        $record = $this->getOneRecordById($recordId, $userId);
+        if(!$record) {
+            return false;
+        }
+        R::trash($record);
+        return true;
+
+    }
+
     /**
      * Checks if a record exists in the specified table and column.
      *

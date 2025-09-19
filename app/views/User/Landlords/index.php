@@ -34,7 +34,7 @@
 
 
             <?php foreach ($landlords as $landlord): ?>
-                <tr class="row-click" data-href="user/landlords/profile?landlord_id=<?=$landlord->id;?>">
+                <tr class="row-click" data-href="user/landlords/show?landlord_id=<?=$landlord->id;?>">
                     <td class="col-1"><?= $landlord->name;?></td>
                     <td class="col-2"><?= $landlord->address;?></td>
                     <td class="col-3"><?= !empty($landlordProp[$landlord->id]) ? $landlordProp[$landlord->id] : ''; ?></td>
@@ -52,13 +52,13 @@
         </div>
 
         <div class="more-calc-btn">
-            <a class="new-entity-button" href="user/landlords/add">Nový pronajímatel</a>
+            <a class="new-entity-button" href="user/landlords/create">Nový pronajímatel</a>
         </div>
 
     <?php else:?>
         <p class="empty-data">Nemáte uložené žádné pronajímatele!</p>
         <div class="more-calc-btn">
-            <a class="new-entity-button" href="user/landlords/add">Nový pronajímatel</a>
+            <a class="new-entity-button" href="user/landlords/create">Nový pronajímatel</a>
         </div>
     <?php endif;?>
 

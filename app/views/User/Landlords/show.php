@@ -48,11 +48,12 @@
 
     <div class="submit_button_div">
         <a class="form-btn btn-submit" href="user/landlords">Zpět</a>
-        <a class="form-btn btn-submit" href="user/landlords/profile-editing?landlord_id=<?=$landlord->id;?>">Upravit</a>
-        <a class="form-btn btn-reset" data-item="landlord" data-href="user/landlords/profile-delete?landlord_id=<?=$landlord->id;?>" id="profile-delete">Smazat</a>
+        <a class="form-btn btn-submit" href="user/landlords/edit?landlord_id=<?=$landlord->id;?>">Upravit</a>
+        <a class="form-btn btn-reset" data-item="landlord" data-id="<?=$landlord->id;?>" data-href="user/landlords/destroy" id="profile-delete">Smazat</a>
     </div>
 
 
 </div>
 
 
+<?php require_once APP . '/views/includes/modal_del_confirmation.php'; ?>
