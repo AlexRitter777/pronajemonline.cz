@@ -7,6 +7,7 @@ use app\models\Applications;
 use app\models\AppModel;
 use Exception;
 use pronajem\base\Controller;
+use pronajem\libs\CSRF;
 use pronajem\libs\PdfCreator;
 
 class AppController extends Controller {
@@ -20,6 +21,8 @@ class AppController extends Controller {
        } else {
            $this->view = strtolower($route['action']);
        }
+
+        CSRF::cleanup();
 
         new AppModel();
     }

@@ -49,9 +49,9 @@ class LandlordsController extends AppController {
 
         $accountModel = $this->accountModel;
 
-        $tokenInput = CSRF::createCsrfInput();
+        $token = CSRF::createCsrfToken();
 
-        $this->set(compact('landlords', 'landlordProp', 'pagination', 'accountModel', 'tokenInput'));
+        $this->set(compact('landlords', 'landlordProp', 'pagination', 'accountModel', 'token'));
 
     }
 
@@ -158,7 +158,7 @@ class LandlordsController extends AppController {
         }
 
         $reCaptcha = true;
-        $tokenInput = CSRF::createCsrfInput();
+        $token = CSRF::createCsrfInput();
 
         $this->set(compact('landlord', 'reCaptcha', 'tokenInput'));
         $this->setMeta($landlord->name . '- editace', 'Profil pronajímatele');

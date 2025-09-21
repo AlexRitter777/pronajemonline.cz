@@ -1,0 +1,55 @@
+/* Components CSS */
+
+
+/* ========== Item Delete Button ============ */
+
+.item-delete-button-trash-icon:hover {
+    color: var(--color-accent-hover);
+}
+
+.item-delete-button-buttons-wrapper {
+    position: absolute;
+    right: 19px;
+    top: 10px;
+    color: var(--color-accent);
+    padding: 8px 10px;
+    width: 140px;
+    text-align: center;
+    font-size: 12px !important;
+    font-weight: 600;
+    line-height: 135%;
+    white-space: normal !important;
+    z-index: 3000;
+    border: solid 1px #C9EED2;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px 0 rgb(0 0 0 / 16%);
+}
+
+.item-delete-button-small-buttons-wrapper{
+    display: flex;
+    justify-content: space-around;
+}
+
+.item-delete-button-input-btn{
+    border: none;
+    height: unset;
+    margin: 0;
+    padding: 0;
+    box-shadow: unset;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.item-delete-button-small-buttons-wrapper span:hover{
+    cursor: pointer;
+    color: var(--color-accent-hover);
+
+}
+
+.item-delete-button-input-btn:hover{
+    cursor: pointer;
+    color: var(--color-accent-hover);
+}
+
+

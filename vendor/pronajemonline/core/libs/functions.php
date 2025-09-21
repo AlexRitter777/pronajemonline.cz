@@ -113,3 +113,10 @@ function vite_asset(string $path): string
 
     return '/assets/' . $manifest[$path]['file'];
 }
+
+
+function componet(string $name, array $data = []): string
+{
+    return (new \pronajem\libs\Component())->render($name, $data);
+}
+

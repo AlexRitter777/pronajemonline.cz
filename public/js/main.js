@@ -968,70 +968,70 @@ $(document).ready(function () {
 
 /*------------------------------- Delete Item from list-------------------------------*/
 
-    $(document).ready(function (){
-
-        let hrefId;
-
-        $(".item_delete_button").click(function (e){
-
-            e.stopPropagation();//stop event propagation to parents DOM elements
-            //console.log('Clicked!'); debugging
-            hrefId = $(this).parent().parent().data('href');
-            //console.log(hrefId);
-
-            var xpos = $(this).offset().left-130;
-            var ypos = $(this).offset().top;
-            var DelConf =  $(this).data('del');
-            $(DelConf).css('top',ypos);
-            $(DelConf).css('left',xpos);
-            $(DelConf).fadeIn();
-
-        })
-
-            $(window).on("click", function(){
-                $('.modal_del_confirmation').fadeOut();
-            })
-
-            $('.modal_del_confirmation').on('click', function (e){
-                e.stopPropagation();
-            })
-
-            $('.modal_cancel_btn').on('click', function (){
-                $('.modal_del_confirmation').fadeOut();
-            })
-
-            $('.modal_confirm_btn').on('click', function (e){
-                let id = hrefId.substring(hrefId.indexOf("=") + 1);
-                //console.log(id);
-                let fullPath = $(this).data('href') + id;
-                //console.log(fullPath);
-                window.location = fullPath;
-
-            })
-
-            //for forms with token
-            $('form[class=item_delete_form]').on('submit', function (e){
-                e.preventDefault();
-                let id = hrefId.substring(hrefId.indexOf("=") + 1);
-                let controller = getControllerName();
-                let entity =  getEntity();
-                let form = this;
-                let $form = $(form);
-                $form.attr('action', `admin/${controller}/delete?${entity}=${id}`).off('submit').submit();
-            })
-
-            function getControllerName(){
-                let url = window.location.pathname;
-                return url.match(/\/([^\/]+)\/?$/)[1]
-            }
-
-            function getEntity(){
-                let match = hrefId.match(/(\?|&)([^=]+)=/);
-                return match ? match[2] : null;
-            }
-
-
-    })
+    // $(document).ready(function (){
+    //
+    //     let hrefId;
+    //
+    //     $(".item_delete_button-1").click(function (e){
+    //
+    //         e.stopPropagation();//stop event propagation to parents DOM elements
+    //         //console.log('Clicked!'); debugging
+    //         hrefId = $(this).parent().parent().data('href');
+    //         //console.log(hrefId);
+    //
+    //         var xpos = $(this).offset().left-130; // make function, move css to user.css
+    //         var ypos = $(this).offset().top;
+    //         var DelConf =  $(this).data('del');
+    //         $(DelConf).css('top',ypos);
+    //         $(DelConf).css('left',xpos);
+    //         $(DelConf).fadeIn();
+    //
+    //     })
+    //
+    //         $(window).on("click", function(){
+    //             $('.modal_del_confirmation').fadeOut();
+    //         })
+    //
+    //         $('.modal_del_confirmation').on('click', function (e){
+    //             e.stopPropagation();
+    //         })
+    //
+    //         $('.modal_cancel_btn').on('click', function (){
+    //             $('.modal_del_confirmation').fadeOut();
+    //         })
+    //
+    //         $('.modal_confirm_btn').on('click', function (e){
+    //             let id = hrefId.substring(hrefId.indexOf("=") + 1);
+    //             //console.log(id);
+    //             let fullPath = $(this).data('href') + id;
+    //             //console.log(fullPath);
+    //             window.location = fullPath;
+    //
+    //         })
+    //
+    //         //for forms with token
+    //         $('form[class=item_delete_form]').on('submit', function (e){
+    //             e.preventDefault();
+    //             let id = hrefId.substring(hrefId.indexOf("=") + 1);
+    //             let controller = getControllerName();
+    //             let entity =  getEntity();
+    //             let form = this;
+    //             let $form = $(form);
+    //             $form.attr('action', `admin/${controller}/delete?${entity}=${id}`).off('submit').submit();
+    //         })
+    //
+    //         function getControllerName(){
+    //             let url = window.location.pathname;
+    //             return url.match(/\/([^\/]+)\/?$/)[1]
+    //         }
+    //
+    //         function getEntity(){
+    //             let match = hrefId.match(/(\?|&)([^=]+)=/);
+    //             return match ? match[2] : null;
+    //         }
+    //
+    //
+    // })
 
 
 /*-------------------------------Item modal window delete confirmation------------------------*/

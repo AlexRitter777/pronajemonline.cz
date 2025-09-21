@@ -7,7 +7,6 @@ import "./remove_entity_confirmation";
 
 window.Alpine = Alpine;
 
-
 Alpine.start();
 
 window.$ = $;
