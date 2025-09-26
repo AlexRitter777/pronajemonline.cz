@@ -2,81 +2,129 @@
 
 namespace app\controllers\User;
 
+use app\actions\Tenant\CreateTenantAction;
 use app\controllers\AppController;
+use app\db_models\Tenant;
+use app\factories\TenantDataFactory;
 use app\models\Account;
+use app\validation\Core\ErrorBag;
+use app\validation\Validators\TenantValidator;
+use DI\Attribute\Inject;
 use Exception;
-use pronajem\libs\Pagination;
+use pronajem\libs\CSRF;
+use pronajem\libs\PaginationSetParams;
 use RedBeanPHP\R;
 use RedBeanPHP\RedException\SQL;
-use setasign\Fpdi\PdfParser\Filter\FilterInterface;
 
 class TenantsController extends AppController {
 
-    public function indexAction(){
+
+    #[Inject]
+    private Account $accountModel;
+
+    #[Inject]
+    private Tenant $tenant;
+
+    #[Inject]
+    private PaginationSetParams $pagination;
+
+    #[Inject]
+    private TenantValidator $validator;
+
+    #[Inject]
+    private ErrorBag $errorBag;
+
+    #[Inject]
+    private TenantDataFactory $tenantDataFactory;
+
+    #[Inject]
+    private CreateTenantAction $createTenantAction;
+
+    public function __construct($route) {
+
+        parent::__construct($route);
 
         if(!is_user_logged_in()){
             redirect('/user/login');
         }
+
+    }
+
+
+    public function indexAction(){
+
+
 
         $userID = $_SESSION['user_id'];
 
         $this->setMeta('Nájemníci', 'Seznam nájemníků');
 
-        $this->layout = 'account';
+        $tenants = $this->tenant->getAllRecordsWithPagination(8, $userID);
 
-        $total = R::count('tenant', 'user_id=?', [$userID] );
-        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $perpage = 10;
-        $pagination = new Pagination($page, $perpage, $total);
-        $start = $pagination->getStart();
+        $tenantProp = $this->accountModel->personProps('tenant');
 
-        $tenants = R::findAll('tenant', "user_id=? LIMIT $start, $perpage", [$userID]);
+        $pagination = $this->pagination;
 
-        $accountModel = new Account();
+        $token = CSRF::createCsrfToken();
 
-        $tenantProp = $accountModel->personProps('tenant');
+        $accountModel = $this->accountModel;
 
-        $this->set(compact('tenants', 'tenantProp', 'pagination', 'total'));
+        $this->set(compact('tenants', 'tenantProp', 'pagination', 'accountModel', 'token'));
 
     }
 
 
-    public function profileAction(){
-
-        if(!is_user_logged_in()){
-            redirect('/user/login');
-        }
-
-        $this->layout = 'account';
+    public function showAction(){
 
         $userID = $_SESSION['user_id'];
 
-        if(isset($_GET['tenant_id'])){
-            $tenant_id = $_GET['tenant_id'];
-            $tenant = R::findOne('tenant', 'id=? AND user_id=?',[$tenant_id, $userID]);
-            if ($tenant) {
-
-                $accountModel = new Account();
-                $propertyList = $accountModel->propertyList($tenant->id, 'tenant');
-                //debug($propertyList);die();
-
-                $this->setMeta($tenant->name, 'Profil nájemníka');
-                $this->set(compact('tenant', 'propertyList'));
-
-            }else{
-
-                $_SESSION['account_error'] = 'Nepodařilo se najít nájemníka!';
-                redirect('/user/error');
-
-            }
-
-        }else {
-
-            redirect('/user/tenants');
-
+        if(!isset($_GET['tenant_id'])){
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
+            redirect();
         }
 
+        $tenant_id = $_GET['tenant_id'];
+
+        $tenant = $this->tenant->getOneRecordById($tenant_id, $userID);
+
+        if(!$tenant){
+            flash('error', 'Nepodařilo se najít pronajímatele!', 'error');
+            redirect();
+        }
+
+        $propertyList = $this->accountModel->propertyList($tenant->id, 'tenant');
+
+        $tokenInput = CSRF::createCsrfInput();
+
+        $this->setMeta($tenant->name, 'Profil nájemníka');
+
+        $this->set(compact('tenant', 'propertyList', 'tokenInput'));
+
     }
+
+    public function createAction(){
+        [$errors, $old] = $this->errorBag->getErrors();
+        $reCaptcha = true;
+        $tokenInput = CSRF::createCsrfInput();
+        $this->setMeta('Nový nájemník', 'Vytvoření nového nájemníka');
+        $this->set(compact('reCaptcha', 'tokenInput', 'errors', 'old'));
+    }
+
+
+    /**
+     * @throws Exception
+     */
+    public function saveAction(){
+
+        $data = $this->validator->validate(sanitize($_POST));
+        $userID = $_SESSION['user_id'];
+        $tenantDto = $this->tenantDataFactory->createFromArray($data);
+        $tenantId = $this->createTenantAction->execute($tenantDto, $userID);
+        flash('success', 'Nájemník byl úspěšně vytvořen.', 'success');
+        redirect("/user/tenants/show?tenant_id={$tenantId}");
+
+    }
+
 
     public function profileeditingAction(){
 
@@ -189,56 +237,9 @@ class TenantsController extends AppController {
     }
 
 
-    public function addAction(){
-        if(!is_user_logged_in()){
-            redirect('/user/login');
-        }
-
-        $this->layout = 'account_form_new';
-
-        $this->setMeta('Nový nájemník', 'Vytvoření nového nájemníka');
-
-    }
 
 
-    /**
-     * @throws SQL
-     * @throws Exception
-     */
-    public function saveAction(){
 
-        if (!is_user_logged_in()) {
-            redirect('/user/login');
-        }
-
-        $this->layout = 'account';
-
-        $userID = $_SESSION['user_id'];
-
-        if(!empty($_POST['tenant_name']) &&
-            !empty($_POST['tenant_address']) &&
-            isset($_POST['tenant_email']) &&
-            isset($_POST['tenant_phone_number']) &&
-            isset($_POST['tenant_account'])){
-
-            $tenant = R::dispense('tenant');
-
-                $tenant->name = $_POST['tenant_name'];
-                $tenant->address = $_POST['tenant_address'];
-                $tenant->phone_number = $_POST['tenant_phone_number'];
-                $tenant->email = $_POST['tenant_email'];
-                $tenant->account = $_POST['tenant_account'];
-                $tenant->user_id = $userID;
-
-                if (!($tenantID = R::store($tenant))) throw new Exception('Chyba zápisu do DB!');
-
-                redirect("/user/tenants/profile?tenant_id={$tenantID}");
-
-            } else {
-                redirect('/user/tenants');
-            }
-
-    }
 
 
     /*public function savemodalAction(){

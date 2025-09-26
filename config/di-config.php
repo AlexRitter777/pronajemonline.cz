@@ -1,14 +1,15 @@
 <?php
 
-use app\db_models\Admin;
-use app\db_models\Property;
-use pronajem\libs\PaginationSetParams;
+use app\validation\Core\ErrorBag;
+use app\validation\Core\RedirectOnFailValidator;
+use app\validation\Core\Validator;
+use app\validation\Validators\TenantValidator;
 use function DI\autowire;
+use function DI\create;
+use function DI\get;
 
 return [
 
-    Admin::class => autowire(),
-    PaginationSetParams::class => autowire(),
-    //Property::class => autowire(),
+
 
 ];

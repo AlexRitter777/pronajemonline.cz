@@ -3,14 +3,9 @@
     <h3>Profil nájemníka</h3>
 </div>
 
-<div class="central-bar">
-
-    <button class="burger-sidebar" type="button" id="navToggle">
-        <span class="burger__item">Menu</span>
-    </button>
+<div class="table-container entity-table">
 
     <table class="tenants" border="0">
-
             <tr class="name">
                 <td class="col-1">Jméno:</td>
                 <td class="col-2" id="tenant-profile-name"><?= $tenant->name;?></td>
@@ -49,13 +44,14 @@
             <?php endif;?>
 
     </table>
-    <div class="tenant-profile-buttons">
-        <button onClick="history.back()">Zpět</button>
-        <a href="user/tenants/profile-editing?tenant_id=<?=$tenant->id;?>">Upravit</a>
-        <a href="" data-item="tenant" data-href="user/tenants/profile-delete?tenant_id=<?=$tenant->id;?>" id="profile-delete">Smazat</a>
+    <div class="submit_button_div">
+        <a class="form-btn btn-submit" href="user/tenants">Zpět</a>
+        <a class="form-btn btn-submit" href="user/landlords/edit?tenant_id=<?=$tenant->id;?>">Upravit</a>
+        <a class="form-btn btn-reset" data-item="tenant" data-id="<?=$tenant->id;?>" data-href="user/tenants/destroy" id="profile-delete">Smazat</a>
     </div>
+
 </div>
 
-
+<?php require_once APP . '/views/includes/modal_del_confirmation.php'; ?>
 
 

@@ -24,7 +24,7 @@
                 <input type="hidden" name="landlord" value="<?=$entityId;?>">
                 <input type="submit" class="item-delete-button-input-btn" value="Smazat">
             </form>
-            <span @click="isOpen = false">Storno</span>
+            <span @click.stop="isOpen = false">Storno</span>
         </div>
 
     </div>

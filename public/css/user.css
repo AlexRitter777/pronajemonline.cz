@@ -412,26 +412,28 @@ table{
     width: 10%;
 }
 
+/*Tenants page table columns widths*/
+
 .tenant-titles .col-1 {
     width: 30%;
 }
 
 .tenant-titles .col-2 {
-    width: 30%;
+    width: 40%;
 }
 
 .tenant-titles .col-3 {
-    width: 50%;
+    width: 40%;
 }
 
 .tenant-titles .col-4 {
     width: 10%;
-    text-align: right;
 }
 
 .admin-titles .col-1 {
     width: 30%;
 }
+
 
 .admin-titles .col-2 {
     width: 30%;

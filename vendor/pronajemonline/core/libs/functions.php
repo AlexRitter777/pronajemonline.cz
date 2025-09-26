@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Outputs the given array or variable in a readable format for debugging.
  * @param mixed $arr The variable to be debugged.
@@ -119,4 +120,14 @@ function componet(string $name, array $data = []): string
 {
     return (new \pronajem\libs\Component())->render($name, $data);
 }
+
+function sanitize(array $data): array {
+    foreach ($data as $key => $value) {
+        if (is_string($value)) {
+            $data[$key] = trim($value);
+        }
+    }
+    return $data;
+}
+
 

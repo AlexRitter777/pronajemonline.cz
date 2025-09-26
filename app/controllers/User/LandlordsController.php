@@ -89,7 +89,6 @@ class LandlordsController extends AppController {
     // New landlord form
     public function createAction(){
 
-        $this->layout = 'account';
         $reCaptcha = true;
         $tokenInput = CSRF::createCsrfInput();
         $this->setMeta('Nový pronajímatel', 'Vytvoření nového pronajímatele');
