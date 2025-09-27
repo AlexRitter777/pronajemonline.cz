@@ -3,22 +3,23 @@
 namespace app\controllers\User;
 
 use app\actions\Tenant\CreateTenantAction;
+use app\actions\Tenant\DestroyTenantAction;
 use app\actions\Tenant\UpdateTenantAction;
 use app\controllers\AppController;
 use app\db_models\Tenant;
 use app\exceptions\PersonNotFoundException;
+use app\exceptions\RecordNotCreatedException;
+use app\exceptions\RecordNotUpdatedException;
 use app\factories\TenantDataFactory;
 use app\models\Account;
 use app\validation\Core\ErrorBag;
 use app\validation\Validators\TenantValidator;
 use DI\Attribute\Inject;
-use Exception;
 use pronajem\libs\CSRF;
 use pronajem\libs\PaginationSetParams;
-use RedBeanPHP\R;
-use RedBeanPHP\RedException\SQL;
 
-class TenantsController extends AppController {
+class TenantsController extends AppController
+{
 
 
     #[Inject]
@@ -45,19 +46,23 @@ class TenantsController extends AppController {
     #[Inject]
     private UpdateTenantAction $updateTenantAction;
 
-    public function __construct($route) {
+    #[Inject]
+    private DestroyTenantAction $destroyTenantAction;
+
+    public function __construct($route)
+    {
 
         parent::__construct($route);
 
-        if(!is_user_logged_in()){
+        if (!is_user_logged_in()) {
             redirect('/user/login');
         }
 
     }
 
 
-    public function indexAction(){
-
+    public function indexAction()
+    {
 
 
         $userID = $_SESSION['user_id'];
@@ -79,11 +84,12 @@ class TenantsController extends AppController {
     }
 
 
-    public function showAction(){
+    public function showAction()
+    {
 
         $userID = $_SESSION['user_id'];
 
-        if(!isset($_GET['tenant_id'])){
+        if (!isset($_GET['tenant_id'])) {
             flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
             redirect();
         }
@@ -92,7 +98,7 @@ class TenantsController extends AppController {
 
         $tenant = $this->tenant->getOneRecordById($tenant_id, $userID);
 
-        if(!$tenant){
+        if (!$tenant) {
             flash('error', 'Nepodařilo se najít pronajímatele!', 'error');
             redirect();
         }
@@ -107,7 +113,8 @@ class TenantsController extends AppController {
 
     }
 
-    public function createAction(){
+    public function createAction()
+    {
         [$errors, $old] = $this->errorBag->getErrors();
         $reCaptcha = true; //remove from ajax logic later
         $tokenInput = CSRF::createCsrfInput();
@@ -117,9 +124,10 @@ class TenantsController extends AppController {
 
 
     /**
-     * @throws Exception
+     * @throws RecordNotCreatedException
      */
-    public function saveAction(){
+    public function saveAction()
+    {
         checkCsrfOrRedirect($_POST['token'] ?? '');
         $data = $this->validator->validate(sanitize($_POST));
         $userID = $_SESSION['user_id'];
@@ -131,13 +139,14 @@ class TenantsController extends AppController {
     }
 
 
-    public function editAction(){
+    public function editAction()
+    {
 
         [$errors, $old] = $this->errorBag->getErrors();
         $reCaptcha = true; //remove from ajax logic later
         $userID = $_SESSION['user_id'];
 
-        if(!isset($_GET['tenant_id'])){
+        if (!isset($_GET['tenant_id'])) {
             flash('error', 'Nepodarilo se najit nájenmíka.', 'error');
             redirect();
         }
@@ -145,7 +154,7 @@ class TenantsController extends AppController {
         $tenantId = $_GET['tenant_id'];
         $tenant = $this->tenant->getOneRecordById($tenantId, $userID);
 
-        if(!$tenant){
+        if (!$tenant) {
             flash('error', 'Nepodařilo se najít nájemníka!', 'error');
             redirect();
         }
@@ -159,12 +168,13 @@ class TenantsController extends AppController {
 
     /**
      * @throws PersonNotFoundException
+     * @throws RecordNotUpdatedException
      */
     public function updateAction()
     {
         checkCsrfOrRedirect($_POST['token'] ?? '');
 
-        if(!isset($_GET['tenant_id'])){
+        if (!isset($_GET['tenant_id'])) {
             flash('error', 'Nepodarilo se najit nájemníka.', 'error');
             redirect();
         }
@@ -181,7 +191,7 @@ class TenantsController extends AppController {
             $tenantId = $this->updateTenantAction->execute($tenantDto, $tenantId, $userID);
             flash('success', 'Nájemník byl úspěšně upraven.', 'success');
             redirect("/user/tenants/show?tenant_id={$tenantId}");
-        }catch (PersonNotFoundException $e){
+        } catch (PersonNotFoundException $e) {
             flash('error', $e->getMessage(), 'error');
             redirect('/user/tenants');
         }
@@ -189,146 +199,36 @@ class TenantsController extends AppController {
     }
 
 
-    public function profiledeleteAction(){
+    public function destroyAction()
+    {
 
-        if (!is_user_logged_in()) {
-            redirect('/user/login');
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
+            redirect('/user/landlords');
         }
-        $userID = $_SESSION['user_id'];
 
-        if (isset($_GET['tenant_id'])) {
-            $tenantID = $_GET['tenant_id'];
-            $tenant = R::findOne('tenant', 'id=? AND user_id=?', [$tenantID, $userID]);
-            if ($tenant) {
+        checkCsrfOrRedirect($_POST['token'] ?? '');
 
-                R::trash($tenant);
-                redirect('/user/tenants');
-
-            } else {
-                $_SESSION['account_error'] = 'Nepodarilo se najit uzivatele!';
-                redirect('/user/error');
-            }
-        }else{
-
+        if (empty($_POST['tenant'])) {
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
             redirect('/user/tenants');
-
         }
 
-    }
-
-
-
-
-
-
-
-    /*public function savemodalAction(){
-
-        if (!is_user_logged_in()) {
-            redirect('/user/login');
-        }
-
-
-        $response = [];
+        $tenantId = $_POST['tenant'];
 
         $userID = $_SESSION['user_id'];
 
-
-        if(!empty($_POST['tenant_name']) &&
-            !empty($_POST['tenant_address']) &&
-            isset($_POST['tenant_email']) &&
-            isset($_POST['tenant_phone_number']) &&
-            isset($_POST['tenant_account'])){
-
-
-
-            $tenant = R::dispense('tenant');
-
-            $tenant->name = $_POST['tenant_name'];
-            $tenant->address = $_POST['tenant_address'];
-            $tenant->phone_number = $_POST['tenant_phone_number'];
-            $tenant->email = $_POST['tenant_email'];
-            $tenant->account = $_POST['tenant_account'];
-            $tenant->user_id = $userID;
-
-
-            unset($_POST['tenant_name']);
-            unset($_POST['tenant_address']);
-            unset($_POST['tenant_email']);
-            unset($_POST['tenant_phone_number']);
-            unset($_POST['tenant_account']);
-
-
-
-            if (!($tenantID = R::store($tenant))) throw new Exception('Chyba zápisu do DB!');
-
-            $currentTenant = R::findOne('tenant', 'id=? AND user_id=?',[$tenantID, $userID]);
-
-            $response['tenantID'] = $tenantID;
-            $response['tenantName'] = $currentTenant->name;
-            $response['tenantAddress'] = $currentTenant->address;
-            $response['success'] =  true;
-
-            echo json_encode($response);
-            die();
-
-        } else {
-
-
-            $response['success'] =  false;
-            $response['error'] = 'Error!';
-            echo json_encode($response);
-            die();
+        try {
+            $this->destroyTenantAction->execute($this->tenant, $tenantId, $userID);
+            flash('success', 'Nájemník byl úspěšně smazán.', 'success');
+            redirect('/user/tenants');
+        } catch (PersonNotFoundException $e) {
+            flash('error', $e->getMessage(), 'error');
+            redirect();
         }
 
-    }*/
-
-
-    /**
-     * @return void|null
-     * @throws Exception
-     */
-    public function gettenantlistAction(){
-        //check if is not direct url request
-        if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
-            //check if is it ajax and method GET
-            if (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' && $_SERVER['REQUEST_METHOD'] === 'GET') {
-
-                if (!is_user_logged_in()) {
-                    die();
-                }
-                $userID = $_SESSION['user_id'];
-
-                $request = $_GET['term'];
-
-                if (isset($request)) {
-
-                    $tenants = R::getAll("SELECT id,name FROM tenant WHERE (name LIKE '%" . $_GET['term']['term'] . "%') AND (user_id = :user_id)", [':user_id' => $userID]);
-
-                    $result = [];
-                    foreach ($tenants as $k => $v) {
-                        $result[] = [
-                            "id" => $v['id'],
-                            "text" => $v['name']
-                        ];
-                    }
-
-                    echo json_encode($result);
-                    die();
-                }
-
-                return null;
-            }
-        }
-
-        throw new Exception('Stránka není nalezená', 404);
 
     }
-
-
-
-
-
 
 
 }
