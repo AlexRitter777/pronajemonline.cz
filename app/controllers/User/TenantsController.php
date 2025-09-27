@@ -3,8 +3,10 @@
 namespace app\controllers\User;
 
 use app\actions\Tenant\CreateTenantAction;
+use app\actions\Tenant\UpdateTenantAction;
 use app\controllers\AppController;
 use app\db_models\Tenant;
+use app\exceptions\PersonNotFoundException;
 use app\factories\TenantDataFactory;
 use app\models\Account;
 use app\validation\Core\ErrorBag;
@@ -39,6 +41,9 @@ class TenantsController extends AppController {
 
     #[Inject]
     private CreateTenantAction $createTenantAction;
+
+    #[Inject]
+    private UpdateTenantAction $updateTenantAction;
 
     public function __construct($route) {
 
@@ -104,7 +109,7 @@ class TenantsController extends AppController {
 
     public function createAction(){
         [$errors, $old] = $this->errorBag->getErrors();
-        $reCaptcha = true;
+        $reCaptcha = true; //remove from ajax logic later
         $tokenInput = CSRF::createCsrfInput();
         $this->setMeta('Nový nájemník', 'Vytvoření nového nájemníka');
         $this->set(compact('reCaptcha', 'tokenInput', 'errors', 'old'));
@@ -115,7 +120,7 @@ class TenantsController extends AppController {
      * @throws Exception
      */
     public function saveAction(){
-
+        checkCsrfOrRedirect($_POST['token'] ?? '');
         $data = $this->validator->validate(sanitize($_POST));
         $userID = $_SESSION['user_id'];
         $tenantDto = $this->tenantDataFactory->createFromArray($data);
@@ -126,83 +131,58 @@ class TenantsController extends AppController {
     }
 
 
-    public function profileeditingAction(){
+    public function editAction(){
 
-        if(!is_user_logged_in()){
-            redirect('/user/login');
-        }
-
-        $this->layout = 'account_form_new';
-
+        [$errors, $old] = $this->errorBag->getErrors();
+        $reCaptcha = true; //remove from ajax logic later
         $userID = $_SESSION['user_id'];
 
-        if(isset($_GET['tenant_id'])){
-            $tenant_id = $_GET['tenant_id'];
-            $tenant = R::findOne('tenant', 'id=? AND user_id=?',[$tenant_id, $userID]);
-            if ($tenant) {
-
-                $this->set(compact('tenant'));
-                $this->setMeta($tenant->name . '- editace', 'Profile nájemníka');
-
-            }else{
-                $_SESSION['account_error'] = 'Nepodarilo se najit uzivatele!';
-                redirect('/user/error');
-            }
-
-        } else {
-            redirect('/user/tenants');
+        if(!isset($_GET['tenant_id'])){
+            flash('error', 'Nepodarilo se najit nájenmíka.', 'error');
+            redirect();
         }
+
+        $tenantId = $_GET['tenant_id'];
+        $tenant = $this->tenant->getOneRecordById($tenantId, $userID);
+
+        if(!$tenant){
+            flash('error', 'Nepodařilo se najít nájemníka!', 'error');
+            redirect();
+        }
+
+        $tokenInput = CSRF::createCsrfInput();
+
+        $this->setMeta('Úprava nájemníka', 'Úprava nájemníka');
+        $this->set(compact('reCaptcha', 'tokenInput', 'tenant', 'errors', 'old'));
 
     }
 
     /**
-     * @throws SQL
-     * @throws Exception
+     * @throws PersonNotFoundException
      */
-    public function profilesaveAction()
+    public function updateAction()
     {
+        checkCsrfOrRedirect($_POST['token'] ?? '');
 
-        if (!is_user_logged_in()) {
-            redirect('/user/login');
+        if(!isset($_GET['tenant_id'])){
+            flash('error', 'Nepodarilo se najit nájemníka.', 'error');
+            redirect();
         }
 
-        $this->layout = 'account';
+        $tenantId = $_GET['tenant_id'];
 
         $userID = $_SESSION['user_id'];
 
-        if (isset($_GET['tenant_id'])) {
+        $data = $this->validator->validate(sanitize($_POST));
 
-            $tenantID = $_GET['tenant_id'];
+        $tenantDto = $this->tenantDataFactory->createFromArray($data);
 
-            if(!empty($_POST['tenant_name']) &&
-               !empty($_POST['tenant_address']) &&
-               isset($_POST['tenant_email']) &&
-               isset($_POST['tenant_phone_number']) &&
-               isset($_POST['tenant_account'])){
-
-                $tenant = R::findOne('tenant', 'id=? AND user_id=?',  [$tenantID, $userID] );
-                if($tenant){
-
-                    $tenant->name = $_POST['tenant_name'];
-                    $tenant->address = $_POST['tenant_address'];
-                    $tenant->phone_number = $_POST['tenant_phone_number'];
-                    $tenant->email = $_POST['tenant_email'];
-                    $tenant->account = $_POST['tenant_account'];
-
-                    if (!R::store($tenant)) throw new Exception('Chyba zapisu do DB!');
-
-                    redirect("/user/tenants/profile?tenant_id={$tenantID}");
-
-                } else {
-                    $_SESSION['account_error'] = 'Nepodarilo se najit uzivatele!';
-                    redirect('/user/error');
-                }
-
-            }else{
-                redirect('/user/tenants');
-            }
-
-        } else {
+        try {
+            $tenantId = $this->updateTenantAction->execute($tenantDto, $tenantId, $userID);
+            flash('success', 'Nájemník byl úspěšně upraven.', 'success');
+            redirect("/user/tenants/show?tenant_id={$tenantId}");
+        }catch (PersonNotFoundException $e){
+            flash('error', $e->getMessage(), 'error');
             redirect('/user/tenants');
         }
 

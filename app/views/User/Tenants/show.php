@@ -46,7 +46,7 @@
     </table>
     <div class="submit_button_div">
         <a class="form-btn btn-submit" href="user/tenants">Zpět</a>
-        <a class="form-btn btn-submit" href="user/landlords/edit?tenant_id=<?=$tenant->id;?>">Upravit</a>
+        <a class="form-btn btn-submit" href="user/tenants/edit?tenant_id=<?=$tenant->id;?>">Upravit</a>
         <a class="form-btn btn-reset" data-item="tenant" data-id="<?=$tenant->id;?>" data-href="user/tenants/destroy" id="profile-delete">Smazat</a>
     </div>
 

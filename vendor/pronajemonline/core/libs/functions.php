@@ -1,6 +1,8 @@
 <?php
 
 
+
+
 /**
  * Outputs the given array or variable in a readable format for debugging.
  * @param mixed $arr The variable to be debugged.
@@ -89,7 +91,12 @@ function logErrors($message = '', $file = '', $line = ''){
     error_log("[" . date('Y-m-d H:i:s') . "] Error: {$message} | File: {$file} | Line: {$line}\n============================\n", 3, ROOT . '/tmp/errors.log');
 }
 
-
+/**
+ * Get the correct path for Vite assets based on the environment.
+ *
+ * @param string $path The relative path to the asset (e.g., 'main.js').
+ * @return string The full URL or path to the asset.
+ */
 function vite_asset(string $path): string
 {
 
@@ -115,12 +122,25 @@ function vite_asset(string $path): string
     return '/assets/' . $manifest[$path]['file'];
 }
 
-
+/**
+ * Render a component by its name with optional data.
+ *
+ * @param string $name The name of the component to render.
+ * @param array $data Optional associative array of data to pass to the component.
+ * @return string The rendered component as a string.
+ */
 function componet(string $name, array $data = []): string
 {
     return (new \pronajem\libs\Component())->render($name, $data);
 }
 
+
+/**
+ * Sanitize input data by trimming whitespace from string values in the array.
+ *
+ * @param array $data The input array to be sanitized.
+ * @return array The sanitized array with trimmed string values.
+ */
 function sanitize(array $data): array {
     foreach ($data as $key => $value) {
         if (is_string($value)) {
@@ -129,5 +149,14 @@ function sanitize(array $data): array {
     }
     return $data;
 }
+
+function checkCsrfOrRedirect(string $token) : void
+{
+    if (empty($_POST['token']) || !\pronajem\libs\CSRF::checkCsrfToken($_POST['token'])) {
+        flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
+        redirect();
+    }
+}
+
 
 

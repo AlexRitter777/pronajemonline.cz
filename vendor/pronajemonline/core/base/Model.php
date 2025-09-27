@@ -172,7 +172,7 @@ abstract class Model {
     }
 
     
-    public function upadateAll($data, $bean) {
+    public function updateAll($data, $bean) {
         foreach ($data as $k => $v){
 
             $bean->$k = $v;

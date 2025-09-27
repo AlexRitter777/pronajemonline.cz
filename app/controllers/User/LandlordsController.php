@@ -157,7 +157,7 @@ class LandlordsController extends AppController {
         }
 
         $reCaptcha = true;
-        $token = CSRF::createCsrfInput();
+        $tokenInput = CSRF::createCsrfInput();
 
         $this->set(compact('landlord', 'reCaptcha', 'tokenInput'));
         $this->setMeta($landlord->name . '- editace', 'Profil pronajímatele');

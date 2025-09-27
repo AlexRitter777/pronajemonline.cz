@@ -2,17 +2,15 @@
 
 namespace app\services\Person;
 
+use app\exceptions\RecordNotCreatedException;
+
 class CreatePersonService
 {
-    public function __construct(
-        private object $model,
-    )
-    {}
 
-    public function create(object $data, string $userId): string
+    public function create(object $data, object $model, string $userId) : string
     {
-        //for more entities we need to create dto with getters and interface
-        $personId = $this->model->saveAll([
+        // for more entities better to have interfaces for models (saveAll)  and dto with getters
+        $personId = $model->saveAll([
             'name' => $data->name,
             'address' => $data->address,
             'phone_number' => $data->phone,
@@ -22,7 +20,7 @@ class CreatePersonService
         ]);
 
         if(!$personId){
-            throw new \Exception('Chyba zápisu do DB!');
+            throw new RecordNotCreatedException();
         }
 
         return $personId;

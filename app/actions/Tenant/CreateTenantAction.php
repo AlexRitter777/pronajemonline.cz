@@ -9,13 +9,12 @@ use app\services\Person\CreatePersonService;
 class CreateTenantAction
 {
 
-    public function __construct(private Tenant $tenant)
+    public function __construct(private Tenant $tenant, private CreatePersonService $createPersonService)
     {
     }
     public function execute(TenantData $data, string $userId): string
     {
-        $service = new CreatePersonService($this->tenant);
-        return $service->create($data, $userId);
+        return $this->createPersonService->create($data, $this->tenant, $userId);
     }
 
 }
