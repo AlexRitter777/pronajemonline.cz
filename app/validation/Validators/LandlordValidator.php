@@ -2,8 +2,6 @@
 
 namespace app\validation\Validators;
 
-
-
 use app\validation\Core\ErrorBag;
 use app\validation\Core\RedirectOnFailValidator;
 use app\validation\Core\Validator;
@@ -15,45 +13,46 @@ use app\validation\Rules\MinLengthRule;
 use app\validation\Rules\PhoneRule;
 use app\validation\Rules\RequiredRule;
 
-class TenantValidator
+class LandlordValidator
 {
+
     public function __construct(private ErrorBag $errorBag)
     {}
     public function validate(array $data): ?array
     {
         $rules = [
-            'tenant_name' => [
+            'landlord_name' => [
                 new RequiredRule(),
                 new MaxLengthRule(50),
                 new MinLengthRule(3),
                 new CharRule(),
             ],
-            'tenant_address' => [
+            'landlord_address' => [
                 new RequiredRule(),
                 new MaxLengthRule(100),
                 new MinLengthRule(5),
                 new CharRule(),
             ],
-            'tenant_email' => [
+            'landlord_email' => [
                 new MaxLengthRule(50),
                 new MinLengthRule(5),
                 new EmailRule(),
             ],
-            'tenant_phone_number' => [
+            'landlord_phone_number' => [
                 new PhoneRule(),
             ],
 
-            'tenant_account' => [
+            'landlord_account' => [
                 new AccountRule(),
             ],
         ];
 
         $attributeNames = [
-            'tenant_name' => 'Jméno nájemníka',
-            'tenant_email' => 'Email nájemníka',
-            'tenant_phone_number' => 'Telefonní číslo nájemníka',
-            'tenant_address' => 'Adresa nájemníka',
-            'tenant_account' => 'Číslo účtu nájemníka',
+            'tenant_name' => 'Jméno pronajímatele',
+            'tenant_email' => 'Email pronajímatele',
+            'tenant_phone_number' => 'Telefonní číslo pronajímatele',
+            'tenant_address' => 'Adresa pronajímatele',
+            'tenant_account' => 'Číslo účtu pronajímatele',
         ];
 
         $validator = new Validator($rules, $attributeNames);
@@ -63,8 +62,4 @@ class TenantValidator
 
 
     }
-
-
-
-
 }

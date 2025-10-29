@@ -116,7 +116,6 @@ class TenantsController extends AppController
     public function createAction()
     {
         [$errors, $old] = $this->errorBag->getErrors();
-        $reCaptcha = true; //remove from ajax logic later
         $tokenInput = CSRF::createCsrfInput();
         $this->setMeta('Nový nájemník', 'Vytvoření nového nájemníka');
         $this->set(compact('reCaptcha', 'tokenInput', 'errors', 'old'));
@@ -143,7 +142,6 @@ class TenantsController extends AppController
     {
 
         [$errors, $old] = $this->errorBag->getErrors();
-        $reCaptcha = true; //remove from ajax logic later
         $userID = $_SESSION['user_id'];
 
         if (!isset($_GET['tenant_id'])) {
@@ -162,7 +160,7 @@ class TenantsController extends AppController
         $tokenInput = CSRF::createCsrfInput();
 
         $this->setMeta('Úprava nájemníka', 'Úprava nájemníka');
-        $this->set(compact('reCaptcha', 'tokenInput', 'tenant', 'errors', 'old'));
+        $this->set(compact('tokenInput', 'tenant', 'errors', 'old'));
 
     }
 
@@ -206,8 +204,8 @@ class TenantsController extends AppController
             flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
             redirect('/user/landlords');
         }
-
         checkCsrfOrRedirect($_POST['token'] ?? '');
+
 
         if (empty($_POST['tenant'])) {
             flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');

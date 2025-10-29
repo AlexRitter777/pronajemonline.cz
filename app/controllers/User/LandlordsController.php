@@ -2,9 +2,14 @@
 
 namespace app\controllers\User;
 
+use app\actions\Landlord\CreateLandlordAction;
 use app\controllers\AppController;
 use app\db_models\Landlord;
+use app\exceptions\RecordNotCreatedException;
+use app\factories\LandlordDataFactory;
 use app\models\Account;
+use app\validation\Core\ErrorBag;
+use app\validation\Validators\LandlordValidator;
 use DI\Attribute\Inject;
 use Exception;
 use pronajem\libs\CSRF;
@@ -22,6 +27,18 @@ class LandlordsController extends AppController {
 
     #[Inject]
     private PaginationSetParams $pagination;
+
+    #[Inject]
+    private ErrorBag $errorBag;
+
+    #[Inject]
+    private LandlordValidator $validator;
+
+    #[Inject]
+    private LandlordDataFactory $landlordDataFactory;
+
+    #[Inject]
+    private CreateLandlordAction $createLandlordAction;
 
 
     public function __construct($route) {
@@ -88,60 +105,32 @@ class LandlordsController extends AppController {
 
     // New landlord form
     public function createAction(){
-
-        $reCaptcha = true;
+        [$errors, $old] = $this->errorBag->getErrors();
         $tokenInput = CSRF::createCsrfInput();
         $this->setMeta('Nový pronajímatel', 'Vytvoření nového pronajímatele');
-        $this->set(compact('reCaptcha', 'tokenInput'));
+        $this->set(compact('reCaptcha', 'tokenInput', 'errors', 'old'));
 
     }
 
     // Save new landlord
     /**
-     * @throws SQL
-     * @throws Exception
+     * @throws RecordNotCreatedException
      */
-    public function saveAction(){
-
-        if (empty($_POST['token']) || !CSRF::checkCsrfToken($_POST['token'])) {
-            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
-            redirect();
-        }
-
+    public function saveAction()
+    {
+        checkCsrfOrRedirect($_POST['token'] ?? '');
+        $data = $this->validator->validate(sanitize($_POST));
         $userID = $_SESSION['user_id'];
-
-        //Ajax validation via form-validation.js
-
-        if(
-            empty($_POST['landlord_name']) ||
-            empty($_POST['landlord_address']) ||
-            !isset($_POST['landlord_email']) ||
-            !isset($_POST['landlord_phone_number']) ||
-            !isset($_POST['landlord_account'])
-        ) {
-            flash('error', 'Vyplňte prosím všechny potřebné údaje.', 'error');
-            redirect('/user/landlords/add');
-        }
-
-        $landlordID = $this->landlord->saveAll([
-            'name' => $_POST['landlord_name'],
-            'address' => $_POST['landlord_address'],
-            'phone_number' => $_POST['landlord_phone_number'],
-            'email' => $_POST['landlord_email'],
-            'account' => $_POST['landlord_account'],
-            'user_id' => $userID
-        ]);
-
-        if (!($landlordID)) throw new Exception('Chyba zápisu do DB!');
-
+        $landlordDto = $this->landlordDataFactory->createFromArray($data);
+        $landlordId = $this->createLandlordAction->execute($landlordDto, $userID);
         flash('success', 'Pronajímatel byl úspěšně vytvořen.', 'success');
-        redirect("/user/landlords/show?landlord_id={$landlordID}");
-
+        redirect("/user/landlords/show?landlord_id={$landlordId}");
     }
 
     // Edit landlord profile
     public function editAction(){
 
+        [$errors, $old] = $this->errorBag->getErrors();
         $userID = $_SESSION['user_id'];
 
         if(!isset($_GET['landlord_id'])){
@@ -156,10 +145,9 @@ class LandlordsController extends AppController {
             redirect();
         }
 
-        $reCaptcha = true;
         $tokenInput = CSRF::createCsrfInput();
 
-        $this->set(compact('landlord', 'reCaptcha', 'tokenInput'));
+        $this->set(compact('landlord', 'tokenInput', 'errors', 'old'));
         $this->setMeta($landlord->name . '- editace', 'Profil pronajímatele');
 
     }

@@ -43,7 +43,7 @@
             </div>
 
             <div class="app-block" >
-                <a href="auser/calculations/universal-form">
+                <a href="user/calculations/universal-form">
                     <p class="app-block-title">Univerzální vyúčtování</p>
                     <p class="app-block-desc">Umožňuje vypočítat náklady na elektřinu, vodu, plyn nebo kanalizaci spotřebované nájemníkem na základě průměrných cen.<span class="calc-hidden"> Průměrné ceny lze nalézt na vaší faktuře od dodavatele energií nebo v ceníku. Je možné zadat i vlastní náklady bez potřeby výpočtu.</span></p>
                 </a>

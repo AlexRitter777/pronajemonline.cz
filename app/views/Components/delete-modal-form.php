@@ -21,7 +21,7 @@
         <div class="item-delete-button-small-buttons-wrapper">
             <form action="user/<?=$entityName;?>s/destroy" method="post">
                 <input type="hidden" name="token" value="<?=$token;?>">
-                <input type="hidden" name="landlord" value="<?=$entityId;?>">
+                <input type="hidden" name="<?=$entityName;?>" value="<?=$entityId;?>">
                 <input type="submit" class="item-delete-button-input-btn" value="Smazat">
             </form>
             <span @click.stop="isOpen = false">Storno</span>

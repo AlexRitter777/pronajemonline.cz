@@ -226,7 +226,7 @@ class UserController extends AppController
     }
 
 
-    public function accountAction()
+    public function dashboardAction()
     {
 
         if (!is_user_logged_in()){

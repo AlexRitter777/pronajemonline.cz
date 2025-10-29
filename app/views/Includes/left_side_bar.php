@@ -38,7 +38,7 @@
         </li>
 
 
-        <li><a href="user/account" class="user-item-title"><i class="fa-regular fa-house"></i> Přehled</a></li>
+        <li><a href="user/dashboard" class="user-item-title"><i class="fa-regular fa-house"></i> Přehled</a></li>
         <li><a href="user/calculations" class="user-item-title"><i class="far fa-file-alt"></i> Vyúčtování</a></li>
         <li><a href="user/landlords" class="user-item-title"><i class="fa-regular fa-circle-user"></i> Pronajímatele</a></li>
         <li><a href="user/tenants" class="user-item-title"><i class="far fa-user"></i> Nájemníci</a></li>

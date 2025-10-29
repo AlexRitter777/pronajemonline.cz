@@ -11,12 +11,11 @@ class TenantDataFactory extends DataFactory
     {
 
         $data = $this->normalizeData($data);
-
         return new TenantData(
             name: $data['tenant_name'],
             address: $data['tenant_address'],
             email: $data['tenant_email'] ?? null,
-            phone: $data['tenant_phone'] ?? null,
+            phone: $data['tenant_phone_number'] ?? null,
             account: $data['tenant_account'] ?? null,
         );
     }

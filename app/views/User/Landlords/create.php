@@ -41,7 +41,7 @@
 
 
         <div class="submit_button_div">
-            <input type="submit" class="form-btn btn-submit profile-form-submit" value="Uložit">
+            <input type="submit" class="form-btn btn-submit <!--profile-form-submit-->" value="Uložit">
             <a class="form-btn btn-reset" href="user/landlords">Zpět</a>
         </div>
     </form>
