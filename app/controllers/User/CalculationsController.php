@@ -6,6 +6,7 @@ use app\controllers\AppController;
 use app\models\Account;
 use app\models\AppModel;
 use app\models\Services;
+use pronajem\libs\CSRF;
 use pronajem\libs\Pagination;
 use RedBeanPHP\R;
 
@@ -102,8 +103,9 @@ class CalculationsController extends AppController {
         $calcURL = substr($calcType, 0, -4);
         $calcTypeValue = Services::getCalcValue($calcType);
 
+        $token = CSRF::createCsrfToken();
 
-        $this->set(compact('calculations', 'calcType', 'formType', 'calcTypeValue', 'calcURL', 'pagination', 'total', 'accountModel'));
+        $this->set(compact('calculations', 'calcType', 'formType', 'calcTypeValue', 'calcURL', 'pagination', 'total', 'accountModel', 'token'));
 
     }
 

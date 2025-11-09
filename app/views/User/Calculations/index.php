@@ -104,7 +104,13 @@
                     <?php endif;?>
                     <td class="col-5"><?= date("d.m.Y", strtotime($calculation->created_at));?></td>
                     <td class="col-6"><?= date("d.m.Y", strtotime($calculation->updated_at));?></td>
-                    <td class="col-7"><span class="item_delete_button_ajax" data-type="<?= $calcURL; ?>" data-id="<?=$calculation->id;?>" data-del="#del-conf"><i class="fa-regular fa-trash-can"></i></span></td>
+                    <td class="col-7 relative">
+                        <?=componet('delete-modal-form', [
+                            'entityId' => $calculation->id,
+                            'entityName' => 'calculation',
+                            'token' => $token
+                        ]);?>
+                    </td>
 
                 </tr>
             <?php endforeach;?>
@@ -131,14 +137,6 @@
     <?php endif;?>
 
     <?php //debug($servicesCalculations); ?>
-
-    <div id="del-conf" class="modal_del_confirmation_ajax">
-        <div class="small_modal_wrapper">
-            <div><span class="modal_confirm_btn_ajax">Smazat</span></div>
-            <div><span class="modal_cancel_btn_ajax">Storno</span></div>
-        </div>
-    </div>
-
 
     <div id="filter-list" style="display: none">
         <form id="filter_calc_form" method="get" action="user/calculations">

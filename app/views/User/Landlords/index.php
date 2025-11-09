@@ -25,7 +25,7 @@
                     <td class="col-2"><?= $landlord->address;?></td>
                     <td class="col-3"><?= !empty($landlordProp[$landlord->id]) ? $landlordProp[$landlord->id] : ''; ?></td>
                     <td class="col-4"><?= $landlord->created_at ? date("d.m.Y", strtotime($landlord->created_at)) : ' - '?></td>
-                    <td class="col-4 relative">
+                    <td class="col-5 relative">
                         <?=componet('delete-modal-form', [
                             'entityId' => $landlord->id,
                             'entityName' => 'landlord',
