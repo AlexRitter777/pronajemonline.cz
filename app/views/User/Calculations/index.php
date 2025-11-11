@@ -107,7 +107,7 @@
                     <td class="col-7 relative">
                         <?=componet('delete-modal-form', [
                             'entityId' => $calculation->id,
-                            'entityName' => 'calculation',
+                            'entityName' => $calcType,
                             'token' => $token
                         ]);?>
                     </td>

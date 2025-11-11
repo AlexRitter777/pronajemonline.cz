@@ -12,6 +12,7 @@ use RedBeanPHP\R;
 
 class CalculationsController extends AppController {
 
+
     public function __construct($route) {
         parent::__construct($route);
 
@@ -220,66 +221,6 @@ class CalculationsController extends AppController {
 
     }
 
-    public function ajaxdeleteAction(){
-
-        if (!is_user_logged_in()) {
-            redirect('/user/login');
-        }
-        $userID = $_SESSION['user_id'];
-
-        if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
-            if (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' && $_SERVER['REQUEST_METHOD'] === 'POST'){
-
-                if(!empty($_POST['recordId']) && !empty($_POST['table'])) {
-                    $recordId = $_POST['recordId'];
-                    $table = $_POST['table'];
-
-                    $calculation = R::findOne($table, 'id=? AND user_id=?', [$recordId, $userID]);
-                    if ($calculation) {
-                        R::trash($calculation);
-                        json_encode(true);
-                        die();
-                    }
-
-
-
-                }
-                json_encode(false);
-                die();
-            }
-
-            redirect('/user/calculations');
-
-        }
-
-        redirect('/user/calculations');
-       /* $calcType = 'servicescalc';
-
-        if(isset($_GET['calc_type'])){
-            if(array_key_exists($_GET['calc_type'], Services::$calculationList)) {
-                $calcType = $_GET['calc_type'];
-            }
-        }
-
-        if (isset($_GET['calculation_id'])) {
-            $calculationID = $_GET['calculation_id'];
-            $calculation = R::findOne($calcType, 'id=? AND user_id=?', [$calculationID, $userID]);
-            if ($calculation) {
-
-                R::trash($calculation);
-                redirect("/user/calculations?calc_type={$calcType}");
-
-            } else {
-                $_SESSION['account_error'] = 'Nepodařilo se najít vyúčtování!';
-                redirect('/user/error');
-            }
-        }else{
-
-            redirect("/user/calculations?calc_type{$calcType}");
-
-        }*/
-
-    }
 
     public function newAction()
     {
@@ -287,6 +228,47 @@ class CalculationsController extends AppController {
         $this->layout = 'account';
 
     }
+
+
+
+    public function destroyAction(Account $account){
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
+            redirect('/user/calculations');
+        }
+
+        if (empty($_POST['token']) || !CSRF::checkCsrfToken($_POST['token'])) {
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
+            redirect('/user/calculations');
+        }
+
+
+        if(empty($_POST['calculation'])) {
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
+            redirect('/user/calculations');
+        }
+
+        $userId = $_SESSION['user_id'];
+
+        $calculationID = $_POST['calculation'];
+
+        $recordDeleted = $account->deleteOneRecordbyIdAndUserId($calculationID, $userId);
+
+        if($recordDeleted){
+            flash('success', 'Pronajímatel byl úspěšně smazán.', 'success');
+            redirect('/user/landlords');
+        } else {
+            flash('error', 'Nepodařilo se najít pronajímatele!', 'error');
+            redirect();
+        }
+
+    }
+
+
+
+
+
 
     /*
      * Vyúčtování služeb (services calculation). Formulář.
