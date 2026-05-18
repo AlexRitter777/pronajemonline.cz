@@ -12,7 +12,6 @@ class UserController extends AppController
 {
 
 
-
     public function indexAction(){
         if(is_user_logged_in()){
             redirect('/user/account');

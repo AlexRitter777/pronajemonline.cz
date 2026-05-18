@@ -2,6 +2,8 @@
 
 namespace pronajem;
 
+use DI\Container;
+
 /**
  * The Router class is responsible for routing HTTP requests to the corresponding controller actions.
  *
@@ -11,17 +13,22 @@ namespace pronajem;
  * allowing for flexible and powerful URL matching. The Router facilitates the organization of the application's
  * flow and simplifies the mapping between URLs and the application's logic by utilizing controllers.
  */
-class Router {
+final class Router {
+
+    private Container $container;
+    public function __construct(Container $container){
+        $this->container = $container;
+    }
 
     /**
      * @var array $routes Contains all registered routes with their patterns and associated arrays of parameters.
      */
-    protected static $routes = [];
+    protected array $routes = [];
 
     /**
      * @var array $route The current route that matched the request URL, containing controller, action, and any additional parameters.
      */
-    protected static $route = [];
+    protected array $route = [];
 
 
     /**
@@ -34,8 +41,8 @@ class Router {
      * @param string $regexp The URL pattern to match against the request URL.
      * @param array $route The associated parameters for the route, including controller, action, and prefix.
      */
-    public static function add($regexp, $route = []) {
-        self::$routes[$regexp] = $route;
+    public function add($regexp, $route = []) {
+       $this->routes[$regexp] = $route;
     }
 
 
@@ -47,7 +54,7 @@ class Router {
      *
      * @return array An associative array of all registered routes and their parameters.
      */
-    public static function getRoutes (){
+    public function getRoutes (){
         return self::$routes;
     }
 
@@ -59,7 +66,7 @@ class Router {
      *
      * @return array An associative array containing the parameters of the current route.
      */
-    public static function getRoute(){
+    public function getRoute(){
         return self::$route;
     }
 
@@ -80,26 +87,27 @@ class Router {
      * @param string $url The URL path to dispatch.
      * @throws \Exception If no matching route is found or the controller/action cannot be invoked.
      */
-    public static function dispatch($url){
-        // Remove the query string from the URL for proper matching
-        $url = self::removeQueryString($url);
 
-        if (self::matchRoute($url)) {
+    public function dispatch($url){
+        // Remove the query string from the URL for proper matching
+        $url = $this->removeQueryString($url);
+
+        if ($this->matchRoute($url)) {
             // Construct the fully qualified controller class name with optional prefix
-            $controller = 'app\controllers\\' . self::$route['prefix'] . self::$route['controller'] . 'Controller';
+            $controller = 'app\controllers\\' . $this->route['prefix'] . $this->route['controller'] . 'Controller';
 
             // Check if the controller class exists
             if (class_exists($controller)){
                 // Get DI Container instance
-                $container = App::$app->getProperty('container');
+                $container = $this->container;
 
                 //Create Controller objact
                 $controllerObject = $container->make($controller, [
-                    'route' => self::$route,
+                    'route' => $this->route,
                 ]);
 
                 // Construct the action method name from the route
-                $action = self::lowerCamelCase(self::$route['action']) . 'Action';
+                $action = $this->lowerCamelCase($this->route['action']) . 'Action';
 
                 // Check if the action method exists in the controller
                 if (method_exists($controllerObject, $action)){
@@ -137,9 +145,9 @@ class Router {
     * @param string $url The URL path to match against registered routes.
     * @return bool Returns true if a matching route is found and set as the current route, otherwise false.
     */
-    public static function matchRoute($url)
+    public function matchRoute($url)
     {
-        foreach (self::$routes as $pattern => $route) {
+        foreach ($this->routes as $pattern => $route) {
             if (preg_match("#{$pattern}#", $url ?? '', $matches)) {
                 foreach ($matches as $k => $v) {
                     if (is_string($k)) {
@@ -162,7 +170,7 @@ class Router {
                 // Convert controller and action names to the appropriate naming conventions
                 $route['controller'] = self::upperCamelCase($route['controller']);
                 $route['action'] = self::lowerCamelCase($route['action']);
-                self::$route = $route;
+                $this->route = $route;
                 return true;
             }
         }
@@ -180,7 +188,7 @@ class Router {
      * @param string $name The string to be converted.
      * @return string The converted string in UpperCamelCase.
      */
-    protected static function upperCamelCase($name){
+    protected function upperCamelCase($name){
         $name = ucwords(str_replace('-', ' ', $name));
         return str_replace(' ', '', $name);
 
@@ -196,7 +204,7 @@ class Router {
      * @param string $name The string to be converted.
      * @return string The converted string in camelCase.
      */
-    protected static function lowerCamelCase($name){
+    protected function lowerCamelCase($name){
         return lcfirst(self::upperCamelCase($name));
     }
 
@@ -219,7 +227,7 @@ class Router {
      *                if the initial segment of the URL includes '=', suggesting it is a query
      *                parameter rather than a part of the path.
      */
-    protected static function removeQueryString($url){
+    protected function removeQueryString($url){
         if($url){
             // Split the URL on the first occurrence of '&' which was originally '?' in the URL
             $params = explode('&', $url, 2);

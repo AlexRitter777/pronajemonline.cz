@@ -3,6 +3,7 @@
 namespace pronajem\base;
 
 use pronajem\App;
+use pronajem\Registry;
 
 /**
  * Abstract base controller class that orchestrates the application's response to user input,
@@ -58,7 +59,6 @@ abstract class Controller
      * If null or not set, a default layout may be used. This allows for flexible page layouts across different parts of the application.
      */
     public $layout;
-
 
     /**
      * Constructs the controller based on the provided route information.

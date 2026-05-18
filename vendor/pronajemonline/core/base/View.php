@@ -1,6 +1,7 @@
 <?php
 
 namespace pronajem\base;
+use DI\Attribute\Inject;
 use pronajem\App;
 
 
@@ -105,6 +106,7 @@ class View
      * @param array $data Data to be made available to the view file.
      * @throws \Exception If the view or include files cannot be found, or if the specified layout is missing.
      */
+
     public function render($data) {
         
             if(is_array($data)) extract($data);
