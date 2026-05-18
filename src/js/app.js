@@ -3,7 +3,7 @@ import sidebar from "./sidebar";
 import "./calculations.js";
 import "./advanced_form.js";
 import "./form_validation.js";
-import "./remove_entity_confirmation";
+import "./remove_entity_confirmation.js";
 
 window.Alpine = Alpine;
 

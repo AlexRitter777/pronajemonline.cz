@@ -431,7 +431,6 @@ class Validator {
 
 
     ajaxValidation(name, form){
-
         this['create' + name + 'Request']();
 
         //console.log(this.formData);

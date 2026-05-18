@@ -221,7 +221,6 @@ class UserController extends AppController
 
         $this->setMeta('Přihlášení uživatele');
 
-        $this->layout = 'pronajemform';
 
     }
 
@@ -289,7 +288,6 @@ class UserController extends AppController
         if (is_user_logged_in()){
             redirect('/user/account');
         }
-
         if($_POST && !empty($_POST['userEmail'] && !empty($_POST['userPassword']))) {
             $userEmail = $_POST['userEmail'];
             $userPassword = $_POST['userPassword'];

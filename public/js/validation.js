@@ -1,6 +1,7 @@
 $(document).ready(function (){
 
-    $(".calculation-form").on('submit', function(e) {
+    // $(".calculation-form").on('submit', function(e) {
+        $("form").on('submit', function(e) {
 
         e.preventDefault();
 
