@@ -367,16 +367,16 @@ $(document).ready(function (){
 
 
 /*-------------------------Select2 list - calculations types on page My Calculations----------------------*/
-$(document).ready(function() {
-    if($('.select-calctype').length)
-    {
-        $('.select-calctype').select2({
-            placeholder: "Vyberte druh vyúčtování",
-            minimumResultsForSearch: -1,
-            //sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
-        });
-    }
-})
+// $(document).ready(function() {
+//     if($('.select-calctype').length)
+//     {
+//         $('.select-calctype').select2({
+//             placeholder: "Vyberte druh vyúčtování",
+//             minimumResultsForSearch: -1,
+//             //sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
+//         });
+//     }
+// })
 // load options for select2 calculations types list
 // $(window).on('load', function() {
 //     //console.log($('#calc-type-list').val()); //debugging

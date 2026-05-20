@@ -206,11 +206,11 @@ class ServicesController extends AppController
 
     }
 
-    public function calculationlistAction(){
-        echo json_encode(Services::$calculationList);
-        die();
-
-    }
+//    public function calculationlistAction(){
+//        echo json_encode(Services::$calculationList);
+//        die();
+//
+//    }
 
 
 }

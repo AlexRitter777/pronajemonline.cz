@@ -1,3 +1,4 @@
+
 /*-------------------------------Item modal window delete confirmation------------------------*/
 
 $(document).ready(function (){

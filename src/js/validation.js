@@ -1,4 +1,5 @@
 import {Validator} from "./Classes/Validator.js";
+import $ from 'jquery';
 
 $(document).ready(function (){
 

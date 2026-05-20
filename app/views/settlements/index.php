@@ -5,10 +5,14 @@
 
 <div class="table-container">
 
-    <div x-data class="calculation-select-type">
+    <div class="calculation-select-type">
         <form method="get" class="calc_type_form" action="calculations">
 
             <select
+                    x-data="select2({
+                        placeholder: 'Vyberte druh vyúčtování',
+                        minimumResultsForSearch: -1
+                    })"
                     name="calc_type"
                     class="select-calctype"
                     id="calc-type-list"
