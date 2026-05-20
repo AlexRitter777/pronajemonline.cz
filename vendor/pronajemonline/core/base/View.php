@@ -114,8 +114,20 @@ class View
             $includesConfig = App::$app->getProperty('includes');
             $includes = $includesConfig[$this->layout] ?? $includesConfig['default'] ?? [];
 
-            $viewFile = APP . "/views/{$this->prefix}{$this->controller}/{$this->view}.php";
+//            $viewFile = APP . "/views/{$this->prefix}{$this->controller}/{$this->view}.php";
 
+            $viewFile = '';
+            
+            if (str_contains($this->view, '/')) {
+    
+                $viewFile = APP . "/views/{$this->view}.php";
+    
+            } else {
+    
+                $viewFile = APP . "/views/{$this->prefix}{$this->controller}/{$this->view}.php";
+            }
+                
+            
             if(is_file($viewFile)){
                 ob_start();
                 require_once $viewFile;

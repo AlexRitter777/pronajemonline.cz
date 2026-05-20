@@ -3,7 +3,7 @@
 namespace app\controllers\User;
 
 use app\controllers\AppController;
-use app\db_models\Easyservicescalc;
+use app\Models\Easyservicescalc;
 use app\services\Calculations\DeleteCalculationService;
 use DI\Attribute\Inject;
 
@@ -22,7 +22,7 @@ class EasyservicescalcsController extends AppController
 
         if($recordDeleted){
             flash('success', 'Vyúčtování bylo úspěšně smazáno.', 'success');
-            redirect('/user/calculations');
+            redirect('/calculations?calc_type=easyservicescalc');
         } else {
             flash('error', 'Nepodařilo se najít vyúčtování!', 'error');
             redirect();

@@ -55,7 +55,7 @@ final class Router {
      * @return array An associative array of all registered routes and their parameters.
      */
     public function getRoutes (){
-        return self::$routes;
+        return $this->routes;
     }
 
     /**
@@ -67,7 +67,7 @@ final class Router {
      * @return array An associative array containing the parameters of the current route.
      */
     public function getRoute(){
-        return self::$route;
+        return $this->route;
     }
 
 
@@ -167,7 +167,7 @@ final class Router {
                     $route['prefix'] .= '\\';
                 }
 
-                // Convert controller and action names to the appropriate naming conventions
+               // Convert controller and action names to the appropriate naming conventions
                 $route['controller'] = self::upperCamelCase($route['controller']);
                 $route['action'] = self::lowerCamelCase($route['action']);
                 $this->route = $route;

@@ -3,8 +3,8 @@
 namespace app\controllers\User;
 
 use app\controllers\AppController;
-use app\db_models\Admin;
-use app\models\Account;
+use app\Models\Admin;
+use app\Support\Account;
 use DI\Attribute\Inject;
 use pronajem\libs\PaginationSetParams;
 use RedBeanPHP\R;

@@ -2,24 +2,13 @@
 
 namespace app\controllers;
 
-use app\models\Account;
-use app\models\User;
+use app\Models\User;
+use app\Support\Account;
 use Exception;
-use Mpdf\Tag\U;
 use RedBeanPHP\R;
 
 class UserController extends AppController
 {
-
-
-    public function indexAction(){
-        if(is_user_logged_in()){
-            redirect('/user/account');
-        }
-
-        redirect('/user/login');
-
-    }
 
 
 

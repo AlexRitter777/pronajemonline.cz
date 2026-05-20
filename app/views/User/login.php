@@ -9,7 +9,7 @@
         <div class="container login-form">
 
             <div class="login-area">
-                <form method="POST" class="" name="authorization">
+                <form method="POST" class="login-form" name="authorization">
                     <?php //action="user/authorization"?>
                     <div class="name-container">
                         <label for="userEmail" class="label_text">Email*</label>
@@ -40,7 +40,7 @@
 
 
                     <div class="submit-container">
-                        <input type="submit" class="submit_button" id="contact-submit" value="Přihlásit se">
+                        <input type="submit" class="submit_button" id="login-submit" value="Přihlásit se">
                     </div>
 
                 </form>

@@ -2,9 +2,9 @@
 
 namespace app\actions\Tenant;
 
-use app\db_models\Tenant;
+use app\Models\Tenant;
 use app\DTO\TenantData;
-use app\exceptions\PersonNotFoundException;
+use app\Exceptions\PersonNotFoundException;
 use app\services\Person\UpdatePersonService;
 
 class UpdateTenantAction

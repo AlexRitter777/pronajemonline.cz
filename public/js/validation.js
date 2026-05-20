@@ -1,7 +1,9 @@
+
+
+
 $(document).ready(function (){
 
-    // $(".calculation-form").on('submit', function(e) {
-        $("form").on('submit', function(e) {
+    $('.calculation-form, .login-form').on('submit', function(e) {
 
         e.preventDefault();
 
@@ -13,6 +15,7 @@ $(document).ready(function (){
 
         var form = this;
         $form = $(form);
+
 
         grecaptcha.ready(() => {
 

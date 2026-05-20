@@ -17,7 +17,6 @@
             x-transition.opacity.duration.200ms
             class="item-delete-button-buttons-wrapper"
     >
-
         <div class="item-delete-button-small-buttons-wrapper">
             <form action="user/<?=$entityName;?>s/destroy" method="post">
                 <input type="hidden" name="token" value="<?=$token;?>">

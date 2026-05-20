@@ -2,9 +2,9 @@
 
 namespace app\controllers;
 
-use app\models\Validation;
-use app\models\Validationnew;
-use app\models\ValidationRules;
+use app\Support\Validation;
+use app\Support\Validationnew;
+use app\Support\ValidationRules;
 use mysql_xdevapi\Exception;
 use mysql_xdevapi\Result;
 

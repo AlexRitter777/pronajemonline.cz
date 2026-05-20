@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\models\SendMessage;
+use app\Support\SendMessage;
 use pronajem\app;
 use pronajem\libs\EmailSender;
 

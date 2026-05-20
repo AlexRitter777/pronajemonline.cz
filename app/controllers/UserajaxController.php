@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\models\User;
+use app\Models\User;
 
 
 class UserajaxController extends AppController

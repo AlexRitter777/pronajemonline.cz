@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
-use app\models\ReCaptcha;
-use app\models\validation\Validation;
+use app\Support\ReCaptcha;
+use app\Support\validation\Validation;
 
 class ValidatorController extends AppController {
 

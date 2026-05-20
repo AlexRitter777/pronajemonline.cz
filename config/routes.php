@@ -22,14 +22,63 @@ $router->add('^admin/admins$', ['controller' => 'Admins', 'action' => 'index', '
 //User routes
 // These routes direct requests to controllers intended for user interactions.
 // Each route defines a specific path, controller, action, and uses the 'user' prefix.
-$router->add('^user/tenants$', ['controller' => 'Tenants', 'action' => 'index', 'prefix' => 'User']);
-$router->add('^user/landlords$', ['controller' => 'Landlords', 'action' => 'index', 'prefix' => 'User']);
-$router->add('^user/properties$', ['controller' => 'Properties', 'action' => 'index', 'prefix' => 'User']);
-$router->add('^user/calculations$', ['controller' => 'Calculations', 'action' => 'index', 'prefix' => 'User']);
-$router->add('^user/admins$', ['controller' => 'Admins', 'action' => 'index', 'prefix' => 'User']);
-$router->add('^user/elsuppliers$', ['controller' => 'Elsuppliers', 'action' => 'index', 'prefix' => 'User']);
-$router->add('^user/settings$', ['controller' => 'Settings', 'action' => 'index', 'prefix' => 'User']);
-$router->add('^user/error$', ['controller' => 'Error', 'action' => 'index', 'prefix' => 'User']);
+$router->add('^dashboard$', ['controller' => 'User', 'action' => 'dashboard']);
+$router->add('^tenants$', ['controller' => 'Tenants', 'action' => 'index', 'prefix' => 'User']);
+$router->add('^landlords$', ['controller' => 'Landlords', 'action' => 'index', 'prefix' => 'User']);
+$router->add('^properties$', ['controller' => 'Properties', 'action' => 'index', 'prefix' => 'User']);
+$router->add('^calculations$', ['controller' => 'Calculations', 'action' => 'index', 'prefix' => 'User']);
+$router->add('^admins$', ['controller' => 'Admins', 'action' => 'index', 'prefix' => 'User']);
+$router->add('^elsuppliers$', ['controller' => 'Elsuppliers', 'action' => 'index', 'prefix' => 'User']);
+$router->add('^settings$', ['controller' => 'Settings', 'action' => 'index', 'prefix' => 'User']);
+$router->add('^error$', ['controller' => 'Error', 'action' => 'index', 'prefix' => 'User']);
+
+
+//New routes
+$router->add('^settlements$', [
+    'controller' => 'Settlement',
+    'action' => 'index',
+    'view' => 'settlements/index',
+]);
+
+$router->add('^services-settlements/create$', [
+    'controller' => 'ServicesSettlement',
+    'action' => 'create',
+    'view' => 'services-settlements/create',
+]);
+
+
+
+$router->add('^calculations/servicesform$', ['controller' => 'Servicesform', 'action' => 'create', 'prefix' => 'User']);
+$router->add('^calculations/servicesform/edit$', ['controller' => 'Servicesform', 'action' => 'edit', 'prefix' => 'User']);
+
+
+//Ajax on calculation form loading
+$router->add('^services/rent-finish-reasons$', ['controller' => 'Services', 'action' => 'rentfinishreasons']);
+$router->add('^services/meters$', ['controller' => 'Services', 'action' => 'meters']);
+$router->add('^services/services$', ['controller' => 'Services', 'action' => 'services']);
+$router->add('^services/origins$', ['controller' => 'Services', 'action' => 'origins']);
+$router->add('^services/origins-electro$', ['controller' => 'Services', 'action' => 'originselectro']);
+$router->add('^services/deposit-items$', ['controller' => 'Services', 'action' => 'deposititems']);
+$router->add('^services/calculation-type$', ['controller' => 'Services', 'action' => 'calculationtype']);
+$router->add('^services/calculation-year$', ['controller' => 'Services', 'action' => 'calculationyear']);
+$router->add('^services/calculation-list$', ['controller' => 'Services', 'action' => 'calculationlist']);
+$router->add('^services/simply-services$', ['controller' => 'Services', 'action' => 'simplyservices']);
+$router->add('^services/simply-meters$', ['controller' => 'Services', 'action' => 'simplymeters']);
+
+
+//Ajax validators
+$router->add('^validator/services-validation$', ['controller' => 'Validator', 'action' => 'servicesvalidation']);
+
+
+
+//$router->add('^user/tenants$', ['controller' => 'Tenants', 'action' => 'index', 'prefix' => 'User']);
+//$router->add('^user/landlords$', ['controller' => 'Landlords', 'action' => 'index', 'prefix' => 'User']);
+//$router->add('^user/properties$', ['controller' => 'Properties', 'action' => 'index', 'prefix' => 'User']);
+//$router->add('^user/calculations$', ['controller' => 'Calculations', 'action' => 'index', 'prefix' => 'User']);
+//$router->add('^user/admins$', ['controller' => 'Admins', 'action' => 'index', 'prefix' => 'User']);
+//$router->add('^user/elsuppliers$', ['controller' => 'Elsuppliers', 'action' => 'index', 'prefix' => 'User']);
+//$router->add('^user/settings$', ['controller' => 'Settings', 'action' => 'index', 'prefix' => 'User']);
+//$router->add('^user/error$', ['controller' => 'Error', 'action' => 'index', 'prefix' => 'User']);
 
 
 // Guest routes
@@ -41,7 +90,7 @@ $router->add('^blog/category/([\w\-]+)/?', ['controller' => 'Blog', 'action' => 
 // Public Blog route
 $router->add('^blog/([\w\-]+)/?', ['controller' => 'Blog', 'action' => 'single']);
 // Universal guest route
-$router->add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$'); // www.example.com/controller/action
+//$router->add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$'); // www.example.com/controller/action
 
 
 

@@ -3,8 +3,8 @@
 namespace app\controllers\admin;
 
 use app\controllers\AppController;
-use app\db_models\Upload;
-use app\models\validation\ValidationWrapper;
+use app\Models\Upload;
+use app\Support\validation\ValidationWrapper;
 use DI\Attribute\Inject;
 use Exception;
 use pronajem\libs\CSRF;

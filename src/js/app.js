@@ -4,6 +4,7 @@ import "./calculations.js";
 import "./advanced_form.js";
 import "./form_validation.js";
 import "./remove_entity_confirmation.js";
+import "./validation.js"
 
 window.Alpine = Alpine;
 

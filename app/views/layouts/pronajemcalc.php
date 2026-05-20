@@ -34,7 +34,7 @@
             <a class="button-bar-link calc-list-btn" href="/user/calculations?calc_type=<?= $result['calcType'] ;?>calc">Seznam vyúčtování</a>
         <?php endif; ?>
         <a class="button-bar-link" href="/user/calculations/create-pdf?calculation_type=<?= $result['calcType'] ;?>&id=<?= $result['id'] ;?>">PDF</a>
-        <a class="button-bar-link" href="/user/calculations/<?= $result['calcType']; ?>-form-edit?id=<?= $result['id'] ;?>">Upravit</a>
+        <a class="button-bar-link" href="/calculations/<?= $result['calcType']; ?>form/edit?id=<?= $result['id'] ;?>">Upravit</a>
         <a class="button-bar-link" href="#" id="print-button">Tisk</a>
         <?php if(is_user_logged_in()): ?>
             <?php if(!empty($result['calculationId'])): ?>
@@ -56,8 +56,9 @@
 
 
 <?= $footer ?>
+<!--<script type="module" src="--><?php //= vite_asset('src/js/app.js')?><!--"></script>-->
 
-<script src="js/calculations.js" type="module"></script>
+<!--<script src="js/calculations.js" type="module"></script>-->
 
 </body>
 </html>

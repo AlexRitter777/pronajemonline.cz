@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\models\Services;
+use app\Support\Services;
 use JetBrains\PhpStorm\NoReturn;
 use pronajem\base\Controller;
 

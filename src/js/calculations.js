@@ -378,42 +378,42 @@ $(document).ready(function() {
     }
 })
 // load options for select2 calculations types list
-$(window).on('load', function() {
-    //console.log($('#calc-type-list').val()); //debugging
-    $.ajax({
-        type: "GET",
-        url: "/services/calculation-list",
-        dataType: "json",
-        encode: true,
-    })
-        .done(function (data) {
-            //convert JSON to String
-            let data_string = JSON.stringify(data);
-            //convert String to Object
-            let obj = JSON.parse(data_string);
-            //console.log(obj);
-
-            //list object keys and values
-            for (const [key, value] of Object.entries(obj)) {
-                //console.log(`${key}: ${value}`);
-
-                if (key != $('#calc-type-list').val()) {
-                    $('#calc-type-list').append(
-                        '<option value="' + key + '">' + value + '</option>');
-                }
-            }
-
-        })
-
-})
+// $(window).on('load', function() {
+//     //console.log($('#calc-type-list').val()); //debugging
+//     $.ajax({
+//         type: "GET",
+//         url: "/services/calculation-list",
+//         dataType: "json",
+//         encode: true,
+//     })
+//         .done(function (data) {
+//             //convert JSON to String
+//             let data_string = JSON.stringify(data);
+//             //convert String to Object
+//             let obj = JSON.parse(data_string);
+//             //console.log(obj);
+//
+//             //list object keys and values
+//             for (const [key, value] of Object.entries(obj)) {
+//                 //console.log(`${key}: ${value}`);
+//
+//                 if (key != $('#calc-type-list').val()) {
+//                     $('#calc-type-list').append(
+//                         '<option value="' + key + '">' + value + '</option>');
+//                 }
+//             }
+//
+//         })
+//
+// })
 //submit form on changing calculation type
-$(document).ready(function() {
-
-    $(".select-calctype").on('change', function (){
-        $('.calc_type_form').submit();
-    })
-
-})
+// $(document).ready(function() {
+//
+//     $(".select-calctype").on('change', function (){
+//         $('.calc_type_form').submit();
+//     })
+//
+// })
 
 //hide and show left sidebar
 $(document).ready(function() {

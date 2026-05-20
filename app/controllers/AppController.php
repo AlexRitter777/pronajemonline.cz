@@ -2,10 +2,11 @@
 
 namespace app\controllers;
 
-use app\models\Account;
-use app\models\Applications;
-use app\models\AppModel;
+use app\Support\Account;
+use app\Support\Applications;
+use app\Support\AppModel;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use pronajem\base\Controller;
 use pronajem\libs\CSRF;
 use pronajem\libs\PdfCreator;
@@ -16,11 +17,16 @@ class AppController extends Controller {
     {
         parent::__construct($route);
 
-        if (preg_match('#Edit$#', $route['action'])){
-           $this->view = str_replace('edit', '', strtolower($route['action']));
-       } else {
-           $this->view = strtolower($route['action']);
-       }
+        if(!is_user_logged_in()){
+            throw new \Exception('Stránka není nalezená', 404);
+        }
+
+
+//        if (preg_match('#Edit$#', $route['action'])){
+//           $this->view = str_replace('edit', '', strtolower($route['action']));
+//       } else {
+//           $this->view = strtolower($route['action']);
+//       }
 
         CSRF::cleanup();
 

@@ -1,6 +1,6 @@
 <?php
 
-use app\models\validation\ValidationWrapper;
+use app\Support\validation\ValidationWrapper;
 use PHPUnit\Framework\TestCase;
 
 /**

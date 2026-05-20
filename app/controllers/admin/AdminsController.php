@@ -3,9 +3,9 @@
 namespace app\controllers\admin;
 
 use app\controllers\AppController;
-use app\db_models\Admin;
-use app\db_models\Property;
-use app\models\User;
+use app\Models\Admin;
+use app\Models\Property;
+use app\Models\User;
 use DI\Attribute\Inject;
 use pronajem\libs\PaginationSetParams;
 

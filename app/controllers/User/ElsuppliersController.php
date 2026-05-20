@@ -3,7 +3,7 @@
 namespace app\controllers\User;
 
 use app\controllers\AppController;
-use app\models\Account;
+use app\Support\Account;
 use RedBeanPHP\R;
 use RedBeanPHP\RedException\SQL;
 

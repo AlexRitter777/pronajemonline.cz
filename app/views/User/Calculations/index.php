@@ -6,7 +6,7 @@
 <div class="table-container">
 
     <div class="calculation-select-type">
-        <form method="get" class="calc_type_form" action="/user/calculations">
+        <form method="get" class="calc_type_form" action="calculations">
             <select name="calc_type" class="select-calctype" id="calc-type-list">
                 <option value="<?= $calcType; ?>"><?= $calcTypeValue; ?></option>
             </select>
@@ -123,7 +123,7 @@
         </div>
 
         <div class="more-calc-btn">
-            <a class="new-entity-button" href="/user/calculations/<?= $formType;?>">Nové vyúčtování</a>
+            <a class="new-entity-button" href="calculations/<?= $formType;?>">Nové vyúčtování</a>
         </div>
 
 
@@ -132,14 +132,14 @@
     <?php else:?>
         <p class="empty-data">Nemáte uložené žádné vyúčtování!</p>
         <div class="more-calc-btn">
-            <a class="new-entity-button" href="/user/calculations/<?= $formType;?>">Nové vyúčtování</a>
+            <a class="new-entity-button" href="calculations/<?= $formType;?>">Nové vyúčtování</a>
         </div>
     <?php endif;?>
 
     <?php //debug($servicesCalculations); ?>
 
     <div id="filter-list" style="display: none">
-        <form id="filter_calc_form" method="get" action="user/calculations">
+        <form id="filter_calc_form" method="get" action="calculations">
             <div id="filter-list-content">
 
             </div>

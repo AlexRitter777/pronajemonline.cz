@@ -4,10 +4,10 @@ namespace app\controllers\User;
 
 use app\actions\Landlord\CreateLandlordAction;
 use app\controllers\AppController;
-use app\db_models\Landlord;
-use app\exceptions\RecordNotCreatedException;
-use app\factories\LandlordDataFactory;
-use app\models\Account;
+use app\Models\Landlord;
+use app\Exceptions\RecordNotCreatedException;
+use app\Factories\LandlordDataFactory;
+use app\Support\Account;
 use app\validation\Core\ErrorBag;
 use app\validation\Validators\LandlordValidator;
 use DI\Attribute\Inject;

@@ -11,7 +11,7 @@ define("SMTP", 0);
 require_once ROOT . '/vendor/autoload.php';
 
 //use classes
-use app\models\Cron;
+use app\Support\Cron;
 use pronajem\ErrorHandler;
 use RedBeanPHP\R;
 

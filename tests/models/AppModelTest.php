@@ -1,6 +1,6 @@
 <?php
 
-use app\models\AppModel;
+use app\Support\AppModel;
 use PHPUnit\Framework\TestCase;
 
 /**

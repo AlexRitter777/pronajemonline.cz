@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use app\controllers\AppController;
-use app\db_models\Category;
-use app\db_models\Post;
+use app\Models\Category;
+use app\Models\Post;
 use DI\Attribute\Inject;
 use pronajem\libs\PaginationSetParams;
 

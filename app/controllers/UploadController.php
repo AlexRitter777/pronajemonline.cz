@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\db_models\Upload;
+use app\Models\Upload;
 use DI\Attribute\Inject;
 use pronajem\libs\PaginationSetParams;
 

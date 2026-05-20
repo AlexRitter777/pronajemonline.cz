@@ -27,30 +27,30 @@
                 x-cloak
             >
                 <ul>
-                    <li><a href="user/calculations/new"><i class="far fa-file-alt"></i> Vyúčtování</a></li>
-                    <li><a href="user/properties/add"><i class="far fa-building"></i> Nemovitost</a></li>
-                    <li><a href="user/tenants/add"><i class="far fa-user"></i> Nájemník</a></li>
-                    <li><a href="user/landlords/create"><i class="fa-regular fa-circle-user"></i> Pronájímatel</a></li>
-                    <li><a href="user/admins/add"><i class="fa-regular fa-handshake"></i> Správce</a></li>
-                    <li><a href="user/elsuppliers/add"><i class="fa-regular fa-lightbulb"></i> Dodavatel elektřiny</a></li>
+                    <li><a href="calculations/new"><i class="far fa-file-alt"></i> Vyúčtování</a></li>
+                    <li><a href="properties/add"><i class="far fa-building"></i> Nemovitost</a></li>
+                    <li><a href="tenants/add"><i class="far fa-user"></i> Nájemník</a></li>
+                    <li><a href="landlords/create"><i class="fa-regular fa-circle-user"></i> Pronájímatel</a></li>
+                    <li><a href="admins/add"><i class="fa-regular fa-handshake"></i> Správce</a></li>
+                    <li><a href="elsuppliers/add"><i class="fa-regular fa-lightbulb"></i> Dodavatel elektřiny</a></li>
                 </ul>
             </div>
         </li>
 
 
-        <li><a href="user/dashboard" class="user-item-title"><i class="fa-regular fa-house"></i> Přehled</a></li>
-        <li><a href="user/calculations" class="user-item-title"><i class="far fa-file-alt"></i> Vyúčtování</a></li>
-        <li><a href="user/landlords" class="user-item-title"><i class="fa-regular fa-circle-user"></i> Pronajímatele</a></li>
-        <li><a href="user/tenants" class="user-item-title"><i class="far fa-user"></i> Nájemníci</a></li>
-        <li><a href="user/properties" class="user-item-title"><i class="far fa-building"></i> Nemovitosti</a></li>
-        <li><a href="user/admins" class="user-item-title"><i class="fa-regular fa-handshake"></i> Správci</a>
-        <li><a href="user/elsuppliers" class="user-item-title"><i class="fa-regular fa-lightbulb"></i> Dodavatelé elektřiny</a></li>
-        <li><a href="user/settings" class="user-item-title"><i class="fa-solid fa-gear"></i> Nastavení</a></li>
-        <li><a href="user/settings" class="user-item-title"><i class="fa-solid fa-arrow-right-from-bracket"></i> Odhlásit se</a></li>
+        <li><a href="dashboard" class="user-item-title"><i class="fa-regular fa-house"></i> Přehled</a></li>
+        <li><a href="calculations" class="user-item-title"><i class="far fa-file-alt"></i> Vyúčtování</a></li>
+        <li><a href="landlords" class="user-item-title"><i class="fa-regular fa-circle-user"></i> Pronajímatele</a></li>
+        <li><a href="tenants" class="user-item-title"><i class="far fa-user"></i> Nájemníci</a></li>
+        <li><a href="properties" class="user-item-title"><i class="far fa-building"></i> Nemovitosti</a></li>
+        <li><a href="admins" class="user-item-title"><i class="fa-regular fa-handshake"></i> Správci</a>
+        <li><a href="elsuppliers" class="user-item-title"><i class="fa-regular fa-lightbulb"></i> Dodavatelé elektřiny</a></li>
+        <li><a href="settings" class="user-item-title"><i class="fa-solid fa-gear"></i> Nastavení</a></li>
+        <li><a href="settings" class="user-item-title"><i class="fa-solid fa-arrow-right-from-bracket"></i> Odhlásit se</a></li>
 
         <li style="border-top: solid 1px #C9EED2; padding-top: 30px; margin-top: 20px"><a href="user/settings" class="user-item-title"><i class="fa-regular fa-file-word"></i> Šablony</a></li>
-        <li><a href="user/settings" class="user-item-title"><i class="fa-solid fa-book"></i> Dokumentace</a></li>
-        <li><a href="user/settings" class="user-item-title"><i class="fa-regular fa-circle-question"></i> Podpora</a></li>
+        <li><a href="settings" class="user-item-title"><i class="fa-solid fa-book"></i> Dokumentace</a></li>
+        <li><a href="settings" class="user-item-title"><i class="fa-regular fa-circle-question"></i> Podpora</a></li>
 
     </ul>
 

@@ -2,9 +2,9 @@
 
 namespace app\controllers;
 
-use app\models\Account;
-use app\models\Applications;
-use app\models\AppModel;
+use app\Support\Account;
+use app\Support\Applications;
+use app\Support\AppModel;
 use Mpdf\Mpdf;
 
 class ApplicationsController extends AppController {

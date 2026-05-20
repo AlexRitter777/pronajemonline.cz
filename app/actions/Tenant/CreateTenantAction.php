@@ -2,7 +2,7 @@
 
 namespace app\actions\Tenant;
 
-use app\db_models\Tenant;
+use app\Models\Tenant;
 use app\DTO\TenantData;
 use app\services\Person\CreatePersonService;
 

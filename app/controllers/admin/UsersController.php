@@ -3,7 +3,7 @@
 namespace app\controllers\admin;
 
 use app\controllers\AppController;
-use app\db_models\Users;
+use app\Models\Users;
 use DI\Attribute\Inject;
 use pronajem\libs\Pagination;
 use pronajem\libs\PaginationSetParams;

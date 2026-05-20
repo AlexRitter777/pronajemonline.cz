@@ -2,8 +2,8 @@
 
 namespace app\actions\Tenant;
 
-use app\db_models\Tenant;
-use app\exceptions\PersonNotFoundException;
+use app\Models\Tenant;
+use app\Exceptions\PersonNotFoundException;
 
 class DestroyTenantAction
 {

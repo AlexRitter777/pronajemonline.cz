@@ -4,8 +4,8 @@ namespace app\controllers\admin;
 
 
 use app\controllers\AppController;
-use app\db_models\Category;
-use app\models\validation\ValidationWrapper;
+use app\Models\Category;
+use app\Support\validation\ValidationWrapper;
 use DI\Attribute\Inject;
 use Exception;
 use pronajem\libs\CSRF;

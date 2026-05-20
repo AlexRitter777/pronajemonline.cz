@@ -2,8 +2,8 @@
 
 namespace models;
 
-use app\db_models\ModelTest;
-use app\db_models\Users;
+use app\Models\ModelTest;
+use app\Models\Users;
 use PHPUnit\Framework\TestCase;
 
 class ModelTestTest extends TestCase

@@ -1,6 +1,6 @@
 <?php
 
-use app\models\validation\Validation;
+use app\Support\validation\Validation;
 use PHPUnit\Framework\TestCase;
 
 class ValidationTest extends TestCase
