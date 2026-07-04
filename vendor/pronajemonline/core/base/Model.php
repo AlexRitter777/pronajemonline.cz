@@ -53,10 +53,84 @@ abstract class Model {
 
     }
 
+    /**
+     * @param int $perPage
+     * @param array<string, mixed> $filters Column => value, exmp, ['property_address' => 'Praha 1', 'tenant_name' => 'Novák']
+     * @param int|null $userId
+     * @param string $orderBy
+     * @return array
+     * @throws \Exception
+     */
+    public function getAllRecordsWithPaginationAndConditions(
+        int $perPage,
+        array $filters = [],
+        ?int $userId = null,
+        string $orderBy = 'ORDER BY created_at DESC'
+    ): array {
+        if (!$this->pagination) {
+            throw new \Exception('Pagination Model is not found', 404);
+        }
+
+        if (!$userId && !is_admin()) {
+            throw new \Exception('Access denied', 403);
+        }
+
+        // Column names validation
+        foreach (array_keys($filters) as $column) {
+            if (!$this->checkIfColumnExists($this->table, $column)) {
+                throw new \Exception("Column {$column} does not exist");
+            }
+        }
+
+        // Build WHERE
+        [$where, $params] = $this->buildWhereClause($filters, $userId);
+
+        // Count total for pagination
+        $total = R::count($this->table, $where, $params);
+
+        $this->pagination->setPaginationParams($perPage, $total);
+        $start = (int) $this->pagination->getStart();
+
+        // FInal SQL
+        $sql = trim("{$where} {$orderBy} LIMIT {$start}, {$perPage}");
+
+        return R::findAll($this->table, $sql, $params);
+    }
+
+    /**
+     * Build WHERE-condition and array of params.
+     *
+     * @param array<string, mixed> $filters
+     * @param int|null $userId
+     * @return array{0: string, 1: array} [where_clause, params]
+     */
+    private function buildWhereClause(array $filters, ?int $userId): array
+    {
+        $conditions = [];
+        $params = [];
+
+        if ($userId) {
+            $conditions[] = 'user_id = ?';
+            $params[] = $userId;
+        }
+
+        foreach ($filters as $column => $value) {
+            $conditions[] = "{$column} = ?";
+            $params[] = $value;
+        }
+
+        $where = !empty($conditions) ? implode(' AND ', $conditions) : '';
+
+        return [$where, $params];
+    }
+
+
+
 
 
     public function getAllRecordsWithPagination(int $perPage, int $userId = null)
     {
+
         if(!$this->pagination) throw new \Exception('Pagination Model is not found', 404);
 
         if($userId){
@@ -71,8 +145,7 @@ abstract class Model {
 
         $start = (int)$this->pagination->getStart();
 
-
-       if($userId) {
+        if($userId) {
            return R::findAll($this->table, "user_id=? ORDER BY created_at DESC LIMIT $start, $perPage", [$userId]);
        }
        elseif(is_admin()) {
@@ -255,6 +328,12 @@ abstract class Model {
         }
         return R::store($bean);
 
+    }
+
+
+    protected function getRecordsByFields(array $conditions): array
+    {
+        // общий persistence helper
     }
 
 

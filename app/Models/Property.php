@@ -3,7 +3,6 @@
 namespace app\Models;
 
 use app\Support\AppModel;
-use pronajem\libs\Pagination;
 use pronajem\libs\PaginationSetParams;
 
 class Property extends AppModel
@@ -16,6 +15,22 @@ class Property extends AppModel
 
         parent::__construct($pagination);
 
+    }
+
+    public function getPropertyList(int $userId = null) : array
+    {
+
+        $properties = $this->getAllRecords($userId);
+
+        if(!$properties) return [];
+
+        $propertyList = [];
+
+        foreach($properties as $property) {
+            $propertyList[$property->id] = $property->address;
+        }
+
+        return $propertyList;
     }
 
 

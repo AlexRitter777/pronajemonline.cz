@@ -114,7 +114,10 @@ final class Router {
                     // Call the action method
                     $controllerObject->$action();
                     //Get the view associated with the action
-                    $controllerObject->getView();
+                    if(isset($this->route['view'])){
+                        $controllerObject->getView();
+                    }
+
                 }else{
                     // The specified action does not exist within the controller
                     throw new \Exception("Method $controller::$action is not found", 404);

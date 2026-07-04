@@ -1,36 +1,54 @@
 <?php
 
-namespace app\controllers\User;
+namespace app\controllers;
 
-use app\controllers\AppController;
+use app\Models\Property;
 use app\Support\Account;
+use DI\Attribute\Inject;
 use Exception;
+use pronajem\libs\CSRF;
+use pronajem\libs\PaginationSetParams;
 use RedBeanPHP\R;
 use RedBeanPHP\RedException\SQL;
 
 class PropertiesController extends AppController {
 
-    public function indexAction(){
+    #[Inject]
+    private PaginationSetParams $pagination;
+
+    #[Inject]
+    private Account $account;
+
+    #[Inject]
+    private Property $property;
+
+    public function __construct($route){
+
+        parent::__construct($route);
 
         if(!is_user_logged_in()){
             redirect('/user/login');
         }
+    }
+
+    public function indexAction(){
+
 
         $userID = $_SESSION['user_id'];
 
         $this->setMeta('Nemovitosti', 'Seznam nemovitostí');
 
-        $this->layout = 'account';
+        $properties = $this->property->getAllRecordsWithPagination(5, $userID);
 
-        $properties = R::findAll('property', 'user_id=?', [$userID]);
+        $tenant = $this->account->getPerson('tenant');
 
-        $accountModel = new Account();
-
-        $tenant = $accountModel->getPerson('tenant');
+        $pagination = $this->pagination;
 
         //debug($tenant); die();
 
-        $this->set(compact('properties', 'tenant'));
+        $token = CSRF::createCsrfToken();
+
+        $this->set(compact('properties', 'tenant', 'pagination', 'token'));
 
     }
 
@@ -203,7 +221,7 @@ class PropertiesController extends AppController {
     }
 
 
-    public function addAction(){
+    public function createAction(){
         if(!is_user_logged_in()){
             redirect('/user/login');
         }

@@ -431,6 +431,7 @@ export class Validator {
 
 
     ajaxValidation(name, form){
+
         this['create' + name + 'Request']();
 
         //console.log(this.formData);
@@ -454,6 +455,7 @@ export class Validator {
 
                     this['validate'+ name + 'Form']();
                     // this.loaderSpinnerProfileOff();
+
 
                 } else {
 
@@ -501,7 +503,7 @@ export class Validator {
                     //user validation
                     {
 
-                        form.attr('action', `/user/${name}`).off('submit').submit();
+                        form.attr('action', `/${name}`).off('submit').submit();
 
                         /*--------------loader-active------------------*/
                         $('#opacity').addClass('opacity');

@@ -1,29 +1,12 @@
 
-<svg style="display: none;">
-    <symbol id="minus" viewBox="0 0 32 32">
-        <!--icon Minus-->
-        <g>
-            <path d="M20,17h-8c-0.5522461,0-1-0.4472656-1-1s0.4477539-1,1-1h8c0.5522461,0,1,0.4472656,1,1S20.5522461,17,20,17z" />
-        </g>
-        <g>
-            <path d="M24.71875,29H7.28125C4.9204102,29,3,27.0791016,3,24.71875V7.28125C3,4.9208984,4.9204102,3,7.28125,3h17.4375    C27.0795898,3,29,4.9208984,29,7.28125v17.4375C29,27.0791016,27.0795898,29,24.71875,29z M7.28125,5    C6.0234375,5,5,6.0234375,5,7.28125v17.4375C5,25.9765625,6.0234375,27,7.28125,27h17.4375    C25.9765625,27,27,25.9765625,27,24.71875V7.28125C27,6.0234375,25.9765625,5,24.71875,5H7.28125z" />
-        </g>
-    </symbol>
-</svg>
-
-
 <div class="user-header">
     <h3>Nemovitosti</h3>
 </div>
 
-<div class="central-bar">
-
-    <button class="burger-sidebar" type="button" id="navToggle">
-        <span class="burger__item">Menu</span>
-    </button>
+<div class="table-container">
 
     <?php if($properties): ?>
-        <table class="property-titles account-index-table user-properties-table" border="0">
+        <table class="account-table" border="0">
             <tr class="row-1">
                 <th class="col-1">Adresa</th>
                 <th class="col-2">Druh</th>
@@ -46,13 +29,23 @@
                     <td class="col-5"><?= !empty($property->rent_payment) ? $property->rent_payment : '-';?></td>
                     <td class="col-6"><?= !empty($property->services_payment) ? $property->services_payment : '-';?></td>
                     <td class="col-7"><?= !empty($property->electro_payment) ? $property->electro_payment : '-';?></td>
-                    <td class="col-8"><span class="item_delete_button" data-del="#del-conf"></span></td>
+                    <td class="col-8">
+                        <?=componet('delete-modal-form', [
+                            'entityId' => $property->id,
+                            'entityName' => 'property',
+                            'token' => $token
+                        ]);?>
+                    </td>
 
                 </tr>
             <?php endforeach;?>
 
         </table>
-
+        <div class="text-center pagination-wrapper">
+            <?php if($pagination->countPages > 1): ?>
+                <?= $pagination; ?>
+            <?php endif; ?>
+        </div>
 
 
     <?php else:?>
@@ -60,7 +53,7 @@
     <?php endif;?>
 
 
-    <a class="new-item-btn" href="user/properties/add">Nová nemovitost</a>
+    <a class="show-more-btn" style="margin-top: 20px" href="user/properties/add">Nová nemovitost</a>
 </div>
 
 

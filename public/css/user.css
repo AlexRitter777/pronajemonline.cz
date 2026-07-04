@@ -1295,7 +1295,7 @@ table{
 }
 
 .calculation-select-type .select2-container{
-    width: 250px!important;
+    width: 350px!important;
     margin-right: 5px;
 }
 
@@ -1416,19 +1416,7 @@ table{
 .item_delete_button_ajax:hover{
     color: var(--color-accent-hover);
 }
-/*---------------Properties---------------------*/
 
-.property-titles {
-    width: 95%;
-}
-
-.property-titles .col-1 {
-    width: 30%;
-}
-
-.property-titles .col-2 {
-    width: 15%;
-}
 
 
 /*-------------j-box additional styles-----------------*/
@@ -2066,13 +2054,6 @@ table{
         width: 80px;
     }
 
-    /*------------- My Account - Properties -------------*/
-
-    .user-properties-table .col-5,
-    .user-properties-table .col-6,
-    .user-properties-table .col-7 {
-        display: none;
-    }
 
     /*------------- My Account - Property profile -------------*/
 

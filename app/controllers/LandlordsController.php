@@ -1,12 +1,11 @@
 <?php
 
-namespace app\controllers\User;
+namespace app\controllers;
 
 use app\actions\Landlord\CreateLandlordAction;
-use app\controllers\AppController;
-use app\Models\Landlord;
 use app\Exceptions\RecordNotCreatedException;
 use app\Factories\LandlordDataFactory;
+use app\Models\Landlord;
 use app\Support\Account;
 use app\validation\Core\ErrorBag;
 use app\validation\Validators\LandlordValidator;
@@ -63,7 +62,6 @@ class LandlordsController extends AppController {
         $landlordProp = $this->accountModel->personProps('landlord');
 
         $pagination = $this->pagination;
-
         $accountModel = $this->accountModel;
 
         $token = CSRF::createCsrfToken();

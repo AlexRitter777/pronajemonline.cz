@@ -294,7 +294,7 @@ class UserController extends AppController
 
         }
 
-        redirect('/user/account');
+        redirect('/dashboard');
 
 
     }

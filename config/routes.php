@@ -22,7 +22,13 @@ $router->add('^admin/admins$', ['controller' => 'Admins', 'action' => 'index', '
 //User routes
 // These routes direct requests to controllers intended for user interactions.
 // Each route defines a specific path, controller, action, and uses the 'user' prefix.
-$router->add('^dashboard$', ['controller' => 'User', 'action' => 'dashboard']);
+$router->add('^dashboard$', [
+    'controller' => 'User',
+    'action' => 'dashboard',
+    'view' => 'User/dashboard',
+]);
+
+
 $router->add('^tenants$', ['controller' => 'Tenants', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^landlords$', ['controller' => 'Landlords', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^properties$', ['controller' => 'Properties', 'action' => 'index', 'prefix' => 'User']);
@@ -45,6 +51,58 @@ $router->add('^services-settlements/create$', [
     'action' => 'create',
     'view' => 'services-settlements/create',
 ]);
+
+$router->add('^login$', [
+    'controller' => 'User',
+    'action' => 'login',
+    'view' => 'User/login',
+]);
+
+$router->add('^check-user$', [
+    'controller' => 'Userajax',
+    'action' => 'checkuser',
+    'view' => null,
+
+]);
+
+$router->add('^authorization$', [
+    'controller' => 'User',
+    'action' => 'authorization',
+    'view' => null,
+
+]);
+
+// Property
+
+$router->add('^properties$', [
+    'controller' => 'Properties',
+    'action' => 'index',
+    'view' => 'Properties/index',
+]);
+
+
+$router->add('^properties/create$', [
+    'controller' => 'Properties',
+    'action' => 'create',
+    'view' => 'Properties/create',
+]);
+
+//Landlords
+
+$router->add('^landlords$', [
+    'controller' => 'Landlords',
+    'action' => 'index',
+    'view' => 'Landlords/index',
+]);
+
+$router->add('^validator/authorization-validation$', [
+    'controller' => 'Validator',
+    'action' => 'authorizationvalidation',
+    'view' => null,
+
+]);
+
+
 
 
 

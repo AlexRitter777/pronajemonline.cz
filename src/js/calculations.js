@@ -170,85 +170,85 @@ $(document).ready(function () {
  * Creates Modal window with checkboxes from unique values of specific column from specific table
  *
  */
-$(document).ready(function (){
-    $(".filter-link").click(async function (e) {
-
-        e.preventDefault();
-        let target = $(this);
-        let filterBy = target.data('filter');
-
-        const calcType = $('.calc_type_form').find('select[name="calc_type"]').val();
-        const ajaxProcessor = new AjaxProcessor();
-
-        //get uniq values from database
-        let uniqValues = await ajaxProcessor.getUniqValues(calcType, filterBy);
-
-        //copy of div content to use in modal window
-        let content = $('#filter-list').clone();
-
-        //$('#filter-list-content').append('<ul>');
-
-        //make list of values and checkboxes
-        uniqValues.forEach(function(item, index) {
-            //check checkbox which were already checked
-            let checked = false;
-            const searchParams = new URLSearchParams(window.location.search);
-            if(searchParams.has('filter_' + filterBy + '_' + index)) checked = true;
-
-            //encode URL
-            let encodedUrl = encodeURIComponent(item[filterBy]);
-
-            //setup attributes
-            let checkboxId = 'filter_' + filterBy + '_' + index;
-            let checkboxName = 'filter_' + filterBy + '_' + index;
-            let checkbox = $('<input>').attr({
-                type: 'checkbox',
-                id: checkboxId,
-                name: checkboxName,
-                value: encodedUrl,
-                checked: checked,
-            });
-            let label = $('<label>').attr('for', checkboxId).text(item[filterBy]);
-
-            //create item div from tags objects (html is extracted from objects)
-            let html = '<div class="filter-list-item">' + checkbox.prop('outerHTML') + ' ' + label.prop('outerHTML') + '</div>';
-
-            //insert checkbox list to DIV
-            //$(content).find('#filter-list-content').append(checkbox).append(label).append('<br>');
-            $(content).find('#filter-list-content').append(html);
-
-        });
-
-       // $('#filter-list-content').append('</ul>');
-
-        //create Modal window
-        let jBoxId = 'property-filter'
-
-        modalWindow = new jBox(
-            'Modal', {
-                id: jBoxId,
-                content: content,
-                overlay: false,
-                closeOnClick: 'body',
-                closeButton: false,
-                target: target,
-                position: {x: 'left', y: ''}, // position relative target
-                outside: 'y',
-                reposition: true,
-                offset: {x: -70, y: 0},
-                onOpenComplete: function (){
-                    closeModalOnButton(this, jBoxId);
-                    closeOnClickOutside(this);
-                }
-            }
-        );
-
-        modalWindow.open();
-
-    })
-
-
-})
+// $(document).ready(function (){
+//     $(".filter-link").click(async function (e) {
+//
+//         e.preventDefault();
+//         let target = $(this);
+//         let filterBy = target.data('filter');
+//
+//         const calcType = $('.calc_type_form').find('select[name="calc_type"]').val();
+//         const ajaxProcessor = new AjaxProcessor();
+//
+//         //get uniq values from database
+//         let uniqValues = await ajaxProcessor.getUniqValues(calcType, filterBy);
+//
+//         //copy of div content to use in modal window
+//         let content = $('#filter-list').clone();
+//
+//         //$('#filter-list-content').append('<ul>');
+//
+//         //make list of values and checkboxes
+//         uniqValues.forEach(function(item, index) {
+//             //check checkbox which were already checked
+//             let checked = false;
+//             const searchParams = new URLSearchParams(window.location.search);
+//             if(searchParams.has('filter_' + filterBy + '_' + index)) checked = true;
+//
+//             //encode URL
+//             let encodedUrl = encodeURIComponent(item[filterBy]);
+//
+//             //setup attributes
+//             let checkboxId = 'filter_' + filterBy + '_' + index;
+//             let checkboxName = 'filter_' + filterBy + '_' + index;
+//             let checkbox = $('<input>').attr({
+//                 type: 'checkbox',
+//                 id: checkboxId,
+//                 name: checkboxName,
+//                 value: encodedUrl,
+//                 checked: checked,
+//             });
+//             let label = $('<label>').attr('for', checkboxId).text(item[filterBy]);
+//
+//             //create item div from tags objects (html is extracted from objects)
+//             let html = '<div class="filter-list-item">' + checkbox.prop('outerHTML') + ' ' + label.prop('outerHTML') + '</div>';
+//
+//             //insert checkbox list to DIV
+//             //$(content).find('#filter-list-content').append(checkbox).append(label).append('<br>');
+//             $(content).find('#filter-list-content').append(html);
+//
+//         });
+//
+//        // $('#filter-list-content').append('</ul>');
+//
+//         //create Modal window
+//         let jBoxId = 'property-filter'
+//
+//         modalWindow = new jBox(
+//             'Modal', {
+//                 id: jBoxId,
+//                 content: content,
+//                 overlay: false,
+//                 closeOnClick: 'body',
+//                 closeButton: false,
+//                 target: target,
+//                 position: {x: 'left', y: ''}, // position relative target
+//                 outside: 'y',
+//                 reposition: true,
+//                 offset: {x: -70, y: 0},
+//                 onOpenComplete: function (){
+//                     closeModalOnButton(this, jBoxId);
+//                     closeOnClickOutside(this);
+//                 }
+//             }
+//         );
+//
+//         modalWindow.open();
+//
+//     })
+//
+//
+// })
 
 /**
  * When user is not logged in and wants to save calculation
@@ -366,54 +366,6 @@ $(document).ready(function (){
 
 
 
-/*-------------------------Select2 list - calculations types on page My Calculations----------------------*/
-// $(document).ready(function() {
-//     if($('.select-calctype').length)
-//     {
-//         $('.select-calctype').select2({
-//             placeholder: "Vyberte druh vyúčtování",
-//             minimumResultsForSearch: -1,
-//             //sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
-//         });
-//     }
-// })
-// load options for select2 calculations types list
-// $(window).on('load', function() {
-//     //console.log($('#calc-type-list').val()); //debugging
-//     $.ajax({
-//         type: "GET",
-//         url: "/services/calculation-list",
-//         dataType: "json",
-//         encode: true,
-//     })
-//         .done(function (data) {
-//             //convert JSON to String
-//             let data_string = JSON.stringify(data);
-//             //convert String to Object
-//             let obj = JSON.parse(data_string);
-//             //console.log(obj);
-//
-//             //list object keys and values
-//             for (const [key, value] of Object.entries(obj)) {
-//                 //console.log(`${key}: ${value}`);
-//
-//                 if (key != $('#calc-type-list').val()) {
-//                     $('#calc-type-list').append(
-//                         '<option value="' + key + '">' + value + '</option>');
-//                 }
-//             }
-//
-//         })
-//
-// })
-//submit form on changing calculation type
-// $(document).ready(function() {
-//
-//     $(".select-calctype").on('change', function (){
-//         $('.calc_type_form').submit();
-//     })
-//
-// })
 
 //hide and show left sidebar
 $(document).ready(function() {

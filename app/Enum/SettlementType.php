@@ -30,6 +30,23 @@ enum SettlementType : string
         };
     }
 
+    public function entity(): string
+    {
+        return match ($this) {
+            self::SERVICES => 'servicesSettlement',
+
+            self::EASY_SERVICES => 'simpleSettlement',
+
+            self::ELECTRO => 'electricitySettlement',
+
+            self::UNIVERSAL => 'universalSettlement',
+
+            self::DEPOSIT => 'depositSettlement',
+
+            self::TOTAL => 'totalSettlement',
+        };
+    }
+
     public static function options(): array
     {
         $options = [];

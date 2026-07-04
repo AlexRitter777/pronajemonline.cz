@@ -908,7 +908,7 @@ $(document).ready(function (){
     }
         $.ajax({
             type: "POST",
-            url: "/userajax/check-user",
+            url: "/check-user",
             data: request,
             dataType: "json",
             encode: true,

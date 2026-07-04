@@ -6,7 +6,7 @@
             <h3>Přihlášení</h3>
         </div>
 
-        <div class="container login-form">
+        <div class="container">
 
             <div class="login-area">
                 <form method="POST" class="login-form" name="authorization">

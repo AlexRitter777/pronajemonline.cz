@@ -17,9 +17,9 @@ class AppController extends Controller {
     {
         parent::__construct($route);
 
-        if(!is_user_logged_in()){
-            throw new \Exception('Stránka není nalezená', 404);
-        }
+//        if(!is_user_logged_in()){
+//            throw new \Exception('Stránka není nalezená', 404);
+//        }
 
 
 //        if (preg_match('#Edit$#', $route['action'])){
@@ -48,7 +48,7 @@ class AppController extends Controller {
 
         $data = [];
 
-        //if we want to load calculation from DB, url has GET parametr id - record id in DB
+        //if we want to load calculation from DB, url has GET parameter id - record id in DB
         if(isset($_GET['calculation_id'])){
 
             if(!is_user_logged_in()){

@@ -87,14 +87,14 @@ class Services
         'Teplo pro vytápění (UT)'
     );
 
-//    public static $calculationList = [
-//        'servicescalc' => 'Vyúčtování služeb',
-//        'easyservicescalc' => 'Zjednodušené vyúčtování služeb',
-//        'electrocalc' => 'Vyúčtování spotřeby elektřiny',
-//        'universalcalc' => 'Univerzální vyúčtování',
-//        'depositcalc' => 'Vyúčtování kauce',
-//        'totalcalc' => 'Souhrnné vyúčtování'
-//    ];
+    public static $calculationList = [
+        'servicescalc' => 'Vyúčtování služeb',
+        'easyservicescalc' => 'Zjednodušené vyúčtování služeb',
+        'electrocalc' => 'Vyúčtování spotřeby elektřiny',
+        'universalcalc' => 'Univerzální vyúčtování',
+        'depositcalc' => 'Vyúčtování kauce',
+        'totalcalc' => 'Souhrnné vyúčtování'
+    ];
 
 
     public function getYearsList ()

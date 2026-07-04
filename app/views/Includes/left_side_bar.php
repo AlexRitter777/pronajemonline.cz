@@ -39,7 +39,7 @@
 
 
         <li><a href="dashboard" class="user-item-title"><i class="fa-regular fa-house"></i> Přehled</a></li>
-        <li><a href="calculations" class="user-item-title"><i class="far fa-file-alt"></i> Vyúčtování</a></li>
+        <li><a href="settlements" class="user-item-title"><i class="far fa-file-alt"></i> Vyúčtování</a></li>
         <li><a href="landlords" class="user-item-title"><i class="fa-regular fa-circle-user"></i> Pronajímatele</a></li>
         <li><a href="tenants" class="user-item-title"><i class="far fa-user"></i> Nájemníci</a></li>
         <li><a href="properties" class="user-item-title"><i class="far fa-building"></i> Nemovitosti</a></li>

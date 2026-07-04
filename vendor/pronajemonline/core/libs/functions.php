@@ -60,7 +60,7 @@ function is_user_logged_in(): bool
 
 function is_admin(){
 
-    $admin = new \app\models\Admin;
+    $admin = new \app\Support\Admin;
     
     return $admin->isUserAdmin();
 
