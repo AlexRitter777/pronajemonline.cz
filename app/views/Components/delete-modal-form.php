@@ -18,7 +18,10 @@
             class="item-delete-button-buttons-wrapper"
     >
         <div class="item-delete-button-small-buttons-wrapper">
-            <form action="user/<?=$entityName;?>s/destroy" method="post">
+            <form
+                action="<?=$entityName === 'property' ? 'properties' : $entityName . 's' ;?>/destroy"
+                method="post"
+            >
                 <input type="hidden" name="token" value="<?=$token;?>">
                 <input type="hidden" name="<?=$entityName;?>" value="<?=$entityId;?>">
                 <input type="submit" class="item-delete-button-input-btn" value="Smazat">

@@ -324,6 +324,41 @@ class PropertiesController extends AppController {
 
     }
 
+    // Delete property
+    public function destroyAction(){
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
+            redirect('/properties');
+        }
+
+        if (empty($_POST['token']) || !CSRF::checkCsrfToken($_POST['token'])) {
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
+            redirect('/properties');
+        }
+
+
+        if(empty($_POST['property'])){
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
+            redirect('/properties');
+        }
+
+        $userId = $_SESSION['user_id'];
+
+        $propertyID = $_POST['property'];
+
+        $recordDeleted = $this->property->deleteOneRecordbyIdAndUserId($propertyID, $userId);
+
+        if($recordDeleted){
+            flash('success', 'Nemovitost byla úspěšně smazána.', 'success');
+            redirect('/properties');
+        } else {
+            flash('error', 'Nepodařilo se najít nemovitost!', 'error');
+            redirect();
+        }
+
+    }
+
 
 
 }

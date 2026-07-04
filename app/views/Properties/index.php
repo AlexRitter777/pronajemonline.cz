@@ -58,9 +58,3 @@
 </div>
 
 
-<div id="del-conf" class="modal_del_confirmation">
-    <div class="small_modal_wrapper">
-        <div><span class="modal_confirm_btn" data-href="user/properties/profile-delete?property_id=">Smazat</span></div>
-        <div><span class="modal_cancel_btn">Storno</span></div>
-    </div>
-</div>
