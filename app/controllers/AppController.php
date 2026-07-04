@@ -17,9 +17,9 @@ class AppController extends Controller {
     {
         parent::__construct($route);
 
-//        if(!is_user_logged_in()){
-//            throw new \Exception('Stránka není nalezená', 404);
-//        }
+        if(!is_user_logged_in()){
+            throw new \Exception('Stránka není nalezená', 404);
+        }
 
 
 //        if (preg_match('#Edit$#', $route['action'])){

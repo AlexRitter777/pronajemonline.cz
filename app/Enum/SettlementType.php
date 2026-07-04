@@ -47,6 +47,23 @@ enum SettlementType : string
         };
     }
 
+    public function form()
+    {
+        return match ($this) {
+
+            self::SERVICES => 'servicesform',
+
+            self::EASY_SERVICES => 'easyservicesform',
+
+            self::ELECTRO => 'electroform',
+
+            self::UNIVERSAL => 'universalform',
+
+            self::DEPOSIT => 'depositform',
+
+            self::TOTAL => 'totalform',
+        };
+    }
     public static function options(): array
     {
         $options = [];

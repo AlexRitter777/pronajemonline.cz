@@ -164,6 +164,46 @@ class SettlementController extends AppController
 
     }
 
+    public function createAction()
+    {
+        if(empty($_GET['form_type'])){
+            redirect('/settlements/list');
+        }
+
+        $settlementType = SettlementType::tryFrom($_GET['form_type']);
+
+        if($settlementType === null) {
+            redirect('/settlements/list');
+        }
+
+        $this->setMeta($settlementType->label());
+
+
+        $settlementFormPath = '/' . $settlementType->form() . '.php';
+
+        $this->set(compact('settlementFormPath'));
+
+
+    }
+
+
+    public function storeAction(){
+
+    }
+
+
+    public function editAction(){
+
+
+    }
+
+    public function updateAction(){
+
+    }
+
+    public function showAction(){
+
+    }
 
     public function destroyAction(){
 

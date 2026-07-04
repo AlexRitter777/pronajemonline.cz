@@ -48,6 +48,18 @@ $router->add('^settlements$', [
     'view' => 'settlements/index',
 ]);
 
+$router->add('^settlements/list$', [
+    'controller' => 'NewSettlement',
+    'action' => 'index',
+    'view' => 'NewSettlement/index',
+]);
+
+$router->add('^settlements/create$', [
+    'controller' => 'Settlement',
+    'action' => 'create',
+    'view' => 'settlements/create',
+]);
+
 
 $router->add('^settlements/destroy$', [
     'controller' => 'Settlement',
