@@ -121,8 +121,8 @@
                     <td class="col-6"><?= date("d.m.Y", strtotime($settlement->updated_at));?></td>
                     <td class="col-7 relative">
                         <?=componet('delete-modal-form', [
-                            'entityId' => $settlement->id,
-                            'entityName' => $settlementType->value,
+                            'entityId' => $settlementType->value . ':' . $settlement->id,
+                            'entityName' => 'settlement',
                             'token' => $token
                         ]);?>
                     </td>

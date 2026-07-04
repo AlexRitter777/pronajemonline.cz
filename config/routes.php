@@ -40,11 +40,21 @@ $router->add('^error$', ['controller' => 'Error', 'action' => 'index', 'prefix' 
 
 
 //New routes
+
+// Settlements
 $router->add('^settlements$', [
     'controller' => 'Settlement',
     'action' => 'index',
     'view' => 'settlements/index',
 ]);
+
+
+$router->add('^settlements/destroy$', [
+    'controller' => 'Settlement',
+    'action' => 'destroy',
+    'view' => null,
+]);
+
 
 $router->add('^services-settlements/create$', [
     'controller' => 'ServicesSettlement',

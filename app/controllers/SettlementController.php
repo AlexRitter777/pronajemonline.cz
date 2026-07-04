@@ -165,4 +165,47 @@ class SettlementController extends AppController
     }
 
 
+    public function destroyAction(){
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
+            redirect('/settlements');
+        }
+
+        if (empty($_POST['token']) || !CSRF::checkCsrfToken($_POST['token'])) {
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
+            redirect('/settlements');
+        }
+
+        if(empty($_POST['settlement'])){
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
+            redirect('/settlements');
+        }
+
+        [$settlementType, $settlementId] = explode(':', $_POST['settlement']);
+
+        $userId = $_SESSION['user_id'];
+
+        $settlementTypeEnum = SettlementType::tryFrom($settlementType);
+
+        if($settlementTypeEnum === null){
+            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
+            redirect('/settlements');
+        }
+
+        $settlementEntity = $settlementTypeEnum->entity();
+
+        $recordDeleted = $this->$settlementEntity->deleteOneRecordbyIdAndUserId($settlementId, $userId);
+
+        if($recordDeleted){
+            flash('success', 'Vyúčtování bylo úspěšně smazáno.', 'success');
+            redirect('/settlements?calc_type=' . $settlementTypeEnum->value);
+        } else {
+            flash('error', 'Nepodařilo se najít pronajímatele!', 'error');
+            redirect();
+        }
+
+    }
+
+
 }
