@@ -42,14 +42,7 @@
             <?php endforeach; ?>
         </nav>
 
-
-    <?php if($settlements === null):?>
-        <p class="empty-data">Pro zobrazení všech vyúčtování vyberte nemovitost.</p>
-        <div class="more-calc-btn">
-            <a class="new-entity-button" href="calculations/<?= $formType;?>">Nové vyúčtování</a>
-        </div>
-
-    <?php else:?>
+    <?php if($settlements):?>
 
         <table class="calculations-table account-table" border="0">
             <tr class="row-1">
@@ -138,21 +131,13 @@
             <?php endif; ?>
         </div>
 
-
-    <div id="filter-list" style="display: none">
-        <form id="filter_calc_form" method="get" action="calculations">
-            <div id="filter-list-content">
-
-            </div>
-
-            <div class="modal_buttons">
-                <input type="submit" class="form-btn btn-submit filter-btn" id="" value="Použit">
-                <input type="button" class="form-btn btn-reset submit_button_refresh_modal filter-btn" value="Zrušit">
-            </div>
-        </form>
-    </div>
-
+    <?php else:?>
+        <p class="empty-data">Nemáte uložené žádné <?= lcfirst($settlementType->label()); ?>.</p>
     <?php endif;?>
+
+    <div class="more-calc-btn">
+        <a class="new-entity-button" href="#">Nové <?= lcfirst($settlementType->label()); ?></a>
+    </div>
 
     <?php //debug($servicesCalculations); ?>
 
