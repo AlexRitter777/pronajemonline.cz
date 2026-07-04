@@ -52,8 +52,9 @@
         <p class="empty-data">Nemáte uložené žádné nemovitosti!</p>
     <?php endif;?>
 
-
-    <a class="show-more-btn" style="margin-top: 20px" href="user/properties/add">Nová nemovitost</a>
+    <div class="more-calc-btn">
+        <a class="new-entity-button" href="user/properties/add">Nová nemovitost</a>
+    </div>
 </div>
 
 
