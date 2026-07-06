@@ -12,6 +12,8 @@
 
 //Admin routes
 // These routes use the 'admin' prefix to direct requests to controllers in the 'admin' namespace.
+use app\controllers\SettlementController;
+
 $router->add('^admin$', ['controller' => 'Main', 'action' => 'index', 'prefix' => 'admin']);
 $router->add('^admin/?(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$', ['prefix' => 'admin']);
 $router->add('^admin/users$', ['controller' => 'Users', 'action' => 'index', 'prefix' => 'admin']);
@@ -54,10 +56,11 @@ $router->add('^settlements/list$', [
     'view' => 'NewSettlement/index',
 ]);
 
-$router->add('^settlements/create$', [
-    'controller' => 'Settlement',
+$router->add('settlements/create', [
+    'controller' => SettlementController::class,
     'action' => 'create',
     'view' => 'settlements/create',
+    'middleware' => 'auth',
 ]);
 
 

@@ -4,15 +4,6 @@ namespace pronajem;
 
 use DI\Container;
 
-/**
- * The Router class is responsible for routing HTTP requests to the corresponding controller actions.
- *
- * It matches the request URL against a set of defined routes, extracts and passes parameters to
- * the corresponding controller and action method. This class supports both static and parameterized
- * routes, enabling dynamic routing based on the request URL. Routes are defined using regular expressions,
- * allowing for flexible and powerful URL matching. The Router facilitates the organization of the application's
- * flow and simplifies the mapping between URLs and the application's logic by utilizing controllers.
- */
 final class Router {
 
     private Container $container;
@@ -72,17 +63,7 @@ final class Router {
 
 
     /**
-     * Dispatches the URL to the appropriate controller and action.
-     *
-     * This method processes the provided URL to find a matching route. It first removes
-     * the query string from the URL to ensure accurate route matching. If a matching route
-     * is found, it constructs the fully qualified name of the controller class, including
-     * any namespace prefixes. It then instantiates the controller and calls the specified
-     * action method. After executing the action, the method ensures that the view associated
-     * with the action is rendered, unless the action explicitly terminates the execution
-     * (e.g., for AJAX requests, where the controller must end with die() to prevent view rendering).
-     * If no matching route is found, or the controller/action cannot be invoked,
-     * an exception is thrown.
+     * Dispatches the URL to the appropriate controller, action, view and middlware.
      *
      * @param string $url The URL path to dispatch.
      * @throws \Exception If no matching route is found or the controller/action cannot be invoked.
@@ -92,58 +73,36 @@ final class Router {
         // Remove the query string from the URL for proper matching
         $url = $this->removeQueryString($url);
 
-        if ($this->matchRoute($url)) {
-            // Construct the fully qualified controller class name with optional prefix
-            $controller = 'app\controllers\\' . $this->route['prefix'] . $this->route['controller'] . 'Controller';
-
-            // Check if the controller class exists
-            if (class_exists($controller)){
-                // Get DI Container instance
-                $container = $this->container;
-
-                //Create Controller objact
-                $controllerObject = $container->make($controller, [
-                    'route' => $this->route,
-                ]);
-
-                // Construct the action method name from the route
-                $action = $this->lowerCamelCase($this->route['action']) . 'Action';
-
-                // Check if the action method exists in the controller
-                if (method_exists($controllerObject, $action)){
-                    // Call the action method
-                    $controllerObject->$action();
-                    //Get the view associated with the action
-                    if(isset($this->route['view'])){
-                        $controllerObject->getView();
-                    }
-
-                }else{
-                    // The specified action does not exist within the controller
-                    throw new \Exception("Method $controller::$action is not found", 404);
-                }
-            }else{
-                // The specified controller does not exist
-                throw new \Exception("Controller $controller is not found", 404);
-            }
-
-        }else{
-            // No matching route was found
+        if(! $this->matchRoute($url)){
             throw new \Exception('Stránka není nalezená', 404);
+        }
+
+        foreach ($this->route['middleware'] ?? [] as $mwClass) {
+            $this->container->make($mwClass)->handle();
+        }
+
+        $controller = $this->route['controller'];
+        $action = $this->route['action'];
+
+        //Create Controller objact
+        $controllerObject = $this->container->make($controller);
+
+        if(!method_exists($controllerObject, $action)){
+            throw new \Exception("Method $controller::$action is not found", 404);
+        }
+
+        $controllerObject->$action(...array_values($this->route['params']));
+
+
+        if (isset($this->route['view'])) {
+            $controllerObject->getView($this->route['view']);
         }
 
      }
 
 
-
-   /**
+    /**
     * Matches the provided URL with registered routes and sets the current route.
-    *
-    * This method iterates through all registered routes and attempts to match the provided URL
-    * against them using regular expressions. If a match is found, it extracts and sets parameters
-    * from the URL as properties of the current route, such as the controller, action, and any
-    * custom parameters defined in the route pattern. The method also ensures default values for
-    * the action and prefix if they are not explicitly provided in the route.
     *
     * @param string $url The URL path to match against registered routes.
     * @return bool Returns true if a matching route is found and set as the current route, otherwise false.
@@ -151,29 +110,17 @@ final class Router {
     public function matchRoute($url)
     {
         foreach ($this->routes as $pattern => $route) {
-            if (preg_match("#{$pattern}#", $url ?? '', $matches)) {
+            if (preg_match("#^{$pattern}$#", $url ?? '', $matches)) {
+                $params = [];
                 foreach ($matches as $k => $v) {
                     if (is_string($k)) {
-                        $route[$k] = $v;
+                        $params[$k] = $v;
                     }
                 }
+                $route['params'] = $params;
 
-                // Set default action to 'index' if not provided
-                if (empty($route['action'])) {
-                    $route['action'] = 'index';
-                }
-
-                // Append a backslash to the prefix if it's provided, otherwise set it to an empty string
-                if (!isset($route['prefix'])) {
-                    $route['prefix'] = '';
-                } else {
-                    $route['prefix'] .= '\\';
-                }
-
-               // Convert controller and action names to the appropriate naming conventions
-                $route['controller'] = self::upperCamelCase($route['controller']);
-                $route['action'] = self::lowerCamelCase($route['action']);
                 $this->route = $route;
+
                 return true;
             }
         }
@@ -181,35 +128,6 @@ final class Router {
     }
 
 
-    /**
-     * Converts a string to UpperCamelCase.
-     *
-     * This method replaces hyphens with spaces, capitalizes the first letter of each word,
-     * and then removes spaces to form a string in UpperCamelCase format. It's commonly used
-     * to convert route or file names to class names following the naming conventions.
-     *
-     * @param string $name The string to be converted.
-     * @return string The converted string in UpperCamelCase.
-     */
-    protected function upperCamelCase($name){
-        $name = ucwords(str_replace('-', ' ', $name));
-        return str_replace(' ', '', $name);
-
-    }
-
-
-    /**
-     * Converts a string to camelCase.
-     *
-     * This method first converts the string to UpperCamelCase and then makes the first character lowercase.
-     * It's used for converting route or file names to method names following the naming conventions.
-     *
-     * @param string $name The string to be converted.
-     * @return string The converted string in camelCase.
-     */
-    protected function lowerCamelCase($name){
-        return lcfirst(self::upperCamelCase($name));
-    }
 
 
     /**

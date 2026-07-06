@@ -5,43 +5,15 @@ use DI\Attribute\Inject;
 use pronajem\App;
 
 
-/**
- * The View class is responsible for rendering the HTML content of the application.
- * It handles the inclusion of view files based on the controller's actions and the
- * application's routing, applying the specified layout and incorporating the necessary
- * view components. This class facilitates the separation of the application logic from
- * the presentation layer, allowing for dynamic content generation and flexible view management.
- *
- * Properties include routing information, controller and view identification, layout configuration,
- * and data to be displayed, ensuring that all necessary context is available for rendering the page.
- * The class also supports setting meta information for the HTML document, enhancing SEO and user experience.
- */
+
 class View
 {
-
-    /**
-     * @var array $route Contains routing information such as the current controller and action.
-     * Used to construct the path to the view file.
-     */
-    public $route;
-
-    /**
-     * @var string $controller The name of the current controller. Extracted from the route
-     * information to help determine the view file path.
-     */
-    public $controller;
 
     /**
      * @var string $view The name of the view file to be rendered. Specifies which file within
      * the controller's view directory should be used.
      */
     public $view;
-
-    /**
-     * @var string $prefix An optional prefix used in the view file path, typically related to
-     * modules or sections of the application.
-     */
-    public $prefix;
 
     /**
      * @var array $data An associative array of data that is passed to the view. This data is
@@ -65,23 +37,13 @@ class View
     /**
      * Initializes a new View object with specific properties.
      *
-     * The constructor sets up the view environment based on the provided route information,
-     * layout choice, view name, and meta information for the page. It configures the view
-     * to use the specified layout unless explicitly set to false, in which case no layout will
-     * be used. This allows for flexible rendering options, including full page layouts or
-     * partial views.
-     *
-     * @param array $route The routing information, typically including controller and prefix, used to determine the view path.
      * @param string|false $layout The layout file to be used. If set to false, no layout will be used. If not specified,
      *                             a default layout is used. This parameter allows for specific or generic layouts to be applied to the view.
      * @param string $view The name of the view file to be rendered within the specified layout.
      * @param array $meta An associative array containing meta information ('title', 'desc', 'keywords') for the page.
      */
-    public function __construct($route, $meta, $layout = '', $view = ''){
-        $this->route = $route;
-        $this->controller = $route['controller'];
+    public function __construct($meta, $layout = '', $view = ''){
         $this->view = $view;
-        $this->prefix =  $this->checkPrefix($route['prefix']);
         $this->meta = $meta;
         if($layout === false) {
             $this->layout = false;
@@ -114,20 +76,10 @@ class View
             $includesConfig = App::$app->getProperty('includes');
             $includes = $includesConfig[$this->layout] ?? $includesConfig['default'] ?? [];
 
-//            $viewFile = APP . "/views/{$this->prefix}{$this->controller}/{$this->view}.php";
-
             $viewFile = '';
             
-            if (str_contains($this->view, '/')) {
-    
-                $viewFile = APP . "/views/{$this->view}.php";
-    
-            } else {
-    
-                $viewFile = APP . "/views/{$this->prefix}{$this->controller}/{$this->view}.php";
-            }
-                
-            
+            $viewFile = APP . "/views/{$this->view}.php";
+
             if(is_file($viewFile)){
                 ob_start();
                 require_once $viewFile;
@@ -180,30 +132,7 @@ class View
         return $output;
     }
 
-    /**
-     * Checks and formats the prefix for the view file path.
-     *
-     * This method is responsible for ensuring that the prefix used in the view file path
-     * is correctly formatted. If the prefix contains backslashes (as used in namespaces),
-     * they are replaced with forward slashes to conform to the path structure. This is
-     * essential for the correct inclusion of view files, especially when working with
-     * modules or subdirectories. If no prefix is provided, or if it does not contain
-     * backslashes, the method simply returns an empty string or the unchanged prefix, respectively.
-     *
-     * @param string $prefix The original prefix as derived from the routing information,
-     *                       which may include backslashes from namespace notation.
-     * @return string The formatted prefix with backslashes replaced by forward slashes,
-     *                or an empty string if no prefix is provided.
-     */
-    public function checkPrefix($prefix){
 
-        if(!$prefix) return '';
-
-        if(preg_match('#\\\#', $prefix)){
-            return preg_replace('#\\\#', '/', $prefix);
-        }
-
-    }
 
 
 }
