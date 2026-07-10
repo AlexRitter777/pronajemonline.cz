@@ -14,6 +14,7 @@
 // These routes use the 'admin' prefix to direct requests to controllers in the 'admin' namespace.
 use app\controllers\LandlordsController;
 use app\controllers\SettlementController;
+use app\Middleware\Auth;
 
 $router->add('^admin$', ['controller' => 'Main', 'action' => 'index', 'prefix' => 'admin']);
 $router->add('^admin/?(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$', ['prefix' => 'admin']);
@@ -125,6 +126,7 @@ $router->add('landlords', [
     'controller' => LandlordsController::class,
     'action' => 'index',
     'view' => 'Landlords/index',
+    'middleware' =>[ Auth::class ],
 ]);
 
 $router->add('landlords/(?P<id>\d+)', [

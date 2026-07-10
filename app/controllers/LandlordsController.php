@@ -13,7 +13,6 @@ use DI\Attribute\Inject;
 use Exception;
 use pronajem\base\Controller;
 use pronajem\libs\CSRF;
-use pronajem\libs\PaginationSetParams;
 use RedBeanPHP\RedException\SQL;
 
 class LandlordsController extends Controller {
@@ -61,7 +60,6 @@ class LandlordsController extends Controller {
 
     }
 
-    // Landlord profile
     public function show(int $landlordId){
 
         $userID = $_SESSION['user_id'];
