@@ -13,9 +13,8 @@ use pronajem\libs\PdfCreator;
 
 class AppController extends Controller {
 
-    public function __construct($route)
+    public function __construct()
     {
-        parent::__construct($route);
 
         if(!is_user_logged_in()){
             throw new \Exception('Stránka není nalezená', 404);

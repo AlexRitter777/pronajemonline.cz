@@ -3,22 +3,12 @@
 
 namespace app\Models;
 
-use app\Support\AppModel;
+use pronajem\base\Model;
 
-use pronajem\libs\PaginationSetParams;
 
-class Landlord extends AppModel
+class Landlord extends Model
 {
 
-
-    public function __construct(PaginationSetParams $pagination)
-    {
-
-        $this->pagination = $pagination;
-
-        parent::__construct($pagination);
-
-    }
 
 
 

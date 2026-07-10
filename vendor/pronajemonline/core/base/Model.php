@@ -36,7 +36,7 @@ abstract class Model {
             $this->table = $this->inferTableName();
         }
 
-        $this->pagination = $pagination;
+        $this->pagination = $pagination; // remove after all refactore
 
     }
 
@@ -53,59 +53,45 @@ abstract class Model {
 
     }
 
-    /**
-     * @param int $perPage
-     * @param array<string, mixed> $filters Column => value, exmp, ['property_address' => 'Praha 1', 'tenant_name' => 'Novák']
-     * @param int|null $userId
-     * @param string $orderBy
-     * @return array
-     * @throws \Exception
-     */
-    public function getAllRecordsWithPaginationAndConditions(
+    public function getPaginatedRecords(
         int $perPage,
-        array $filters = [],
+        ?string $search = null,
+        array $searchColumns = [],
         ?int $userId = null,
         string $orderBy = 'ORDER BY created_at DESC'
-    ): array {
-        if (!$this->pagination) {
-            throw new \Exception('Pagination Model is not found', 404);
-        }
+    ): PaginatedResult {
 
         if (!$userId && !is_admin()) {
             throw new \Exception('Access denied', 403);
         }
 
-        // Column names validation
-        foreach (array_keys($filters) as $column) {
+        foreach ($searchColumns as $column) {
             if (!$this->checkIfColumnExists($this->table, $column)) {
                 throw new \Exception("Column {$column} does not exist");
             }
         }
 
-        // Build WHERE
-        [$where, $params] = $this->buildWhereClause($filters, $userId);
+        [$where, $params] = $this->buildWhereClause($search, $searchColumns, $userId);
 
-        // Count total for pagination
         $total = R::count($this->table, $where, $params);
 
-        $this->pagination->setPaginationParams($perPage, $total);
-        $start = (int) $this->pagination->getStart();
+        $pagination = new Pagination($perPage, $total);
 
-        // FInal SQL
+        $start = (int) $pagination->getStart();
+
         $sql = trim("{$where} {$orderBy} LIMIT {$start}, {$perPage}");
 
-        return R::findAll($this->table, $sql, $params);
+        return new PaginatedResult(
+            pagination: $pagination,
+            records: R::findAll($this->table, $sql, $params)
+        );
     }
 
-    /**
-     * Build WHERE-condition and array of params.
-     *
-     * @param array<string, mixed> $filters
-     * @param int|null $userId
-     * @return array{0: string, 1: array} [where_clause, params]
-     */
-    private function buildWhereClause(array $filters, ?int $userId): array
-    {
+    private function buildWhereClause(
+        ?string $search,
+        array $searchColumns,
+        ?int $userId
+    ): array {
         $conditions = [];
         $params = [];
 
@@ -114,9 +100,13 @@ abstract class Model {
             $params[] = $userId;
         }
 
-        foreach ($filters as $column => $value) {
-            $conditions[] = "{$column} = ?";
-            $params[] = $value;
+        if ($search !== null && $search !== '' && !empty($searchColumns)) {
+            $orParts = [];
+            foreach ($searchColumns as $column) {
+                $orParts[] = "{$column} LIKE ?";
+                $params[] = '%' . $search . '%';
+            }
+            $conditions[] = '(' . implode(' OR ', $orParts) . ')';
         }
 
         $where = !empty($conditions) ? implode(' AND ', $conditions) : '';
@@ -126,12 +116,10 @@ abstract class Model {
 
 
 
-
-
     public function getAllRecordsWithPagination(int $perPage, int $userId = null)
     {
 
-        if(!$this->pagination) throw new \Exception('Pagination Model is not found', 404);
+//        if(!$this->pagination) throw new \Exception('Pagination Model is not found', 404);
 
         if($userId){
             $total = R::count($this->table, 'user_id=?', [$userId] );
@@ -141,15 +129,23 @@ abstract class Model {
             throw new \Exception('Access dinided', 403);
         }
 
-        $this->pagination->setPaginationParams($perPage, $total);
+//        $this->pagination->setPaginationParams($perPage, $total);
+
+        $pagination = new Pagination($perPage, $total);
 
         $start = (int)$this->pagination->getStart();
 
         if($userId) {
-           return R::findAll($this->table, "user_id=? ORDER BY created_at DESC LIMIT $start, $perPage", [$userId]);
+            return new PaginatedResult(
+                pagination: $pagination,
+                records: R::findAll($this->table, "user_id=? ORDER BY created_at DESC LIMIT $start, $perPage", [$userId])
+            );
        }
        elseif(is_admin()) {
-           return R::findAll($this->table, "ORDER BY created_at DESC LIMIT $start, $perPage");
+           return new PaginatedResult(
+               pagination: $pagination,
+               records: R::findAll($this->table, "ORDER BY created_at DESC LIMIT $start, $perPage")
+            );
        } else {
            throw new \Exception('Access dinied', 403);
        }

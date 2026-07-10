@@ -47,12 +47,12 @@ class Pagination
      * @param int $perpage The number of items per page.
      * @param int $total The total number of items.
      */
-    public function __construct($page, $perpage, $total){
+    public function __construct($perpage, $total){
 
         $this->perpage = $perpage;
         $this->total = $total;
         $this->countPages = $this->getCountPages();
-        $this->currentPage = $this->getCurrentPage($page);
+        $this->currentPage = $this->getCurrentPage();
         $this->uri = $this->getParams();
 
     }
@@ -135,7 +135,8 @@ class Pagination
      * @param int $page The page number from the request.
      * @return int The validated current page number.
      */
-    public function getCurrentPage($page){
+    public function getCurrentPage(){
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         if(!$page || $page < 1) $page = 1;
         if($page > $this->countPages) $page = $this->countPages;
         return $page;

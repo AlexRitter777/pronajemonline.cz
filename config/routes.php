@@ -12,6 +12,7 @@
 
 //Admin routes
 // These routes use the 'admin' prefix to direct requests to controllers in the 'admin' namespace.
+use app\controllers\LandlordsController;
 use app\controllers\SettlementController;
 
 $router->add('^admin$', ['controller' => 'Main', 'action' => 'index', 'prefix' => 'admin']);
@@ -32,7 +33,7 @@ $router->add('^dashboard$', [
 
 
 $router->add('^tenants$', ['controller' => 'Tenants', 'action' => 'index', 'prefix' => 'User']);
-$router->add('^landlords$', ['controller' => 'Landlords', 'action' => 'index', 'prefix' => 'User']);
+//$router->add('^landlords$', ['controller' => 'Landlords', 'action' => 'index', 'prefix' => 'User']);
 //$router->add('^properties$', ['controller' => 'Properties', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^calculations$', ['controller' => 'Calculations', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^admins$', ['controller' => 'Admins', 'action' => 'index', 'prefix' => 'User']);
@@ -120,10 +121,16 @@ $router->add('^properties/destroy$', [
 
 //Landlords
 
-$router->add('^landlords$', [
-    'controller' => 'Landlords',
+$router->add('landlords', [
+    'controller' => LandlordsController::class,
     'action' => 'index',
     'view' => 'Landlords/index',
+]);
+
+$router->add('landlords/(?P<id>\d+)', [
+    'controller' => LandlordsController::class,
+    'action' => 'show',
+    'view' => 'Landlords/show',
 ]);
 
 $router->add('^validator/authorization-validation$', [

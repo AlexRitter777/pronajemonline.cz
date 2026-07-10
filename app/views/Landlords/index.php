@@ -20,7 +20,7 @@
             </tr>
 
             <?php foreach ($landlords as $landlord): ?>
-                <tr class="row-click" data-href="user/landlords/show?landlord_id=<?=$landlord->id;?>">
+                <tr class="row-click" data-href="landlords/<?=$landlord->id;?>">
                     <td class="col-1"><?= $landlord->name;?></td>
                     <td class="col-2"><?= $landlord->address;?></td>
                     <td class="col-3"><?= !empty($landlordProp[$landlord->id]) ? $landlordProp[$landlord->id] : ''; ?></td>

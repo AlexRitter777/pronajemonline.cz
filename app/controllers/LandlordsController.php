@@ -11,11 +11,12 @@ use app\validation\Core\ErrorBag;
 use app\validation\Validators\LandlordValidator;
 use DI\Attribute\Inject;
 use Exception;
+use pronajem\base\Controller;
 use pronajem\libs\CSRF;
 use pronajem\libs\PaginationSetParams;
 use RedBeanPHP\RedException\SQL;
 
-class LandlordsController extends AppController {
+class LandlordsController extends Controller {
 
 
     #[Inject]
@@ -23,9 +24,6 @@ class LandlordsController extends AppController {
 
     #[Inject]
     private Landlord $landlord;
-
-    #[Inject]
-    private PaginationSetParams $pagination;
 
     #[Inject]
     private ErrorBag $errorBag;
@@ -40,28 +38,21 @@ class LandlordsController extends AppController {
     private CreateLandlordAction $createLandlordAction;
 
 
-    public function __construct($route) {
-
-        parent::__construct($route);
-
-        if(!is_user_logged_in()){
-            redirect('/user/login');
-        }
-
-    }
-
     // List of landlords
-    public function indexAction(){
+    public function index(){
 
         $userID = $_SESSION['user_id'];
 
         $this->setMeta('Pronajímatele', 'Seznam pronajímatelů');
 
-        $landlords = $this->landlord->getAllRecordsWithPagination(8, $userID);
+        $result = $this->landlord->getPaginatedRecords(10, null, [], $userID);
+
+        $landlords = $result->records;
+
+        $pagination = $result->pagination;
 
         $landlordProp = $this->accountModel->personProps('landlord');
 
-        $pagination = $this->pagination;
         $accountModel = $this->accountModel;
 
         $token = CSRF::createCsrfToken();
@@ -71,18 +62,11 @@ class LandlordsController extends AppController {
     }
 
     // Landlord profile
-    public function showAction(){
+    public function show(int $landlordId){
 
         $userID = $_SESSION['user_id'];
 
-        if(!isset($_GET['landlord_id'])){
-            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
-            redirect();
-        }
-
-        $landlord_id = $_GET['landlord_id'];
-
-        $landlord = $this->landlord->getOneRecordById($landlord_id, $userID);
+        $landlord = $this->landlord->getOneRecordById($landlordId, $userID);
 
         if(!$landlord) {
             flash('error', 'Nepodařilo se najít pronajímatele!', 'error');
