@@ -150,6 +150,13 @@ $router->add('landlords/store', [
     'middleware' =>[ Auth::class ],
 ]);
 
+$router->add('landlords/(?P<id>\d+)/edit', [
+    'controller' => LandlordsController::class,
+    'action' => 'edit',
+    'view' => 'Landlords/edit',
+    'middleware' =>[ Auth::class ],
+]);
+
 //Login form validation
 $router->add('^validator/authorization-validation$', [
     'controller' => 'Validator',

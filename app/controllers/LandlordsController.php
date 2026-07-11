@@ -108,17 +108,13 @@ class LandlordsController extends Controller {
     }
 
     // Edit landlord profile
-    public function editAction(){
+    public function edit(int $landlordId){
 
         [$errors, $old] = $this->errorBag->getErrors();
+
         $userID = $_SESSION['user_id'];
 
-        if(!isset($_GET['landlord_id'])){
-            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
-            redirect();
-        }
-        $landlord_id = $_GET['landlord_id'];
-        $landlord = $this->landlord->getOneRecordById($landlord_id, $userID);
+        $landlord = $this->landlord->getOneRecordById($landlordId, $userID);
 
         if(!$landlord) {
             flash('error', 'Nepodařilo se najít pronajímatele!', 'error');
@@ -128,6 +124,7 @@ class LandlordsController extends Controller {
         $tokenInput = CSRF::createCsrfInput();
 
         $this->set(compact('landlord', 'tokenInput', 'errors', 'old'));
+
         $this->setMeta($landlord->name . '- editace', 'Profil pronajímatele');
 
     }
