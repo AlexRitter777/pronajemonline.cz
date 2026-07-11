@@ -48,11 +48,11 @@ class LandlordValidator
         ];
 
         $attributeNames = [
-            'tenant_name' => 'Jméno pronajímatele',
-            'tenant_email' => 'Email pronajímatele',
-            'tenant_phone_number' => 'Telefonní číslo pronajímatele',
-            'tenant_address' => 'Adresa pronajímatele',
-            'tenant_account' => 'Číslo účtu pronajímatele',
+            'landlord_name' => 'Jméno pronajímatele',
+            'landlord_email' => 'Email pronajímatele',
+            'landlord_phone_number' => 'Telefonní číslo pronajímatele',
+            'landlord_address' => 'Adresa pronajímatele',
+            'landlord_account' => 'Číslo účtu pronajímatele',
         ];
 
         $validator = new Validator($rules, $attributeNames);

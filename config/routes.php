@@ -133,8 +133,24 @@ $router->add('landlords/(?P<id>\d+)', [
     'controller' => LandlordsController::class,
     'action' => 'show',
     'view' => 'Landlords/show',
+    'middleware' =>[ Auth::class ],
 ]);
 
+$router->add('landlords/create', [
+    'controller' => LandlordsController::class,
+    'action' => 'create',
+    'view' => 'Landlords/create',
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('landlords/store', [
+    'controller' => LandlordsController::class,
+    'action' => 'store',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+//Login form validation
 $router->add('^validator/authorization-validation$', [
     'controller' => 'Validator',
     'action' => 'authorizationvalidation',

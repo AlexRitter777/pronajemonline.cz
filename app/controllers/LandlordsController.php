@@ -84,11 +84,11 @@ class LandlordsController extends Controller {
 
 
     // New landlord form
-    public function createAction(){
+    public function create(){
         [$errors, $old] = $this->errorBag->getErrors();
         $tokenInput = CSRF::createCsrfInput();
         $this->setMeta('Nový pronajímatel', 'Vytvoření nového pronajímatele');
-        $this->set(compact('reCaptcha', 'tokenInput', 'errors', 'old'));
+        $this->set(compact( 'tokenInput', 'errors', 'old'));
 
     }
 
@@ -96,7 +96,7 @@ class LandlordsController extends Controller {
     /**
      * @throws RecordNotCreatedException
      */
-    public function saveAction()
+    public function store()
     {
         checkCsrfOrRedirect($_POST['token'] ?? '');
         $data = $this->validator->validate(sanitize($_POST));
@@ -104,7 +104,7 @@ class LandlordsController extends Controller {
         $landlordDto = $this->landlordDataFactory->createFromArray($data);
         $landlordId = $this->createLandlordAction->execute($landlordDto, $userID);
         flash('success', 'Pronajímatel byl úspěšně vytvořen.', 'success');
-        redirect("/user/landlords/show?landlord_id={$landlordId}");
+        redirect("landlords/show/{$landlordId}");
     }
 
     // Edit landlord profile
