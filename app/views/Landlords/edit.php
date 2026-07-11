@@ -5,7 +5,7 @@
 
 <div class="table-container entity-table">
 
-    <form method="post" name="landlord" action="landlords/update" data-type="classic">
+    <form method="post" name="landlord" action="landlords/<?= $landlord->id;?>/update" data-type="classic">
         <table class="tenants" border="0">
 
             <tr class="">
@@ -99,7 +99,7 @@
         </div>
 
         <div class="submit_button_div">
-            <input type="submit" class="form-btn btn-submit profile-form-submit" value="Uložit">
+            <input type="submit" class="form-btn btn-submit" value="Uložit">
             <a class="form-btn btn-reset" href="landlords/<?=$landlord->id;?>">Zpět</a>
         </div>
 

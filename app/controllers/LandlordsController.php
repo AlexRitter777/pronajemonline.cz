@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\actions\Landlord\CreateLandlordAction;
+use app\actions\Landlord\UpdateLandlordAction;
+use app\Exceptions\PersonNotFoundException;
 use app\Exceptions\RecordNotCreatedException;
 use app\Factories\LandlordDataFactory;
 use app\Models\Landlord;
@@ -35,6 +37,9 @@ class LandlordsController extends Controller {
 
     #[Inject]
     private CreateLandlordAction $createLandlordAction;
+
+    #[Inject]
+    private UpdateLandlordAction $updateLandlordAction;
 
 
     // List of landlords
@@ -134,58 +139,29 @@ class LandlordsController extends Controller {
      * @throws SQL
      * @throws Exception
      */
-    public function updateAction()
+    public function update(int $landlordId)
     {
 
-        if (empty($_POST['token']) || !CSRF::checkCsrfToken($_POST['token'])) {
-            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
-            redirect('/user/landlords');
-        }
+        checkCsrfOrRedirect($_POST['token'] ?? '');
+
 
         $userID = $_SESSION['user_id'];
 
 
-        if(!isset($_GET['landlord_id'])){
-            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
-            redirect();
-        }
-
-        $landlordID = $_GET['landlord_id'];
-
         //Ajax validation via form-validation.js
 
-        if(
-            empty($_POST['landlord_name']) ||
-            empty($_POST['landlord_address']) ||
-            !isset($_POST['landlord_email']) ||
-            !isset($_POST['landlord_phone_number']) ||
-            !isset($_POST['landlord_account'])
-        ) {
-            flash('error', 'Vyplňte prosím všechny potřebné údaje.', 'error');
-            redirect("/user/landlords/edit?landlord_id={$landlordID}");
+        $data = $this->validator->validate(sanitize($_POST));
+
+        $landlordDto = $this->landlordDataFactory->createFromArray($data);
+
+        try {
+            $landlordId = $this->updateLandlordAction->execute($landlordDto, $landlordId, $userID);
+            flash('success', 'Pronájímatel byl úspěšně upraven.', 'success');
+            redirect("/landlords/{$landlordId}");
+        } catch (PersonNotFoundException $e) {
+            flash('error', $e->getMessage(), 'error');
+            redirect('/landlords');
         }
-
-
-        $landlord = $this->landlord->getOneRecordById($landlordID, $userID);
-
-        if(!$landlord) {
-            flash('error', 'Nepodařilo se najít pronajímatele!', 'error');
-            redirect();
-        }
-
-        $data = $this->landlord->saveAll([
-                'name' => $_POST['landlord_name'],
-                'address' => $_POST['landlord_address'],
-                'phone_number' => $_POST['landlord_phone_number'],
-                'email' => $_POST['landlord_email'],
-                'account' => $_POST['landlord_account']
-            ]
-        );
-
-        if (!$data) throw new Exception('Chyba zápisu do DB!');
-
-        flash('success', 'Profil pronajímatele byl úspěšně upraven.', 'success');
-        redirect("/user/landlords/show?landlord_id={$landlordID}");
 
     }
 
