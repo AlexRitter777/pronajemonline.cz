@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\actions\Landlord\CreateLandlordAction;
+use app\actions\Landlord\DestroyLandlordAction;
 use app\actions\Landlord\UpdateLandlordAction;
 use app\Exceptions\PersonNotFoundException;
 use app\Exceptions\RecordNotCreatedException;
@@ -40,6 +41,9 @@ class LandlordsController extends Controller {
 
     #[Inject]
     private UpdateLandlordAction $updateLandlordAction;
+
+    #[Inject]
+    private DestroyLandlordAction $destroyLandlordAction;
 
 
     // List of landlords
@@ -147,9 +151,6 @@ class LandlordsController extends Controller {
 
         $userID = $_SESSION['user_id'];
 
-
-        //Ajax validation via form-validation.js
-
         $data = $this->validator->validate(sanitize($_POST));
 
         $landlordDto = $this->landlordDataFactory->createFromArray($data);
@@ -166,35 +167,30 @@ class LandlordsController extends Controller {
     }
 
     // Delete landlord
-    public function destroyAction(){
+    public function destroy(){
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
-            redirect('/user/landlords');
+            redirect('/landlords');
         }
 
-        if (empty($_POST['token']) || !CSRF::checkCsrfToken($_POST['token'])) {
-            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
-            redirect('/user/landlords');
-        }
-
+        checkCsrfOrRedirect($_POST['token'] ?? '');
 
         if(empty($_POST['landlord'])){
             flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
-            redirect('/user/landlords');
+            redirect('/landlords');
         }
 
         $userId = $_SESSION['user_id'];
 
         $landlordID = $_POST['landlord'];
 
-        $recordDeleted = $this->landlord->deleteOneRecordbyIdAndUserId($landlordID, $userId);
-
-        if($recordDeleted){
-            flash('success', 'Pronajímatel byl úspěšně smazán.', 'success');
-            redirect('/user/landlords');
-        } else {
-            flash('error', 'Nepodařilo se najít pronajímatele!', 'error');
+        try {
+            $this->destroyLandlordAction->execute($this->landlord, $landlordID , $userId);
+            flash('success', 'Pronájímatel byl úspěšně smazán.', 'success');
+            redirect('/landlords');
+        } catch (PersonNotFoundException $e) {
+            flash('error', $e->getMessage(), 'error');
             redirect();
         }
 

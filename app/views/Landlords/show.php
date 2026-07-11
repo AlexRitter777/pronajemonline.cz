@@ -49,7 +49,7 @@
     <div class="submit_button_div">
         <a class="form-btn btn-submit" href="landlords">Zpět</a>
         <a class="form-btn btn-submit" href="landlords/<?=$landlord->id;?>/edit">Upravit</a>
-        <a class="form-btn btn-reset" data-item="landlord" data-id="<?=$landlord->id;?>" data-href="user/landlords/destroy" id="profile-delete">Smazat</a>
+        <a class="form-btn btn-reset" data-item="landlord" data-id="<?=$landlord->id;?>" data-href="landlords/destroy" id="profile-delete">Smazat</a>
     </div>
 
 
