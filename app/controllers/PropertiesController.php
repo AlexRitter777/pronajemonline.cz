@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\Models\Property;
 use app\Models\Tenant;
 use app\Support\Account;
+use app\validation\Core\ErrorBag;
 use DI\Attribute\Inject;
 use Exception;
 use pronajem\base\Controller;
@@ -22,6 +23,9 @@ class PropertiesController extends Controller {
 
     #[Inject]
     private Tenant $tenant;
+
+    #[Inject]
+    private ErrorBag $errorBag;
 
 
 
@@ -45,6 +49,15 @@ class PropertiesController extends Controller {
         $token = CSRF::createCsrfToken();
 
         $this->set(compact('properties', 'tenant', 'pagination', 'token'));
+
+    }
+
+    public function create(){
+
+        [$errors, $old] = $this->errorBag->getErrors();
+        $tokenInput = CSRF::createCsrfInput();
+        $this->setMeta('Nová nemovitost', 'Založení nové nemovitosti');
+        $this->set(compact( 'tokenInput', 'errors', 'old'));
 
     }
 
@@ -217,16 +230,7 @@ class PropertiesController extends Controller {
     }
 
 
-    public function createAction(){
-        if(!is_user_logged_in()){
-            redirect('/user/login');
-        }
 
-        $this->layout = 'account_form';
-
-        $this->setMeta('Nová nemovitost', 'Založení nové nemovitosti');
-
-    }
 
 
     /**

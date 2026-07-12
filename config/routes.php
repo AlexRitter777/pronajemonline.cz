@@ -112,11 +112,11 @@ $router->add('properties', [
     'middleware' =>[ Auth::class ],
 ]);
 
-
-$router->add('^properties/create$', [
-    'controller' => 'Properties',
+$router->add('properties/create', [
+    'controller' => PropertiesController::class,
     'action' => 'create',
     'view' => 'Properties/create',
+    'middleware' =>[ Auth::class ],
 ]);
 
 $router->add('^properties/destroy$', [
