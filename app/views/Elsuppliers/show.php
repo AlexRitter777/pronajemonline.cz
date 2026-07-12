@@ -1,13 +1,8 @@
-
 <div class="user-header">
     <h3>Profil dodavatele elektřiny</h3>
 </div>
 
-<div class="central-bar">
-
-    <button class="burger-sidebar" type="button" id="navToggle">
-        <span class="burger__item">Menu</span>
-    </button>
+<div class="table-container entity-table">
 
     <table class="tenants" border="0">
 
@@ -33,15 +28,12 @@
             </tr>
         <?php endif;?>
 
-
-
-
     </table>
-    <div class="tenant-profile-buttons">
-        <button onClick="history.back()">Zpět</button>
-        <a href="user/elsuppliers/profile-editing?elsupplier_id=<?=$elsupplier->id;?>">Upravit</a>
-        <a href="" data-item="elsupplier" data-href="user/elsuppliers/profile-delete?elsupplier_id=<?=$elsupplier->id;?>" id="profile-delete">Smazat</a>
+    <div class="submit_button_div">
+        <a class="form-btn btn-submit" href="elsuppliers">Zpět</a>
+        <a class="form-btn btn-submit" href="elsuppliers/<?=$elsupplier->id;?>/edit">Upravit</a>
+        <a class="form-btn btn-reset" data-item="elsupplier" data-id="<?=$elsupplier->id;?>" data-href="elsuppliers/destroy" id="profile-delete">Smazat</a>
     </div>
 </div>
 
-
+<?php require_once APP . '/views/includes/modal_del_confirmation.php'; ?>

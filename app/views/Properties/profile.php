@@ -73,7 +73,7 @@
         <?php if(isset($elsupplier[$property->elsupplier_id])): ?>
             <tr class="">
                 <td class="col-1">Dodavatel elektřiny:</td>
-                <td class="col-2"><a href="/user/elsuppliers/profile?elsupplier_id=<?=$property->elsupplier_id;?>"><?= $elsupplier[$property->elsupplier_id];?></a></td>
+                <td class="col-2"><a href="/elsuppliers/<?=$property->elsupplier_id;?>"><?= $elsupplier[$property->elsupplier_id];?></a></td>
             </tr>
         <?php endif;?>
         <?php if($property->contract_till): ?>

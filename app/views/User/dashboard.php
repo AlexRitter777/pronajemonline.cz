@@ -31,7 +31,7 @@
         <div class="account-item-container">
             <div class="account-item">
                 <p class="account-item-title" style="margin-bottom: 0;">Dodavatelé elektřiny:</p>
-                <a class="account-item-count" href="/user/elsuppliers"><?=$count['elsupplier']?></a>
+                <a class="account-item-count" href="/elsuppliers"><?=$count['elsupplier']?></a>
             </div>
         </div>
     </div>

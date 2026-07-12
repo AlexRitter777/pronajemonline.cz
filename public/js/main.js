@@ -1218,7 +1218,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('.select-elsupplier-list').select2({
         ajax: {
-            url: '/user/elsuppliers/get-elsupplier-list',
+            url: '/elsuppliers/get-elsupplier-list',
             dataType: 'json',
             delay: 250,
             type: "GET",
@@ -1550,7 +1550,6 @@ $(function(){
     }
 
 })
-
 
 
 

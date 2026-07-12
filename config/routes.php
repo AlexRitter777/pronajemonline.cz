@@ -15,6 +15,7 @@
 use app\controllers\LandlordsController;
 use app\controllers\SettlementController;
 use app\controllers\AdminsController;
+use app\controllers\ElsuppliersController;
 use app\controllers\TenantsController;
 use app\Middleware\Auth;
 
@@ -40,7 +41,7 @@ $router->add('^dashboard$', [
 //$router->add('^properties$', ['controller' => 'Properties', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^calculations$', ['controller' => 'Calculations', 'action' => 'index', 'prefix' => 'User']);
 //$router->add('^admins$', ['controller' => 'Admins', 'action' => 'index', 'prefix' => 'User']);
-$router->add('^elsuppliers$', ['controller' => 'Elsuppliers', 'action' => 'index', 'prefix' => 'User']);
+//$router->add('^elsuppliers$', ['controller' => 'Elsuppliers', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^settings$', ['controller' => 'Settings', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^error$', ['controller' => 'Error', 'action' => 'index', 'prefix' => 'User']);
 
@@ -289,6 +290,64 @@ $router->add('admins/destroy', [
     'middleware' =>[ Auth::class ],
 ]);
 
+//Elsuppliers
+
+$router->add('elsuppliers', [
+    'controller' => ElsuppliersController::class,
+    'action' => 'index',
+    'view' => 'Elsuppliers/index',
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('elsuppliers/get-elsupplier-list', [
+    'controller' => ElsuppliersController::class,
+    'action' => 'getElsupplierList',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('elsuppliers/(?P<id>\d+)', [
+    'controller' => ElsuppliersController::class,
+    'action' => 'show',
+    'view' => 'Elsuppliers/show',
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('elsuppliers/create', [
+    'controller' => ElsuppliersController::class,
+    'action' => 'create',
+    'view' => 'Elsuppliers/create',
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('elsuppliers/store', [
+    'controller' => ElsuppliersController::class,
+    'action' => 'store',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('elsuppliers/(?P<id>\d+)/edit', [
+    'controller' => ElsuppliersController::class,
+    'action' => 'edit',
+    'view' => 'Elsuppliers/edit',
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('elsuppliers/(?P<id>\d+)/update', [
+    'controller' => ElsuppliersController::class,
+    'action' => 'update',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('elsuppliers/destroy', [
+    'controller' => ElsuppliersController::class,
+    'action' => 'destroy',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
 
 //Login form validation
 $router->add('^validator/authorization-validation$', [
@@ -354,7 +413,6 @@ $router->add('^blog/([\w\-]+)/?', ['controller' => 'Blog', 'action' => 'single']
 // A flexible route pattern that matches any user-related controller and action.
 // This pattern is useful for extending the user section without adding specific routes for each controller/action pair.
 $router->add('^user/?(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$', ['prefix' => 'User']);
-
 
 
 

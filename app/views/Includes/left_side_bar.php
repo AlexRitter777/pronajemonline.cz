@@ -32,7 +32,7 @@
                     <li><a href="tenants/add"><i class="far fa-user"></i> Nájemník</a></li>
                     <li><a href="landlords/create"><i class="fa-regular fa-circle-user"></i> Pronájímatel</a></li>
                     <li><a href="admins/create"><i class="fa-regular fa-handshake"></i> Správce</a></li>
-                    <li><a href="elsuppliers/add"><i class="fa-regular fa-lightbulb"></i> Dodavatel elektřiny</a></li>
+                    <li><a href="elsuppliers/create"><i class="fa-regular fa-lightbulb"></i> Dodavatel elektřiny</a></li>
                 </ul>
             </div>
         </li>
@@ -53,4 +53,3 @@
         <li><a href="settings" class="user-item-title"><i class="fa-regular fa-circle-question"></i> Podpora</a></li>
 
     </ul>
-
