@@ -3,18 +3,16 @@
 namespace app\controllers;
 
 use app\Models\Property;
+use app\Models\Tenant;
 use app\Support\Account;
 use DI\Attribute\Inject;
 use Exception;
+use pronajem\base\Controller;
 use pronajem\libs\CSRF;
-use pronajem\libs\PaginationSetParams;
 use RedBeanPHP\R;
 use RedBeanPHP\RedException\SQL;
 
-class PropertiesController extends AppController {
-
-    #[Inject]
-    private PaginationSetParams $pagination;
+class PropertiesController extends Controller {
 
     #[Inject]
     private Account $account;
@@ -22,29 +20,27 @@ class PropertiesController extends AppController {
     #[Inject]
     private Property $property;
 
-    public function __construct($route){
+    #[Inject]
+    private Tenant $tenant;
 
-        parent::__construct($route);
 
-        if(!is_user_logged_in()){
-            redirect('/user/login');
-        }
-    }
 
-    public function indexAction(){
-
+    public function index(){
 
         $userID = $_SESSION['user_id'];
 
         $this->setMeta('Nemovitosti', 'Seznam nemovitostí');
 
-        $properties = $this->property->getAllRecordsWithPagination(5, $userID);
+        $result = $this->property->getPaginatedRecords(10, $userID);
 
-        $tenant = $this->account->getPerson('tenant');
+        $properties = $result->records;
+        $pagination = $result->pagination;
 
-        $pagination = $this->pagination;
+        $tenantIds = array_filter(array_column($properties, 'tenant_id'));
 
-        //debug($tenant); die();
+        $tenantIds = array_values($tenantIds);
+
+        $tenant = $this->tenant->getRecordsByIds($tenantIds, $userID);
 
         $token = CSRF::createCsrfToken();
 

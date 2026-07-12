@@ -13,6 +13,7 @@
 //Admin routes
 // These routes use the 'admin' prefix to direct requests to controllers in the 'admin' namespace.
 use app\controllers\LandlordsController;
+use app\controllers\PropertiesController;
 use app\controllers\SettlementController;
 use app\controllers\AdminsController;
 use app\controllers\ElsuppliersController;
@@ -104,10 +105,11 @@ $router->add('^authorization$', [
 
 // Property
 
-$router->add('^properties$', [
-    'controller' => 'Properties',
+$router->add('properties', [
+    'controller' => PropertiesController::class,
     'action' => 'index',
     'view' => 'Properties/index',
+    'middleware' =>[ Auth::class ],
 ]);
 
 

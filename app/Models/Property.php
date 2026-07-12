@@ -2,20 +2,10 @@
 
 namespace app\Models;
 
-use app\Support\AppModel;
-use pronajem\libs\PaginationSetParams;
+use pronajem\base\Model;
 
-class Property extends AppModel
+class Property extends Model
 {
-
-    public function __construct(PaginationSetParams $pagination)
-    {
-
-        $this->pagination = $pagination;
-
-        parent::__construct($pagination);
-
-    }
 
     public function getPropertyList(int $userId = null) : array
     {

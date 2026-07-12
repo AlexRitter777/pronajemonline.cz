@@ -31,7 +31,7 @@ abstract class Model {
      */
     public function __construct(PaginationSetParams $pagination = null) {
         Db::instance();
-        
+
         $this->table = $this->table ?? $this->inferTableName();
 
         $this->pagination = $pagination; // remove after all refactore
@@ -113,6 +113,38 @@ abstract class Model {
         return [$where, $params];
     }
 
+
+    public function getRecordsByIds(array $ids, int $userId = null) : array
+    {
+        if (!$userId && !is_admin()) {
+            throw new \Exception('Access denied', 403);
+        }
+
+        if(empty($ids)) {
+            return [];
+        }
+
+        $conditions = [
+            'id IN (' . R::genSlots($ids) . ')',
+        ];
+
+        $params = $ids;
+
+        if ($userId !== null) {
+            array_unshift($conditions, 'user_id = ?');
+            array_unshift($params, $userId);
+        }
+
+        return R::getAssoc(
+            sprintf(
+                'SELECT id, name FROM `%s` WHERE %s',
+                $this->table,
+                implode(' AND ', $conditions)
+            ),
+            $params
+        );
+
+    }
 
 
     public function getAllRecordsWithPagination(int $perPage, int $userId = null)
