@@ -1,16 +1,15 @@
 <?php
 
-namespace app\controllers\User;
+namespace app\controllers;
 
 use app\actions\Tenant\CreateTenantAction;
 use app\actions\Tenant\DestroyTenantAction;
 use app\actions\Tenant\UpdateTenantAction;
-use app\controllers\AppController;
-use app\Models\Tenant;
 use app\Exceptions\PersonNotFoundException;
 use app\Exceptions\RecordNotCreatedException;
 use app\Exceptions\RecordNotUpdatedException;
 use app\Factories\TenantDataFactory;
+use app\Models\Tenant;
 use app\Support\Account;
 use app\validation\Core\ErrorBag;
 use app\validation\Validators\TenantValidator;
@@ -21,15 +20,11 @@ use pronajem\libs\PaginationSetParams;
 class TenantsController extends AppController
 {
 
-
     #[Inject]
     private Account $accountModel;
 
     #[Inject]
     private Tenant $tenant;
-
-    #[Inject]
-    private PaginationSetParams $pagination;
 
     #[Inject]
     private TenantValidator $validator;
@@ -49,19 +44,8 @@ class TenantsController extends AppController
     #[Inject]
     private DestroyTenantAction $destroyTenantAction;
 
-    public function __construct($route)
-    {
 
-        parent::__construct($route);
-
-        if (!is_user_logged_in()) {
-            redirect('/user/login');
-        }
-
-    }
-
-
-    public function indexAction()
+    public function index()
     {
 
 
@@ -69,11 +53,13 @@ class TenantsController extends AppController
 
         $this->setMeta('Nájemníci', 'Seznam nájemníků');
 
-        $tenants = $this->tenant->getAllRecordsWithPagination(8, $userID);
+        $result = $this->tenant->getPaginatedRecords(10, null, [], $userID);
+
+        $tenants = $result->records;
+
+        $pagination = $result->pagination;
 
         $tenantProp = $this->accountModel->personProps('tenant');
-
-        $pagination = $this->pagination;
 
         $token = CSRF::createCsrfToken();
 
@@ -84,22 +70,16 @@ class TenantsController extends AppController
     }
 
 
-    public function showAction()
+    public function show(int $tenantId)
     {
 
         $userID = $_SESSION['user_id'];
 
-        if (!isset($_GET['tenant_id'])) {
-            flash('error', 'Něco se nepovedlo, zkuste to prosím znovu.', 'error');
-            redirect();
-        }
 
-        $tenant_id = $_GET['tenant_id'];
-
-        $tenant = $this->tenant->getOneRecordById($tenant_id, $userID);
+        $tenant = $this->tenant->getOneRecordById($tenantId, $userID);
 
         if (!$tenant) {
-            flash('error', 'Nepodařilo se najít pronajímatele!', 'error');
+            flash('error', 'Nepodařilo se najít nájemníka', 'error');
             redirect();
         }
 
@@ -113,7 +93,7 @@ class TenantsController extends AppController
 
     }
 
-    public function createAction()
+    public function create()
     {
         [$errors, $old] = $this->errorBag->getErrors();
         $tokenInput = CSRF::createCsrfInput();
@@ -125,7 +105,7 @@ class TenantsController extends AppController
     /**
      * @throws RecordNotCreatedException
      */
-    public function saveAction()
+    public function store()
     {
         checkCsrfOrRedirect($_POST['token'] ?? '');
         $data = $this->validator->validate(sanitize($_POST));
@@ -133,23 +113,18 @@ class TenantsController extends AppController
         $tenantDto = $this->tenantDataFactory->createFromArray($data);
         $tenantId = $this->createTenantAction->execute($tenantDto, $userID);
         flash('success', 'Nájemník byl úspěšně vytvořen.', 'success');
-        redirect("/user/tenants/show?tenant_id={$tenantId}");
+        redirect("/tenants/{$tenantId}");
 
     }
 
 
-    public function editAction()
+    public function edit(int $tenantId)
     {
 
         [$errors, $old] = $this->errorBag->getErrors();
         $userID = $_SESSION['user_id'];
 
-        if (!isset($_GET['tenant_id'])) {
-            flash('error', 'Nepodarilo se najit nájenmíka.', 'error');
-            redirect();
-        }
 
-        $tenantId = $_GET['tenant_id'];
         $tenant = $this->tenant->getOneRecordById($tenantId, $userID);
 
         if (!$tenant) {
@@ -159,7 +134,7 @@ class TenantsController extends AppController
 
         $tokenInput = CSRF::createCsrfInput();
 
-        $this->setMeta('Úprava nájemníka', 'Úprava nájemníka');
+        $this->setMeta($tenant->name . ' - editace', 'Úprava nájemníka');
         $this->set(compact('tokenInput', 'tenant', 'errors', 'old'));
 
     }
@@ -168,16 +143,9 @@ class TenantsController extends AppController
      * @throws PersonNotFoundException
      * @throws RecordNotUpdatedException
      */
-    public function updateAction()
+    public function update(int $tenantId)
     {
         checkCsrfOrRedirect($_POST['token'] ?? '');
-
-        if (!isset($_GET['tenant_id'])) {
-            flash('error', 'Nepodarilo se najit nájemníka.', 'error');
-            redirect();
-        }
-
-        $tenantId = $_GET['tenant_id'];
 
         $userID = $_SESSION['user_id'];
 
@@ -188,16 +156,16 @@ class TenantsController extends AppController
         try {
             $tenantId = $this->updateTenantAction->execute($tenantDto, $tenantId, $userID);
             flash('success', 'Nájemník byl úspěšně upraven.', 'success');
-            redirect("/user/tenants/show?tenant_id={$tenantId}");
+            redirect("/tenants/{$tenantId}");
         } catch (PersonNotFoundException $e) {
             flash('error', $e->getMessage(), 'error');
-            redirect('/user/tenants');
+            redirect('/tenants');
         }
 
     }
 
 
-    public function destroyAction()
+    public function destroy()
     {
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -219,7 +187,7 @@ class TenantsController extends AppController
         try {
             $this->destroyTenantAction->execute($this->tenant, $tenantId, $userID);
             flash('success', 'Nájemník byl úspěšně smazán.', 'success');
-            redirect('/user/tenants');
+            redirect('/tenants');
         } catch (PersonNotFoundException $e) {
             flash('error', $e->getMessage(), 'error');
             redirect();

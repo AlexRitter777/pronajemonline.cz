@@ -14,6 +14,7 @@
 // These routes use the 'admin' prefix to direct requests to controllers in the 'admin' namespace.
 use app\controllers\LandlordsController;
 use app\controllers\SettlementController;
+use app\controllers\TenantsController;
 use app\Middleware\Auth;
 
 $router->add('^admin$', ['controller' => 'Main', 'action' => 'index', 'prefix' => 'admin']);
@@ -33,7 +34,7 @@ $router->add('^dashboard$', [
 ]);
 
 
-$router->add('^tenants$', ['controller' => 'Tenants', 'action' => 'index', 'prefix' => 'User']);
+//$router->add('^tenants$', ['controller' => 'Tenants', 'action' => 'index', 'prefix' => 'User']);
 //$router->add('^landlords$', ['controller' => 'Landlords', 'action' => 'index', 'prefix' => 'User']);
 //$router->add('^properties$', ['controller' => 'Properties', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^calculations$', ['controller' => 'Calculations', 'action' => 'index', 'prefix' => 'User']);
@@ -171,6 +172,57 @@ $router->add('landlords/destroy', [
     'middleware' =>[ Auth::class ],
 ]);
 
+//Tenants
+
+$router->add('tenants', [
+    'controller' => TenantsController::class,
+    'action' => 'index',
+    'view' => 'tenants/index',
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('tenants/(?P<id>\d+)', [
+    'controller' => TenantsController::class,
+    'action' => 'show',
+    'view' => 'tenants/show',
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('tenants/create', [
+    'controller' => TenantsController::class,
+    'action' => 'create',
+    'view' => 'tenants/create',
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('tenants/store', [
+    'controller' => TenantsController::class,
+    'action' => 'store',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('tenants/(?P<id>\d+)/edit', [
+    'controller' => TenantsController::class,
+    'action' => 'edit',
+    'view' => 'tenants/edit',
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('tenants/(?P<id>\d+)/update', [
+    'controller' => TenantsController::class,
+    'action' => 'update',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('tenants/destroy', [
+    'controller' => TenantsController::class,
+    'action' => 'destroy',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
 
 //Login form validation
 $router->add('^validator/authorization-validation$', [
@@ -236,7 +288,6 @@ $router->add('^blog/([\w\-]+)/?', ['controller' => 'Blog', 'action' => 'single']
 // A flexible route pattern that matches any user-related controller and action.
 // This pattern is useful for extending the user section without adding specific routes for each controller/action pair.
 $router->add('^user/?(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$', ['prefix' => 'User']);
-
 
 
 

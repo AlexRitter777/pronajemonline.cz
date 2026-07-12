@@ -5,11 +5,13 @@
 
 <div class="table-container entity-table">
 
-    <form method="post" name="tenant" action="user/tenants/update?tenant_id=<?=$tenant->id;?>" data-type="classic">
+    <form method="post" name="tenant" action="tenants/<?=$tenant->id;?>/update" data-type="classic">
         <table class="tenants" border="0">
 
             <tr class="">
-                <td class="col-1">Jméno*</td>
+                <td class="col-1">
+                    <label for="tenant_name">Jméno*</label>
+                </td>
                 <td class="col-2">
                     <input
                         class="input-profile <?= !empty($errors['tenant_name']) ? 'error_field_form' : '';?>"
@@ -22,7 +24,9 @@
                 </td>
             </tr>
             <tr class="">
-                <td class="col-1">Adresa*</td>
+                <td class="col-1">
+                    <label for="tenant_address">Adresa*</label>
+                </td>
                 <td class="col-2">
                     <input
                         class="input-profile <?= !empty($errors['tenant_address']) ? 'error_field_form' : '';?>"
@@ -36,7 +40,9 @@
             </tr>
 
             <tr class="">
-                <td class="col-1">E-mail</td>
+                <td class="col-1">
+                    <label for="tenant_email">E-mail</label>
+                </td>
                 <td class="col-2">
                     <input
                         class="input-profile <?= !empty($errors['tenant_email']) ? 'error_field_form' : '';?>"
@@ -51,7 +57,9 @@
 
 
             <tr class="">
-                <td class="col-1">Telefon</td>
+                <td class="col-1">
+                    <label for="tenant_phone_number">Telefon</label>
+                </td>
                 <td class="col-2">
                     <input
                         class="input-profile <?= !empty($errors['tenant_phone_number']) ? 'error_field_form' : '';?>"
@@ -66,7 +74,9 @@
 
 
             <tr class="">
-                <td class="col-1">Číslo účtu</td>
+                <td class="col-1">
+                    <label for="tenant_account">Číslo účtu</label>
+                </td>
                 <td class="col-2">
                     <input
                         class="input-profile <?= !empty($errors['tenant_account']) ? 'error_field_form' : '';?>"
@@ -88,8 +98,8 @@
 
 
         <div class="submit_button_div">
-            <input type="submit" class="form-btn btn-submit <!--profile-form-submit-->" value="Uložit">
-            <a class="form-btn btn-reset" href="user/tenants/show?tenant_id=<?=$tenant->id;?>">Zpět</a>
+            <input type="submit" class="form-btn btn-submit" value="Uložit">
+            <a class="form-btn btn-reset" href="tenants/<?=$tenant->id;?>">Zpět</a>
         </div>
     </form>
 

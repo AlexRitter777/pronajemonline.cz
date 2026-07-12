@@ -18,7 +18,7 @@
             </tr>
 
             <?php foreach ($tenants as $tenant): ?>
-                <tr class="row-click" data-href="user/tenants/show?tenant_id=<?= $tenant->id; ?>">
+                <tr class="row-click" data-href="tenants/<?= $tenant->id; ?>">
                     <td class="col-1"><?= $tenant->name; ?></td>
                     <td class="col-2"><?= $tenant->address; ?></td>
                     <td class="col-3"><?= !empty($tenantProp[$tenant->id]) ? $tenantProp[$tenant->id] : ''; ?></td>
@@ -45,7 +45,7 @@
     <?php endif; ?>
 
     <div class="more-calc-btn">
-        <a class="new-entity-button" href="user/tenants/create">Nový nájemník</a>
+        <a class="new-entity-button" href="tenants/create">Nový nájemník</a>
     </div>
 
 </div>

@@ -134,7 +134,7 @@ class LandlordsController extends Controller {
 
         $this->set(compact('landlord', 'tokenInput', 'errors', 'old'));
 
-        $this->setMeta($landlord->name . '- editace', 'Profil pronajímatele');
+        $this->setMeta($landlord->name . ' - editace', 'Profil pronajímatele');
 
     }
 

@@ -2,18 +2,9 @@
 
 namespace app\Models;
 
-use app\Support\AppModel;
-use pronajem\libs\PaginationSetParams;
+use pronajem\base\Model;
 
-class Tenant extends AppModel
+class Tenant extends Model
 {
-    public function __construct(PaginationSetParams $pagination)
-    {
-
-        $this->pagination = $pagination;
-
-        parent::__construct($pagination);
-
-    }
 
 }
