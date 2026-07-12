@@ -31,10 +31,8 @@ abstract class Model {
      */
     public function __construct(PaginationSetParams $pagination = null) {
         Db::instance();
-
-        if (!$this->table) {
-            $this->table = $this->inferTableName();
-        }
+        
+        $this->table = $this->table ?? $this->inferTableName();
 
         $this->pagination = $pagination; // remove after all refactore
 
@@ -47,6 +45,7 @@ abstract class Model {
      */
     private function inferTableName() : string
     {
+
         $className = (new \ReflectionClass($this))->getShortName();
 
         return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $className));
