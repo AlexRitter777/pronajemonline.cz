@@ -1,13 +1,8 @@
-
 <div class="user-header">
     <h3>Profil správce</h3>
 </div>
 
-<div class="central-bar">
-
-    <button class="burger-sidebar" type="button" id="navToggle">
-        <span class="burger__item">Menu</span>
-    </button>
+<div class="table-container entity-table">
 
     <table class="tenants" border="0">
 
@@ -65,7 +60,7 @@
         <?php endif;?>
         <?php if($propertyList): ?>
             <tr class="property-list">
-                <td class="col-1">Nemovitosi</td>
+                <td class="col-1">Nemovitosti</td>
                 <td class="col-2">
                     <?php foreach ($propertyList as $property): ?>
                         <a href="/user/properties/profile?property_id=<?= $property['id'];?>>"><?= $property['address'];?></a><br>
@@ -74,15 +69,12 @@
             </tr>
         <?php endif;?>
 
-
-
-
     </table>
-    <div class="tenant-profile-buttons">
-        <button onClick="history.back()">Zpět</button>
-        <a href="user/admins/profile-editing?admin_id=<?=$admin->id;?>">Upravit</a>
-        <a href="" data-item="admin" data-href="user/admins/profile-delete?admin_id=<?=$admin->id;?>" id="profile-delete">Smazat</a>
+    <div class="submit_button_div">
+        <a class="form-btn btn-submit" href="admins">Zpět</a>
+        <a class="form-btn btn-submit" href="admins/<?=$admin->id;?>/edit">Upravit</a>
+        <a class="form-btn btn-reset" data-item="admin" data-id="<?=$admin->id;?>" data-href="admins/destroy" id="profile-delete">Smazat</a>
     </div>
 </div>
 
-
+<?php require_once APP . '/views/includes/modal_del_confirmation.php'; ?>

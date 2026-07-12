@@ -70,7 +70,7 @@ export class DatabaseWrapper{
 
             $.ajax({
                 //url: 'user/' + name + 's/save-modal',
-                url: 'user/' + this.isItProperty(name) + 's/save-modal',
+                url: this.getSaveModalUrl(name),
                 method: 'post',
                 dataType: "json",
                 data: this.formData
@@ -110,6 +110,14 @@ export class DatabaseWrapper{
             return 'propertie'
         }
         return name;
+    }
+
+    getSaveModalUrl(name){
+        if(name === 'admin'){
+            return 'admins/save-modal';
+        }
+
+        return 'user/' + this.isItProperty(name) + 's/save-modal';
     }
 
 

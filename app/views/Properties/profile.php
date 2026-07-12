@@ -67,7 +67,7 @@
         <?php if(isset($admin[$property->admin_id])): ?>
             <tr class="">
                 <td class="col-1">Správce:</td>
-                <td class="col-2"><a href="/user/admins/profile?admin_id=<?=$property->admin_id;?>"><?= $admin[$property->admin_id];?></a></td>
+                <td class="col-2"><a href="/admins/<?=$property->admin_id;?>"><?= $admin[$property->admin_id];?></a></td>
             </tr>
         <?php endif;?>
         <?php if(isset($elsupplier[$property->elsupplier_id])): ?>

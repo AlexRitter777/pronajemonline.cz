@@ -1171,7 +1171,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('.select-admin-list').select2({
         ajax: {
-            url: '/user/admins/get-admin-list',
+            url: '/admins/get-admin-list',
             dataType: 'json',
             delay: 250,
             type: "GET",
@@ -1405,7 +1405,7 @@ $(document).ready(function (){
 
                                 //Save person to DB via AJAX
                                 $.ajax({
-                                    url: 'user/' + item + 's/save-modal',
+                                    url: item === 'admin' ? 'admins/save-modal' : 'user/' + item + 's/save-modal',
                                     method: 'post',
                                     dataType: "json",
                                     encode: true,
@@ -1550,8 +1550,6 @@ $(function(){
     }
 
 })
-
-
 
 
 

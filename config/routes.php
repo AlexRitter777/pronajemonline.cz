@@ -14,13 +14,14 @@
 // These routes use the 'admin' prefix to direct requests to controllers in the 'admin' namespace.
 use app\controllers\LandlordsController;
 use app\controllers\SettlementController;
+use app\controllers\AdminsController;
 use app\controllers\TenantsController;
 use app\Middleware\Auth;
 
-$router->add('^admin$', ['controller' => 'Main', 'action' => 'index', 'prefix' => 'admin']);
-$router->add('^admin/?(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$', ['prefix' => 'admin']);
-$router->add('^admin/users$', ['controller' => 'Users', 'action' => 'index', 'prefix' => 'admin']);
-$router->add('^admin/admins$', ['controller' => 'Admins', 'action' => 'index', 'prefix' => 'admin']);
+//$router->add('^admin$', ['controller' => 'Main', 'action' => 'index', 'prefix' => 'admin']);
+//$router->add('^admin/?(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$', ['prefix' => 'admin']);
+//$router->add('^admin/users$', ['controller' => 'Users', 'action' => 'index', 'prefix' => 'admin']);
+//$router->add('^admin/admins$', ['controller' => 'Admins', 'action' => 'index', 'prefix' => 'admin']);
 
 
 
@@ -38,7 +39,7 @@ $router->add('^dashboard$', [
 //$router->add('^landlords$', ['controller' => 'Landlords', 'action' => 'index', 'prefix' => 'User']);
 //$router->add('^properties$', ['controller' => 'Properties', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^calculations$', ['controller' => 'Calculations', 'action' => 'index', 'prefix' => 'User']);
-$router->add('^admins$', ['controller' => 'Admins', 'action' => 'index', 'prefix' => 'User']);
+//$router->add('^admins$', ['controller' => 'Admins', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^elsuppliers$', ['controller' => 'Elsuppliers', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^settings$', ['controller' => 'Settings', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^error$', ['controller' => 'Error', 'action' => 'index', 'prefix' => 'User']);
@@ -223,6 +224,71 @@ $router->add('tenants/destroy', [
     'middleware' =>[ Auth::class ],
 ]);
 
+//Admins
+
+$router->add('admins', [
+    'controller' => AdminsController::class,
+    'action' => 'index',
+    'view' => 'Admins/index',
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('admins/get-admin-list', [
+    'controller' => AdminsController::class,
+    'action' => 'getAdminList',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('admins/(?P<id>\d+)', [
+    'controller' => AdminsController::class,
+    'action' => 'show',
+    'view' => 'Admins/show',
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('admins/create', [
+    'controller' => AdminsController::class,
+    'action' => 'create',
+    'view' => 'Admins/create',
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('admins/store', [
+    'controller' => AdminsController::class,
+    'action' => 'store',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('admins/save-modal', [
+    'controller' => AdminsController::class,
+    'action' => 'saveModal',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('admins/(?P<id>\d+)/edit', [
+    'controller' => AdminsController::class,
+    'action' => 'edit',
+    'view' => 'Admins/edit',
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('admins/(?P<id>\d+)/update', [
+    'controller' => AdminsController::class,
+    'action' => 'update',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('admins/destroy', [
+    'controller' => AdminsController::class,
+    'action' => 'destroy',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
 
 //Login form validation
 $router->add('^validator/authorization-validation$', [
@@ -288,8 +354,6 @@ $router->add('^blog/([\w\-]+)/?', ['controller' => 'Blog', 'action' => 'single']
 // A flexible route pattern that matches any user-related controller and action.
 // This pattern is useful for extending the user section without adding specific routes for each controller/action pair.
 $router->add('^user/?(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$', ['prefix' => 'User']);
-
-
 
 
 

@@ -25,7 +25,7 @@
         <div class="account-item-container">
             <div class="account-item">
                 <p class="account-item-title">Správci:</p>
-                <a class="account-item-count" href="/user/admins"><?=$count['admin']?></a>
+                <a class="account-item-count" href="/admins"><?=$count['admin']?></a>
             </div>
         </div>
         <div class="account-item-container">
@@ -42,7 +42,7 @@
         <a class="new-dashboard-btn" href="user/properties/add"><i class="far fa-building"></i> <span>Nemovitost</span></a>
         <a class="new-dashboard-btn" href="user/tenants/add"><i class="far fa-user"></i> <span>Nájemník</span></a>
         <a class="new-dashboard-btn" href="user/landlords/create"><i class="fa-regular fa-circle-user"></i> <span>Pronájímatel</span></a>
-        <a class="new-dashboard-btn" href="user/admins/add"><i class="fa-regular fa-handshake"></i> <span>Správce</span></a>
+        <a class="new-dashboard-btn" href="admins/create"><i class="fa-regular fa-handshake"></i> <span>Správce</span></a>
 
     </div>
 
