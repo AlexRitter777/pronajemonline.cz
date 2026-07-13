@@ -86,6 +86,30 @@ abstract class Model {
         );
     }
 
+    public function getAllRecords(
+        string $search = null,
+        array $searchColumns = [],
+        ?int $userId = null,
+        $orderBy = 'ORDER BY name DESC'
+    ) : array
+    {
+        if (!$userId && !is_admin()) {
+            throw new \Exception('Access denied', 403);
+        }
+
+        foreach ($searchColumns as $column) {
+            if (!$this->checkIfColumnExists($this->table, $column)) {
+                throw new \Exception("Column {$column} does not exist");
+            }
+        }
+
+        [$where, $params] = $this->buildWhereClause($search, $searchColumns, $userId);
+
+        $sql = trim("{$where} {$orderBy}");
+
+        return R::findAll($this->table, $sql, $params);
+    }
+
     private function buildWhereClause(
         ?string $search,
         array $searchColumns,
@@ -182,17 +206,17 @@ abstract class Model {
        }
     }
 
-    public function getAllRecords(int $userId = null)
-    {
-        if($userId) {
-            return R::findAll($this->table, "user_id=?", [$userId]);
-        }
-        elseif(is_admin()) {
-            return R::findAll($this->table);
-        } else {
-            throw new \Exception('Access dinied', 403);
-        }
-    }
+//    public function getAllRecords(int $userId = null)
+//    {
+//        if($userId) {
+//            return R::findAll($this->table, "user_id=?", [$userId]);
+//        }
+//        elseif(is_admin()) {
+//            return R::findAll($this->table);
+//        } else {
+//            throw new \Exception('Access dinied', 403);
+//        }
+//    }
 
 
     public function getOneRecordById(string $recordId, int $userId = null) {

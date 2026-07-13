@@ -176,6 +176,15 @@ $router->add('landlords/destroy', [
     'middleware' =>[ Auth::class ],
 ]);
 
+$router->add('ajax/landlords/get-landlord-list', [
+    'controller' => app\controllers\Ajax\LandlordsController::class,
+    'action' => 'getLandlordsList',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+
+    ]
+);
+
 //Tenants
 
 $router->add('tenants', [
