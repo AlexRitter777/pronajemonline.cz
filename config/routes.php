@@ -185,6 +185,27 @@ $router->add('ajax/landlords/get-landlord-list', [
     ]
 );
 
+$router->add('ajax/tenants/get-tenant-list', [
+    'controller' => app\controllers\Ajax\TenantsController::class,
+    'action' => 'getTenantsList',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('ajax/admins/get-admin-list', [
+    'controller' => app\controllers\Ajax\AdminsController::class,
+    'action' => 'getAdminsList',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('ajax/elsuppliers/get-elsupplier-list', [
+    'controller' => app\controllers\Ajax\ElsuppliersController::class,
+    'action' => 'getElsuppliersList',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
 //Tenants
 
 $router->add('tenants', [
@@ -424,7 +445,6 @@ $router->add('^blog/([\w\-]+)/?', ['controller' => 'Blog', 'action' => 'single']
 // A flexible route pattern that matches any user-related controller and action.
 // This pattern is useful for extending the user section without adding specific routes for each controller/action pair.
 $router->add('^user/?(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$', ['prefix' => 'User']);
-
 
 
 

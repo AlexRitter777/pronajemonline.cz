@@ -1074,52 +1074,6 @@ $(document).ready(function () {
 // })
 
 
-/*---------------------------Select2 tenant-list ------------------------------------*/
-
-$(document).ready(function() {
-    $('.select-tenant-list').select2({
-        ajax: {
-            url: '/user/tenants/get-tenant-list',
-            dataType: 'json',
-            delay: 250,
-            type: "GET",
-            data: function (term) {
-                return {
-                    term: term
-                };
-            },
-            processResults: function (data) {
-                return {
-                    results: data
-                };
-            },
-            cache: true,
-        },
-        minimumInputLength: 1,
-        allowClear: true,
-        language: {
-            inputTooShort: function() {
-                return 'Zadejte alespoň jeden symbol';
-            },
-            removeAllItems:function(){
-                return"Odstraňte všechny položky"
-            }
-        },
-        placeholder: "Vyberte ze seznamu",
-
-        //add pagination in case more results!!!
-    });
-
-    $('#tenant .select2-container').click(function (){
-
-        if(!$("[aria-controls='select2-input-tenant-list-results']").next().length){
-            $("[aria-controls='select2-input-tenant-list-results']").after('<button class="person_added_btn" id="new_item" data-item="tenant">Nový</button>');
-        }
-
-    })
-
-})
-
 
 /*----------------------------------------New person modal ---------------------------------------------*/
 
