@@ -53,7 +53,7 @@
     <?php endif;?>
 
     <div class="more-calc-btn">
-        <a class="new-entity-button" href="user/properties/add">Nová nemovitost</a>
+        <a class="new-entity-button" href="properties/create">Nová nemovitost</a>
     </div>
 </div>
 
