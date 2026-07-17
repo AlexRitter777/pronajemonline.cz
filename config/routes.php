@@ -12,7 +12,9 @@
 
 //Admin routes
 // These routes use the 'admin' prefix to direct requests to controllers in the 'admin' namespace.
+use app\controllers\DashboardController;
 use app\controllers\LandlordsController;
+use app\controllers\NewSettlementController;
 use app\controllers\PropertiesController;
 use app\controllers\SettlementController;
 use app\controllers\AdminsController;
@@ -27,27 +29,25 @@ use app\Middleware\Auth;
 
 
 
-//User routes
-// These routes direct requests to controllers intended for user interactions.
-// Each route defines a specific path, controller, action, and uses the 'user' prefix.
-$router->add('^dashboard$', [
-    'controller' => 'User',
-    'action' => 'dashboard',
-    'view' => 'User/dashboard',
-]);
 
 
-//$router->add('^tenants$', ['controller' => 'Tenants', 'action' => 'index', 'prefix' => 'User']);
-//$router->add('^landlords$', ['controller' => 'Landlords', 'action' => 'index', 'prefix' => 'User']);
-//$router->add('^properties$', ['controller' => 'Properties', 'action' => 'index', 'prefix' => 'User']);
+
+
 $router->add('^calculations$', ['controller' => 'Calculations', 'action' => 'index', 'prefix' => 'User']);
-//$router->add('^admins$', ['controller' => 'Admins', 'action' => 'index', 'prefix' => 'User']);
-//$router->add('^elsuppliers$', ['controller' => 'Elsuppliers', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^settings$', ['controller' => 'Settings', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^error$', ['controller' => 'Error', 'action' => 'index', 'prefix' => 'User']);
 
 
-//New routes
+//*** New routes ***//
+
+//Dashboard
+$router->add('dashboard', [
+    'controller' => DashboardController::class,
+    'action' => 'index',
+    'view' => 'dashboard',
+    'middleware' =>[ Auth::class ],
+]);
+
 
 // Settlements
 $router->add('^settlements$', [
@@ -56,10 +56,10 @@ $router->add('^settlements$', [
     'view' => 'settlements/index',
 ]);
 
-$router->add('^settlements/list$', [
-    'controller' => 'NewSettlement',
+$router->add('settlements/new', [
+    'controller' => NewSettlementController::class,
     'action' => 'index',
-    'view' => 'NewSettlement/index',
+    'view' => 'new-settlement/index',
 ]);
 
 $router->add('settlements/create', [

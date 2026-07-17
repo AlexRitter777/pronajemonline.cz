@@ -27,9 +27,9 @@
                 x-cloak
             >
                 <ul>
-                    <li><a href="settlements/list"><i class="far fa-file-alt"></i> Vyúčtování</a></li>
-                    <li><a href="properties/add"><i class="far fa-building"></i> Nemovitost</a></li>
-                    <li><a href="tenants/add"><i class="far fa-user"></i> Nájemník</a></li>
+                    <li><a href="settlements/new"><i class="far fa-file-alt"></i> Vyúčtování</a></li>
+                    <li><a href="properties/create"><i class="far fa-building"></i> Nemovitost</a></li>
+                    <li><a href="tenants/create"><i class="far fa-user"></i> Nájemník</a></li>
                     <li><a href="landlords/create"><i class="fa-regular fa-circle-user"></i> Pronájímatel</a></li>
                     <li><a href="admins/create"><i class="fa-regular fa-handshake"></i> Správce</a></li>
                     <li><a href="elsuppliers/create"><i class="fa-regular fa-lightbulb"></i> Dodavatel elektřiny</a></li>
