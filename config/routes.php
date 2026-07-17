@@ -50,10 +50,11 @@ $router->add('dashboard', [
 
 
 // Settlements
-$router->add('^settlements$', [
-    'controller' => 'Settlement',
+$router->add('settlements', [
+    'controller' => SettlementController::class,
     'action' => 'index',
     'view' => 'settlements/index',
+    'middleware' =>[ Auth::class ],
 ]);
 
 $router->add('settlements/new', [

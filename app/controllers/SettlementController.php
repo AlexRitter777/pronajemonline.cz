@@ -21,8 +21,6 @@ use RedBeanPHP\R;
 
 class SettlementController extends AppController
 {
-    #[Inject]
-    private PaginationSetParams $pagination;
 
     #[Inject]
     private Servicescalc $servicesSettlement;
@@ -45,7 +43,7 @@ class SettlementController extends AppController
     #[Inject]
     private Property $property;
 
-    public function indexAction()
+    public function index()
     {
         $this->setMeta('Vyúčtování', 'Seznam uložených vyúčtování');
 
@@ -67,12 +65,12 @@ class SettlementController extends AppController
 
 
 
-        $settlements = $this->$settlementEntity->getAllRecordsWithPaginationAndConditions(
+        $result = $this->$settlementEntity->getPaginatedRecords(
             perPage: 10,
-            filters: [],
-            userId: $userID,
-            orderBy: $sortOrder
         );
+
+        $settlements = $result->records;
+        $pagination = $result->pagination;
 
 //        dd($settlements);
 
@@ -156,7 +154,6 @@ class SettlementController extends AppController
 //        $calcURL = substr($calcType, 0, -4);
 //        $calcTypeValue = Services::getCalcValue($calcType);
 
-        $pagination = $this->pagination;
 
         $token = CSRF::createCsrfToken();
         //$calculations = [];

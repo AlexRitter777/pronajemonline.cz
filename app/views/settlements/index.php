@@ -97,7 +97,7 @@
 
 
             <?php foreach ($settlements as $settlement): ?>
-                <tr class="row-click" data-href="/applications/<?php /*= $calcURL*/; ?>-calc?calculation_id=<?=$settlement->id;?>">
+                <tr class="row-click" <!--data-href="/applications/<?php /*= $calcURL; */?>-calc?calculation_id=--><?php /*=$settlement->id;*/?>">
                     <td class="col-1"><?= $settlement->calculation_name;?></td>
                     <td class="col-2"><?= $settlement->property_address;?></td>
                     <td class="col-3"><?= $settlement->tenant_name;?></td>
