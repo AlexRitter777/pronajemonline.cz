@@ -98,7 +98,7 @@ class TenantsController extends AppController
         [$errors, $old] = $this->errorBag->getErrors();
         $tokenInput = CSRF::createCsrfInput();
         $this->setMeta('Nový nájemník', 'Vytvoření nového nájemníka');
-        $this->set(compact('reCaptcha', 'tokenInput', 'errors', 'old'));
+        $this->set(compact( 'tokenInput', 'errors', 'old'));
     }
 
 
