@@ -12,7 +12,7 @@ class LandlordsController extends Controller
     #[Inject]
     private Landlord $landlord;
 
-    public function getLandlordsList() : array
+    public function getList() : array
     {
         $userId = $_SESSION['user_id'];
         $term = $_GET['term']['term'] ?? '';

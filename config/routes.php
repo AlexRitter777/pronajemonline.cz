@@ -67,7 +67,7 @@ $router->add('settlements/create', [
     'controller' => SettlementController::class,
     'action' => 'create',
     'view' => 'settlements/create',
-    'middleware' => 'auth',
+    'middleware' => [ Auth::class ],
 ]);
 
 
@@ -177,32 +177,34 @@ $router->add('landlords/destroy', [
     'middleware' =>[ Auth::class ],
 ]);
 
-$router->add('ajax/landlords/get-landlord-list', [
+
+//Ajax routes
+$router->add('ajax/landlords/get-list', [
     'controller' => app\controllers\Ajax\LandlordsController::class,
-    'action' => 'getLandlordsList',
+    'action' => 'getList',
     'view' => null,
     'middleware' =>[ Auth::class ],
 
     ]
 );
 
-$router->add('ajax/tenants/get-tenant-list', [
+$router->add('ajax/tenants/get-list', [
     'controller' => app\controllers\Ajax\TenantsController::class,
-    'action' => 'getTenantsList',
+    'action' => 'getList',
     'view' => null,
     'middleware' =>[ Auth::class ],
 ]);
 
-$router->add('ajax/admins/get-admin-list', [
+$router->add('ajax/admins/get-list', [
     'controller' => app\controllers\Ajax\AdminsController::class,
-    'action' => 'getAdminsList',
+    'action' => 'getList',
     'view' => null,
     'middleware' =>[ Auth::class ],
 ]);
 
-$router->add('ajax/elsuppliers/get-elsupplier-list', [
+$router->add('ajax/elsuppliers/get-list', [
     'controller' => app\controllers\Ajax\ElsuppliersController::class,
-    'action' => 'getElsuppliersList',
+    'action' => 'getList',
     'view' => null,
     'middleware' =>[ Auth::class ],
 ]);

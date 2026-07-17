@@ -5,32 +5,6 @@
 
 <div class="table-container">
 
-<!--    <div class="calculation-select-type">-->
-<!--        <form method="get" class="calc_type_form" action="settlements">-->
-<!---->
-<!--            <select-->
-<!--                    x-data="select2({-->
-<!--                        placeholder: 'Vyberte nemovitost',-->
-<!--                        minimumResultsForSearch: 2-->
-<!--                    })"-->
-<!--                    name="property_id"-->
-<!--                    class="select-calctype"-->
-<!--                    id="calc-type-list"-->
-<!--                    @change="$el.form.submit()"-->
-<!--            >-->
-<!--                --><?php //foreach ($properties as $id => $address): ?>
-<!--                    <option></option>-->
-<!--                    <option-->
-<!--                        value="--><?php //= $id; ?><!--"-->
-<!--                        --><?php //if((string) $selectedPropertyId === (string) $id): ?><!--selected--><?php //endif; ?>
-<!--                    >-->
-<!--                        --><?php //= $address; ?>
-<!--                    </option>-->
-<!--                --><?php //endforeach; ?>
-<!--            </select>-->
-<!--        </form>-->
-<!--    </div>-->
-
         <nav class="calc-type-tabs">
            <?php foreach ($settlementTypes as $type => $label): ?>
                 <a
@@ -160,7 +134,7 @@
             text-decoration: none;
             color: #666;
             border-bottom: 2px solid transparent;
-            margin-bottom: -2px; /* перекрывает нижнюю границу контейнера */
+            margin-bottom: -2px;
             transition: all 0.15s;
         }
 
@@ -170,7 +144,7 @@
 
         .calc-tab.is-active {
             color: #000;
-            border-bottom-color: #2563eb; /* твой акцентный цвет */
+            border-bottom-color: #2563eb;
             font-weight: 500;
         }
 

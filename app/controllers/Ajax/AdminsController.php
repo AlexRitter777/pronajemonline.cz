@@ -11,7 +11,7 @@ class AdminsController extends Controller
     #[Inject]
     private Admin $admin;
 
-    public function getAdminsList(): array
+    public function getList(): array
     {
         $userId = $_SESSION['user_id'];
         $term = $_GET['term']['term'] ?? '';

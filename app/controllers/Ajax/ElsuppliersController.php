@@ -11,7 +11,7 @@ class ElsuppliersController extends Controller
     #[Inject]
     private Elsupplier $elsupplier;
 
-    public function getElsuppliersList(): array
+    public function getList(): array
     {
         $userId = $_SESSION['user_id'];
         $term = $_GET['term']['term'] ?? '';

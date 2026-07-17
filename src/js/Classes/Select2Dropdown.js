@@ -13,19 +13,22 @@ export class Select2Dropdown {
         //Gets right part of string after specific symbol
         //In this case we use this method for extract entity name from selector, which call select2 list
         //Exp: select-tenant -> tenant
-        let entity = this.cutStringBeforeChar(css_selector, '-');
+        let entity = this.cutStringBeforeChar(css_selector, '-') + "s";
+
+        if(entity === 'property') {
+            entity = 'properties'
+        }
 
         //call select2
         $(css_selector).select2({
             ajax: {
-                url: '/user/data/get-select-items-list',
+                url: `/ajax/${entity}/get-list`,
                 dataType: 'json',
                 delay: 250,
                 type: "GET",
                 data: function (term) {
                     return {
                         term: term,
-                        table: entity //send to server DB table name
                     };
                 },
                 processResults: function (data) {

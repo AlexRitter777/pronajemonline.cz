@@ -11,7 +11,7 @@ class TenantsController extends Controller
     #[Inject]
     private Tenant $tenant;
 
-    public function getTenantsList(): array
+    public function getList(): array
     {
         $userId = $_SESSION['user_id'];
         $term = $_GET['term']['term'] ?? '';
