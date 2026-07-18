@@ -14,7 +14,7 @@ export class AjaxProcessor {
 
     getFieldValueById (id, field, table){
 
-        return new Promise((resolve,reject)=>{
+        return new Promise((resolve, reject)=>{
 
             $.ajax({
                 url: 'user/data/get-item-value',
@@ -166,8 +166,30 @@ export class AjaxProcessor {
     }
 
 
+    async getOneRecordById(recordId, table) {
 
+        return new Promise((resolve, reject) => {
 
+            $.ajax({
+                url: `ajax/${table}/${recordId}/get-one`,
+                method: 'get',
+                dataType: "json",
+                data: { record_id: recordId }
+            })
+            .done((response) => {
 
+                console.log(response) //debugging
+                resolve(response);
 
+            })
+            .fail(() => {
+
+                console.log('Server response: "failed!"') //debugging
+                resolve(false);
+
+            })
+
+        })
+
+    }
 }

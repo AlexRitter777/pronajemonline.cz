@@ -64,10 +64,20 @@ $(document).ready(function () {
         //get entity, which also DB table name
         let entity = $(this).data('entity');
 
+        let table = null;
+
+        if(entity === 'property') {
+            table = 'properties'
+        }else{
+            table = entity + 's';
+        }
+
         const database = new AjaxProcessor();
         //get value from Database
-        let fieldValue = await database.getFieldValueById(recordId, 'address', entity);
-        let accountNumber = await database.getFieldValueById(recordId, 'account', entity);
+        const record = await database.getOneRecordById(recordId, table);
+
+        const fieldValue = record.address;
+        const accountNumber = record.account;
 
         //insert field value in the specific field
         $(`#${entity}Address`).val(fieldValue);

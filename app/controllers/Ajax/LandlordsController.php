@@ -12,7 +12,7 @@ class LandlordsController extends Controller
     #[Inject]
     private Landlord $landlord;
 
-    public function getList() : array
+    public function getList() : never
     {
         $userId = $_SESSION['user_id'];
         $term = $_GET['term']['term'] ?? '';
@@ -40,5 +40,21 @@ class LandlordsController extends Controller
         echo json_encode($result);
         exit();
     }
+
+    public function getOneRecord(int $landlordId) : never
+    {
+        $userId = $_SESSION['user_id'];
+
+        $landlord = $this->landlord->getOneRecordById($landlordId, $userId);
+
+        if (!$landlord) {
+            throw new \Exception('Record not found.', 404);
+        }
+
+        echo json_encode($landlord);
+        exit();
+
+    }
+
 
 }

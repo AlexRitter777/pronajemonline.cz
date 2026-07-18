@@ -197,6 +197,17 @@ $router->add('ajax/landlords/get-list', [
     ]
 );
 
+$router->add('ajax/landlords/(?P<id>\d+)/get-one', [
+        'controller' => app\controllers\Ajax\LandlordsController::class,
+        'action' => 'getOneRecord',
+        'view' => null,
+        'middleware' =>[ Auth::class ],
+
+    ]
+);
+
+
+
 $router->add('ajax/tenants/get-list', [
     'controller' => app\controllers\Ajax\TenantsController::class,
     'action' => 'getList',
