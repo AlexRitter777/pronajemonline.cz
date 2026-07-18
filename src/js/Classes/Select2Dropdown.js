@@ -13,10 +13,12 @@ export class Select2Dropdown {
         //Gets right part of string after specific symbol
         //In this case we use this method for extract entity name from selector, which call select2 list
         //Exp: select-tenant -> tenant
-        let entity = this.cutStringBeforeChar(css_selector, '-') + "s";
+        let entity = this.cutStringBeforeChar(css_selector, '-');
 
         if(entity === 'property') {
             entity = 'properties'
+        }else{
+            entity = entity + 's';
         }
 
         //call select2

@@ -105,7 +105,7 @@ abstract class Model {
 
         [$where, $params] = $this->buildWhereClause($search, $searchColumns, $userId);
 
-        $sql = trim("{$where} {$orderBy}");
+        $sql = trim("{$where} {$orderBy}"); 
 
         return R::findAll($this->table, $sql, $params);
     }

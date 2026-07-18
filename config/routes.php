@@ -179,6 +179,15 @@ $router->add('landlords/destroy', [
 
 
 //Ajax routes
+$router->add('ajax/properties/get-list', [
+        'controller' => \app\controllers\Ajax\PropertiesController::class,
+        'action' => 'getList',
+        'view' => null,
+        'middleware' =>[ Auth::class ],
+
+    ]
+);
+
 $router->add('ajax/landlords/get-list', [
     'controller' => app\controllers\Ajax\LandlordsController::class,
     'action' => 'getList',
