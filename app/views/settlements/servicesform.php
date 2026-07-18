@@ -45,7 +45,7 @@
             <label for="adminName" class="label_text">Název firmy, vykonávající správu domu</label>
             <?php if(is_user_logged_in()): ?>
             <div class="select-wrapper">
-                <select name="adminName" id="adminName" class="field-1 select-admin select-ajax input-admin-list" data-entity="admin">
+                <select name="adminName" id="adminName" class="field-1 select-admin input-admin-list" data-entity="admin">
                     <option value="<?= $data['adminName'] ?? '';?>"><?= $data['adminName'] ?? '';?></option>
                 </select>
             </div>

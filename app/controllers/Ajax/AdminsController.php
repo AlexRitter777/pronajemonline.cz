@@ -11,7 +11,7 @@ class AdminsController extends Controller
     #[Inject]
     private Admin $admin;
 
-    public function getList(): array
+    public function getList(): never
     {
         $userId = $_SESSION['user_id'];
         $term = $_GET['term']['term'] ?? '';
@@ -39,4 +39,6 @@ class AdminsController extends Controller
         echo json_encode($result);
         exit();
     }
+
+
 }

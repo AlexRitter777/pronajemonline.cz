@@ -11,7 +11,7 @@ class TenantsController extends Controller
     #[Inject]
     private Tenant $tenant;
 
-    public function getList(): array
+    public function getList(): never
     {
         $userId = $_SESSION['user_id'];
         $term = $_GET['term']['term'] ?? '';
@@ -39,4 +39,20 @@ class TenantsController extends Controller
         echo json_encode($result);
         exit();
     }
+
+    public function getOneRecord(int $tenantId) : never
+    {
+        $userId = $_SESSION['user_id'];
+
+        $tenant = $this->tenant->getOneRecordById($tenantId, $userId);
+
+        if (!$tenant) {
+            throw new \Exception('Record not found.', 404);
+        }
+
+        echo json_encode($tenant);
+        exit();
+
+    }
+
 }
