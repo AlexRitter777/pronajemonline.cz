@@ -40,5 +40,20 @@ class AdminsController extends Controller
         exit();
     }
 
+    public function getOneRecord(int $adminId) : never
+    {
+        $userId = $_SESSION['user_id'];
+
+        $admin = $this->admin->getOneRecordById($adminId, $userId);
+
+        if (!$admin) {
+            throw new \Exception('Record not found.', 404);
+        }
+
+        echo json_encode($admin);
+        exit();
+
+    }
+
 
 }

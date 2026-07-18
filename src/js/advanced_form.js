@@ -61,8 +61,15 @@ $(document).ready(function () {
     $('.select-ajax').on(`change`, async function (e) {
         //get record id in DB
         let recordId = $(this).find(':selected').data('record_id');
+
         //get entity, which also DB table name
         let entity = $(this).data('entity');
+
+        if(recordId === undefined) {
+            $(`#${entity}Address`).val('');
+            $(`#accountNumber`).val('');
+            return;
+        }
 
         let table = null;
 
@@ -76,15 +83,12 @@ $(document).ready(function () {
         //get value from Database
         const record = await database.getOneRecordById(recordId, table);
 
-        const fieldValue = record.address;
-        const accountNumber = record.account;
-
         //insert field value in the specific field
-        $(`#${entity}Address`).val(fieldValue);
+        $(`#${entity}Address`).val( record.address);
 
         //insert account number only in case of landlord field
         if(accountNumber && isEntityLandlord(entity)){
-            $(`#accountNumber`).val(accountNumber);
+            $(`#accountNumber`).val(record.account);
         }else{
             $(`#accountNumber`).val('');
         }
@@ -107,84 +111,60 @@ $(document).ready(function () {
     $('.select-property').on(`change`, async function (e) {
         //get record id in DB
         let recordId = $(this).find(':selected').data('record_id');
-        //get entity, which also DB table name
-        let entity = $(this).data('entity'); //property
+
+        if(recordId === undefined) {
+            $('#propertyType').val('');
+            return;
+        }
 
         const database = new AjaxProcessor();
-        //get values from Database
-        let propertyType = await database.getFieldValueById(recordId, 'type', entity);
-        let landlord_id = await database.getFieldValueById(recordId, 'landlord_id', entity);
-        let tenant_id = await database.getFieldValueById(recordId, 'tenant_id', entity);
-        let admin_id = await database.getFieldValueById(recordId, 'admin_id', entity);
-        let elsupplier_id = await database.getFieldValueById(recordId, 'elsupplier_id', entity);
 
-        //insert property type value in the specific field
-        $('#propertyType').val(propertyType);
+        const property = await database.getOneRecordById(recordId, 'properties');
 
-        //get landlord data from DB and insert to specific fields
-        if(landlord_id){
+        $('#propertyType').val(property.type);
 
-            let landlordName = await database.getFieldValueById(landlord_id, 'name', 'landlord');
-            let landlordAddress = await database.getFieldValueById(landlord_id, 'address', 'landlord');
-            let accountNumber = await database.getFieldValueById(landlord_id, 'account', 'landlord');
-
+        if(property.landlord_id) {
+            const landlord = await database.getOneRecordById(property.landlord_id, 'landlords');
             $('#landlordName').empty().append($('<option>', {
-                value: landlordName,
-                text: landlordName,
-                'data-record_id': landlord_id,
+                value: landlord.name,
+                text: landlord.name,
+                'data-record_id': landlord.id,
             }))
-            $('#landlordAddress').val(landlordAddress);
-            if(accountNumber) {
-                $('#accountNumber').val(accountNumber);
+            $('#landlordAddress').val(landlord.address);
+
+            if(landlord.account) {
+                $('#accountNumber').val(landlord.account);
             }
-        }else{
+        } else {
             $('#landlordName').empty();
             $('#landlordAddress').val('');
             $('#accountNumber').val('');
         }
 
-        //get tenant data from DB and insert to specific fields
-        if(tenant_id){
-            let tenantName = await database.getFieldValueById(tenant_id, 'name', 'tenant');
-            let tenantAddress = await database.getFieldValueById(tenant_id, 'address', 'tenant');
-
+        if(property.tenant_id) {
+            const tenant = await database.getOneRecordById(property.tenant_id, 'tenants');
             $('#tenantName').empty().append($('<option>', {
-                value: tenantName,
-                text: tenantName,
-                'data-record_id': tenant_id,
+                value: tenant.name,
+                text: tenant.name,
+                'data-record_id': tenant.id,
             }))
-
-            $('#tenantAddress').val(tenantAddress);
-
+            $('#tenantAddress').val(tenant.address);
         } else {
             $('#tenantName').empty();
             $('#tenantAddress').val('');
         }
 
-        //get admin data from DB and insert to specific fields
-        if(admin_id){
-            let adminName = await database.getFieldValueById(admin_id, 'name', 'admin');
-            $('#adminName').empty().append($('<option>', {
-                value: adminName,
-                text: adminName,
-                'data-record_id': admin_id,
+        const adminNameElement = $('#adminName');
+        if(property.admin_id && adminNameElement.length > 0) {
+            const admin = await database.getOneRecordById(property.admin_id, 'admins');
+            adminNameElement.empty().append($('<option>', {
+                value: admin.name,
+                text: admin.name,
+                'data-record_id': admin.id,
             }))
-        }else {
-            $('#adminName').empty();
         }
 
-        //get elsupplier data from DB and insert to specific fields
-        if(elsupplier_id){
-            let elsupplierName = await database.getFieldValueById(elsupplier_id, 'name', 'elsupplier');
-            $('#supplierName').empty().append($('<option>', {
-                value: elsupplierName,
-                text: elsupplierName,
-                'data-record_id': elsupplier_id,
-            }))
-
-        }else{
-            $('#supplierName').empty();
-        }
+        // El supplier later
 
     })
 

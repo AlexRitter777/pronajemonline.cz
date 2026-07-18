@@ -179,7 +179,7 @@ $router->add('landlords/destroy', [
 
 
 //Ajax routes
-// List
+// Property list
 $router->add('ajax/properties/get-list', [
         'controller' => \app\controllers\Ajax\PropertiesController::class,
         'action' => 'getList',
@@ -189,8 +189,15 @@ $router->add('ajax/properties/get-list', [
     ]
 );
 
+// One record
+$router->add('ajax/properties/(?P<id>\d+)/get-one', [
+        'controller' => \app\controllers\Ajax\PropertiesController::class,
+        'action' => 'getOneRecord',
+        'view' => null,
+        'middleware' =>[ Auth::class ],
 
-
+    ]
+);
 
 // List
 $router->add('ajax/landlords/get-list', [
@@ -231,6 +238,14 @@ $router->add('ajax/tenants/(?P<id>\d+)/get-one', [
 $router->add('ajax/admins/get-list', [
     'controller' => app\controllers\Ajax\AdminsController::class,
     'action' => 'getList',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+// One record
+$router->add('ajax/admins/(?P<id>\d+)/get-one', [
+    'controller' => app\controllers\Ajax\AdminsController::class,
+    'action' => 'getOneRecord',
     'view' => null,
     'middleware' =>[ Auth::class ],
 ]);

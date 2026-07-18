@@ -41,4 +41,19 @@ class PropertiesController extends Controller
         exit();
     }
 
+    public function getOneRecord(int $propertyId) : never
+    {
+        $userId = $_SESSION['user_id'];
+
+        $property = $this->property->getOneRecordById($propertyId, $userId);
+
+        if (!$property) {
+            throw new \Exception('Record not found.', 404);
+        }
+
+        echo json_encode($property);
+        exit();
+
+    }
+
 }

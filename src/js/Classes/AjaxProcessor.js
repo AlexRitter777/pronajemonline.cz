@@ -174,11 +174,10 @@ export class AjaxProcessor {
                 url: `ajax/${table}/${recordId}/get-one`,
                 method: 'get',
                 dataType: "json",
-                data: { record_id: recordId }
             })
             .done((response) => {
 
-                console.log(response) //debugging
+                // console.log(response) //debugging
                 resolve(response);
 
             })
