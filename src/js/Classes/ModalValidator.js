@@ -14,6 +14,7 @@ export class ModalValidator{
         this.formType = this.getFormType(form);
         this.formObject = this.getFormObject(form);
         this.actionPath = this.getActionPath(form);
+        this.token = $('meta[name="csrf-token"]').attr('content');
 
     }
 
@@ -116,10 +117,13 @@ export class ModalValidator{
 
             $.ajax({
                 type: "POST",
-                url: `/validatornew/modal-new-validation?formName=${name}`,
+                url: `/ajax/validate/${name}`,
                 data: this.formData,
                 dataType: "json",
                 encode: true,
+                headers: {
+                    'X-CSRF-TOKEN': this.token
+                },
 
             })
                 .done((response) => {

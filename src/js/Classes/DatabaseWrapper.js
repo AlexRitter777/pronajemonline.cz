@@ -10,7 +10,7 @@ export class DatabaseWrapper{
         let formName = this.getFormName(form); //form -> attr "name" value
         this.formData = this.getInputValues(formName); //in case of save calculation this method is not working (no inputs to save)
         this.formName = formName;
-
+        this.token = $('meta[name="csrf-token"]').attr('content');
     }
 
     /**
@@ -72,6 +72,9 @@ export class DatabaseWrapper{
                 //url: 'user/' + name + 's/save-modal',
                 url: this.getSaveModalUrl(name),
                 method: 'post',
+                headers: {
+                    'X-CSRF-TOKEN': this.token
+                },
                 dataType: "json",
                 data: this.formData
 
@@ -113,11 +116,12 @@ export class DatabaseWrapper{
     }
 
     getSaveModalUrl(name){
-        if(name === 'admin'){
-            return 'admins/save-modal';
+        if(name === 'landlord'){
+            return 'ajax/landlords/store';
         }
 
-        return 'user/' + this.isItProperty(name) + 's/save-modal';
+
+        // return 'user/' + this.isItProperty(name) + 's/save-modal';
     }
 
 

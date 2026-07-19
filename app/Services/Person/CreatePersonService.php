@@ -1,6 +1,6 @@
 <?php
 
-namespace app\services\Person;
+namespace app\Services\Person;
 
 use app\Exceptions\RecordNotCreatedException;
 

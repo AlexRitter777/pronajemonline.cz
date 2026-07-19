@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Support;
+namespace app\validator_ajax;
 
 class ValidationRules
 {

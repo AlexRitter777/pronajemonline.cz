@@ -1,10 +1,12 @@
 <?php
 
-namespace app\Support;
+namespace app\validator_ajax;
 
+use app\Support\Account;
+use app\Support\AppModel;
 use Exception;
 
-class Validationnew extends AppModel
+class Validator
 {
 
     protected  $errors;

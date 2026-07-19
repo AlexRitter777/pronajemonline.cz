@@ -20,7 +20,10 @@ use app\controllers\SettlementController;
 use app\controllers\AdminsController;
 use app\controllers\ElsuppliersController;
 use app\controllers\TenantsController;
+use app\Middleware\AjaxMiddleware;
 use app\Middleware\Auth;
+use app\Middleware\CsrfMiddleware;
+use app\Middleware\PostMiddleware;
 
 //$router->add('^admin$', ['controller' => 'Main', 'action' => 'index', 'prefix' => 'admin']);
 //$router->add('^admin/?(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$', ['prefix' => 'admin']);
@@ -218,6 +221,16 @@ $router->add('ajax/landlords/(?P<id>\d+)/get-one', [
     ]
 );
 
+// Store record
+$router->add('ajax/landlords/store', [
+        'controller' => app\controllers\Ajax\LandlordsController::class,
+        'action' => 'store',
+        'view' => null,
+        'middleware' =>[ Auth::class, AjaxMiddleware::class, PostMiddleware::class, CsrfMiddleware::class ],
+
+    ]
+);
+
 // List
 $router->add('ajax/tenants/get-list', [
     'controller' => app\controllers\Ajax\TenantsController::class,
@@ -257,6 +270,16 @@ $router->add('ajax/elsuppliers/get-list', [
     'view' => null,
     'middleware' =>[ Auth::class ],
 ]);
+
+$router->add('ajax/validate/(?P<form>[a-z0-9_-]+)', [
+    'controller' => app\controllers\Ajax\ValidatorController::class,
+    'action' => 'validate',
+    'view' => null,
+    'middleware' =>[ Auth::class, AjaxMiddleware::class, PostMiddleware::class, CsrfMiddleware::class ],
+]);
+
+
+
 
 //Tenants
 

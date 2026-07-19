@@ -2,6 +2,8 @@
 
 namespace app\controllers\Ajax;
 
+use app\actions\Landlord\CreateLandlordAction;
+use app\Factories\LandlordDataFactory;
 use app\Models\Landlord;
 use DI\Attribute\Inject;
 use pronajem\base\Controller;
@@ -11,6 +13,13 @@ class LandlordsController extends Controller
 
     #[Inject]
     private Landlord $landlord;
+
+    #[Inject]
+    private LandlordDataFactory $dataFactory;
+
+    #[Inject]
+    private CreateLandlordAction $action;
+
 
     public function getList() : never
     {
@@ -54,6 +63,22 @@ class LandlordsController extends Controller
         echo json_encode($landlord);
         exit();
 
+    }
+
+    public function store() : never
+    {
+        $data = sanitize($_POST);
+        $userId = $_SESSION['user_id'];
+        $dto = $this->dataFactory->createFromArray($data);
+        $landlordId = $this->action->execute($dto, $userId);
+
+        echo json_encode([
+            'landlordID' => $landlordId,
+            'landlordName' => $dto->name,
+            'landlordAddress' => $dto->address,
+            'landlordAccount' => $dto->account,
+        ]);
+        exit();
     }
 
 

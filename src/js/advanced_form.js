@@ -1,6 +1,5 @@
 import {Select2Dropdown} from "./classes/Select2Dropdown.js";
 import {AjaxProcessor} from "./classes/AjaxProcessor.js";
-import {ReCaptcha} from "./classes/ReCaptcha.js";
 import {ModalValidator} from "./classes/ModalValidator.js";
 import {DatabaseWrapper} from "./classes/DatabaseWrapper.js";
 import {closeModalOnButton, closeModalOnCross} from "./jbox_helpers.js";
@@ -10,7 +9,6 @@ import {loaderSpinnerModalOff, loaderSpinnerModalOn} from "./loader_spinner.js";
 let modalWindow;
 //global form name => table name in DB
 let entity;
-
 
 $(document).ready(function () {
 
@@ -204,9 +202,8 @@ $(document).ready(function () {
     })
 
     /**
-     * 1. Ajax Recaptcha validation
-     * 2. Ajax inputs validation
-     * 3. Ajax save in database
+     * 1. Ajax inputs validation
+     * 2. Ajax save in database
      */
     $('body').on('click','.recaptcha', async function (e) {
 
@@ -218,29 +215,10 @@ $(document).ready(function () {
         //Start spinner-loader
         loaderSpinnerModalOn();
 
-        /*
-         * 1. ReCaptcha Validation
-         */
-        const reCaptcha = new ReCaptcha();
-        let reCaptchaResult = await reCaptcha.validateFormRequest().catch((e) => {
-            console.error(e);
-            return false;
-        })
-        //console.log(reCaptchaResult);//debugging
-
-        if(!reCaptchaResult) {
-
-            //stop loader-spinner and abort script
-            loaderSpinnerModalOff();
-            return;
-            // Here we can add information for user in error field
-        }
-
 
         /*
-         * 2. Inputs validation
+         * 1. Inputs validation
          */
-
         const modalValidator = new ModalValidator(this);
 
         //modalValidator.getData();//debugging
@@ -252,7 +230,7 @@ $(document).ready(function () {
 
 
         /*
-         * 3. Save data to database if validation was success
+         * 2. Save data to database if validation was success
          */
         if(validationResult){
 
@@ -260,7 +238,7 @@ $(document).ready(function () {
             //databaseWrapper.getData(); debugging
             let newRecord =  await databaseWrapper.saveToDatabase();
 
-            console.log(newRecord); //debugging
+            // console.log(newRecord); //debugging
 
             //databaseWrapper.getData(); //debugging
 
@@ -297,7 +275,6 @@ $(document).ready(function () {
                     $('#accountNumber').val(newRecord[databaseWrapper.formName + 'Account']);
                 }
 
-
                 //Close Modal JBox window
                 modalWindow.close();
                 modalWindow.destroy();
@@ -305,6 +282,7 @@ $(document).ready(function () {
             }
 
         }
+
         //Stop loader-spinner after record was created
         loaderSpinnerModalOff();
     })
