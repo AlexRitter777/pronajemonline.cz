@@ -194,7 +194,7 @@ class CalculationsController extends AppController {
 
                 foreach ($_SESSION[$calcType . 'InitialData'][$_GET['id']] as $key => $value) {
                     //dont use values 'Ano' or 'Ne' form radio buttons
-                    if(!empty($value) && $value !== 'Ano' && $value !== 'Ne') {
+                    if($value !== 'Ano' && $value !== 'Ne') {
 
                         //every array is converting to string before save to DB
                         if (is_array($value)){
