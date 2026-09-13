@@ -83,7 +83,7 @@
             </div>
             <div class="date">
                 <label for="rentStartDate" class="label_text">Počáteční datum vyúčtování pronajímatele *</label>
-                <input type="date" name="rentStartDate" class="field-start-rent" id="rentStartDate" class="field" value="<?= $data['rentStartDate'] ?? '';?>">
+                <input type="date" name="rentStartDate" class="field-start-rent field" id="rentStartDate" value="<?= $data['rentStartDate'] ?? '';?>">
             </div>
             <div class="date">
                 <label for="rentFinishDate" class="label_text">Konečné datum vyúčtování pronajímatele *</label>

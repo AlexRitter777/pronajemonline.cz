@@ -15,6 +15,13 @@
         </div>
 
         <div class="app-block">
+            <a href="settlements/create?form_type=easyservicescalc">
+                <p class="app-block-title">Zjednodušené vyúčtování služeb</p>
+                <p class="app-block-desc"> Umožňuje plnou nebo částečnou přefakturaci nákladů na služby spojené s užíváním bytu za celý kalendářní rok.<span class="calc-hidden"> Stačí zadat základní údaje z vyúčtování služeb od správce domu, o zbytek se postará výpočet.</span></p>
+            </a>
+        </div>
+
+        <div class="app-block">
             <a href="user/calculations/electro-form">
                 <p class="app-block-title">Vyúčtování spotřeby elektřiny</p>
                 <p class="app-block-desc">Umožňuje vypočítat náklady na elektřinu spotřebovanou nájemníkem na základě průměrných cen za měsíc a za kWh. <span class="calc-hidden">Průměrné ceny lze nalézt ve vaší faktuře od dodavatele elektřiny nebo v ceníku. Je možné zadat i vlastní náklady bez potřeby výpočtu.</span></p>
@@ -28,12 +35,7 @@
             </a>
         </div>
 
-        <div class="app-block">
-            <a href="user/calculations/easyservices-form">
-                <p class="app-block-title">Zjednodušené vyúčtování služeb</p>
-                <p class="app-block-desc"> Umožňuje plnou nebo částečnou přefakturaci nákladů na služby spojené s užíváním bytu za celý kalendářní rok.<span class="calc-hidden"> Stačí zadat základní údaje z vyúčtování služeb od správce domu, o zbytek se postará výpočet.</span></p>
-            </a>
-        </div>
+
 
         <div class="app-block">
             <a href="user/calculations/total-form">

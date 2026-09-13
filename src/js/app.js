@@ -10,6 +10,7 @@ import "./form_validation.js";
 import "./remove_entity_confirmation.js";
 import "./validation.js";
 import "./property_form.js";
+import "./easy_services_form"
 
 
 window.$ = $;

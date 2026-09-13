@@ -428,9 +428,9 @@ $(function () {
 //Services costs
 $(document).ready(function() {
   $('.select-list').select2({
-      tags: true, //возможность вводить свои значения
+      tags: true, //custom names
       placeholder: "Vyberte ze seznamu nebo napište vlastní",
-      sorter: data => data.sort((a, b) => a.text.localeCompare(b.text)) //сортировка по АБВ
+      sorter: data => data.sort((a, b) => a.text.localeCompare(b.text)) //sort ABC
     });
 
 })
@@ -495,15 +495,7 @@ $(document).ready(function() {
 
 })
 
-// Year of the statement
-$(document).ready(function() {
-    $('.select-list-rent-date-year').select2({
-        placeholder: "Zvolte rok",
-        minimumResultsForSearch: -1,
-        //sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
-    });
 
-})
 
 // Options for the statement of deposit (depositcalc)
 $(document).ready(function() {
@@ -713,27 +705,7 @@ $(window).on('load', function() {
 })
 
 
-// Year of calculation
-$(window).on('load', function() {
-    $.ajax({
-        type: "GET",
-        url: "/services/calculation-year",
-        dataType: "json",
-        encode: true,
-    })
-        .done(function (data) {
-            let countCalculationType = data.length;
-            for (j = 0; j < countCalculationType; j++) {
-                if (data[j] != $('.select-list-rent-date-year').val()) {
-                    $('.select-list-rent-date-year').append(
-                        '<option value="' + data[j] + '">' + data[j] + '</option>');
-                }
-            }
 
-
-        })
-
-})
 
 
 

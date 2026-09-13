@@ -279,6 +279,13 @@ $router->add('ajax/validate/(?P<form>[a-z0-9_-]+)', [
 ]);
 
 
+$router->add('ajax/settlements/get-years-list', [
+    'controller' =>  app\controllers\Ajax\SettlementYearsController::class,
+    'action' => 'getList',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
 
 
 //Tenants

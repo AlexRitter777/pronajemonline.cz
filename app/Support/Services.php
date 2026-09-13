@@ -87,28 +87,28 @@ class Services
         'Teplo pro vytápění (UT)'
     );
 
-    public static $calculationList = [
-        'servicescalc' => 'Vyúčtování služeb',
-        'easyservicescalc' => 'Zjednodušené vyúčtování služeb',
-        'electrocalc' => 'Vyúčtování spotřeby elektřiny',
-        'universalcalc' => 'Univerzální vyúčtování',
-        'depositcalc' => 'Vyúčtování kauce',
-        'totalcalc' => 'Souhrnné vyúčtování'
-    ];
+//    public static $calculationList = [
+//        'servicescalc' => 'Vyúčtování služeb',
+//        'easyservicescalc' => 'Zjednodušené vyúčtování služeb',
+//        'electrocalc' => 'Vyúčtování spotřeby elektřiny',
+//        'universalcalc' => 'Univerzální vyúčtování',
+//        'depositcalc' => 'Vyúčtování kauce',
+//        'totalcalc' => 'Souhrnné vyúčtování'
+//    ];
 
 
-    public function getYearsList ()
-    {
-       $yearsList = [];
-       $amountOfItems = 7;
-       $currentYear = (int) date("Y");
-       for ($i=0; $i<=$amountOfItems; $i++ ) {
-           $yearsList[$i] = $currentYear;
-           $currentYear = $currentYear - 1;
-       }
-
-       return $yearsList;
-    }
+//    public function getYearsList ()
+//    {
+//       $yearsList = [];
+//       $amountOfItems = 7;
+//       $currentYear = (int) date("Y");
+//       for ($i=0; $i<=$amountOfItems; $i++ ) {
+//           $yearsList[$i] = $currentYear;
+//           $currentYear = $currentYear - 1;
+//       }
+//
+//       return $yearsList;
+//    }
 
     public function getServicesAndUtilites() {
         return array_merge($this->services, $this->utilites);
@@ -129,11 +129,11 @@ class Services
         }
     }
 
-    public static function getCalcValue($data){
-
-        return self::$calculationList[$data];
-
-
-    }
+//    public static function getCalcValue($data){
+//
+//        return self::$calculationList[$data];
+//
+//
+//    }
 
 }
