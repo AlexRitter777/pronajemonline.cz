@@ -4,31 +4,37 @@ namespace app\Support;
 
 class Services
 {
+    private array $services;
+    public function __construct()
+    {
+        $this->services = require_once CONF . '/pronajemonline.php';
 
-    public $services = array(
-        'Garáže',
-        'Odměny výboru SVJ',
-        'Odpad',
-        'Společná el. energie',
-        'Údržba zeleně',
-        'Údržba komunikaci, pozemků, zeleně',
-        'Úklid',
-        'Výtah',
-        'Záloha na PCO HZS Praha',
-        'Zimní úklid',
-        'Údržba společných prostor a revize',
-        'Opravy, údržba',
-        'Režie SVJ',
-        'Režie - správní',
-        'Provozní režie',
-        'Správa domu',
-        'Rozúčtování topných nákladů',
-        'Náklady na odečty a rozučtování',
-        'Havarijní služba',
-        'Recepce',
-        'Odměna správci',
+    }
 
-    );
+//    public $services = array(
+//        'Garáže',
+//        'Odměny výboru SVJ',
+//        'Odpad',
+//        'Společná el. energie',
+//        'Údržba zeleně',
+//        'Údržba komunikaci, pozemků, zeleně',
+//        'Úklid',
+//        'Výtah',
+//        'Záloha na PCO HZS Praha',
+//        'Zimní úklid',
+//        'Údržba společných prostor a revize',
+//        'Opravy, údržba',
+//        'Režie SVJ',
+//        'Režie - správní',
+//        'Provozní režie',
+//        'Správa domu',
+//        'Rozúčtování topných nákladů',
+//        'Náklady na odečty a rozučtování',
+//        'Havarijní služba',
+//        'Recepce',
+//        'Odměna správci',
+//
+//    );
 
     public $meters = array(
         'TUV (Tepla voda)',
@@ -81,11 +87,11 @@ class Services
     ); //при добавлении, добавить условие в Aplication Model, universalCalcType method.
 
     //add to services in easy services calculation
-    public $utilites = array(
-        'Spotřeba vody - studená (SUV)',
-        'Spotřeba a ohřev vody - teplá (TUV)',
-        'Teplo pro vytápění (UT)'
-    );
+//    public $utilites = array(
+//        'Spotřeba vody - studená (SUV)',
+//        'Spotřeba a ohřev vody - teplá (TUV)',
+//        'Teplo pro vytápění (UT)'
+//    );
 
 //    public static $calculationList = [
 //        'servicescalc' => 'Vyúčtování služeb',
@@ -110,8 +116,15 @@ class Services
 //       return $yearsList;
 //    }
 
-    public function getServicesAndUtilites() {
-        return array_merge($this->services, $this->utilites);
+    public function getServicesAndUtilities() {
+        return array_merge(
+            $this->services['services'],
+            $this->services['utilities']
+        );
+    }
+
+    public function getServices() {
+        return $this->services['services'];
     }
 
     public function getJsonList($data){

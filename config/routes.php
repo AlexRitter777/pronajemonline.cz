@@ -286,6 +286,13 @@ $router->add('ajax/settlements/get-years-list', [
     'middleware' =>[ Auth::class ],
 ]);
 
+$router->add('ajax/settlements/get-services-list', [
+    'controller' =>  app\controllers\Ajax\ServicesListController::class,
+    'action' => 'getServicesList',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
 
 
 //Tenants

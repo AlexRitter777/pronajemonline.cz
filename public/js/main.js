@@ -27,16 +27,16 @@ $(window).on('load', function() {
 
 // Determine if we are on the services-form or easyservices-form page, assign routes for ajax requests for Select2 dropdowns
 
-$(window).on('load', function() {
-    let easyServicesUrl = $(location).attr('pathname');
-    if (easyServicesUrl.match(/easyservices/)) {
-        pathSimplyEasyServices = '/services/simply-easyservices';
-        pathEasyServices = '/services/easyservices';
-    } else {
-        pathSimplyEasyServices = '/services/simply-services';
-        pathEasyServices = '/services/services';
-    }
-})
+// $(window).on('load', function() {
+//     let easyServicesUrl = $(location).attr('pathname');
+//     if (easyServicesUrl.match(/easyservices/)) {
+//         pathSimplyEasyServices = '/services/simply-easyservices';
+//         pathEasyServices = '/services/easyservices';
+//     } else {
+//         pathSimplyEasyServices = '/services/simply-services';
+//         pathEasyServices = '/services/services';
+//     }
+// })
 
 
 
@@ -516,7 +516,6 @@ $(document).ready(function() {
 })
 
 
-/*---Функция добавления опций в поля со списком select2 после загрузки плагина, имеющиеся на странице после ее загрузки (первая строка + добавленные через PHP).---*/
 /*---Function to add options to select2 list fields after the plugin has loaded,
 for existing elements on the page after it loads (the first line + added via PHP).---*/
 
@@ -525,11 +524,14 @@ for existing elements on the page after it loads (the first line + added via PHP
 $(window).on('load', function() {
 //console.log(pathEasyServices); debugging
 //console.log(pathSimplyEasyServices); debugging
- $.ajax({
+    const searchParams = new URLSearchParams(window.location.search);
+
+    $.ajax({
       type: "GET",
-      url: pathEasyServices,
+      url: '/ajax/settlements/get-services-list',
       dataType: "json",
-      encode: true
+      encode: true,
+      data: {form_type: searchParams.get('form_type')}
       })
       .done(function (data) {
         let countServices = data.length;
