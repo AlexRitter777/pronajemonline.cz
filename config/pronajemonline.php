@@ -30,7 +30,20 @@ return [
         'Spotřeba vody - studená (SUV)',
         'Spotřeba a ohřev vody - teplá (TUV)',
         'Teplo pro vytápění (UT)'
+    ],
+
+    'meter_types' => [
+        'TUV (Tepla voda)',
+        'SUV (Studena voda)',
+        'UT (Ustřední topení)',
+    ],
+
+    'meter_reading_source' => [
+        'Vyúčtování správce',
+        'Předávací protokol'
     ]
+
+
 
 
 ];

@@ -1,5 +1,9 @@
 export class Validator {
 
+    constructor() {
+        this.token = $('meta[name="csrf-token"]').attr('content');
+    }
+
     formData;
 
     //Collect data values from forms for sending to server:
@@ -437,9 +441,12 @@ export class Validator {
         //console.log(this.formData);
         return $.ajax({
             type: "POST",
-            url: `/validator/${name}-validation`,
+            url: `ajax/validation/${name}`,
             data: this.formData,
             dataType: "json",
+            headers: {
+                'X-CSRF-TOKEN': this.token
+            },
             encode: true,
         })
             .done((data) => {

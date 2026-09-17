@@ -1,13 +1,14 @@
 <?php
 
-namespace app\controllers;
+namespace app\controllers\Ajax;
 
+use app\controllers\AppController;
 use app\Support\ReCaptcha;
 use app\Support\validation\Validation;
 
-class ValidatorController extends AppController {
+class FormValidatorController extends AppController {
 
-    public function servicesvalidationAction() {
+    public function servicesValidationAction() {
 
         $data = $_POST;
         $validate = new Validation();

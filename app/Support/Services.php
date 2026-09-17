@@ -11,42 +11,7 @@ class Services
 
     }
 
-//    public $services = array(
-//        'Garáže',
-//        'Odměny výboru SVJ',
-//        'Odpad',
-//        'Společná el. energie',
-//        'Údržba zeleně',
-//        'Údržba komunikaci, pozemků, zeleně',
-//        'Úklid',
-//        'Výtah',
-//        'Záloha na PCO HZS Praha',
-//        'Zimní úklid',
-//        'Údržba společných prostor a revize',
-//        'Opravy, údržba',
-//        'Režie SVJ',
-//        'Režie - správní',
-//        'Provozní režie',
-//        'Správa domu',
-//        'Rozúčtování topných nákladů',
-//        'Náklady na odečty a rozučtování',
-//        'Havarijní služba',
-//        'Recepce',
-//        'Odměna správci',
-//
-//    );
 
-    public $meters = array(
-        'TUV (Tepla voda)',
-        'SUV (Studena voda)',
-        'UT (Ustřední topení)',
-
-    );
-
-    public $origins = array(
-        'Vyúčtování správce',
-        'Předávací protokol'
-    );
 
     public $originsElectro = array(
         'Vyúčtování dodavatele',
@@ -86,35 +51,7 @@ class Services
 
     ); //при добавлении, добавить условие в Aplication Model, universalCalcType method.
 
-    //add to services in easy services calculation
-//    public $utilites = array(
-//        'Spotřeba vody - studená (SUV)',
-//        'Spotřeba a ohřev vody - teplá (TUV)',
-//        'Teplo pro vytápění (UT)'
-//    );
 
-//    public static $calculationList = [
-//        'servicescalc' => 'Vyúčtování služeb',
-//        'easyservicescalc' => 'Zjednodušené vyúčtování služeb',
-//        'electrocalc' => 'Vyúčtování spotřeby elektřiny',
-//        'universalcalc' => 'Univerzální vyúčtování',
-//        'depositcalc' => 'Vyúčtování kauce',
-//        'totalcalc' => 'Souhrnné vyúčtování'
-//    ];
-
-
-//    public function getYearsList ()
-//    {
-//       $yearsList = [];
-//       $amountOfItems = 7;
-//       $currentYear = (int) date("Y");
-//       for ($i=0; $i<=$amountOfItems; $i++ ) {
-//           $yearsList[$i] = $currentYear;
-//           $currentYear = $currentYear - 1;
-//       }
-//
-//       return $yearsList;
-//    }
 
     public function getServicesAndUtilities() {
         return array_merge(
@@ -142,11 +79,6 @@ class Services
         }
     }
 
-//    public static function getCalcValue($data){
-//
-//        return self::$calculationList[$data];
-//
-//
-//    }
+
 
 }

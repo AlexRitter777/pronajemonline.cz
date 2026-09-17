@@ -12,6 +12,7 @@
 
 //Admin routes
 // These routes use the 'admin' prefix to direct requests to controllers in the 'admin' namespace.
+use app\controllers\Ajax\FormValidatorController;
 use app\controllers\DashboardController;
 use app\controllers\LandlordsController;
 use app\controllers\NewSettlementController;
@@ -293,6 +294,27 @@ $router->add('ajax/settlements/get-services-list', [
     'middleware' =>[ Auth::class ],
 ]);
 
+$router->add('ajax/settlements/get-meter-types', [
+    'controller' =>  app\controllers\Ajax\MeterTypesController::class,
+    'action' => 'getMeterTypes',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('ajax/settlements/get-meter-sources', [
+    'controller' =>  app\controllers\Ajax\MeterReadingSourceController::class,
+    'action' => 'getMeterTypes',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('ajax/validation/services', [
+    'controller' => FormValidatorController::class,
+    'action' => 'servicesValidationAction',
+    'view' => null,
+    'middleware' =>[ Auth::class, AjaxMiddleware::class, PostMiddleware::class, CsrfMiddleware::class ]
+]);
+
 
 
 //Tenants
@@ -481,16 +503,15 @@ $router->add('^validator/authorization-validation$', [
 
 
 
-
 $router->add('^calculations/servicesform$', ['controller' => 'Servicesform', 'action' => 'create', 'prefix' => 'User']);
 $router->add('^calculations/servicesform/edit$', ['controller' => 'Servicesform', 'action' => 'edit', 'prefix' => 'User']);
 
 
 //Ajax on calculation form loading
 $router->add('^services/rent-finish-reasons$', ['controller' => 'Services', 'action' => 'rentfinishreasons']);
-$router->add('^services/meters$', ['controller' => 'Services', 'action' => 'meters']);
-$router->add('^services/services$', ['controller' => 'Services', 'action' => 'services']);
-$router->add('^services/origins$', ['controller' => 'Services', 'action' => 'origins']);
+//$router->add('^services/meters$', ['controller' => 'Services', 'action' => 'meters']);
+//$router->add('^services/services$', ['controller' => 'Services', 'action' => 'services']);
+//$router->add('^services/origins$', ['controller' => 'Services', 'action' => 'origins']);
 $router->add('^services/origins-electro$', ['controller' => 'Services', 'action' => 'originselectro']);
 $router->add('^services/deposit-items$', ['controller' => 'Services', 'action' => 'deposititems']);
 $router->add('^services/calculation-type$', ['controller' => 'Services', 'action' => 'calculationtype']);
@@ -501,7 +522,7 @@ $router->add('^services/simply-meters$', ['controller' => 'Services', 'action' =
 
 
 //Ajax validators
-$router->add('^validator/services-validation$', ['controller' => 'Validator', 'action' => 'servicesvalidation']);
+
 
 
 
