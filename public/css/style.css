@@ -358,6 +358,7 @@
   border-radius: 4px;
   box-shadow: 0 0 8px 0 rgb(0 0 0 / 40%);
   white-space: normal !important;
+  z-index: 1000;
 }
 
 

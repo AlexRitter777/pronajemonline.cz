@@ -10,7 +10,8 @@ import "./form_validation.js";
 import "./remove_entity_confirmation.js";
 import "./validation.js";
 import "./property_form.js";
-import "./settlement_forms.js"
+import "./settlement_forms.js";
+import "./tooltips.js";
 
 
 window.$ = $;

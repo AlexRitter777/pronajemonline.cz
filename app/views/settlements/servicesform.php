@@ -61,9 +61,14 @@
 
             <div class="text-help">
                 <h3 class="calculation-subtitle">Vyúčtování správce zpracováno za období:</h3>
-                <svg class="icon_help help-right-text" data-hint="#real-hint-2">
-                    <use xlink: href="#help"></use>
-                </svg>
+                <div style="position: relative;">
+                    <svg class="icon_help help-right-text" data-hint="#real-hint-2">
+                        <use xlink: href="#help"></use>
+                    </svg>
+                    <div id="real-hint-2" class="real-hint">
+                        <span>Obvykle od 1.01. do 31.12, ale v některých případech se to může lišit, např. pokud byl dům předán do správy uprostřed roku (u novostaveb), došlo ke změně majitele nebo změně správce apod. Počáteční a konečná data jsou vždy uvedena ve vyúčtování od správce.</span>
+                    </div>
+                </div>
             </div>
 
             <div class="date">
@@ -77,9 +82,14 @@
 
             <div class="text-help">
                 <h3 class="calculation-subtitle">Vyúčtování pronajímatele zpracováno za období:</h3>
-                <svg class="icon_help help-right-text" data-hint="#real-hint-3">
-                    <use xlink: href="#help"></use>
-                </svg>
+                <div style="position: relative;">
+                    <svg class="icon_help help-right-text" data-hint="#real-hint-3">
+                        <use xlink: href="#help"></use>
+                    </svg>
+                    <div id="real-hint-3" class="real-hint">
+                        <span>Období je obvykle ohraničeno začátkem nebo koncem kalendářního roku a dnem nastěhování či odstěhování nájemníka. V případě, že nájemník bydlel od 1.01. do 31.12., doporučujeme použít zjednodušené vyúčtování služeb.</span>
+                    </div>
+                </div>
             </div>
             <div class="date">
                 <label for="rentStartDate" class="label_text">Počáteční datum vyúčtování pronajímatele *</label>
@@ -97,11 +107,14 @@
         <div class="form-service-charges-group">
             <h2 class="calculation-title">VI. Náklady na služby a správu domu </h2>
 
-            <label class="label_text text-help" id="label_text">
+            <label class="label_text text-help" id="label_text" style="position: relative;">
                 <span>Vyberte náklad a zadejte částku *</span>
                 <svg class="icon_help help-right-text" data-hint="#real-hint-4">
                     <use xlink: href="#help"></use>
                 </svg>
+                <div id="real-hint-4" class="real-hint">
+                    <span>Vyberte náklady na služby a správu domu k přefakturaci nájemníkovi. Jejich seznam naleznete ve vyúčtování správce. Typ nákladů, které mají být přefakturovány, by měl být specifikován v nájemní smlouvě. Pokud nájemní smlouva takové specifikace neobsahuje, řiďte se obecnými předpisy občanského zákoníku. Nezahrnujte do těchto nákladů výdaje na vytápění, teplou a studenou vodu – tyto položky budou vypočteny zvlášť na základě skutečné spotřeby.</span>
+                </div>
             </label>
 
             <div class="add_input_fields">
@@ -148,11 +161,19 @@
         <div class="form-meters-group">
             <h2 class="calculation-title">VII. Odečty měřidel</h2>
 
-            <label class="label_text text-help" id="label_text">
+            <label class="label_text text-help" id="label_text" style="position: relative;">
                 <span>Zadejte druhy, stavy a čísla měřidel. *</span>
                 <svg class="icon_help help-right-text" data-hint="#real-hint-5">
                     <use xlink: href="#help"></use>
                 </svg>
+                <div id="real-hint-5" class="real-hint">
+                    <ul style="margin: 0; padding: 0 0 0 5%;">
+                        <li>Nájemník se nastěhoval během roku a zůstává: počáteční stavy z předávacího protokolu, konečné z vyúčtování správce (konec roku).</li>
+                        <li>Nájemník bydlel od začátku roku a odstěhoval se během roku: počáteční stavy z vyúčtování správce (začátek roku), konečné z předávacího protokolu.</li>
+                        <li>Nájemník se nastěhoval i odstěhoval během roku: oboje stavy z předávacího protokolu. </li>
+                        <li>Nájemník bydlel celý rok: oboje stavy z vyúčtování správce.</li>
+                    </ul>
+                </div>
             </label>
 
 
@@ -222,9 +243,14 @@
                 <label class="label_text" id="label_text">
                     Byly ve vyúčtování od správce použity koeficienty pro výpočet spotřeby ústředního topení?
                 </label>
-                <svg class="icon_help help-right-text" data-hint="#real-hint-6">
-                    <use xlink: href="#help"></use>
-                </svg>
+                <div style="position: relative;">
+                    <svg class="icon_help help-right-text" data-hint="#real-hint-6">
+                        <use xlink: href="#help"></use>
+                    </svg>
+                    <div id="real-hint-6" class="real-hint">
+                        <span>Pokud jsou ve vyúčtování správce uvedeny koeficienty (např. u výpočtu spotřeby z kalorimetrů nebo spotřební složky vytápění), zadejte je sem.</span>
+                    </div>
+                </div>
             </div>
 
 
@@ -287,9 +313,14 @@
 
             <div class="text-help" style="align-items:center;">
                 <h3 class="zakladni_slozka_title">Základní složka</h3>
-                <svg class="icon_help help-right-text" style="margin-top: 0px" data-hint="#real-hint-7">
-                    <use xlink: href="#help"></use>
-                </svg>
+                <div style="position: relative;">
+                    <svg class="icon_help help-right-text" style="margin-top: 0px" data-hint="#real-hint-7">
+                        <use xlink: href="#help"></use>
+                    </svg>
+                    <div id="real-hint-7" class="real-hint">
+                        <span>Část ročních nákladů na vytápění a ohřev vody, vypočítaná podle plochy bytu. Najdete ji ve vyúčtování správce v části <i>Rozúčtování nákladů na vytápění / TUV</i> – základní složka.</span>
+                    </div>
+                </div>
             </div>
 
 
@@ -305,9 +336,14 @@
 
             <div class="text-help" style="align-items:center;">
                 <h3 class="spotrebni_slozka_title">Spotřební složka</h3>
-                <svg class="icon_help help-right-text" style="margin-top:10px" data-hint="#real-hint-8">
-                    <use xlink: href="#help"></use>
-                </svg>
+                <div style="position: relative;">
+                    <svg class="icon_help help-right-text" style="margin-top:10px" data-hint="#real-hint-8">
+                        <use xlink: href="#help"></use>
+                    </svg>
+                    <div id="real-hint-8" class="real-hint">
+                        <span>Část nákladů na vytápění a ohřev vody podle skutečné spotřeby. Uveďte ceny za jednotku topení a za 1 m³ vody. Tyto údaje jsou ve vyúčtování správce v části <i>Rozúčtování nákladů na vytápění / TUV</i> – spotřební složka.</span>
+                    </div>
+                </div>
             </div>
 
             <div class="spotrebni_slozka">
@@ -321,11 +357,14 @@
             </div>
 
             <div class="spotrebni_slozka" style="margin-bottom: 15px;">
-                <label for="coldForHotWaterPrice" class="label_text label_text_with_help">
+                <label for="coldForHotWaterPrice" class="label_text label_text_with_help" style="position: relative;">
                     <span>Cena 1 m3 studené užitkové vody, použité pro přípravu teplé užitkové vody (SUV pro TUV)</span>
                     <svg class="icon_help help-right-label" data-hint="#real-hint-9">
                         <use xlink: href="#help"></use>
                     </svg>
+                    <div id="real-hint-9" class="real-hint">
+                        <span>Studená voda použitá k ohřevu teplé vody. Cena obvykle odpovídá ceně studené vody, ale může se lišit. Najdete ji ve vyúčtování správce v části <i>Rozúčtování nákladů TUV</i> – spotřební složka.</span>
+                    </div>
                 </label>
 
                 <input type="number" class="field field-slozky" id="coldForHotWaterPrice" name="coldForHotWaterPrice" step="any" placeholder="Zadejte cenu jednotky" value="<?= $data['coldForHotWaterPrice'] ?? ''; ?>" />
@@ -335,9 +374,14 @@
                 <label class="label_text" id="label_text" >
                     <span>Byla ve vyúčtování správce použita korigovaná hodnota spotřební složky?</span><br>
                 </label>
-                <svg class="icon_help help-right-text" data-hint="#real-hint-10">
-                    <use xlink: href="#help"></use>
-                </svg>
+                <div style="position: relative;">
+                    <svg class="icon_help help-right-text" data-hint="#real-hint-10">
+                        <use xlink: href="#help"></use>
+                    </svg>
+                    <div id="real-hint-10" class="real-hint">
+                        <span>Pokud správce ve vyúčtování použil korigovanou spotřební složku, zadejte její celkovou výši a celkovou spotřebu tepla. Tyto údaje najdete v části <i>Rozúčtování nákladů na vytápění</i> – spotřební složka.</span>
+                    </div>
+                </div>
             </div>
 
             <div class="chekbox_coefficient">
@@ -376,9 +420,14 @@
                 <label class="label_text" id="label_text">
                     <span>Potřebujete navýšit/snížit ceny služeb nebo energií pro aktuální zúčtovací období?</span>
                 </label>
-                <svg class="icon_help help-right-text" data-hint="#real-hint-11">
-                    <use xlink: href="#help"></use>
-                </svg>
+                <div style="position: relative;">
+                    <svg class="icon_help help-right-text" data-hint="#real-hint-11">
+                        <use xlink: href="#help"></use>
+                    </svg>
+                    <div id="real-hint-11" class="real-hint">
+                        <span>Pokud potřebujete upravit částky z vyúčtování správce tak, aby odpovídaly aktuálním cenám za služby a energie, zadejte zde odhadovanou průměrnou změnu v procentech. Jde například o navýšení podle meziroční inflace nebo změny cen energií. Korekce se uplatní na vybranou skupinu nákladů.</span>
+                    </div>
+                </div>
             </div>
 
             <div class="chekbox_coefficient">
@@ -445,8 +494,6 @@
         <input type="hidden" name="id" value="<?= $data['calculationId'] ?? '';?>">
     </form>
 </div>
-
-<?php require_once APP . "/views/Short_hints/services_hints.php"; ?>
 
 <template id="admin-modal">
     <?php include APP . '/views/modal_templates/admin.php'; ?>

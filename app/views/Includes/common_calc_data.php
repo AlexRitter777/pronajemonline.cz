@@ -11,13 +11,17 @@
         <?php else: ?>
             <input type="text" name="propertyAddress" id="propertyAddress" class="field-1" maxlength="75" autocomplete="on" value="<?= $data['propertyAddress'] ?? '';?>"><br />
         <?php endif;?>
-
+        <div style="position: relative;">
         <label for="propertyType" class="label_text text-help">
             <span>Popis nemovitosti *</span>
             <svg class="icon_help help-right-text" data-hint="#real-hint-1">
                 <use xlink: href="#help"></use>
             </svg>
         </label>
+        <div id="real-hint-1" class="real-hint">
+            <span>Např. Byt 3kk + parking; Atelier 1kk; číslo jednotky; podlaží apod. </span>
+        </div>
+        </div>
 
         <input type="text" name="propertyType" id="propertyType" class="field-1" maxlength="75" value="<?= $data['propertyType'] ?? '';?>">
     </div>

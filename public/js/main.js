@@ -400,28 +400,32 @@ $(document).ready(function () {
 
 /*---------------------Tooltips---------------------------------*/
 
-$(function () {
-	  $('.icon_help').on("mouseenter", function(e){ 
-	  	e.preventDefault();
-
-          // Calculates the horizontal position of the tooltip based on window width
-          if ($(window).width() >= 600) {
-            var xpos = $(this).offset().left + 20; // Position to the right for wider screens
-        } else {
-            var xpos = $(this).offset().left - 170; // Position to the left for narrower screens
-        }
-
-	  	var ypos = $(this).offset().top; // Vertical position of the tooltip
-
-	  	var RealHint =  $(this).data('hint');
-	  	$(RealHint).css('top',ypos);
-	  	$(RealHint).css('left',xpos);
-	  	$(RealHint).fadeIn(); 
-    })
-    $('.icon_help').on("mouseleave", function(e){ 
-      $(".real-hint").fadeOut(); 
-    })
-});
+// $(function () {
+// 	  $('.icon_help').on("mouseenter", function(e){
+// 	  	e.preventDefault();
+//           // console.log($(window).width());
+//           // console.log($(this).offset().left);
+//           console.log($(this).position().left);
+//           // Calculates the horizontal position of the tooltip based on window width
+//          if ($(window).width() >= 600) {
+//              console.log('big')
+//             var xpos = $(this).position().left + 20; // Position to the right for wider screens
+//         } else {
+//              console.log('small')
+//             var xpos = $(this).offset().left - 500; // Position to the left for narrower screens
+//         }
+//
+// 	  	var ypos = $(this).offset().top; // Vertical position of the tooltip
+//
+// 	  	var RealHint =  $(this).data('hint');
+// 	  	$(RealHint).css('top',ypos);
+// 	  	$(RealHint).css('left',xpos);
+// 	  	$(RealHint).fadeIn();
+//     })
+//     $('.icon_help').on("mouseleave", function(e){
+//       $(".real-hint").fadeOut();
+//     })
+// });
 
 /*----Functions to enable the SELECT 2 plugin for elements present on the page upon loading.---*/
 
