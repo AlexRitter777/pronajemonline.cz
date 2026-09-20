@@ -159,4 +159,35 @@ function checkCsrfOrRedirect(string $token) : void
 }
 
 
+function config(string $key, mixed $default = null): mixed
+{
+    static $configs = [];
+
+    $segments = explode('.', $key);
+    $file = array_shift($segments);
+
+    if (!isset($configs[$file])) {
+        $path = __DIR__ . "/../../../../config/{$file}.php";
+
+        if (!file_exists($path)) {
+            return $default;
+        }
+
+        $configs[$file] = require $path;
+    }
+
+    $value = $configs[$file];
+
+    foreach ($segments as $segment) {
+        if (!is_array($value) || !array_key_exists($segment, $value)) {
+            return $default;
+        }
+
+        $value = $value[$segment];
+    }
+
+    return $value;
+}
+
+
 
