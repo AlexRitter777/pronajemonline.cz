@@ -10,7 +10,12 @@ import "./form_validation.js";
 import "./remove_entity_confirmation.js";
 import "./validation.js";
 import "./property_form.js";
-import "./settlement_forms.js";
+import "./services-settlement/exepenses-rows.js"
+import "./services-settlement/meters-rows.js"
+import "./services-settlement/reading-sources.js"
+import "./services-settlement/heating-coefficient.js"
+import "./services-settlement/heating-correction.js"
+import "./services-settlement/expenses-correction.js"
 import "./tooltips.js";
 
 

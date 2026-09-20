@@ -1,190 +1,22 @@
 
 /*----------------Global variables-----------------*/
 
-let len = 0; //Number of added services costs rows after page reload
-let lenMeters = 0; //Number of added meter rows
-let lenCoefficient = 0;//Number of added coefficient rows, excluding the first row
-let lenCoefficientAll = 0; //// Total number of added coefficient rows
 let lenDepositItems = 0; //Total number of added deposit items rows
-let max_fields = 15; //Max number of services costs fields
-let max_meters = 5; //Max number of meters fields
-let max_coefficients = 3; //Max number of coefficient fields (global - the value is used in several functions)
 let max_deposit_items = 6;//Max number of deposit item fields
-let pathSimplyEasyServices = '';//URL for requesting the list easy services costs
-let pathEasyServices = ''; //URL for requesting the list services costs
 
 /*------Determine if there are rows added through PHP after returning to the page----*/
 
 $(window).on('load', function() {
 
-    len = $('.costs_added_after').length; //Services costs
-    lenMeters = $('.meters_added_after').length; //Meters
-    lenCoefficient = $('.coefficient_added_field').length; //Coefficient fields, excluding the first field
-    lenCoefficientAll = $('.coefficient_field').length; // All coefficient fields
     lenDepositItems = $('.deposit_added_after').length; //Deposit items
 
 })
 
-// Determine if we are on the services-form or easyservices-form page, assign routes for ajax requests for Select2 dropdowns
-
-// $(window).on('load', function() {
-//     let easyServicesUrl = $(location).attr('pathname');
-//     if (easyServicesUrl.match(/easyservices/)) {
-//         pathSimplyEasyServices = '/services/simply-easyservices';
-//         pathEasyServices = '/services/easyservices';
-//     } else {
-//         pathSimplyEasyServices = '/services/simply-services';
-//         pathEasyServices = '/services/services';
-//     }
-// })
 
 
 
-/*---------------Adding and Removing "Services Costs" Fields-------------*/
-
-// The 'len' variable is defined later in a separate function
-
-// Adding rows
-$(document).ready(function () {
-
-  let wrapper = $(".add_input_fields");
-  let add_button = $(".add_input_fields_button");
-  let x = 1;
-  $(add_button).click(function (e) {
-    e.preventDefault();
-
-    // Add new row if the total number of rows is less than the max allowed
-    if ((x + len )< max_fields) {
-      x++; // Increment row count
-      $(wrapper).append(
-        '<div class="add_field" id="' + (x + len) + '">'+
-        '<select name="pausalniNaklad[]" class="select-list" id="test' + (x + len) + '" style="width: 55%">'+
-        '</select>' +
-        '<input type="number" class="right-field" name="servicesCost[]" id="servicesCost' + (x + len) + '" step="any" placeholder="Zadejte častku" />'+
-        '<a href="#" class="remove_field">'+
-        '<svg class="icon_minus">'+
-        '<use xlink: href = "#minus" >' +
-        '</use >' +
-        '</svg >' +
-        '<span class = "icon_title">Odebrat</span>'+
-        '</a></div>'
-        ); 
-        $('#test' + (x + len)).load(pathSimplyEasyServices);
-    }
-    // Hide add button if max fields reached
-    if ((x + len) == max_fields){
-      $('.add_input_fields_button').css('display', 'none');
-    }
-
-    // Activate Select2 for the added row
-    $('#test' + (x + len)).select2({
-      tags: true,
-      placeholder: "Vyberte ze seznamu nebo napište vlastní",
-      sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
-    });
-  });
 
 
-  // Removing rows
-  $(wrapper).on("click", ".remove_field", function (e) {
-    e.preventDefault();
-    let removedRow = $(this).parent('div').attr('id');
-    $(this).parent('div').remove();
-
-      // Adjust IDs for all rows after the removed one
-      if (removedRow != (x + len)){
-        for (let i= (len + x - removedRow); i<=(x + len); i++){
-            if ((i !== 1) && (i !== 2)) {
-                $('#test' + i).attr('id', 'test' + (i - 1));
-                $(wrapper).children('#' + i).attr('id', i - 1);
-                $('#servicesCost' + i).attr('id', 'servicesCost' + (i-1));
-                $('#test' + (i - 1)).select2({ // Re-activate Select2 for each row after removing one
-                    tags: true,
-                    placeholder: "Vyberte ze seznamu nebo napište vlastní",
-                    sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
-                });
-            }
-        }
-    }
-    x--; // Decrement row count
-
-    // Show add button if below max fields
-    if (x + len == max_fields - 1){
-      $('.add_input_fields_button').css('display', '');
-    }
-  });
-});
-
-
-/*---------------Adding and removing meters fields-------------*/
-
-// Adding rows
-$(document).ready(function () {
-
-    let y = 1; // Counter for dynamically added rows
-    let addMeters = $(".add_meters"); // Container for all meters fields
-    let addMetersButton = $(".add_meters_button"); // Button to add new meter fields
-    $(addMetersButton).click(function (e) {
-    e.preventDefault();
-    if (y + lenMeters < max_meters) { // Check if the maximum number of meters has not been reached
-      y++;
-      $(addMeters).append(
-        '<div class="add_meters_added_field" id="' + ( y + lenMeters) + '">' +
-        '<select name="appMeters[]" id="load_php_meters' + (y + lenMeters) + '" style="width: 21%">' +
-        '</select>' +
-        '<input type="number" class="field right-field" name="initialValue[]" id="initialValue' + (y + lenMeters) + '" step="any" placeholder="Počateční stav" style="width: 16%" />' +
-        '<input type="number" class="field last-field" name="endValue[]" id="endValue' + (y + lenMeters) + '" step="any" placeholder="Konečný stav" style="width: 16%" />' +
-        '<input type="text" class="field last-field" name="meterNumber[]" id="meterNumber' + (y + lenMeters) + '" placeholder="Číslo měřídla" style="width: 27%" />' +
-        '<a href="#" class="remove_meters">' +
-        '<svg class="icon_minus">' +
-        '<use xlink: href = "#minus" >' +
-        '</use >' +
-        '</svg >' +
-        '<span class = "icon_title">Odebrat</span>'+
-        '</a></div>'
-      );
-        // Dynamically load options for the newly added select element
-        $('#load_php_meters' + (y + lenMeters)).load('/services/simply-meters');
-    }
-    if (y + lenMeters == max_meters) { // Hide add button if the maximum number of meters is reached
-      $(addMetersButton).css('display', 'none');
-    }
-        // Initialize select2
-      $('#load_php_meters' + (y + lenMeters)).select2({
-      placeholder: "Vyberte ze seznamu",
-      sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
-    });
-  });
-
-  // Removing rows
-  $(addMeters).on("click", ".remove_meters", function (e) {
-    e.preventDefault();
-    let removedRow = $(this).parent('div').attr('id');
-    $(this).parent('div').remove();
-    if (removedRow != (y + lenMeters)){
-      for (let i= (lenMeters + y - removedRow); i <= y + lenMeters; i++){
-          if(i != 1) {
-              $('#load_php_meters' + i).attr('id', 'load_php_meters' + (i - 1));
-              $('.add_meters').children('#' + i).attr('id', (i - 1));
-              $('#initialValue' + i).attr('id', 'initialValue' + (i - 1));
-              $('#endValue' + i).attr('id', 'endValue' + (i - 1));
-              $('#meterNumber' + i).attr('id', 'meterNumber' + (i - 1));
-              // Reinitialize select2 for the adjusted elements
-              $('#load_php_meters' + (i - 1)).select2({
-                  tags: true,
-                  placeholder: "Vyberte ze seznamu",
-                  sorter: data => data.sort((a, b) => a.text.localeCompare(b.text))
-              });
-          }
-      }
-    }
-    y--; // Decrement the counter
-    if (y + lenMeters == max_meters - 1) { // Show the add button again if it was hidden
-      $(addMetersButton).css('display', '');
-    }
-  });
-  
-});
 
 
 /*---------------Adding and removing deposit item fields----------------*/
@@ -273,159 +105,6 @@ $(document).ready(function () {
 
 
 
-/*----------------------Selection of an option with a coefficient and adding coefficients-------------------------*/
-
-// Toggle between ANO/NE, connect the first row
-$(document).ready(function () {
-  var coefficientDiv = $('<div class = "add_coefficient"><div class = "add_coefficient_field" ><input type = "number" class = "coefficient_field" id = "coefficientValue1" name = "coefficientValue[]" step = "any" placeholder = "Zadejte koeficient"/><br/></div><a href="#" class="add_coefficient_button"><svg class="icon_plus"><use xlink: href = "#plus"></use></svg><span class="icon_title">Přidat koeficient</span></a></div>');
-  var checkedAno = $('#ano_coefficient');
-  var checkedNe = $('#ne_coefficient');
-  var z = 1; // Counter for dynamically added coefficient fields
-  // The max number of fields is set globally
-
-  $(checkedAno).change(function () {
-      $('.coefficient').append(coefficientDiv);
-    }
-  );
-  
-  $(checkedNe).change(function () {
-    $('.add_coefficient').remove(); // Remove coefficient fields when "NE" is selected
-  });
-
-// Adding rows with coefficients
-
-  $('.coefficient').on("click", ".add_coefficient_button", function (e) {
-    e.preventDefault();
-    if (z + lenCoefficient < max_coefficients) { // Check if the max number of coefficients hasn't been reached
-      z++;
-      $('.add_coefficient_field').append('<div class = "coefficient_added_field" id="' + (z + lenCoefficient) + '"><input type="number" class="coefficient_field" id="coefficientValue' + (z + lenCoefficient) + '" name="coefficientValue[]" step="any" placeholder="Zadejte koeficient" /><a href="#" class="remove_coefficients"><svg class="icon_minus"><use xlink: href = "#minus" ></use ></svg ><span class = "icon_title">Odebrat</span></a></div>');
-    }
-    if (z + lenCoefficient == max_coefficients) {
-      $('.add_coefficient_button').css('display', 'none'); // Hide add button if max coefficients reached
-    }
-
-
-  });
-
-
-  // Removing rows with coefficients
-  $('.coefficient').on("click", ".remove_coefficients", function (e) {
-    e.preventDefault();
-    let removedRow = $(this).parent('div').attr('id');
-    $(this).parent('div').remove();
-    if (removedRow != (z + lenCoefficient)){
-        for (let i= (lenCoefficient + z - removedRow); i <= (z + lenCoefficient); i++) {
-            if (i != 1) {
-
-                $('.add_coefficient_field').children('#' + i).attr('id', i - 1);
-                $('#coefficientValue' + i).attr('id', 'coefficientValue' + (i-1));
-
-            }
-        }
-    }
-
-    z--; // Decrement the counter for dynamically added coefficient fields
-
-    if (z + lenCoefficient == max_coefficients - 1) {
-        $('.add_coefficient_button').css('display', ''); // Show add button again if it was hidden
-    }
-  });
-
-
-});
-/*----------------------Option selection with expense correction-------------------------*/
-
-// Toggle between YES/NO
-$(document).ready(function () {
-    var corectionDiv = $('<div class="korekce">\n' +
-                '            <label for="servicesCostCorrection" class="label_text">Odhadovaná průměrná změna cen paušálních nákladů</label>\n' +
-                '            <input type="number" class="field field-slozky" id="servicesCostCorrection" name="servicesCostCorrection" step="any" placeholder="Zadejte %" value="" />\n' +
-                '           </div>\n' +
-                '        <div class="korekce">\n' +
-                '            <label for="hotWaterCorrection" class="label_text">Odhadovaná průměrná změna cen nákladů na TUV</label>\n' +
-                '            <input type="number" class="field field-slozky" id="hotWaterCorrection" name="hotWaterCorrection" step="any" placeholder="Zadejte %" value="" />\n' +
-                '        </div>\n' +
-                '        <div class="korekce">\n' +
-                '            <label for="heatingCorrection" class="label_text">Odhadovaná průměrná změna cen nákladů na UT</label>\n' +
-                '            <input type="number" class="field field-slozky" id="heatingCorrection" name="heatingCorrection" step="any" placeholder="Zadejte %" value="" />\n' +
-                '        </div>\n' +
-                '        <div class="korekce">\n' +
-                '            <label for="coldWaterCorrection" class="label_text">Odhadovaná průměrná změna cen nákladů na SUV</label>\n' +
-                '            <input type="number" class="field field-slozky" id="coldWaterCorrection" name="coldWaterCorrection" step="any" placeholder="Zadejte %" value="" />\n' +
-                '        </div>');
-    var checkedYes = $('#costCorrectionYes');
-    var checkedNo = $('#costCorrectionNo');
-
-    $(checkedYes).change(function () {
-            $('.correction').append(corectionDiv); // Append the correction fields when "Yes" is selected
-        }
-    );
-
-    $(checkedNo).change(function () {
-        $('.correction').children().remove(); // Remove the correction fields when "No" is selected
-    });
-
-});
-
-
-/*----------------------Radio button - zkorigovana spotrebni slozka-------------------------*/
-
-//Toggle between ANO/NE
-$(document).ready(function () {
-    var changedHeatingDiv = $(`<div class="spotrebni_slozka">
-    <label for="changedHeatingCosts" class="label_text">Celkové náklady na zkorigovanou spotřební složku</label>
-    <input type="number" class="field field-slozky" id="changedHeatingCosts" name="changedHeatingCosts" step="any" placeholder="Zadejte celkovou cenu" value="" />
-</div>`);
-    var heatingYearSum = $(`<div class="spotrebni_slozka">
-    <label for="heatingYearSum" class="label_text">Spotřeba tepla za období vyúčtování správce</label>
-    <input type="number" class="field field-slozky" id="heatingYearSum" name="heatingYearSum" step="any" placeholder="Zadejte celkovou spotřebu" value="" />
-</div>`);
-    var heatingPrice = $(`
-        <label for="heatingPrice" class="label_text">Cena za jednotku ústředního topení (UT)</label>
-        <input type="number" class="field field-slozky" id="heatingPrice" name="heatingPrice" step="any" placeholder="Zadejte cenu jednotky" value="" />`);
-    var checkedYes = $('#changedHeatingCostsYes');
-    var checkedNo = $('#changedHeatingCostsNo');
-
-    $(checkedYes).change(function () {
-         $('.changed_heating').append(changedHeatingDiv).append(heatingYearSum); // Append divs for adjusted heating costs and yearly sum when "Yes" is selected
-         $('#spotrebni_slozka_heating').children().remove(); // Remove any existing elements in the heating consumption component container
-    });
-
-    $(checkedNo).change(function () {
-        $('.changed_heating').children().remove() // Remove elements related to changed heating costs
-        $('#spotrebni_slozka_heating').append(heatingPrice); // Add input for heating price when "No" is selected
-    });
-
-});
-
-/*---------------------Tooltips---------------------------------*/
-
-// $(function () {
-// 	  $('.icon_help').on("mouseenter", function(e){
-// 	  	e.preventDefault();
-//           // console.log($(window).width());
-//           // console.log($(this).offset().left);
-//           console.log($(this).position().left);
-//           // Calculates the horizontal position of the tooltip based on window width
-//          if ($(window).width() >= 600) {
-//              console.log('big')
-//             var xpos = $(this).position().left + 20; // Position to the right for wider screens
-//         } else {
-//              console.log('small')
-//             var xpos = $(this).offset().left - 500; // Position to the left for narrower screens
-//         }
-//
-// 	  	var ypos = $(this).offset().top; // Vertical position of the tooltip
-//
-// 	  	var RealHint =  $(this).data('hint');
-// 	  	$(RealHint).css('top',ypos);
-// 	  	$(RealHint).css('left',xpos);
-// 	  	$(RealHint).fadeIn();
-//     })
-//     $('.icon_help').on("mouseleave", function(e){
-//       $(".real-hint").fadeOut();
-//     })
-// });
 
 /*----Functions to enable the SELECT 2 plugin for elements present on the page upon loading.---*/
 
@@ -608,28 +287,6 @@ $(window).on('load', function() {
 
 /*-----Functions for hiding the "Add row" button when the maximum number of rows have been added via PHP ------*/
 
-//Services costs
-$(window).on('load', function() {
-    // Count of added costs fields excluding the first field
-    let costsAddedFieldsCount = $('.costs_added_after').length;
-    if (costsAddedFieldsCount + 1 === max_fields) {
-        // Hide the "Add" button if the maximum number of services costs fields is reached
-        $('.add_input_fields_button').css('display', 'none');
-    }
-
-})
-
-
-//Meter readings
-$(window).on('load', function() {
-    // Count of added meters fields excluding the first field
-    let metersAddedFieldsCount = $('.meters_added_after').length;
-    if (metersAddedFieldsCount + 1 === max_meters) {
-        // Hide the "Add" button if the maximum number of meters fields is reached
-        $('.add_meters_button').css('display', 'none');
-    }
-
-})
 
 //Deposit
 $(window).on('load', function() {
@@ -642,53 +299,11 @@ $(window).on('load', function() {
 
 })
 
-// Coefficient fields
-$(window).on('load', function() {
-
-    // Initial selection for ANO/NE (Yes/No) based on page load state
-    if (lenCoefficientAll !== 0) {
-        $('#ano_coefficient').prop('checked', true);
-    } else {
-        $('#ne_coefficient').prop('checked', true);
-    }
-
-    // Hide the "Add" button if the maximum number of coefficient fields is reached
-    if (lenCoefficient + 1 === max_coefficients) {
-        $('.add_coefficient_button').css('display', 'none');
-    }
-})
-
-/*-----------Radio button Checked ANO/NE for CostsCorrection--------------------*/
-
-$(window).on('load', function() {
-
-    if ($('#servicesCostCorrection').val() == null &&
-        $('#hotWaterAndHeatingCorrection').val() == null &&
-        $('#coldWaterCorrection').val() == null){
-
-        $('#costCorrectionNo').prop('checked', true);
-
-    }else{
-        $('#costCorrectionYes').prop('checked', true);
-    }
 
 
-})
-
-/*-----------Radio button Checked ANO/NE for changedVarCosts--------------------*/
-
-$(window).on('load', function() {
-
-    if ($('#changedHeatingCosts').val() == null) {
-
-        $('#changedHeatingCostsNo').prop('checked', true);
-
-    }else{
-        $('#changedHeatingCostsYes').prop('checked', true);
-    }
 
 
-})
+
 
 
 /*----------------------------Add data inside deposit items------------------------------*/

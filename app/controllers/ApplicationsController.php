@@ -6,8 +6,9 @@ use app\Support\Account;
 use app\Support\Applications;
 use app\Support\AppModel;
 use Mpdf\Mpdf;
+use pronajem\base\Controller;
 
-class ApplicationsController extends AppController {
+class ApplicationsController extends Controller {
 
     /**
      * List of applications - action

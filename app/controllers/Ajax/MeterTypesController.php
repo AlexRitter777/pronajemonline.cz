@@ -7,8 +7,8 @@ class MeterTypesController
 
     public function getMeterTypes()
     {
-        $data = require_once CONF . '/pronajemonline.php';
+        $data = config('pronajemonline.meter_types');
 
-        echo json_encode($data['meter_types']);
+        echo json_encode($data);
     }
 }

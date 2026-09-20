@@ -13,6 +13,8 @@
 //Admin routes
 // These routes use the 'admin' prefix to direct requests to controllers in the 'admin' namespace.
 use app\controllers\Ajax\FormValidatorController;
+use app\controllers\Ajax\MeterTypesOptionsListController;
+use app\controllers\Ajax\ServicesOptionsListController;
 use app\controllers\DashboardController;
 use app\controllers\LandlordsController;
 use app\controllers\NewSettlementController;
@@ -37,7 +39,7 @@ use app\Middleware\PostMiddleware;
 
 
 
-$router->add('^calculations$', ['controller' => 'Calculations', 'action' => 'index', 'prefix' => 'User']);
+//$router->add('^calculations$', ['controller' => 'Calculations', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^settings$', ['controller' => 'Settings', 'action' => 'index', 'prefix' => 'User']);
 $router->add('^error$', ['controller' => 'Error', 'action' => 'index', 'prefix' => 'User']);
 
@@ -73,6 +75,8 @@ $router->add('settlements/create', [
     'view' => 'settlements/create',
     'middleware' => [ Auth::class ],
 ]);
+
+
 
 
 $router->add('^settlements/destroy$', [
@@ -294,9 +298,23 @@ $router->add('ajax/settlements/get-services-list', [
     'middleware' =>[ Auth::class ],
 ]);
 
+$router->add('ajax/settlements/get-services-options-list', [
+    'controller' =>  ServicesOptionsListController::class,
+    'action' => 'getServicesOptionsList',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
 $router->add('ajax/settlements/get-meter-types', [
     'controller' =>  app\controllers\Ajax\MeterTypesController::class,
     'action' => 'getMeterTypes',
+    'view' => null,
+    'middleware' =>[ Auth::class ],
+]);
+
+$router->add('ajax/settlements/get-meter-types-options', [
+    'controller' =>  MeterTypesOptionsListController::class,
+    'action' => 'getMeterTypesOptionsList',
     'view' => null,
     'middleware' =>[ Auth::class ],
 ]);

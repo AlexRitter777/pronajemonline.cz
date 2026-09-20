@@ -71,7 +71,7 @@ class Services
     public function getSimplyList($data){
         $count = count($data);
         $i = 0;
-        echo '<option id="empty-option"></option>'; //возможно сделаьт отдельным методом - решу после подгрузки из сессии
+        echo '<option id="empty-option"></option>';
         while ($i < $count)
         {
             echo('<option value ="' . $data[$i] . '">'. $data[$i] .'</option>');
