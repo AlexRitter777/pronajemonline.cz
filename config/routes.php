@@ -76,6 +76,14 @@ $router->add('settlements/create', [
     'middleware' => [ Auth::class ],
 ]);
 
+$router->add('settlements/store', [
+    'controller' => SettlementController::class,
+    'action' => 'store',
+    'view' => null,
+    'middleware' => [ Auth::class ],
+]);
+
+
 
 
 
@@ -134,7 +142,7 @@ $router->add('^properties/destroy$', [
     'view' => null,
 ]);
 
-//Landlords
+// Landlords
 
 $router->add('landlords', [
     'controller' => LandlordsController::class,
@@ -186,13 +194,26 @@ $router->add('landlords/destroy', [
 ]);
 
 
-//Ajax routes
+// ------------------------  Ajax routes -------------------------------- //
+
+// ------ Properties --------- //
+
 // Property list
 $router->add('ajax/properties/get-list', [
         'controller' => \app\controllers\Ajax\PropertiesController::class,
         'action' => 'getList',
         'view' => null,
         'middleware' =>[ Auth::class ],
+
+    ]
+);
+
+// Store property
+$router->add('ajax/properties/store', [
+        'controller' => app\controllers\Ajax\PropertiesController::class,
+        'action' => 'store',
+        'view' => null,
+        'middleware' =>[ Auth::class, AjaxMiddleware::class, PostMiddleware::class, CsrfMiddleware::class ],
 
     ]
 );

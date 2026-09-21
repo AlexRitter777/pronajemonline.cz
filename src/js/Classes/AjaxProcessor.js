@@ -25,7 +25,7 @@ export class AjaxProcessor {
             })
                 .done((response) => {
 
-                    console.log(response) //debugging
+                    // console.log(response) //debugging
                     resolve(response);
 
 
@@ -176,7 +176,7 @@ export class AjaxProcessor {
                 dataType: "json",
             })
             .done((response) => {
-
+                console.log(response)
                 // console.log(response) //debugging
                 resolve(response);
 

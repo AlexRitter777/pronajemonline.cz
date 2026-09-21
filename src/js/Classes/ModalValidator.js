@@ -7,8 +7,8 @@ export class ModalValidator{
 
 
     constructor(form) {
-
-        let formName = this.getFormName(form); //form -> attr "name" value
+        const $form = $(form);
+        const formName = $form.attr('name'); //form -> attr "name" value
         this.formData = this.getInputEasyValues(formName);
         this.formName = formName;
         this.formType = this.getFormType(form);
@@ -81,11 +81,11 @@ export class ModalValidator{
      * Finds a closest parent element <form> and gets attribute name value
      *
      */
-    getFormName(element){
-
-        return  $(element).parents().closest('form').prop('name');
-
-    }
+    // getFormName(element){
+    //
+    //     return  $(element).parents().closest('form').prop('name');
+    //
+    // }
 
     getFormType(element){
         return  $(element).parents().closest('form').data('type');

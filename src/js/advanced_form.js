@@ -12,6 +12,7 @@ let entity;
 
 $(document).ready(function () {
 
+
     //Create select lists for each entity
 
     const select2dropdown = new Select2Dropdown();
@@ -55,6 +56,7 @@ $(document).ready(function () {
 
     /**
      * Insert address to address field for chosen from dropdown entity (in our case: tenant or landlord)
+     * For property is using listener below
      */
     $('.select-ajax').on(`change`, async function (e) {
         //get record id in DB
@@ -72,7 +74,7 @@ $(document).ready(function () {
         let table = null;
 
         if(entity === 'property') {
-            table = 'properties'
+            return;
         }else{
             table = entity + 's';
         }
@@ -90,7 +92,6 @@ $(document).ready(function () {
         }else{
             $(`#accountNumber`).val('');
         }
-
     })
 
     /**
@@ -104,11 +105,14 @@ $(document).ready(function () {
 
 
     /**
-     * Inserts tenant, landlord, admin or elsupplier data (name, address, landlord account number) for chosen property from dropdown.
+     * Inserts tenant, landlord, admin or elsupplier data (name, address, landlord account number)
+     * for chosen property from dropdown.
      */
     $('.select-property').on(`change`, async function (e) {
+
         //get record id in DB
-        let recordId = $(this).find(':selected').data('record_id');
+
+        const recordId = $(this).val();
 
         if(recordId === undefined) {
             $('#propertyType').val('');
@@ -122,11 +126,13 @@ $(document).ready(function () {
         $('#propertyType').val(property.type);
 
         if(property.landlord_id) {
+
             const landlord = await database.getOneRecordById(property.landlord_id, 'landlords');
+
             $('#landlordName').empty().append($('<option>', {
-                value: landlord.name,
+                value: landlord.id,
                 text: landlord.name,
-                'data-record_id': landlord.id,
+                // 'data-record_id': landlord.id,
             }))
             $('#landlordAddress').val(landlord.address);
 
@@ -142,9 +148,9 @@ $(document).ready(function () {
         if(property.tenant_id) {
             const tenant = await database.getOneRecordById(property.tenant_id, 'tenants');
             $('#tenantName').empty().append($('<option>', {
-                value: tenant.name,
+                value: tenant.id,
                 text: tenant.name,
-                'data-record_id': tenant.id,
+                // 'data-record_id': tenant.id,
             }))
             $('#tenantAddress').val(tenant.address);
         } else {
@@ -156,9 +162,9 @@ $(document).ready(function () {
         if(property.admin_id && adminNameElement.length > 0) {
             const admin = await database.getOneRecordById(property.admin_id, 'admins');
             adminNameElement.empty().append($('<option>', {
-                value: admin.name,
+                value: admin.id,
                 text: admin.name,
-                'data-record_id': admin.id,
+                // 'data-record_id': admin.id,
             }))
         }
 
@@ -205,7 +211,7 @@ $(document).ready(function () {
      * 1. Ajax inputs validation
      * 2. Ajax save in database
      */
-    $('body').on('click','.recaptcha', async function (e) {
+    $('body').on('submit','#entity-modal-form', async function (e) {
 
         e.preventDefault();
 
@@ -214,7 +220,6 @@ $(document).ready(function () {
 
         //Start spinner-loader
         loaderSpinnerModalOn();
-
 
         /*
          * 1. Inputs validation
@@ -225,66 +230,92 @@ $(document).ready(function () {
 
         let validationResult = await modalValidator.validate();
 
-        //console.log('validationResult: ' + validationResult);//Debugging
+        // console.log('validationResult: ' + validationResult);//Debugging
 
 
 
         /*
          * 2. Save data to database if validation was success
          */
-        if(validationResult){
+        if(!validationResult){
+            loaderSpinnerModalOff();
+            return;
+        }
 
-            const databaseWrapper = new DatabaseWrapper(this);
-            //databaseWrapper.getData(); debugging
-            let newRecord =  await databaseWrapper.saveToDatabase();
+        const entity = $(this).attr('name');
 
-            // console.log(newRecord); //debugging
+        const databaseWrapper = new DatabaseWrapper(entity);
+        //databaseWrapper.getData(); debugging
+
+        try {
+            const newRecord =  await databaseWrapper.saveToDatabase();
+
+            switch (entity) {
+                case 'property':
+                    if(newRecord['propertyAddress']) {
+                        $('.input-property-list').empty().append($('<option>', {
+                            value: newRecord['propertyID'],
+                            text: newRecord['propertyAddress'],
+                            // selected: true,
+                            'data-record_id': newRecord['propertyID'],
+                        }))
+                    }
+
+                    if(newRecord['propertyType']) {
+                        $('#propertyType').val(newRecord['propertyType']);
+                    }
+                //     break;
+                // case 'landlord':
+                //
+                // scase 'tenant':
+
+            }
+
+
+        }catch (e) {
+            console.error(e);
+        }finally {
+            modalWindow.close();
+            modalWindow.destroy();
+            loaderSpinnerModalOff();
+        }
+
+
+
+
+        // console.log(newRecord); //debugging
 
             //databaseWrapper.getData(); //debugging
 
             //append new entity in entity field (property, landlord, tenant, admin, elsupplier)
-            if(newRecord){
+            // if(newRecord){
 
                 //insert property address and type
-                if(newRecord['propertyAddress']) {
-                    $('.input-property-list').empty().append($('<option>', {
-                        value: newRecord['propertyAddress'],
-                        text: newRecord['propertyAddress'],
-                        'data-record_id': newRecord['propertyID'],
-                    }))
-                }
-
-                if(newRecord['propertyType']) {
-                    $('#propertyType').val(newRecord['propertyType']);
-                }
 
                 // insert entity properties (name, address, acc. number)
-                if(newRecord[databaseWrapper.formName + 'Name']) {
-                    $('.input-'+ entity + '-list').empty().append($('<option>', {
-                        value: newRecord[databaseWrapper.formName + 'Name'],
-                        text: newRecord[databaseWrapper.formName + 'Name'],
-                        'data-record_id': newRecord[databaseWrapper.formName + 'ID'],
-                    }))
-                }
-
-                if(newRecord[databaseWrapper.formName + 'Address']) {
-                    $('#' + databaseWrapper.formName + 'Address').val(newRecord[databaseWrapper.formName + 'Address']);
-                }
-
-                if(newRecord[databaseWrapper.formName + 'Account']) {
-                    $('#accountNumber').val(newRecord[databaseWrapper.formName + 'Account']);
-                }
+                // if(newRecord[databaseWrapper.formName + 'Name']) {
+                //     $('.input-'+ entity + '-list').empty().append($('<option>', {
+                //         value: newRecord[databaseWrapper.formName + 'Name'],
+                //         text: newRecord[databaseWrapper.formName + 'Name'],
+                //         'data-record_id': newRecord[databaseWrapper.formName + 'ID'],
+                //     }))
+                // }
+                //
+                // if(newRecord[databaseWrapper.formName + 'Address']) {
+                //     $('#' + databaseWrapper.formName + 'Address').val(newRecord[databaseWrapper.formName + 'Address']);
+                // }
+                //
+                // if(newRecord[databaseWrapper.formName + 'Account']) {
+                //     $('#accountNumber').val(newRecord[databaseWrapper.formName + 'Account']);
+                // }
 
                 //Close Modal JBox window
-                modalWindow.close();
-                modalWindow.destroy();
 
-            }
-
-        }
-
-        //Stop loader-spinner after record was created
-        loaderSpinnerModalOff();
+    //         }
+    //
+    //     }
+    //
+    //     //Stop loader-spinner after record was created
     })
 })
 

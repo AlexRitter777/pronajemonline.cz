@@ -4,12 +4,12 @@
         <label for="propertyAddress" class="label_text">Adresa nemovitosti *</label><br />
         <?php if(is_user_logged_in()): ?>
             <div class="select-wrapper">
-                <select name="propertyAddress" id="propertyAddress" class="field-1 select-property select-ajax input-property-list" data-entity="property">
-                    <option value="<?= $data['propertyAddress'] ?? '';?>"><?= $data['propertyAddress'] ?? '';?></option>
+                <select name="propertyAddress" id="propertyAddress" class="field-1 select-property input-property-list" data-entity="property">
+<!--                    <option value="--><?php //= $data['propertyAddress'] ?? '';?><!--">--><?php //= $data['propertyAddress'] ?? '';?><!--</option>-->
                 </select>
             </div>
         <?php else: ?>
-            <input type="text" name="propertyAddress" id="propertyAddress" class="field-1" maxlength="75" autocomplete="on" value="<?= $data['propertyAddress'] ?? '';?>"><br />
+<!--            <input type="text" name="propertyAddress" id="propertyAddress" class="field-1" maxlength="75" autocomplete="on" value="--><?php //= $data['propertyAddress'] ?? '';?><!--"><br />-->
         <?php endif;?>
         <div style="position: relative;">
         <label for="propertyType" class="label_text text-help">

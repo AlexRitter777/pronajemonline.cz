@@ -5,9 +5,9 @@ export class DatabaseWrapper{
     _formData = {};
     formName;
 
-    constructor(form) {
-
-        let formName = this.getFormName(form); //form -> attr "name" value
+    constructor(formName) {
+        // const $form = $(form);
+        // const formName = $form.attr('name'); //form -> attr "name" value
         this.formData = this.getInputValues(formName); //in case of save calculation this method is not working (no inputs to save)
         this.formName = formName;
         this.token = $('meta[name="csrf-token"]').attr('content');
@@ -116,10 +116,18 @@ export class DatabaseWrapper{
     }
 
     getSaveModalUrl(name){
-        if(name === 'landlord'){
-            return 'ajax/landlords/store';
-        }
+        // if(name === 'landlord'){
+        //     return 'ajax/landlords/store';
+        // }
+        switch (name) {
+            case 'property':
+                return 'ajax/properties/store';
+            case 'landlord':
+                return 'ajax/landlords/store';
+            case 'tenant':
+                return 'ajax/tenants/store';
 
+        }
 
         // return 'user/' + this.isItProperty(name) + 's/save-modal';
     }

@@ -2,6 +2,8 @@
 
 namespace app\controllers\Ajax;
 
+use app\actions\Property\CreatePropertyAction;
+use app\DTO\PropertyData;
 use app\Models\Property;
 use DI\Attribute\Inject;
 use pronajem\base\Controller;
@@ -9,7 +11,10 @@ use pronajem\base\Controller;
 class PropertiesController extends Controller
 {
     #[Inject]
-    private Property $property;
+    private readonly Property $property;
+
+    #[Inject]
+    private readonly CreatePropertyAction $action;
 
     public function getList() : array
     {
@@ -54,6 +59,21 @@ class PropertiesController extends Controller
         echo json_encode($property);
         exit();
 
+    }
+
+    public function store() : never
+    {
+        $data = sanitize($_POST);
+        $userId = $_SESSION['user_id'];
+        $dto = PropertyData::fromArray($data);
+        $propertyId = $this->action->execute($this->property, $dto, $userId);
+
+        echo json_encode([
+            'propertyID' => $propertyId,
+            'propertyAddress' => $dto->address,
+            'propertyType' => $dto->type,
+        ]);
+        exit();
     }
 
 }

@@ -34,7 +34,7 @@ export class Select2Dropdown {
                     };
                 },
                 processResults: function (data) {
-                    //console.log(data); //debugging
+                    console.log(data); //debugging
 
                     return {
                         results: data

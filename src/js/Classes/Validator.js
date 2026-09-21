@@ -438,7 +438,7 @@ export class Validator {
 
         this['create' + name + 'Request']();
 
-        //console.log(this.formData);
+        console.log(this.formData);
         return $.ajax({
             type: "POST",
             url: `ajax/validation/${name}`,
@@ -476,7 +476,7 @@ export class Validator {
                     )
                     {
 
-                        form.attr('action', `/user/calculations/${name}-calc`).off('submit').submit();
+                        form.attr('action', `/settlements/store`).off('submit').submit();
 
                     }
 
