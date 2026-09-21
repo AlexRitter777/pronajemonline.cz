@@ -44,6 +44,18 @@ function redirect($http = false) {
     exit;
 }
 
+/**
+ * @param string $fallback
+ * @return never
+ */
+function redirectBack(string $fallback = '/'): never
+{
+    $url = $_SERVER['HTTP_REFERER'] ?? $fallback;
+
+    header('Location: ' . $url);
+    exit;
+}
+
 
 /**
  * Checks if the user is currently logged in.
