@@ -7,8 +7,6 @@ import {loaderSpinnerModalOff, loaderSpinnerModalOn} from "./loader_spinner.js";
 
 //global modal window
 let modalWindow;
-//global form name => table name in DB
-let entity;
 
 $(document).ready(function () {
 
@@ -60,10 +58,10 @@ $(document).ready(function () {
      */
     $('.select-ajax').on(`change`, async function (e) {
         //get record id in DB
-        let recordId = $(this).find(':selected').data('record_id');
+        const recordId = $(this).find(':selected').data('record_id');
 
         //get entity, which also DB table name
-        let entity = $(this).data('entity');
+        const entity = $(this).data('entity');
 
         if(recordId === undefined) {
             $(`#${entity}Address`).val('');
@@ -94,14 +92,7 @@ $(document).ready(function () {
         }
     })
 
-    /**
-     * Function checks if argument string is "landlord"
-     * @param entity
-     * @returns {boolean}
-     */
-    function isEntityLandlord(entity) {
-        return entity === 'landlord';
-    }
+
 
 
     /**
@@ -180,11 +171,11 @@ $(document).ready(function () {
         e.preventDefault();
 
         //Get entity (form name) name and modal window title from button data attribute
-        entity = $(this).data('item');
-        let title = $(this).data('title');
+        const entity = $(this).data('item');
+        const title = $(this).data('title');
 
         //Get Modal window template
-        let content = getTemplate(entity);
+        const content = getTemplate(entity);
 
         //Make and open new modal window with JBox
         modalWindow = new jBox(
@@ -249,7 +240,7 @@ $(document).ready(function () {
 
         try {
             const newRecord =  await databaseWrapper.saveToDatabase();
-
+console.log(newRecord);
             switch (entity) {
                 case 'property':
                     if(newRecord['propertyAddress']) {
@@ -289,6 +280,15 @@ $(document).ready(function () {
                     if(newRecord['tenantAddress']) {
                         $('#tenantAddress').val(newRecord['tenantAddress']);
                     }
+                    break;
+
+                case 'admin':
+                    if(newRecord['adminName']) {
+                        $('.input-admin-list').empty().append($('<option>', {
+                            value: newRecord['adminID'],
+                            text: newRecord['adminName'],
+                        }))
+                    }
 
             }
 
@@ -301,51 +301,22 @@ $(document).ready(function () {
             loaderSpinnerModalOff();
         }
 
-
-
-
-        // console.log(newRecord); //debugging
-
-            //databaseWrapper.getData(); //debugging
-
-            //append new entity in entity field (property, landlord, tenant, admin, elsupplier)
-            // if(newRecord){
-
-                //insert property address and type
-
-                // insert entity properties (name, address, acc. number)
-                // if(newRecord[databaseWrapper.formName + 'Name']) {
-                //     $('.input-'+ entity + '-list').empty().append($('<option>', {
-                //         value: newRecord[databaseWrapper.formName + 'Name'],
-                //         text: newRecord[databaseWrapper.formName + 'Name'],
-                //         'data-record_id': newRecord[databaseWrapper.formName + 'ID'],
-                //     }))
-                // }
-                //
-                // if(newRecord[databaseWrapper.formName + 'Address']) {
-                //     $('#' + databaseWrapper.formName + 'Address').val(newRecord[databaseWrapper.formName + 'Address']);
-                // }
-                //
-                // if(newRecord[databaseWrapper.formName + 'Account']) {
-                //     $('#accountNumber').val(newRecord[databaseWrapper.formName + 'Account']);
-                // }
-
-                //Close Modal JBox window
-
-    //         }
-    //
-    //     }
-    //
-    //     //Stop loader-spinner after record was created
     })
 })
 
+/**
+ * Function checks if argument string is "landlord"
+ * @param entity
+ * @returns {boolean}
+ */
+function isEntityLandlord(entity) {
+    return entity === 'landlord';
+}
 
 //get Modal window template
-
 function getTemplate(name){
-    let elementId = name + '-modal';
-    let template = document.getElementById(elementId);
+    const elementId = name + '-modal';
+    const template = document.getElementById(elementId);
     return template.innerHTML.trim();
 }
 

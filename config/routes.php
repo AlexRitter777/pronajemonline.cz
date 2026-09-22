@@ -301,16 +301,28 @@ $router->add('ajax/tenants/store', [
 
 
 
+// --------------- Admins --------------- //
 
 
-
-// One record
+// One admin
 $router->add('ajax/admins/(?P<id>\d+)/get-one', [
     'controller' => app\controllers\Ajax\AdminsController::class,
     'action' => 'getOneRecord',
     'view' => null,
     'middleware' =>[ Auth::class ],
 ]);
+
+// Store admin
+$router->add('ajax/admins/store', [
+        'controller' => app\controllers\Ajax\AdminsController::class,
+        'action' => 'store',
+        'view' => null,
+        'middleware' =>[ Auth::class, AjaxMiddleware::class, PostMiddleware::class, CsrfMiddleware::class ],
+
+    ]
+);
+
+
 
 
 $router->add('ajax/elsuppliers/get-list', [

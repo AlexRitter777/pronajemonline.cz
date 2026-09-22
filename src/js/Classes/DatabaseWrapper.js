@@ -126,6 +126,8 @@ export class DatabaseWrapper{
                 return 'ajax/landlords/store';
             case 'tenant':
                 return 'ajax/tenants/store';
+            case 'admin':
+                return 'ajax/admins/store';
 
         }
 

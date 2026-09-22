@@ -2,6 +2,8 @@
 
 namespace app\controllers\Ajax;
 
+use app\actions\Admin\CreateAdminAction;
+use app\Factories\AdminDataFactory;
 use app\Models\Admin;
 use DI\Attribute\Inject;
 use pronajem\base\Controller;
@@ -10,6 +12,12 @@ class AdminsController extends Controller
 {
     #[Inject]
     private Admin $admin;
+
+    #[Inject]
+    private readonly AdminDataFactory $dataFactory;
+
+    #[Inject]
+    private readonly CreateAdminAction $action;
 
     public function getList(): never
     {
@@ -53,6 +61,20 @@ class AdminsController extends Controller
         echo json_encode($admin);
         exit();
 
+    }
+
+    public function store() : never
+    {
+        $data = sanitize($_POST);
+        $userId = $_SESSION['user_id'];
+        $dto = $this->dataFactory->createFromArray($data);
+        $adminId = $this->action->execute($dto, $userId);
+
+        echo json_encode([
+            'adminID' => $adminId,
+            'adminName' => $dto->name,
+        ]);
+        exit();
     }
 
 

@@ -5,7 +5,7 @@
     </div>
 
     <div class="central-bar">
-        <form method="post" class='modal_window_form' name="admin" data-type="modal" action="">
+        <form method="post" class='modal_window_form entity-modal-form' name="admin" data-type="modal" action="">
             <table class="tenants-modal" border="0">
 
                 <tr class="row-1">
@@ -68,7 +68,7 @@
             <div class="errors_field user_errors_field modal_errors_field"></div>
 
             <div class="modal_buttons">
-                <input type="submit" class="form-btn btn-submit recaptcha" id="new-property" value="Uložit">
+                <input type="submit" class="form-btn btn-submit" id="new-admin" value="Uložit">
                 <input type="button" class="form-btn btn-reset submit_button_refresh_modal" value="Zrušit">
             </div>
         </form>
