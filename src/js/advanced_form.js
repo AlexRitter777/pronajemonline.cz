@@ -263,6 +263,7 @@ $(document).ready(function () {
                         $('#propertyType').val(newRecord['propertyType']);
                     }
                     break;
+
                 case 'landlord':
                     if(newRecord['landlordName']) {
                         $('.input-landlord-list').empty().append($('<option>', {
@@ -276,8 +277,18 @@ $(document).ready(function () {
                     if(newRecord['accountNumber']) {
                         $('#accountNumber').val(newRecord['accountNumber']);
                     }
+                    break;
 
-                // scase 'tenant':
+                case 'tenant':
+                    if(newRecord['tenantName']) {
+                        $('.input-tenant-list').empty().append($('<option>', {
+                            value: newRecord['tenantID'],
+                            text: newRecord['tenantName'],
+                        }))
+                    }
+                    if(newRecord['tenantAddress']) {
+                        $('#tenantAddress').val(newRecord['tenantAddress']);
+                    }
 
             }
 

@@ -2,6 +2,8 @@
 
 namespace app\controllers\Ajax;
 
+use app\actions\Tenant\CreateTenantAction;
+use app\Factories\TenantDataFactory;
 use app\Models\Tenant;
 use DI\Attribute\Inject;
 use pronajem\base\Controller;
@@ -10,6 +12,12 @@ class TenantsController extends Controller
 {
     #[Inject]
     private Tenant $tenant;
+
+    #[Inject]
+    private readonly TenantDataFactory $dataFactory;
+
+    #[Inject]
+    private readonly CreateTenantAction $action;
 
     public function getList(): never
     {
@@ -53,6 +61,22 @@ class TenantsController extends Controller
         echo json_encode($tenant);
         exit();
 
+    }
+
+
+    public function store() : never
+    {
+        $data = sanitize($_POST);
+        $userId = $_SESSION['user_id'];
+        $dto = $this->dataFactory->createFromArray($data);
+        $tenantId = $this->action->execute($dto, $userId);
+
+        echo json_encode([
+            'tenantID' => $tenantId,
+            'tenantName' => $dto->name,
+            'tenantAddress' => $dto->address,
+        ]);
+        exit();
     }
 
 }

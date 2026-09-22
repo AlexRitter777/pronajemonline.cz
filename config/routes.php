@@ -196,7 +196,7 @@ $router->add('landlords/destroy', [
 
 // ------------------------  Ajax routes -------------------------------- //
 
-// ------ Properties --------- //
+// ----------- Properties --------- //
 
 // Property list
 $router->add('ajax/properties/get-list', [
@@ -218,7 +218,7 @@ $router->add('ajax/properties/store', [
     ]
 );
 
-// One record
+// One property record
 $router->add('ajax/properties/(?P<id>\d+)/get-one', [
         'controller' => \app\controllers\Ajax\PropertiesController::class,
         'action' => 'getOneRecord',
@@ -228,7 +228,7 @@ $router->add('ajax/properties/(?P<id>\d+)/get-one', [
     ]
 );
 
-// List
+// List of properties
 $router->add('ajax/landlords/get-list', [
     'controller' => app\controllers\Ajax\LandlordsController::class,
     'action' => 'getList',
@@ -237,7 +237,11 @@ $router->add('ajax/landlords/get-list', [
 
     ]
 );
-// One record
+
+
+// --------------- Landlords --------------- //
+
+// One landlord record
 $router->add('ajax/landlords/(?P<id>\d+)/get-one', [
         'controller' => app\controllers\Ajax\LandlordsController::class,
         'action' => 'getOneRecord',
@@ -247,7 +251,7 @@ $router->add('ajax/landlords/(?P<id>\d+)/get-one', [
     ]
 );
 
-// Store record
+// Store landlord
 $router->add('ajax/landlords/store', [
         'controller' => app\controllers\Ajax\LandlordsController::class,
         'action' => 'store',
@@ -257,7 +261,7 @@ $router->add('ajax/landlords/store', [
     ]
 );
 
-// List
+// List of landlords
 $router->add('ajax/tenants/get-list', [
     'controller' => app\controllers\Ajax\TenantsController::class,
     'action' => 'getList',
@@ -265,7 +269,11 @@ $router->add('ajax/tenants/get-list', [
     'middleware' =>[ Auth::class ],
 ]);
 
-// One record
+
+// --------------- Tenants --------------- //
+
+
+// One tenant
 $router->add('ajax/tenants/(?P<id>\d+)/get-one', [
     'controller' => app\controllers\Ajax\TenantsController::class,
     'action' => 'getOneRecord',
@@ -273,13 +281,28 @@ $router->add('ajax/tenants/(?P<id>\d+)/get-one', [
     'middleware' =>[ Auth::class ],
 ]);
 
-// List
+// List of tenants
 $router->add('ajax/admins/get-list', [
     'controller' => app\controllers\Ajax\AdminsController::class,
     'action' => 'getList',
     'view' => null,
     'middleware' =>[ Auth::class ],
 ]);
+
+// Store tenant
+$router->add('ajax/tenants/store', [
+        'controller' => app\controllers\Ajax\TenantsController::class,
+        'action' => 'store',
+        'view' => null,
+        'middleware' =>[ Auth::class, AjaxMiddleware::class, PostMiddleware::class, CsrfMiddleware::class ],
+
+    ]
+);
+
+
+
+
+
 
 // One record
 $router->add('ajax/admins/(?P<id>\d+)/get-one', [
