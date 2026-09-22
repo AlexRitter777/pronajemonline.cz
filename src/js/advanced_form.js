@@ -57,6 +57,7 @@ $(document).ready(function () {
      * For property is using listener below
      */
     $('.select-ajax').on(`change`, async function (e) {
+
         //get record id in DB
         const recordId = $(this).find(':selected').data('record_id');
 
@@ -102,8 +103,7 @@ $(document).ready(function () {
     $('.select-property').on(`change`, async function (e) {
 
         //get record id in DB
-
-        const recordId = $(this).val();
+        const recordId = $(this).find(':selected').data('record_id');
 
         if(recordId === undefined) {
             $('#propertyType').val('');
@@ -121,9 +121,9 @@ $(document).ready(function () {
             const landlord = await database.getOneRecordById(property.landlord_id, 'landlords');
 
             $('#landlordName').empty().append($('<option>', {
-                value: landlord.id,
+                value: landlord.name,
                 text: landlord.name,
-                // 'data-record_id': landlord.id,
+                'data-record_id': landlord.id,
             }))
             $('#landlordAddress').val(landlord.address);
 
@@ -139,9 +139,9 @@ $(document).ready(function () {
         if(property.tenant_id) {
             const tenant = await database.getOneRecordById(property.tenant_id, 'tenants');
             $('#tenantName').empty().append($('<option>', {
-                value: tenant.id,
+                value: tenant.name,
                 text: tenant.name,
-                // 'data-record_id': tenant.id,
+                'data-record_id': tenant.id,
             }))
             $('#tenantAddress').val(tenant.address);
         } else {
@@ -153,9 +153,9 @@ $(document).ready(function () {
         if(property.admin_id && adminNameElement.length > 0) {
             const admin = await database.getOneRecordById(property.admin_id, 'admins');
             adminNameElement.empty().append($('<option>', {
-                value: admin.id,
+                value: admin.name,
                 text: admin.name,
-                // 'data-record_id': admin.id,
+                'data-record_id': admin.id,
             }))
         }
 
@@ -245,8 +245,10 @@ $(document).ready(function () {
                 case 'property':
                     if(newRecord['propertyAddress']) {
                         $('.input-property-list').empty().append($('<option>', {
-                            value: newRecord['propertyID'],
+                            value: newRecord['propertyAddress'],
                             text: newRecord['propertyAddress'],
+                            'data-record_id': newRecord['propertyID'],
+
                         }))
                     }
 
@@ -258,8 +260,9 @@ $(document).ready(function () {
                 case 'landlord':
                     if(newRecord['landlordName']) {
                         $('.input-landlord-list').empty().append($('<option>', {
-                            value: newRecord['landlordID'],
+                            value: newRecord['landlordName'],
                             text: newRecord['landlordName'],
+                           'data-record_id': newRecord['landlordID'],
                         }))
                     }
                     if(newRecord['landlordAddress']) {
@@ -273,8 +276,9 @@ $(document).ready(function () {
                 case 'tenant':
                     if(newRecord['tenantName']) {
                         $('.input-tenant-list').empty().append($('<option>', {
-                            value: newRecord['tenantID'],
+                            value: newRecord['tenantName'],
                             text: newRecord['tenantName'],
+                            'data-record_id': newRecord['tenantID'],
                         }))
                     }
                     if(newRecord['tenantAddress']) {
@@ -285,8 +289,10 @@ $(document).ready(function () {
                 case 'admin':
                     if(newRecord['adminName']) {
                         $('.input-admin-list').empty().append($('<option>', {
-                            value: newRecord['adminID'],
+                            value: newRecord['adminName'],
                             text: newRecord['adminName'],
+                            'data-record_id': newRecord['tenantID'],
+
                         }))
                     }
 

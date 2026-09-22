@@ -59,6 +59,7 @@ export class Select2Dropdown {
             //add to every option data-record_id attribute with record_id value received from server (DB record Id)
             templateSelection: function (data, container){
                 $(data.element).attr('data-record_id', data.id);
+                $(data.element).val(data.text);
                 return data.text;
             }
 
