@@ -81,7 +81,7 @@ export class DatabaseWrapper{
             })
                 .done((response) => {
 
-                    console.log(response) //debugging
+                    // console.log(response) //debugging
                     resolve(response);
 
 

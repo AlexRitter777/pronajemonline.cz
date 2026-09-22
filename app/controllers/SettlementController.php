@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\actions\Settlement\ProcessCalculationAction;
 use app\Enum\SettlementType;
 use app\Enum\SortOrder;
 use app\Models\Depositcalc;
@@ -42,6 +43,9 @@ class SettlementController extends AppController
 
     #[Inject]
     private Property $property;
+
+    #[Inject]
+    private readonly ProcessCalculationAction $processCalculationAction;
 
     public function index()
     {
@@ -89,16 +93,24 @@ class SettlementController extends AppController
 
         $this->setMeta($settlementType->label());
 
+        $formType = $settlementType->form();
 
-        $settlementFormPath = '/' . $settlementType->form() . '.php';
+        $settlementFormPath = '/' . $formType  . '.php';
 
-        $this->set(compact('settlementFormPath'));
+        $this->set(compact('settlementFormPath', 'formType'));
 
 
     }
 
 
-    public function storeAction(){
+    public function store(){
+
+        $data = sanitize($_POST);
+
+        $this->processCalculationAction->execute($data);
+
+
+
 
     }
 

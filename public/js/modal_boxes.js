@@ -3,16 +3,16 @@
 
 
 // remove old Modal jbox window after close by Cancel button
-$('body').on('click','.submit_button_refresh_modal', function (e){
-    removeJboxTraces();
-})
-
-
-
-//close Modal JBox window and remove old Modal JBox window after close by cross icon
-$('body').on('click','.jBox-closeButton', function (e){
-    removeJboxTraces();
-})
+// $('body').on('click','.submit_button_refresh_modal', function (e){
+//     removeJboxTraces();
+// })
+//
+//
+//
+// //close Modal JBox window and remove old Modal JBox window after close by cross icon
+// $('body').on('click','.jBox-closeButton', function (e){
+//     removeJboxTraces();
+// })
 
 
 //spinner  make  class!!!
@@ -30,11 +30,11 @@ $('body').on('click','.jBox-closeButton', function (e){
 
 
 
-function removeJboxTraces(){
-    //everytime JBox create new Modal window,
-    //every time after close modal window we should delete the old one
-    //because we have more than one modal box in different files, we dont use destroy() method
-    $('.jBox-wrapper').remove();
-    $('.jBox-overlay').remove();
-}
+// function removeJboxTraces(){
+//     //everytime JBox create new Modal window,
+//     //every time after close modal window we should delete the old one
+//     //because we have more than one modal box in different files, we dont use destroy() method
+//     $('.jBox-wrapper').remove();
+//     $('.jBox-overlay').remove();
+// }
 

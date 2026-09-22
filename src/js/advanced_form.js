@@ -240,7 +240,7 @@ $(document).ready(function () {
 
         try {
             const newRecord =  await databaseWrapper.saveToDatabase();
-console.log(newRecord);
+
             switch (entity) {
                 case 'property':
                     if(newRecord['propertyAddress']) {

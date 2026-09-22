@@ -11,7 +11,7 @@ final class ProcessCalculationAction
     public function __construct(
         private readonly Applications $applications
     ){}
-    public function execute(array $data, SettlementType $settlementType)
+    public function execute(array $data)
     {
 
             $this->applications->load($data);
