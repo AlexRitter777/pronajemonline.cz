@@ -211,7 +211,7 @@ $(document).ready(function () {
      * 1. Ajax inputs validation
      * 2. Ajax save in database
      */
-    $('body').on('submit','#entity-modal-form', async function (e) {
+    $('body').on('submit','.entity-modal-form', async function (e) {
 
         e.preventDefault();
 
@@ -256,17 +256,27 @@ $(document).ready(function () {
                         $('.input-property-list').empty().append($('<option>', {
                             value: newRecord['propertyID'],
                             text: newRecord['propertyAddress'],
-                            // selected: true,
-                            'data-record_id': newRecord['propertyID'],
                         }))
                     }
 
                     if(newRecord['propertyType']) {
                         $('#propertyType').val(newRecord['propertyType']);
                     }
-                //     break;
-                // case 'landlord':
-                //
+                    break;
+                case 'landlord':
+                    if(newRecord['landlordName']) {
+                        $('.input-landlord-list').empty().append($('<option>', {
+                            value: newRecord['landlordID'],
+                            text: newRecord['landlordName'],
+                        }))
+                    }
+                    if(newRecord['landlordAddress']) {
+                        $('#landlordAddress').val(newRecord['landlordAddress']);
+                    }
+                    if(newRecord['accountNumber']) {
+                        $('#accountNumber').val(newRecord['accountNumber']);
+                    }
+
                 // scase 'tenant':
 
             }

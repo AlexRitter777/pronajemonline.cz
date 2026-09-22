@@ -5,7 +5,7 @@
     </div>
 
     <div class="central-bar">
-        <form method="post" class='modal_window_form' id="entity-modal-form" name="property" data-type="modal" action="">
+        <form method="post" class='modal_window_form entity-modal-form' name="property" data-type="modal" action="">
             <table class="tenants-modal" border="0">
 
                 <tr class="row-1">
