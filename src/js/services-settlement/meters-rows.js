@@ -101,7 +101,7 @@ function fillAllMetersLists(lenMeters) {
         encode: true,
     })
     .done(function (data) {
-        let countMeters = data.length;
+        const countMeters = data.length;
         for (let i=0; i<=lenMeters; i++){
             for (let j=0; j<countMeters; j++){
                 if (data[j] !== $('#load_php_meters' + (i + 1)).val()){

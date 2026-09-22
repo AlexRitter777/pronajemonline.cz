@@ -6,8 +6,7 @@ $(document).ready(function (){
     $('.calculation-form, .login-form').on('submit', async function (e) {
 
         e.preventDefault();
-        console.log($('#propertyAddress').val())
-        return;
+
         loaderSpinnerOn();
 
 
