@@ -64,6 +64,26 @@ enum SettlementType : string
             self::TOTAL => 'totalform',
         };
     }
+
+
+    public function calc()
+    {
+        return match ($this) {
+
+            self::SERVICES => 'services',
+
+            self::EASY_SERVICES => 'easyservices',
+
+            self::ELECTRO => 'electro',
+
+            self::UNIVERSAL => 'universal',
+
+            self::DEPOSIT => 'deposit',
+
+            self::TOTAL => 'total',
+        };
+    }
+
     public static function options(): array
     {
         $options = [];

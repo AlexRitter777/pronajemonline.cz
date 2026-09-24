@@ -95,9 +95,11 @@ class SettlementController extends AppController
 
         $formType = $settlementType->form();
 
+        $calcType = $settlementType->value;
+
         $settlementFormPath = '/' . $formType  . '.php';
 
-        $this->set(compact('settlementFormPath', 'formType'));
+        $this->set(compact('settlementFormPath', 'calcType'));
 
 
     }
@@ -107,7 +109,18 @@ class SettlementController extends AppController
 
         $data = sanitize($_POST);
 
-        $this->processCalculationAction->execute($data);
+        $settlementType = SettlementType::tryFrom($data['formType']);
+
+        if($settlementType === null){
+            redirectBack();
+        }
+
+        $this->setMeta($settlementType->label());
+
+//        $calcType = $settlementType->calc();
+
+
+        $this->processCalculationAction->execute($data, $settlementType);
 
 
 
