@@ -29,7 +29,7 @@ class Db {
         if( !R::testConnection()){
             throw new \Exception('No database connection', 500);
         }
-        R::freeze(false);
+        R::freeze(true);
 
         if(DEBUG) {
             R::debug(true,1);
