@@ -2,7 +2,7 @@
 
 namespace app\Support\Calculators;
 
-final class ServicesCalculator extends Calculator
+final class ServicesSettlementCalculator extends Calculator
 {
 
     // some legacy data structure
