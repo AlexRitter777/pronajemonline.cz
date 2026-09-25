@@ -490,7 +490,7 @@
         </div>
         <!--End Buttons-->
 
-        <input type="hidden" name="formType" value="<?= $calcType ?? '';?>">
+        <input type="hidden" name="formType" value="<?= $formType ?>">
     </form>
 </div>
 

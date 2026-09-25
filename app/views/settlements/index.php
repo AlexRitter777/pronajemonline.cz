@@ -8,7 +8,7 @@
         <nav class="calc-type-tabs">
            <?php foreach ($settlementTypes as $type => $label): ?>
                 <a
-                    href="/settlements?calc_type=<?= $type; ?>"
+                    href="/settlements?type=<?= $type; ?>"
                     class="calc-tab <?= $settlementType->value === $type ? 'is-active' : ''; ?>"
                 >
                     <?= $label; ?>
@@ -75,11 +75,11 @@
                     <td class="col-1"><?= $settlement->calculation_name;?></td>
                     <td class="col-2"><?= $settlement->property_address;?></td>
                     <td class="col-3"><?= $settlement->tenant_name;?></td>
-                    <?php if($settlementType === \app\Enum\SettlementType::DEPOSIT): ?>
+                    <?php if($settlementType === \app\Enums\SettlementType::DEPOSIT): ?>
                         <td class="col-4"><?= date("d.m.Y", strtotime($settlement->contract_start_date)) . ' - ' . date("d.m.Y", strtotime($settlement->contract_finish_date));?></td>
-                    <?php elseif($settlementType === \app\Enum\SettlementType::EASY_SERVICES): ?>
+                    <?php elseif($settlementType === \app\Enums\SettlementType::EASY_SERVICES): ?>
                         <td class="col-4"><?= $settlement->rent_year_date; ?></td>
-                    <?php elseif($settlementType === \app\Enum\SettlementType::TOTAL): ?>
+                    <?php elseif($settlementType === \app\Enums\SettlementType::TOTAL): ?>
                         <td class="col-4">-</td>
                     <?php else: ?>
                         <td class="col-4"><?= date("d.m.Y", strtotime($settlement->rent_start_date)) . ' - ' . date("d.m.Y", strtotime($settlement->rent_finish_date));?></td>

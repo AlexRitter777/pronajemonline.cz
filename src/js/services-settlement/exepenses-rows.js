@@ -38,7 +38,7 @@ $(document).ready(function () {
                 '<span class = "icon_title">Odebrat</span>'+
                 '</a></div>'
             );
-            $('#test' + (x + len)).load('/ajax/settlements/get-services-options-list?=' + searchParams.get('form_type'));//new route get html
+            $('#test' + (x + len)).load('/ajax/settlements/get-services-options-list?=' + searchParams.get('type'));//new route get html
         }
         // Hide add button if max fields reached
         if ((x + len) == max_fields){
@@ -105,7 +105,7 @@ function fillAllExpensesLists(len, searchParams) {
         url: '/ajax/settlements/get-services-list',
         dataType: "json",
         encode: true,
-        data: {form_type: searchParams.get('form_type')}
+        data: {type: searchParams.get('type')}
     })
     .done(function (data) {
         let countServices = data.length;

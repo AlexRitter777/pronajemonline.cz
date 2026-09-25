@@ -8,7 +8,7 @@
     <div class="app-grid-container">
 
         <div class="app-block">
-            <a href="settlements/create?form_type=servicescalc">
+            <a href="settlements/create?type=services">
                 <p class="app-block-title">Vyúčtování služeb</p>
                 <p class="app-block-desc">Umožňuje plnou nebo částečnou přefakturaci nákladů spojených s užíváním bytu na nájemníka za libovolné období. <span class="calc-hidden">Pro vytvoření vyúčtování stačí mít vyúčtování služeb od správce domu, včetně nákladů na topení, teplou a studenou vodu, a počáteční a konečné stavy měřidel.</span></p>
             </a>
