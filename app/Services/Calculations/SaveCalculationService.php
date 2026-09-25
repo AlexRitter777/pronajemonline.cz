@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace app\Services\Calculations;
 
 
-use app\Models\Servicescalc;
+use app\Models\ServicesSettlement;
 use DI\Attribute\Inject;
 
 final class SaveCalculationService
 {
 
     #[Inject]
-    private readonly Servicescalc $servicescalc;
+    private readonly ServicesSettlement $servicescalc;
 
     public function saveCalculation(array $data, float $result, int $userId)
     {

@@ -5,8 +5,10 @@ namespace app\Models;
 use pronajem\base\Model;
 use pronajem\libs\PaginationSetParams;
 
-class Servicescalc extends Model
+class ServicesSettlement extends Model
 {
+    protected $table = 'servicescalc';
+
     public function __construct(PaginationSetParams $pagination)
     {
         $this->pagination = $pagination;
