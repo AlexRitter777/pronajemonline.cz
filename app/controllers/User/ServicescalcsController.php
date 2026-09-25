@@ -3,7 +3,7 @@
 namespace app\controllers\User;
 
 use app\controllers\AppController;
-use app\Models\Servicescalc;
+use app\Models\ServicesSettlement;
 use app\services\Calculations\DeleteCalculationService;
 use DI\Attribute\Inject;
 use pronajem\libs\CSRF;
@@ -12,7 +12,7 @@ class ServicescalcsController extends AppController
 {
 
     #[inject]
-    private Servicescalc $servicescalc;
+    private ServicesSettlement $servicescalc;
 
     #[inject]
     private DeleteCalculationService $deleteCalculationService;
