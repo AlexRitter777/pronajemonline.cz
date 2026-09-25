@@ -490,8 +490,6 @@
         </div>
         <!--End Buttons-->
 
-        <input type="hidden" name="calculationName" value="<?= $data['calculationName'] ?? '';?>">
-        <input type="hidden" name="id" value="<?= $data['calculationId'] ?? '';?>">
         <input type="hidden" name="formType" value="<?= $calcType ?? '';?>">
     </form>
 </div>
