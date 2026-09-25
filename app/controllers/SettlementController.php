@@ -12,7 +12,9 @@ use app\Models\Property;
 use app\Models\Servicescalc;
 use app\Models\Totalcalc;
 use app\Models\Universalcalc;
+use app\Services\Calculations\SaveCalculationService;
 use app\Support\Account;
+use app\Support\Calculators\CalculatorFactory;
 use app\Support\Services;
 use DI\Attribute\Inject;
 use pronajem\libs\CSRF;
@@ -46,6 +48,12 @@ class SettlementController extends AppController
 
     #[Inject]
     private readonly ProcessCalculationAction $processCalculationAction;
+
+    #[Inject]
+    private readonly SaveCalculationService $saveCalculationService;
+
+    #[Inject]
+    private Servicescalc $servicescalc;
 
     public function index()
     {
@@ -97,7 +105,7 @@ class SettlementController extends AppController
 
         $calcType = $settlementType->value;
 
-        $settlementFormPath = '/' . $formType  . '.php';
+        $settlementFormPath = '/forms/' . $formType  . '.php';
 
         $this->set(compact('settlementFormPath', 'calcType'));
 
@@ -109,6 +117,8 @@ class SettlementController extends AppController
 
         $data = sanitize($_POST);
 
+        $userID = $_SESSION['user_id'];
+
         $settlementType = SettlementType::tryFrom($data['formType']);
 
         if($settlementType === null){
@@ -117,13 +127,20 @@ class SettlementController extends AppController
 
         $this->setMeta($settlementType->label());
 
-//        $calcType = $settlementType->calc();
+        $calculator = CalculatorFactory::create($settlementType->value);
+
+        $calculator->load($data);
+
+        $forSaving = $calculator->getAttributes();
+
+        $result = $calculator->calculate();
 
 
-        $this->processCalculationAction->execute($data, $settlementType);
+        $id = $this->saveCalculationService
+            ->saveCalculation($forSaving, $result['calculationResult']['value'], $userID);;
 
 
-
+        redirect('/settlements/' . $id . '?calc_type=' . $settlementType->value);
 
     }
 
@@ -137,7 +154,24 @@ class SettlementController extends AppController
 
     }
 
-    public function showAction(){
+    public function show(int $settlementId){
+
+        $settlementType = SettlementType::tryFrom($_GET['calc_type']);
+
+        $settlement = match ($settlementType) {
+            SettlementType::SERVICES => $this->servicesSettlement->getOneRecordById($settlementId),
+            default => null
+        };
+
+        if($settlement === null){
+            redirect('/settlements');
+        }
+
+        $this->setMeta($settlementType->label());
+
+        $settlementCalcPath = '/calculations/' . $settlementType->value  . '.php';
+
+        $this->set(compact('settlement', 'settlementCalcPath'));
 
     }
 
