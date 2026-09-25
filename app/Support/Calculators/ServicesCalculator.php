@@ -46,6 +46,11 @@ final class ServicesCalculator extends Calculator
     ];
 
 
+    public function getAttributes() : array
+    {
+        return $this->attributes;
+    }
+
     public function calculate() : array
 
     {
