@@ -1,15 +1,15 @@
 <?php
 
-namespace app\Enum;
+namespace app\Enums;
 
 enum SettlementType : string
 {
-    case SERVICES = 'servicescalc';
-    case EASY_SERVICES = 'easyservicescalc';
-    case UNIVERSAL = 'universalcalc';
-    case ELECTRO = 'electrocalc';
-    case TOTAL = 'totalcalc';
-    case DEPOSIT = 'depositcalc';
+    case SERVICES = 'services';
+    case EASY_SERVICES = 'simple-services';
+    case UNIVERSAL = 'universal';
+    case ELECTRO = 'electro';
+    case TOTAL = 'total';
+    case DEPOSIT = 'deposit';
 
 
     public function label(): string
@@ -47,42 +47,25 @@ enum SettlementType : string
         };
     }
 
-    public function form()
+    public function data() : string
     {
         return match ($this) {
+            self::EASY_SERVICES => 'simpleSettlementData',
 
-            self::SERVICES => 'servicesform',
+            self::SERVICES => 'ServicesSettlementData',
 
-            self::EASY_SERVICES => 'easyservicesform',
+            self::ELECTRO => 'electricitySettlementData',
 
-            self::ELECTRO => 'electroform',
+            self::TOTAL => 'totalSettlementData',
 
-            self::UNIVERSAL => 'universalform',
+            self::UNIVERSAL => 'universalSettlementData',
 
-            self::DEPOSIT => 'depositform',
-
-            self::TOTAL => 'totalform',
+            self::DEPOSIT => 'depositSettlementData',
         };
+
     }
 
 
-    public function calc()
-    {
-        return match ($this) {
-
-            self::SERVICES => 'services',
-
-            self::EASY_SERVICES => 'easyservices',
-
-            self::ELECTRO => 'electro',
-
-            self::UNIVERSAL => 'universal',
-
-            self::DEPOSIT => 'deposit',
-
-            self::TOTAL => 'total',
-        };
-    }
 
     public static function options(): array
     {
