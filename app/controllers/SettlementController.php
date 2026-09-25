@@ -2,58 +2,48 @@
 
 namespace app\controllers;
 
-use app\actions\Settlement\ProcessCalculationAction;
-use app\Enum\SettlementType;
-use app\Enum\SortOrder;
+use app\Enums\SettlementType;
+use app\Enums\SortOrder;
 use app\Models\Depositcalc;
 use app\Models\Easyservicescalc;
 use app\Models\Electrocalc;
 use app\Models\Property;
-use app\Models\Servicescalc;
+use app\Models\ServicesSettlement;
 use app\Models\Totalcalc;
 use app\Models\Universalcalc;
 use app\Services\Calculations\SaveCalculationService;
-use app\Support\Account;
 use app\Support\Calculators\CalculatorFactory;
-use app\Support\Services;
 use DI\Attribute\Inject;
 use pronajem\libs\CSRF;
-use pronajem\libs\Pagination;
-use pronajem\libs\PaginationSetParams;
-use RedBeanPHP\R;
 
 class SettlementController extends AppController
 {
 
     #[Inject]
-    private Servicescalc $servicesSettlement;
+    private readonly ServicesSettlement $servicesSettlement;
 
     #[Inject]
-    private Easyservicescalc $simpleSettlement;
+    private readonly Easyservicescalc $simpleSettlement;
 
     #[Inject]
-    private Electrocalc $electricitySettlement;
+    private readonly Electrocalc $electricitySettlement;
 
     #[Inject]
-    private Universalcalc $universalSettlement;
+    private readonly Universalcalc $universalSettlement;
 
     #[Inject]
-    private Totalcalc $totalSettlement;
+    private readonly Totalcalc $totalSettlement;
 
     #[Inject]
-    private Depositcalc $depositSettlement;
+    private readonly Depositcalc $depositSettlement;
 
     #[Inject]
-    private Property $property;
+    private readonly Property $property;
 
-    #[Inject]
-    private readonly ProcessCalculationAction $processCalculationAction;
 
     #[Inject]
     private readonly SaveCalculationService $saveCalculationService;
 
-    #[Inject]
-    private Servicescalc $servicescalc;
 
     public function index()
     {
@@ -67,7 +57,7 @@ class SettlementController extends AppController
         $settlementTypes = SettlementType::options();
 
         // Get the selected settlement type or default fallback
-        $settlementTypeEnum = SettlementType::tryFrom($_GET['calc_type'] ?? 'servicescalc');
+        $settlementTypeEnum = SettlementType::tryFrom($_GET['type'] ?? 'services');
         $settlementEntity = $settlementTypeEnum->entity();
         $settlementType = $settlementTypeEnum;
 
@@ -89,11 +79,11 @@ class SettlementController extends AppController
 
     public function create()
     {
-        if(empty($_GET['form_type'])){
+        if(empty($_GET['type'])){
             redirect('/settlements/list');
         }
 
-        $settlementType = SettlementType::tryFrom($_GET['form_type']);
+        $settlementType = SettlementType::tryFrom($_GET['type']);
 
         if($settlementType === null) {
             redirect('/settlements/list');
@@ -101,13 +91,11 @@ class SettlementController extends AppController
 
         $this->setMeta($settlementType->label());
 
-        $formType = $settlementType->form();
+        $formType = $settlementType->value;
 
-        $calcType = $settlementType->value;
+        $settlementFormPath = "/forms/{$formType}-form.php";
 
-        $settlementFormPath = '/forms/' . $formType  . '.php';
-
-        $this->set(compact('settlementFormPath', 'calcType'));
+        $this->set(compact('settlementFormPath', 'formType'));
 
 
     }
@@ -127,11 +115,21 @@ class SettlementController extends AppController
 
         $this->setMeta($settlementType->label());
 
+        $dtoName = $settlementType->data();
+
+        $dataClass = 'app\\DTO\\' . $dtoName;
+
+        if(!class_exists($dataClass)){
+            throw new \InvalidArgumentException("Unknown DTO: {$dtoName}");
+        }
+
+        $settlementData = $dataClass::fromArray($data);
+
         $calculator = CalculatorFactory::create($settlementType->value);
 
         $calculator->load($data);
 
-        $forSaving = $calculator->getAttributes();
+        $forSaving = $settlementData->toArray();
 
         $result = $calculator->calculate();
 
@@ -140,7 +138,7 @@ class SettlementController extends AppController
             ->saveCalculation($forSaving, $result['calculationResult']['value'], $userID);;
 
 
-        redirect('/settlements/' . $id . '?calc_type=' . $settlementType->value);
+        redirect('/settlements/' . $id . '?type=' . $settlementType->value);
 
     }
 
@@ -156,7 +154,7 @@ class SettlementController extends AppController
 
     public function show(int $settlementId){
 
-        $settlementType = SettlementType::tryFrom($_GET['calc_type']);
+        $settlementType = SettlementType::tryFrom($_GET['type']);
 
         $settlement = match ($settlementType) {
             SettlementType::SERVICES => $this->servicesSettlement->getOneRecordById($settlementId),
@@ -169,7 +167,7 @@ class SettlementController extends AppController
 
         $this->setMeta($settlementType->label());
 
-        $settlementCalcPath = '/calculations/' . $settlementType->value  . '.php';
+        $settlementCalcPath = "/calculations/{$settlementType->value}-calc.php";
 
         $this->set(compact('settlement', 'settlementCalcPath'));
 
