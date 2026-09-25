@@ -69,6 +69,14 @@ $router->add('settlements/new', [
     'view' => 'new-settlement/index',
 ]);
 
+$router->add('settlements/(?P<id>\d+)', [
+    'controller' => SettlementController::class,
+    'action' => 'show',
+    'view' => 'settlements/show',
+    'middleware' =>[ Auth::class ],
+]);
+
+
 $router->add('settlements/create', [
     'controller' => SettlementController::class,
     'action' => 'create',
