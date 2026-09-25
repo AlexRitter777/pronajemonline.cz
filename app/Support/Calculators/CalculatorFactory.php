@@ -2,7 +2,7 @@
 
 namespace app\Support\Calculators;
 
-use app\Enum\SettlementType;
+use app\Enums\SettlementType;
 use InvalidArgumentException;
 
 final class CalculatorFactory
@@ -11,7 +11,7 @@ final class CalculatorFactory
     public static function create(string $type) : Calculator
     {
         return match ($type) {
-            SettlementType::SERVICES->value => new ServicesCalculator(),
+            SettlementType::SERVICES->value => new ServicesSettlementCalculator(),
             default => throw new InvalidArgumentException('Unknown calculator type'),
         };
 

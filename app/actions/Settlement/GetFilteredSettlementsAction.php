@@ -2,8 +2,8 @@
 
 namespace app\actions\Settlement;
 
-use app\Enum\SettlementType;
-use app\Enum\SortOrder;
+use app\Enums\SettlementType;
+use app\Enums\SortOrder;
 use pronajem\libs\PaginationSetParams;
 
 final class GetFilteredSettlementsAction
