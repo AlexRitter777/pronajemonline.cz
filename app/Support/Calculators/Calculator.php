@@ -10,6 +10,8 @@ abstract class Calculator
 
     abstract public function calculate();
 
+    abstract public function getAttributes() : array;
+
     /**
      * Loads data into model attributes from a given array (typically $_POST or $_GET),
      * ensuring only allowed attributes are set. If an unallowed attribute is found,
@@ -290,6 +292,7 @@ abstract class Calculator
         return $result;
 
     }
+
 
 
 }
