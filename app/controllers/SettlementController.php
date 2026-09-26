@@ -101,7 +101,8 @@ class SettlementController extends AppController
     }
 
 
-    public function store(){
+    public function store()
+    {
 
         $data = sanitize($_POST);
 
@@ -127,16 +128,12 @@ class SettlementController extends AppController
 
         $calculator = CalculatorFactory::create($settlementType->value);
 
-        $calculator->load($data);
-
         $forSaving = $settlementData->toArray();
 
-        $result = $calculator->calculate();
-
+        $result = $calculator->calculate($settlementData);
 
         $id = $this->saveCalculationService
-            ->saveCalculation($forSaving, $result['calculationResult']['value'], $userID);;
-
+            ->saveCalculation($forSaving, $result->balance, $userID);
 
         redirect('/settlements/' . $id . '?type=' . $settlementType->value);
 

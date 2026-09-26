@@ -2,15 +2,17 @@
 
 namespace app\Support\Calculators;
 
+use app\DTO\ServicesSettlementData;
+use app\DTO\ServicesSettlementResult;
+use app\Enums\MeterType;
 use DateTime;
 
 abstract class Calculator
 {
 
 
-    abstract public function calculate();
+    abstract public function calculate(ServicesSettlementData $d) : ServicesSettlementResult;
 
-    abstract public function getAttributes() : array;
 
     /**
      * Loads data into model attributes from a given array (typically $_POST or $_GET),
@@ -119,25 +121,40 @@ abstract class Calculator
         return $monthsCount + $firstMonthDaysFloat + $lastMonthDaysFloat;
     }
 
-
-
-    public function metersDifSum($utility, $names = [], $initialValues = [], $endValues = []) : float
+    protected function metersDifSum(MeterType $utility, array $names, array $initialValues, array $endValues, float $coefficient = 1) : float
     {
         $i = 0;
         $result = 0;
         foreach ($names as $name) {
-            if (preg_match("/{$utility}/", $name)) {
+            if (preg_match("/{$utility->value}/", $name)) {
                 $result = $result + ($endValues[$i] - $initialValues[$i]);
             }
             $i++;
         }
-        if ($utility == 'UT'){
-            $coefficient = $this->coefficientUT($this->attributes['coefficientValue']);
+        if ($utility === MeterType::HEATING){
             $result = round(($result * $coefficient),  2);
         }
         return $result;
 
     }
+
+//    public function metersDifSum($utility, $names = [], $initialValues = [], $endValues = []) : float
+//    {
+//        $i = 0;
+//        $result = 0;
+//        foreach ($names as $name) {
+//            if (preg_match("/{$utility}/", $name)) {
+//                $result = $result + ($endValues[$i] - $initialValues[$i]);
+//            }
+//            $i++;
+//        }
+//        if ($utility == 'UT'){
+//            $coefficient = $this->coefficientUT($this->attributes['coefficientValue']);
+//            $result = round(($result * $coefficient),  2);
+//        }
+//        return $result;
+//
+//    }
 
     public function coefficientUT($coefficientArray) : float
     {
@@ -249,16 +266,19 @@ abstract class Calculator
     }
 
 
-    public function diffValues($initialValues, $endValues, $coefficient, $meters) : array
+    protected function diffValues(array $initialValues, array $endValues, float $coefficient, array $meters) : array
     {
         $result = [];
+
+        $heatingMeter = MeterType::HEATING->value;
+
         for ($i=0; $i < count($initialValues); $i++) {
             $result['noCoeff'][$i] = $endValues[$i] - $initialValues[$i];
-            if (preg_match("/UT/", $meters[$i])) {
+            if (preg_match("/{$heatingMeter}/", $meters[$i])) {
                 $result['coeff'][$i] = $coefficient;
-                $result['coeffView'][$i] = $coefficient;
+                $result['coeffView'][$i] = (string) $coefficient;
             } else {
-                $result['coeff'][$i] = 1;
+                $result['coeff'][$i] = 1.0;
                 $result['coeffView'][$i] = '-';
             }
             $result['final'][$i] = round(($result['noCoeff'][$i] * $result['coeff'][$i]), 2);
