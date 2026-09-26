@@ -36,7 +36,8 @@ final readonly class ServicesSettlementData
         public array $meterNumber,
         public ?string $originMeterStart,
         public ?string $originMeterEnd,
-        public float $coefficientValue,
+        /** @var float[] */
+        public array $coefficientValue,
         public float $constHotWaterPrice,
         public float $constHeatingPrice,
         public float $hotWaterPrice,
@@ -77,7 +78,7 @@ final readonly class ServicesSettlementData
             meterNumber: $data['meterNumber'],
             originMeterStart: $data['originMeterStart'] ?? null,
             originMeterEnd: $data['originMeterEnd'] ?? null,
-            coefficientValue: self::toFloat($data['coefficientValue'] ?? null, 1.0) ,
+            coefficientValue: self::toFloatArray($data['coefficientValue'] ?? []) ,
             constHotWaterPrice: self::toFloat($data['constHotWaterPrice'] ?? null),
             constHeatingPrice: self::toFloat($data['constHeatingPrice'] ?? null),
             hotWaterPrice: self::toFloat($data['hotWaterPrice'] ?? null),
