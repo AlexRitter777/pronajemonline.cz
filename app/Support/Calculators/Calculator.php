@@ -2,41 +2,15 @@
 
 namespace app\Support\Calculators;
 
-use app\DTO\ServicesSettlementData;
-use app\DTO\ServicesSettlementResult;
+use app\DTO\Contracts\SettlementData;
+use app\DTO\Contracts\SettlementResult;
 use app\Enums\MeterType;
 use DateTime;
 
 abstract class Calculator
 {
 
-
-    abstract public function calculate(ServicesSettlementData $d) : ServicesSettlementResult;
-
-
-    /**
-     * Loads data into model attributes from a given array (typically $_POST or $_GET),
-     * ensuring only allowed attributes are set. If an unallowed attribute is found,
-     * an exception is thrown to prevent potential security issues. Throws an exception
-     * if the input data array is empty.
-     *
-     * @param array $data Data to be loaded into model attributes.
-     * @throws \Exception If an unallowed attribute is found in the input data or if the input data is empty.
-     */
-    public function load(array $data) : self
-    {
-        if(empty($data)) {
-            throw new \Exception('No attributes given', 500);
-        }
-
-        foreach ($data as $key => $value) {
-            if(array_key_exists($key, $this->attributes)) {
-                $this->attributes[$key] = $value;
-            }
-
-        }
-        return $this;
-    }
+    abstract public function calculate(SettlementData $d) : SettlementResult;
 
 
     protected function twoDatesMonthDiff($startDate, $finishDate, $precision = 2) : float
@@ -143,24 +117,6 @@ abstract class Calculator
         return $result;
 
     }
-
-//    public function metersDifSum($utility, $names = [], $initialValues = [], $endValues = []) : float
-//    {
-//        $i = 0;
-//        $result = 0;
-//        foreach ($names as $name) {
-//            if (preg_match("/{$utility}/", $name)) {
-//                $result = $result + ($endValues[$i] - $initialValues[$i]);
-//            }
-//            $i++;
-//        }
-//        if ($utility == 'UT'){
-//            $coefficient = $this->coefficientUT($this->attributes['coefficientValue']);
-//            $result = round(($result * $coefficient),  2);
-//        }
-//        return $result;
-//
-//    }
 
     public function coefficientUT($coefficientArray) : float
     {

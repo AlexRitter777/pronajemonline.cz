@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace app\DTO;
 
 use app\DTO\Concerns\CastsScalars;
+use app\DTO\Contracts\SettlementData;
 
-final readonly class ServicesSettlementData
+final readonly class ServicesSettlementData implements SettlementData
 {
     use CastsScalars;
     public function __construct(
@@ -179,7 +180,7 @@ final readonly class ServicesSettlementData
     }
 
 
-    /** ^-строка -> string[] (имена счётчиков, номера, паушальные) */
+    /** ^-string -> string[] (meter types, meter numbers, expense types) */
     private static function explodeField(string $value, string $delimiter = '^'): array
     {
         $value = trim($value, $delimiter);
@@ -187,7 +188,7 @@ final readonly class ServicesSettlementData
         return $value === '' ? [] : explode($delimiter, $value);
     }
 
-    /** ^-строка -> float[] (показания, цены-массивы, коэффициенты) */
+    /** ^-string -> float[] (meter readings, prices, coefficients) */
     private static function explodeFloats(string $value, string $delimiter = '^'): array
     {
         return array_map(self::toFloat(...), self::explodeField($value, $delimiter));

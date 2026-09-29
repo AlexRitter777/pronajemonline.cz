@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\DTO\SettlementDataResolver;
 use app\Enums\SettlementType;
 use app\Enums\SortOrder;
 use app\Models\Depositcalc;
@@ -43,6 +44,9 @@ class SettlementController extends AppController
 
     #[Inject]
     private readonly SaveCalculationService $saveCalculationService;
+
+    #[Inject]
+    private readonly SettlementDataResolver  $dataResolver;
 
 
     public function index()
@@ -116,16 +120,7 @@ class SettlementController extends AppController
 
         $this->setMeta($settlementType->label());
 
-
-        $dtoName = $settlementType->data();
-
-        $dataClass = 'app\\DTO\\' . $dtoName;
-
-        if(!class_exists($dataClass)){
-            throw new \InvalidArgumentException("Unknown DTO: {$dtoName}");
-        }
-
-        $settlementData = $dataClass::fromArray($data);
+        $settlementData = $this->dataResolver->formArray($settlementType, $data);
 
         $calculator = CalculatorFactory::create($settlementType->value);
 
@@ -166,20 +161,11 @@ class SettlementController extends AppController
             redirect('/settlements');
         }
 
-        $dtoName = $settlementType->data();
-
-        $dataClass = 'app\\DTO\\' . $dtoName;
-
-        if(!class_exists($dataClass)){
-            throw new \InvalidArgumentException("Unknown DTO: {$dtoName}");
-        }
-
-        $settlementData = $dataClass::fromDataBase($settlement);
+        $settlementData = $this->dataResolver->fromDatabase($settlementType, $settlement);
 
         $calculator = CalculatorFactory::create($settlementType->value);
 
         $result = $calculator->calculate($settlementData);
-
 
         $this->setMeta($settlementType->label());
 

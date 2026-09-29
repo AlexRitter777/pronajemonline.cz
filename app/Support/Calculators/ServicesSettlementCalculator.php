@@ -4,14 +4,22 @@ declare(strict_types=1);
 
 namespace app\Support\Calculators;
 
+use app\DTO\Contracts\SettlementData;
+use app\DTO\Contracts\SettlementResult;
 use app\DTO\ServicesSettlementData;
 use app\DTO\ServicesSettlementResult;
 use app\Enums\MeterType;
 
 final class ServicesSettlementCalculator extends Calculator
 {
-    public function calculate(ServicesSettlementData $d): ServicesSettlementResult
+    public function calculate(SettlementData $d): SettlementResult
     {
+
+        $d instanceof ServicesSettlementData
+            || throw new \InvalidArgumentException(
+            self::class . ' expects ServicesSettlementData, got ' . $d::class
+            );
+
         // Calculate diff in months
         $calcMonths = $this->twoDatesMonthDiff($d->calcStartDate, $d->calcFinishDate);
         $rentMonths = $this->twoDatesMonthDiff($d->rentStartDate, $d->rentFinishDate);

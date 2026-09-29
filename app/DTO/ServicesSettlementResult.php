@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace app\DTO;
 
-final readonly class ServicesSettlementResult
+use app\DTO\Contracts\SettlementResult;
+
+final readonly class ServicesSettlementResult implements SettlementResult
 {
     public function __construct(
 
