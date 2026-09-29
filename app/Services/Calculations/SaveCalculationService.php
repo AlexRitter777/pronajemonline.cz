@@ -28,21 +28,18 @@ final class SaveCalculationService
 
     }
 
-    private function prepareData(array $data)
+    private function prepareData(array $data): array
     {
         foreach ($data as $key => $value) {
-            if($value !== 'Ano' && $value !== 'Ne'){
-
-                if (is_array($value)){
-                    $value = "^" . implode("^", $value);
-                }
-
-                $data[$key] = $value;
-
+            if (is_array($value)) {
+                $value = "^" . implode("^", $value);
             }
+            $data[$key] = $value;
         }
-
         return $data;
     }
+
+
+
 
 }

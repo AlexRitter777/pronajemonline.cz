@@ -232,6 +232,12 @@ abstract class Model {
         throw new \Exception('Access dinied', 403);
 
     }
+    public function getOneRecordAsArray(string $recordId, ?int $userId = null): ?array
+    {
+        $bean = $this->getOneRecordById($recordId, $userId);
+
+        return $bean ? $bean->export() : null;
+    }
 
     public function getOneRecordByIdManual(string $recordId, string $table, int $userId = null) {
 

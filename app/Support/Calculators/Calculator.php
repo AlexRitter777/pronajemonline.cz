@@ -121,12 +121,18 @@ abstract class Calculator
         return $monthsCount + $firstMonthDaysFloat + $lastMonthDaysFloat;
     }
 
-    protected function metersDifSum(MeterType $utility, array $names, array $initialValues, array $endValues, float $coefficient = 1) : float
+    protected function metersDifSum(
+        MeterType $utility,
+        array $names,
+        array $initialValues,
+        array $endValues,
+        float $coefficient = 1
+     ) : float
     {
         $i = 0;
         $result = 0;
         foreach ($names as $name) {
-            if (preg_match("/{$utility->value}/", $name)) {
+            if (preg_match("/{$utility->label()}/", $name)) {
                 $result = $result + ($endValues[$i] - $initialValues[$i]);
             }
             $i++;
@@ -270,7 +276,7 @@ abstract class Calculator
     {
         $result = [];
 
-        $heatingMeter = MeterType::HEATING->value;
+        $heatingMeter = MeterType::HEATING->label();
 
         for ($i=0; $i < count($initialValues); $i++) {
             $result['noCoeff'][$i] = $endValues[$i] - $initialValues[$i];

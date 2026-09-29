@@ -96,6 +96,47 @@ final readonly class ServicesSettlementData
         );
     }
 
+    public static function fromDataBase(array $data): self
+    {
+        return new self(
+            landlordName:           $data['landlord_name'],
+            landlordAddress:        $data['landlord_address'],
+            accountNumber:          $data['account_number'] ?? null,
+            propertyAddress:        $data['property_address'],
+            propertyType:           $data['property_type'],
+            tenantName:             $data['tenant_name'],
+            tenantAddress:          $data['tenant_address'],
+            adminName:              $data['admin_name'],
+            calcStartDate:          $data['calc_start_date'],
+            calcFinishDate:         $data['calc_finish_date'],
+            rentStartDate:          $data['rent_start_date'],
+            rentFinishDate:         $data['rent_finish_date'],
+            pausalniNaklad:         self::explodeField($data['pausalni_naklad'] ?? ''),
+            servicesCost:           self::explodeFloats($data['services_cost'] ?? ''),
+            appMeters:              self::explodeField($data['app_meters'] ?? ''),
+            initialValue:           self::explodeFloats($data['initial_value'] ?? ''),
+            endValue:               self::explodeFloats($data['end_value'] ?? ''),
+            meterNumber:            self::explodeField($data['meter_number'] ?? ''),
+            originMeterStart:       $data['origin_meter_start'] ?? null,
+            originMeterEnd:         $data['origin_meter_end'] ?? null,
+            coefficientValue:       self::explodeFloats($data['coefficient_value'] ?? ''),
+            constHotWaterPrice:     self::toFloat($data['const_hot_water_price'] ?? null),
+            constHeatingPrice:      self::toFloat($data['const_heating_price'] ?? null),
+            hotWaterPrice:          self::toFloat($data['hot_water_price'] ?? null),
+            coldWaterPrice:         self::toFloat($data['cold_water_price'] ?? null),
+            coldForHotWaterPrice:   self::toFloat($data['cold_for_hot_water_price'] ?? null),
+            heatingPrice:           self::toFloat($data['heating_price'] ?? null),
+            changedHeatingCosts:     self::toFloat($data['changed_heating_cost'] ?? null),
+            heatingYearSum:         self::toFloat($data['heating_year_sum'] ?? null),
+            servicesCostCorrection: self::toFloat($data['services_cost_correction'] ?? null),
+            hotWaterCorrection:     self::toFloat($data['hot_water_correction'] ?? null),
+            heatingCorrection:      self::toFloat($data['heating_correction'] ?? null),
+            coldWaterCorrection:    self::toFloat($data['cold_water_correction'] ?? null),
+            advancedPayments:       self::toFloat($data['advanced_payments'] ?? null),
+            advancedPaymentsDesc:   $data['advanced_payments_desc'] ?? '',
+        );
+    }
+
     public function toArray(): array
     {
         return [
@@ -137,5 +178,19 @@ final readonly class ServicesSettlementData
         ];
     }
 
+
+    /** ^-строка -> string[] (имена счётчиков, номера, паушальные) */
+    private static function explodeField(string $value, string $delimiter = '^'): array
+    {
+        $value = trim($value, $delimiter);
+
+        return $value === '' ? [] : explode($delimiter, $value);
+    }
+
+    /** ^-строка -> float[] (показания, цены-массивы, коэффициенты) */
+    private static function explodeFloats(string $value, string $delimiter = '^'): array
+    {
+        return array_map(self::toFloat(...), self::explodeField($value, $delimiter));
+    }
 
 }

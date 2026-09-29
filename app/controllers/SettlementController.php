@@ -116,6 +116,7 @@ class SettlementController extends AppController
 
         $this->setMeta($settlementType->label());
 
+
         $dtoName = $settlementType->data();
 
         $dataClass = 'app\\DTO\\' . $dtoName;
@@ -153,20 +154,38 @@ class SettlementController extends AppController
 
         $settlementType = SettlementType::tryFrom($_GET['type']);
 
+        $userID = $_SESSION['user_id'];
+
         $settlement = match ($settlementType) {
-            SettlementType::SERVICES => $this->servicesSettlement->getOneRecordById($settlementId),
+            SettlementType::SERVICES => $this->servicesSettlement->getOneRecordAsArray($settlementId, $userID),
             default => null
         };
+
 
         if($settlement === null){
             redirect('/settlements');
         }
 
+        $dtoName = $settlementType->data();
+
+        $dataClass = 'app\\DTO\\' . $dtoName;
+
+        if(!class_exists($dataClass)){
+            throw new \InvalidArgumentException("Unknown DTO: {$dtoName}");
+        }
+
+        $settlementData = $dataClass::fromDataBase($settlement);
+
+        $calculator = CalculatorFactory::create($settlementType->value);
+
+        $result = $calculator->calculate($settlementData);
+
+
         $this->setMeta($settlementType->label());
 
         $settlementCalcPath = "/calculations/{$settlementType->value}-calc.php";
 
-        $this->set(compact('settlement', 'settlementCalcPath'));
+        $this->set(compact('result', 'settlementCalcPath'));
 
     }
 
