@@ -12,87 +12,41 @@ abstract class Calculator
 
     abstract public function calculate(SettlementData $d) : SettlementResult;
 
+    protected function twoDatesMonthDiff(
+        string $startDate,
+        string $finishDate,
+        int $precision = 2
+    ): float {
+        $start = new \DateTimeImmutable($startDate);
+        $finish = new \DateTimeImmutable($finishDate);
 
-    protected function twoDatesMonthDiff($startDate, $finishDate, $precision = 2) : float
-    {
-
-        $startDateObj = new DateTime($startDate);
-        $finishDateObj = new DateTime($finishDate);
-        $diff = $startDateObj->diff($finishDateObj);
-
-        $year = $startDateObj->format('Y');
-        settype($year, 'integer');
-
-        $month = $startDateObj->format('m');
-        settype($month, 'integer');
-
-
-        $day = $startDateObj->format('d');
-        settype($day, 'integer');
-
-        $yearSum = (array_sum(str_split($year)));
-
-        $months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-        $daysCount = 1;
-        $monthsCount = 0;
-        $yearsCount = $year;
-        $firstMonthDaysFloat = 0;
-
-        $totalDaysCount =  $diff->format("%a");
-
-        $counter = $month - 1;
-        $daysPerMonth = $months[$counter];
-        $n = $day;
-
-        if ($yearSum % 4 == 0) {
-            $months[1] = 29;
-        } else {
-            $months[1] = 28;
+        if ($finish < $start) {
+            return 0.0;
         }
 
-        for ($i = 0; $i <= $totalDaysCount; $i++) {
+        // Finish date is inclusive
+        $endExclusive = $finish->modify('+1 day');
 
-            if ($n < $daysPerMonth) {
-                $daysCount++;
-                $n++;
+        $result = 0.0;
+        $cursor = $start;
 
-            } else {
+        while ($cursor < $endExclusive) {
+            $daysInMonth = (int) $cursor->format('t');
 
-                if ($n == $daysPerMonth && $daysPerMonth == $daysCount) {
-                    $monthsCount++;
+            $nextMonth = $cursor
+                ->modify('last day of this month')
+                ->modify('+1 day');
 
-                } elseif ($n == $daysPerMonth && $daysCount < $daysPerMonth) {
-                    $firstMonthDaysCount = $daysCount;
-                    $firstMonthDaysFloat = round($firstMonthDaysCount/$months[$counter], $precision);
-                }
+            $sliceEnd = min($nextMonth, $endExclusive);
 
-                $counter++;
+            $days = $cursor->diff($sliceEnd)->days;
 
-                if ($counter % 12 == 0) {
+            $result += $days / $daysInMonth;
 
-                    $yearsCount++;
-                    $counter = 0;
-                    $yearSum = (array_sum(str_split($yearsCount)));
-                    if ($yearSum % 4 == 0) {
-                        $months[1] = 29;
-                    } else {
-                        $months[1] = 28;
-                    }
-                }
-
-                $n = 1;
-                $daysCount = 1;
-
-                $daysPerMonth = $months[$counter];
-
-            }
+            $cursor = $nextMonth;
         }
 
-        $lastMonthDaysCount = $daysCount - 1;
-        $lastMonthDaysFloat = round($lastMonthDaysCount/$months[$counter], $precision);
-
-        return $monthsCount + $firstMonthDaysFloat + $lastMonthDaysFloat;
+        return round($result, $precision);
     }
 
     protected function metersDifSum(
