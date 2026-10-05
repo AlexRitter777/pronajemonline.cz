@@ -14,8 +14,27 @@ enum MeterType : string
         return match ($this) {
           self::HOT_WATER => 'TUV',
           self::COLD_WATER => 'SUV',
-          self::HEATING => 'UT'
+          self::HEATING => 'ÚT'
         };
+    }
+
+    public function utilityName() : string
+    {
+        return match ($this) {
+          self::HOT_WATER => 'TUV (Teplá voda)',
+          self::COLD_WATER => 'SUV (Studená voda)',
+          self::HEATING => 'ÚT (Ústřední topení)'
+        };
+    }
+
+    public function extendedUtilityName() : string
+    {
+        return match ($this){
+            self::HOT_WATER => 'Teplá užitková voda',
+            self::COLD_WATER => 'Studená užitková voda',
+            self::HEATING => 'Ústřední topení'
+        };
+
     }
 
 }
