@@ -38,4 +38,9 @@ if (!function_exists('url_replace_query_param')) {
             ? $path . '?' . $queryString
             : $path;
     }
+
+    function number(float $value): string
+    {
+        return number_format($value, 2, ',', ' ');
+    }
 }
