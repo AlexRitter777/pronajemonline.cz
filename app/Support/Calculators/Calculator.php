@@ -13,12 +13,13 @@ abstract class Calculator
     abstract public function calculate(SettlementData $d) : SettlementResult;
 
     protected function twoDatesMonthDiff(
-        string $startDate,
-        string $finishDate,
+        \DateTimeImmutable $startDate,
+        \DateTimeImmutable $finishDate,
         int $precision = 2
     ): float {
-        $start = new \DateTimeImmutable($startDate);
-        $finish = new \DateTimeImmutable($finishDate);
+
+        $start = $startDate;
+        $finish = $finishDate;
 
         if ($finish < $start) {
             return 0.0;
@@ -192,10 +193,10 @@ abstract class Calculator
             $result['noCoeff'][$i] = $endValues[$i] - $initialValues[$i];
             if (preg_match("/{$heatingMeter}/", $meters[$i])) {
                 $result['coeff'][$i] = $coefficient;
-                $result['coeffView'][$i] = (string) $coefficient;
+                $result['coeffView'][$i] = number($coefficient);
             } else {
                 $result['coeff'][$i] = 1.0;
-                $result['coeffView'][$i] = '-';
+                $result['coeffView'][$i] = '—';
             }
             $result['final'][$i] = round(($result['noCoeff'][$i] * $result['coeff'][$i]), 2);
         }

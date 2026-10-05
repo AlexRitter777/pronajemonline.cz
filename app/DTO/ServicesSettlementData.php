@@ -6,29 +6,30 @@ namespace app\DTO;
 
 use app\DTO\Concerns\CastsScalars;
 use app\DTO\Contracts\SettlementData;
+use DateTimeImmutable;
 
 final readonly class ServicesSettlementData implements SettlementData
 {
     use CastsScalars;
     public function __construct(
-        public string $landlordName,
-        public string $landlordAddress,
-        public ?string $accountNumber,
-        public string $propertyAddress,
-        public string $propertyType,
-        public string $tenantName,
-        public string $tenantAddress,
-        public string $adminName,
-        public string $calcStartDate,
-        public string $calcFinishDate,
-        public string $rentStartDate,
-        public string $rentFinishDate,
+        public string            $landlordName,
+        public string            $landlordAddress,
+        public ?string           $accountNumber,
+        public string            $propertyAddress,
+        public string            $propertyType,
+        public string            $tenantName,
+        public string            $tenantAddress,
+        public ?string           $adminName,
+        public DateTimeImmutable $calcStartDate,
+        public DateTimeImmutable $calcFinishDate,
+        public DateTimeImmutable $rentStartDate,
+        public DateTimeImmutable $rentFinishDate,
         /** @var string[] */
-        public array $pausalniNaklad,
+        public array             $pausalniNaklad,
         /** @var float[] */
-        public array $servicesCost,
+        public array             $servicesCost,
         /** @var string[] */
-        public array $appMeters,
+        public array             $appMeters,
         /** @var float[] */
         public array $initialValue,
         /** @var float[] */
@@ -66,11 +67,11 @@ final readonly class ServicesSettlementData implements SettlementData
             propertyType: $data['propertyType'],
             tenantName: $data['tenantName'],
             tenantAddress: $data['tenantAddress'],
-            adminName: $data['adminName'],
-            calcStartDate: $data['calcStartDate'],
-            calcFinishDate: $data['calcFinishDate'],
-            rentStartDate: $data['rentStartDate'],
-            rentFinishDate: $data['rentFinishDate'],
+            adminName: $data['adminName'] ?? null,
+            calcStartDate: new DateTimeImmutable($data['calcStartDate']),
+            calcFinishDate:  new DateTimeImmutable($data['calcFinishDate']),
+            rentStartDate:  new DateTimeImmutable($data['rentStartDate']),
+            rentFinishDate:  new DateTimeImmutable($data['rentFinishDate']),
             pausalniNaklad: $data['pausalniNaklad'],
             servicesCost: self::toFloatArray($data['servicesCost']),
             appMeters: $data['appMeters'],
@@ -107,11 +108,11 @@ final readonly class ServicesSettlementData implements SettlementData
             propertyType:           $data['property_type'],
             tenantName:             $data['tenant_name'],
             tenantAddress:          $data['tenant_address'],
-            adminName:              $data['admin_name'],
-            calcStartDate:          $data['calc_start_date'],
-            calcFinishDate:         $data['calc_finish_date'],
-            rentStartDate:          $data['rent_start_date'],
-            rentFinishDate:         $data['rent_finish_date'],
+            adminName:              $data['admin_name'] ?? null,
+            calcStartDate:          new DateTimeImmutable($data['calc_start_date']),
+            calcFinishDate:         new DateTimeImmutable($data['calc_finish_date']),
+            rentStartDate:          new DateTimeImmutable($data['rent_start_date']),
+            rentFinishDate:         new DateTimeImmutable($data['rent_finish_date']),
             pausalniNaklad:         self::explodeField($data['pausalni_naklad'] ?? ''),
             servicesCost:           self::explodeFloats($data['services_cost'] ?? ''),
             appMeters:              self::explodeField($data['app_meters'] ?? ''),
