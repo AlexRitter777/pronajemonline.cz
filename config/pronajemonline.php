@@ -1,5 +1,7 @@
 <?php
 
+use app\Enums\MeterType;
+
 return [
 
     'services' => [
@@ -33,9 +35,9 @@ return [
     ],
 
     'meter_types' => [
-        'TUV (Tepla voda)',
-        'SUV (Studena voda)',
-        'UT (Ustřední topení)',
+        MeterType::HOT_WATER->utilityName(),
+        MeterType::COLD_WATER->utilityName(),
+        MeterType::HEATING->utilityName(),
     ],
 
     'meter_reading_source' => [
